@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
-var server = app.listen(5000);
+var server = app.listen(process.env.PORT || 5000);
 
 app.use(express.static('public'))
 
-console.log("Porta 5000");
+console.log("It's running my code");
 
 var socket = require('socket.io');
 var io = socket(server);
