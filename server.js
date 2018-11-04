@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
-var server = app.listen(8080);
+var server = app.listen(5000);
 
 app.use(express.static('public'))
 
-console.log("Porta 8080");
+console.log("Porta 5000");
 
 var socket = require('socket.io');
 var io = socket(server);
