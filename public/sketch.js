@@ -1,7 +1,7 @@
 var socket;
 
 function setup() {
-  createCanvas(450, 450);
+  createCanvas(windowWidth, windowHeight);
   background(51);
 
   socket = io.connect(window.location.origin);
@@ -9,7 +9,7 @@ function setup() {
 }
 
 function draw() {
-
+  ellipse(width / 2, height / 2, 200, 200);
 }
 
 function mouseDragged() {
@@ -26,6 +26,7 @@ function mouseDragged() {
   noStroke();
   fill(255);
   ellipse(mouseX, mouseY, 50, 50);
+
 }
 
 function newDrawing(data) {

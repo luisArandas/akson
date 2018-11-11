@@ -4,7 +4,7 @@ var server = app.listen(process.env.PORT || 5000);
 
 app.use(express.static('public'))
 
-console.log("It's running my code");
+console.log("It's running Akson Environment on port 5000.");
 
 var socket = require('socket.io');
 var io = socket(server);
@@ -15,6 +15,7 @@ function newConnection(socket) {
   console.log("new connection: " + socket.id);
 
   //ao conectar (na função newConnection, e se receberes algo chamado 'mouse' faz a funcao mouseMsg)
+  //enviar só numeros <- {object, object}
   socket.on('mouse', mouseMsg);
   //next work would be make another socket.on function
 
@@ -24,4 +25,5 @@ function newConnection(socket) {
     //io.sockets.emit('mouse', data);
     console.log(data);
   }
+
 }
