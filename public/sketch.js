@@ -1,64 +1,84 @@
-var socket;
-// FAZER FREQUENCY MODULATION <---------
+//https://threejs.org/examples/#webgl_interactive_cubes
 
-var a = 50;
-var b = 120;
+$(document).ready(function() {
+  $('.leftmenutrigger').on('click', function(e) {
+    $('.side-nav').toggleClass("open");
+    e.preventDefault();
+  });
+});
 
-var noise;
-var delay;
-var filter;
+var camera, scene, renderer;
+var geometry, material, mesh;
+var data;
 
+var synth = new Tone.Synth().toMaster()
 
-function preload() {}
+init();
+animate();
 
-function setup() {
+function init() {
 
-  createCanvas(windowWidth, windowHeight, WEBGL);
   socket = io.connect(window.location.origin);
   socket.on('mouse', newDrawing);
 
-  noise = new p5.Noise();
-  delay = new p5.Delay();
-  filter = new p5.BandPass();
+  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+  camera.position.z = 1;
 
-  noise.amp(0.2);
-  delay.process(noise, .12, .7, 2300);
-  delay.setType('pingPong');
-  delay.amp(0.9);
-  noise.connect(filter);
-  noise.start();
+  scene = new THREE.Scene();
 
+  geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+  material = new THREE.MeshBasicMaterial({
+
+    flatShading: true,
+    color: 0xffffff,
+    transparent: true,
+    opacity: 1,
+    wireframe: true,
+    wireframeLinewidth: 2,
+    wireframeLinejoin: 'round',
+    wireframeLinecap: 'round'
+  });
+
+  mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  renderer = new THREE.WebGLRenderer({
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  window.addEventListener("mousedown", onMouseDown, false);
 }
 
-function draw() {
-  var r = random(50);
-  background(r);
+function animate() {
+
+  requestAnimationFrame(animate);
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+  var corFundo = Math.random() * (0.15 - 0) + 0;
+  scene.background = new THREE.Color(corFundo, corFundo, corFundo);
+  renderer.render(scene, camera);
 }
 
-function mouseDragged() {
+function onMouseDown(event) {
 
-  console.log('Sending: ' + mouseX + ',' + mouseY);
-  //mensagem que vou enviar
+  event.preventDefault();
+
   var data = {
-    x: mouseX,
-    y: mouseY
-  }
-  //enviar a mensagem, 'mouse' é o nome
-  socket.emit('mouse', data);
+    mouseX: 0,
+    mouseY: 0
+  };
 
-  noStroke();
-  fill(255);
-  ellipse(mouseX, mouseY, 50, 50);
+  mouseX = (event.clientX);
+  mouseY = (event.clientY);
+
+  socket.emit('mouse', data);
+  synth.triggerAttackRelease('C4', '4n');
 }
 
 function newDrawing(data) {
-  noStroke();
-  fill(255, 0, 0);
-  ellipse(data.x, data.y, 50, 50);
-  //teste a enviar valores para o som
-  //FAZER O BANDPASS FREQUENCY BASEADO NO MOUSEX
-  var freq = map(data.x, 0, width, 20, 10000);
-  filter.freq(freq);
-  var res = map(data.y, 0, height, 1, .01);
-  filter.res(res);
+  console.log("receiving mouseX =" + mouseX);
+  console.log("receiving mouseY =" + mouseY);
+  synth.triggerAttackRelease('C2', '4n');
 }

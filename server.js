@@ -25,5 +25,4 @@ function newConnection(socket) {
     //io.sockets.emit('mouse', data);
     console.log(data);
   }
-
 }
