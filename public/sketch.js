@@ -1,4 +1,9 @@
 //https://threejs.org/examples/#webgl_interactive_cubes
+//https://threejs.org/examples/#webgl_clipping_advanced
+//CHECK THE MODAL ON BUTTON CLICK
+//DESENHAR NUM PAPEL
+//VER OS FAVICONS
+// MAKE AN ABOUT
 
 $(document).ready(function() {
   $('.leftmenutrigger').on('click', function(e) {
@@ -11,7 +16,26 @@ var camera, scene, renderer;
 var geometry, material, mesh;
 var data;
 
-var synth = new Tone.Synth().toMaster()
+
+var distortion = new Tone.Distortion(0.6);
+var tremolo = new Tone.Tremolo().start();
+
+var polySynth = new Tone.PolySynth({
+  oscillator: {
+    type: 'fmsquare',
+    modulationType: 'sawtooth',
+    modulationIndex: 3,
+    harmonicity: 3.4
+  },
+  envelope: {
+    attack: 0.001,
+    decay: 0.1,
+    sustain: 0.1,
+    release: 0.1
+  }
+}).toMaster();
+
+var synth = new Tone.Synth().toMaster();
 
 init();
 animate();
@@ -48,7 +72,8 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  window.addEventListener("mousedown", onMouseDown, false);
+  window.addEventListener('mousedown', onMouseDown, false);
+  window.addEventListener('resize', onWindowResize, false);
 }
 
 function animate() {
@@ -72,12 +97,28 @@ function onMouseDown(event) {
 
   mouseX = (event.clientX);
   mouseY = (event.clientY);
+  console.log(mouseX);
 
   socket.emit('mouse', data);
-  synth.triggerAttackRelease('C4', '4n');
+  //synth.triggerAttackRelease('C4', '4n');
+  polySynth.triggerAttackRelease(['C4', 'E4', 'G4', 'B4']);
 }
 
-function newDrawing(data) {
+function onWindowResize() {
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.render(scene, camera);
+}
+
+function myFunc() {
+  //quando o botão MUTE dá
+  synth.triggerAttackRelease('D3', '4n');
+}
+
+function newDrawing() {
   console.log("receiving mouseX =" + mouseX);
   console.log("receiving mouseY =" + mouseY);
   synth.triggerAttackRelease('C2', '4n');

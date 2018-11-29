@@ -23,3 +23,21 @@ body{background:#f9f9f9;}
 .navbar-nav.side-nav{background: #585f66;box-shadow: 2px 1px 2px rgba(0,0,0,.1);position:fixed;top:56px;flex-direction: column!important;left:-220px;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
 }
 .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
+
+
+
+/*  --------------- NAVBAR --------------- */
+.navbar-dark {
+    /*color: #000000;*/
+    background-color: 0,0,0,0;
+}
+/* SE EU QUISER METER COR SO EM HOVER
+.navbar-dark:hover {
+    background-color: #4c4c4c; e depois 0,0,0,0 em cima
+}*/
+
+/* COR AMARELA NA BARRA DO LADO*/
+.navbar-dark .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #FFFF00;
+    color: #FFC0CB;
+}

@@ -18,41 +18,57 @@
 
   <!-- METER OS LINKS PARA RESPONSIVE JS-->
 
-  <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+  <nav class="navbar header-top fixed-top navbar-expand-lg navbar-dark shadow-none">
     <span class="navbar-toggler-icon leftmenutrigger"></span>
-    <a class="navbar-brand" href="#">LOGO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav animate side-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">X1
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.png" alt="Logo" style="width:29px;">
+          </a>
+          <a class="nav-link" href="#">MENU1
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">X2</a>
+          <a class="nav-link" href="#">MENU2</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">X3</a>
+          <a class="nav-link" href="#">MENU3</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-md-auto d-md-flex">
         <li class="nav-item">
-          <a class="nav-link" href="#">Y1
+          <a class="nav-link" href="#" onclick="myFunc();">[1]
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Y2</a>
+          <a class="nav-link" href="#">[2]</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Y3</a>
+          <a class="nav-link" href="#">[3]</a>
         </li>
       </ul>
   </nav>
 
+  <!--MODAL
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title<br></h5>
+        </div>
+        <div class="modal-body">
+          <p>TESTE</p>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="libraries/three.min.js"></script>
   <script src="libraries/Tone.js"></script>

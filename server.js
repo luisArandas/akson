@@ -24,5 +24,6 @@ function newConnection(socket) {
     //goes to everyone including the actual client
     //io.sockets.emit('mouse', data);
     console.log(data);
+    //VER ISTO ESTA BUGGED
   }
 }
