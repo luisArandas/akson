@@ -3,7 +3,7 @@
 //CHECK THE MODAL ON BUTTON CLICK
 //DESENHAR NUM PAPEL
 //VER OS FAVICONS
-// MAKE AN ABOUT
+//MAKE AN ABOUT
 
 $(document).ready(function() {
   $('.leftmenutrigger').on('click', function(e) {
@@ -15,27 +15,21 @@ $(document).ready(function() {
 var camera, scene, renderer;
 var geometry, material, mesh;
 var data;
+var glitchPass;
 
 
 var distortion = new Tone.Distortion(0.6);
 var tremolo = new Tone.Tremolo().start();
 
-var polySynth = new Tone.PolySynth({
-  oscillator: {
-    type: 'fmsquare',
-    modulationType: 'sawtooth',
-    modulationIndex: 3,
-    harmonicity: 3.4
-  },
-  envelope: {
-    attack: 0.001,
-    decay: 0.1,
-    sustain: 0.1,
-    release: 0.1
-  }
-}).toMaster();
+var oscilador = new Tone.Oscillator({
+  "frequency": 550,
+  "volume": -20
+}).chain(distortion, tremolo, Tone.Master);
 
-var synth = new Tone.Synth().toMaster();
+var synth = new Tone.Synth().toMaster()
+
+
+
 
 init();
 animate();
@@ -49,8 +43,9 @@ function init() {
   camera.position.z = 1;
 
   scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x000000, 1, 1000);
 
-  geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+  geometry = new THREE.BoxGeometry(1, 2, 1);
   material = new THREE.MeshBasicMaterial({
 
     flatShading: true,
@@ -70,10 +65,21 @@ function init() {
     antialias: true
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
   document.body.appendChild(renderer.domElement);
 
   window.addEventListener('mousedown', onMouseDown, false);
+  window.addEventListener('mouseup', onMouseUp, false);
   window.addEventListener('resize', onWindowResize, false);
+
+
+  composer = new THREE.EffectComposer(renderer);
+  composer.addPass(new THREE.RenderPass(scene, camera));
+  glitchPass = new THREE.GlitchPass();
+  glitchPass.renderToScreen = true;
+  //glitchPass.goWild = true;
+  composer.addPass(glitchPass);
+
 }
 
 function animate() {
@@ -83,7 +89,8 @@ function animate() {
   mesh.rotation.y += 0.02;
   var corFundo = Math.random() * (0.15 - 0) + 0;
   scene.background = new THREE.Color(corFundo, corFundo, corFundo);
-  renderer.render(scene, camera);
+  composer.render();
+  //renderer.render(scene, camera);
 }
 
 function onMouseDown(event) {
@@ -97,11 +104,16 @@ function onMouseDown(event) {
 
   mouseX = (event.clientX);
   mouseY = (event.clientY);
-  console.log(mouseX);
 
-  socket.emit('mouse', data);
-  //synth.triggerAttackRelease('C4', '4n');
-  polySynth.triggerAttackRelease(['C4', 'E4', 'G4', 'B4']);
+  socket.emit('mouse', event.clientX);
+
+  oscilador.start();
+  Tone.Master.volume.rampTo(0, 0.05);
+}
+
+function onMouseUp(event) {
+  event.preventDefault();
+  oscilador.stop();
 }
 
 function onWindowResize() {
@@ -110,16 +122,15 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.render(scene, camera);
+  composer.setSize(window.innerWidth, window.innerHeight);
+  composer.render();
+  //renderer.render(scene, camera);
 }
 
 function myFunc() {
-  //quando o botão MUTE dá
-  synth.triggerAttackRelease('D3', '4n');
+  synth.triggerAttackRelease('C4', '8n')
 }
 
 function newDrawing() {
-  console.log("receiving mouseX =" + mouseX);
-  console.log("receiving mouseY =" + mouseY);
   synth.triggerAttackRelease('C2', '4n');
 }

@@ -10,17 +10,31 @@ body{background:#f9f9f9;}
 
 .header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
 
-.leftmenutrigger{display: none}
+/*.leftmenutrigger{display: block} SE EU QUISER MOSTRAR EM TELEMOVEIS */
+.leftmenutrigger{display:none}
 
 @media(min-width:992px) {
 
-.leftmenutrigger{display: block;display: block;margin: 7px 20px 4px 0;cursor: pointer;}
+.leftmenutrigger{display: block;margin: 7px 20px 4px 0;cursor: pointer;}
 
 #wrapper{padding: 90px 15px 15px 15px; }
 
 .navbar-nav.side-nav.open {left:0;}
 
-.navbar-nav.side-nav{background: #585f66;box-shadow: 2px 1px 2px rgba(0,0,0,.1);position:fixed;top:56px;flex-direction: column!important;left:-220px;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
+.navbar-nav.side-nav{
+  background: 0,0,0,0;
+  box-shadow: 0px rgba(0,0,0,.1);
+  position:fixed;top:56px;
+  flex-direction:
+  column!important;
+  left:-220px;
+  width:200px;
+  overflow-y:
+  auto;
+  bottom:0;
+  overflow-x:hidden;
+  padding-bottom:40px
+}
 }
 .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
 
@@ -38,6 +52,6 @@ body{background:#f9f9f9;}
 
 /* COR AMARELA NA BARRA DO LADO*/
 .navbar-dark .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #FFFF00;
-    color: #FFC0CB;
+    /*background-color: #FFFF00;
+    color: #FFFFFF;*/
 }
