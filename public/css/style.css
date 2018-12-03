@@ -1,57 +1,100 @@
-html, body { padding: 0; margin: 0; }
-
-body{background:#f9f9f9;}
-
-#wrapper{padding:90px 15px;}
-
-.navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
-
-.card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
-
-.header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
-
-/*.leftmenutrigger{display: block} SE EU QUISER MOSTRAR EM TELEMOVEIS */
-.leftmenutrigger{display:none}
-
-@media(min-width:992px) {
-
-.leftmenutrigger{display: block;margin: 7px 20px 4px 0;cursor: pointer;}
-
-#wrapper{padding: 90px 15px 15px 15px; }
-
-.navbar-nav.side-nav.open {left:0;}
-
-.navbar-nav.side-nav{
-  background: 0,0,0,0;
-  box-shadow: 0px rgba(0,0,0,.1);
-  position:fixed;top:56px;
-  flex-direction:
-  column!important;
-  left:-220px;
-  width:200px;
-  overflow-y:
-  auto;
-  bottom:0;
-  overflow-x:hidden;
-  padding-bottom:40px
+html, body {
+  background: #000000;
+  padding: 0;
+  margin: 0;
 }
+
+.navbar {
+    background: #505050;
+    height: 60px;
 }
-.animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
 
-
-
-/*  --------------- NAVBAR --------------- */
-.navbar-dark {
-    /*color: #000000;*/
-    background-color: 0,0,0,0;
+.center_div {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    background-color: #000000;
 }
-/* SE EU QUISER METER COR SO EM HOVER
-.navbar-dark:hover {
-    background-color: #4c4c4c; e depois 0,0,0,0 em cima
-}*/
 
-/* COR AMARELA NA BARRA DO LADO*/
-.navbar-dark .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    /*background-color: #FFFF00;
-    color: #FFFFFF;*/
+.btn {
+  background-color: #505050;
+  border: 1px solid #303030;
+  height: 80px;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #23272a;
+    border-color: #303030;
+}
+
+.botton_baixo_esquerda {
+  width: 25%;
+}
+
+
+/* FADE IN */
+
+.fade-in {
+  animation: fadeIn ease 5s;
+  -webkit-animation: fadeIn ease 5s;
+  -moz-animation: fadeIn ease 5s;
+  -o-animation: fadeIn ease 5s;
+  -ms-animation: fadeIn ease 5s;
+}
+
+@keyframes fadeIn{
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+
+@media (max-width: 992px) {
+    .navbar{
+        display:none;
+    }
 }

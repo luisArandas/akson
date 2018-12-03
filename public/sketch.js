@@ -43,9 +43,9 @@ function init() {
   camera.position.z = 1;
 
   scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x000000, 1, 1000);
+  //scene.fog = new THREE.Fog(0x000000, 1, 1000);
 
-  geometry = new THREE.BoxGeometry(1, 2, 1);
+  geometry = new THREE.BoxGeometry(2, 2, 2);
   material = new THREE.MeshBasicMaterial({
 
     flatShading: true,
@@ -66,6 +66,7 @@ function init() {
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.autoClear = false;
   document.body.appendChild(renderer.domElement);
 
   window.addEventListener('mousedown', onMouseDown, false);
@@ -79,8 +80,8 @@ function init() {
   glitchPass.renderToScreen = true;
   //glitchPass.goWild = true;
   composer.addPass(glitchPass);
-
 }
+
 
 function animate() {
 

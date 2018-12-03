@@ -15,66 +15,42 @@
 
 </head>
 
-<body>
+<body class="fade-in">
 
-  <!-- METER OS LINKS PARA RESPONSIVE JS-->
+  <!-- BARRA DE CIMA -->
 
-  <nav class="navbar header-top fixed-top navbar-expand-lg navbar-dark shadow-none">
-    <button class="btn btn-dark leftmenutrigger" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav animate side-nav">
-        <li class="nav-item">
-          <a class="navbar-brand" href="#">
-            <img src="img/logo.png" alt="Logo" style="width:29px;">
-          </a>
-          <a class="nav-link" href="#">MENU1
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">MENU2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">MENU3</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-md-auto d-md-flex">
-        <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark">X</button>
-        </a>
-        <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark">X</button>
-        </a>
-        <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark">X</button>
-        </a>
+  <nav class="navbar header-top fixed-top navbar-expand-lg">
+    <button type="button" class="btn btn-dark"><img src="img/settings.png" height="30" width="30"></button>
+
+    <ul class="navbar-nav ml-md-auto d-md-flex">
+      <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark"><img src="img/settings.png" height="30" width="30"></button>
+      </a>
+      <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark"><img src="img/settings.png" height="30" width="30"></button>
+      </a>
+      <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark"><img src="img/settings.png" height="30" width="30"></button>
+      </a>
   </nav>
-  <!--MODAL
-  <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title<br></h5>
-        </div>
-        <div class="modal-body">
-          <p>TESTE</p>
-        </div>
-      </div>
-    </div>
+
+  <!-- BUTTONS -->
+
+  <div class="center_div">
+    <a class="nav-link" href="music.html"><button class="btn btn-primary btn-sx btn-block nav-link" href="music.html" type="button">Play</button></a>
+    <br>
+    <a class="nav-link" href="music.html"><button class="btn btn-primary btn-sx btn-block nav-link" href="visuals.html" type="button">See</button></a>
+    <br>
+    <a class="nav-link" href="music.html"><button class="btn btn-primary btn-sx btn-block nav-link" href="music.html" type="button">About</button></a>
   </div>
--->
+  <!-- BARRA DE BAIXO -->
 
-  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script src="libraries/three.min.js"></script>
-  <script src="libraries/Tone.js"></script>
-  <script src="libraries/CopyShader.js"></script>
-  <script src="libraries/DigitalGlitch.js"></script>
-  <script src="libraries/EffectComposer.js"></script>
-  <script src="libraries/RenderPass.js"></script>
-  <script src="libraries/MaskPass.js"></script>
-  <script src="libraries/ShaderPass.js"></script>
-  <script src="libraries/GlitchPass.js"></script>
-
-  <script src="sketch.js" type="text/javascript"></script>
-
+  <nav class="navbar fixed-bottom navbar-expand-sm">
+    <button type="button" class="botton_baixo_esquerda btn btn-dark"></button>
+    <ul class="navbar-nav ml-md-auto d-md-flex">
+      <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark"><img src="img/settings.png" height="30" width="30"></button>
+      </a>
+      <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark"><img src="img/settings.png" height="30" width="30"></button>
+      </a>
+      <a class="nav-link" href="#" onclick="myFunc();"><button type="button" class="btn btn-dark"><img src="img/settings.png" height="30" width="30"></button>
+      </a>
 </body>
 
 </html>
