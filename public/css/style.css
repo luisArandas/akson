@@ -21,30 +21,76 @@ html, body {
 }
 
 .btn {
+  font-family: monospace;
   background-color: #505050;
   border: 1px solid #303030;
+  border-radius: 16px;
   height: 80px;
+
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
-    color: #ffffff;
-    background-color: #23272a;
-    border-color: #303030;
+.btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.active, .btn-primary.target, .open>.dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #23272a;
+  border-color: #ffffff;
+}
+
+.btn:active, .btn:focus {
+  background-color: #23272a !important;
+  border: 1px solid #303030 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transform: translateY(4px);
 }
 
 .botton_baixo_esquerda {
   width: 25%;
 }
 
+.about-div{
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  border: 3px solid green;
+  background-color: #23272a !important;
+}
+
+
+
 
 /* FADE IN */
 
 .fade-in {
-  animation: fadeIn ease 5s;
-  -webkit-animation: fadeIn ease 5s;
-  -moz-animation: fadeIn ease 5s;
-  -o-animation: fadeIn ease 5s;
-  -ms-animation: fadeIn ease 5s;
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;
+  -o-animation: fadeIn ease 2s;
+  -ms-animation: fadeIn ease 2s;
 }
 
 @keyframes fadeIn{

@@ -15,8 +15,10 @@ $(document).ready(function() {
 var camera, scene, renderer;
 var geometry, material, mesh;
 var data;
-var glitchPass;
 
+var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5", "E5", "", "A#2", ""];
+var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
+var synth;
 
 var distortion = new Tone.Distortion(0.6);
 var tremolo = new Tone.Tremolo().start();
@@ -28,9 +30,6 @@ var oscilador = new Tone.Oscillator({
 
 var synth = new Tone.Synth().toMaster()
 
-
-
-
 init();
 animate();
 
@@ -41,13 +40,9 @@ function init() {
 
   camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
   camera.position.z = 1;
-
   scene = new THREE.Scene();
-  //scene.fog = new THREE.Fog(0x000000, 1, 1000);
-
-  geometry = new THREE.BoxGeometry(2, 2, 2);
+  geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
   material = new THREE.MeshBasicMaterial({
-
     flatShading: true,
     color: 0xffffff,
     transparent: true,
@@ -60,6 +55,7 @@ function init() {
 
   mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
+  scene.background = new THREE.Color(000000);
 
   renderer = new THREE.WebGLRenderer({
     antialias: true
@@ -73,25 +69,21 @@ function init() {
   window.addEventListener('mouseup', onMouseUp, false);
   window.addEventListener('resize', onWindowResize, false);
 
+  synth = createSynthWithEffects();
 
-  composer = new THREE.EffectComposer(renderer);
-  composer.addPass(new THREE.RenderPass(scene, camera));
-  glitchPass = new THREE.GlitchPass();
-  glitchPass.renderToScreen = true;
-  //glitchPass.goWild = true;
-  composer.addPass(glitchPass);
+  Tone.Transport.bpm.value = 67;
+  Tone.Transport.start();
+
+  var seq = new Tone.Sequence(playNote, pattern, "8n");
+  seq.start();
 }
-
 
 function animate() {
 
   requestAnimationFrame(animate);
   mesh.rotation.x += 0.01;
   mesh.rotation.y += 0.02;
-  var corFundo = Math.random() * (0.15 - 0) + 0;
-  scene.background = new THREE.Color(corFundo, corFundo, corFundo);
-  composer.render();
-  //renderer.render(scene, camera);
+  renderer.render(scene, camera);
 }
 
 function onMouseDown(event) {
@@ -130,6 +122,38 @@ function onWindowResize() {
 
 function myFunc() {
   synth.triggerAttackRelease('C4', '8n')
+}
+
+function createSynthWithEffects() {
+  let vol = new Tone.Volume(-12).toMaster();
+
+  let reverb = new Tone.Freeverb(0.9).connect(vol);
+  reverb.wet.value = 0.1;
+
+  let delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
+  delay.wet.value = 0.1;
+
+  let vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
+
+  let polySynth = new Tone.PolySynth(3, Tone.Synth, {
+    "oscillator": {
+      "type": "sine"
+    },
+    "envelope": {
+      "attack": 0.01,
+      "decay": 0.1,
+      "sustain": 0.2,
+      "release": 4,
+    }
+  });
+
+  return polySynth.connect(vibrato);
+}
+
+function playNote(time, note) {
+  if (note != "") {
+    synth.triggerAttackRelease(note, "16n");
+  }
 }
 
 function newDrawing() {
