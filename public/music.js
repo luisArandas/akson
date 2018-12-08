@@ -1,10 +1,3 @@
-//https://threejs.org/examples/#webgl_interactive_cubes
-//https://threejs.org/examples/#webgl_clipping_advanced
-//CHECK THE MODAL ON BUTTON CLICK
-//DESENHAR NUM PAPEL
-//VER OS FAVICONS
-//MAKE AN ABOUT
-
 $(document).ready(function() {
   $('.leftmenutrigger').on('click', function(e) {
     $('.side-nav').toggleClass("open");
@@ -16,11 +9,15 @@ var camera, scene, renderer;
 var geometry, material, mesh;
 var data;
 
+var envelope = new Nexus.Envelope('#envelope_one', {
+  'size': [350, 300]
+});
+
 var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5", "E5", "", "A#2", ""];
 var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
 var synth;
 
-var distortion = new Tone.Distortion(0.6);
+var distortion = new Tone.Distortion(2.5);
 var tremolo = new Tone.Tremolo().start();
 
 var oscilador = new Tone.Oscillator({
@@ -30,61 +27,32 @@ var oscilador = new Tone.Oscillator({
 
 var synth = new Tone.Synth().toMaster()
 
-init();
-animate();
+_init();
+//animate();
 
-function init() {
+function _init() {
 
   socket = io.connect(window.location.origin);
   socket.on('mouse', newDrawing);
 
-  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
-  camera.position.z = 1;
-  scene = new THREE.Scene();
-  geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-  material = new THREE.MeshBasicMaterial({
-    flatShading: true,
-    color: 0xffffff,
-    transparent: true,
-    opacity: 1,
-    wireframe: true,
-    wireframeLinewidth: 2,
-    wireframeLinejoin: 'round',
-    wireframeLinecap: 'round'
-  });
+  synth = createSynthWithEffects();
 
-  mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
-  scene.background = new THREE.Color(000000);
+  Tone.Transport.bpm.value = 20;
+  Tone.Transport.start();
 
-  renderer = new THREE.WebGLRenderer({
-    antialias: true
-  });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.autoClear = false;
-  document.body.appendChild(renderer.domElement);
+  var seq = new Tone.Sequence(playNote, pattern, "8n");
+  seq.start();
 
   window.addEventListener('mousedown', onMouseDown, false);
   window.addEventListener('mouseup', onMouseUp, false);
   window.addEventListener('resize', onWindowResize, false);
 
-  synth = createSynthWithEffects();
-
-  Tone.Transport.bpm.value = 67;
-  Tone.Transport.start();
-
-  var seq = new Tone.Sequence(playNote, pattern, "8n");
-  seq.start();
 }
 
-function animate() {
-
+/*function animate() {
   requestAnimationFrame(animate);
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.02;
   renderer.render(scene, camera);
-}
+}*/
 
 function onMouseDown(event) {
 
@@ -101,7 +69,7 @@ function onMouseDown(event) {
   socket.emit('mouse', event.clientX);
 
   oscilador.start();
-  Tone.Master.volume.rampTo(0, 0.05);
+
 }
 
 function onMouseUp(event) {
@@ -125,9 +93,11 @@ function myFunc() {
 }
 
 function createSynthWithEffects() {
-  let vol = new Tone.Volume(-12).toMaster();
+  let vol = new Tone.Volume(-15).toMaster();
 
-  let reverb = new Tone.Freeverb(0.9).connect(vol);
+  var compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+
+  let reverb = new Tone.Freeverb(1.0).connect(vol);
   reverb.wet.value = 0.1;
 
   let delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
@@ -146,8 +116,7 @@ function createSynthWithEffects() {
       "release": 4,
     }
   });
-
-  return polySynth.connect(vibrato);
+  return polySynth.connect(vibrato, compressor);
 }
 
 function playNote(time, note) {
@@ -156,6 +125,143 @@ function playNote(time, note) {
   }
 }
 
-function newDrawing() {
-  synth.triggerAttackRelease('C2', '4n');
+function myFunc() {
+  synth.triggerAttackRelease('C8', '8n');
 }
+
+function newDrawing() {
+  synth.triggerAttackRelease('C6', '10n');
+}
+
+/* DESENHAR
+//
+// Global variables
+//
+var scene, width, height, camera, renderer;
+var mouseIsPressed, mouseX, mouseY, pmouseX, pmouseY;
+
+//
+// Initialization of global objects and set up callbacks for mouse and resize
+//
+function init() {
+
+	// Scene object
+	scene = new THREE.Scene();
+
+	// Will use the whole window for the webgl canvas
+	width = window.innerWidth;
+	height = window.innerHeight;
+
+	// Orthogonal camera for 2D drawing
+	camera = new THREE.OrthographicCamera( 0, width, 0, height, -height, height );
+	camera.lookAt (new THREE.Vector3 (0,0,0));
+
+	// Renderer will use a canvas taking the whole window
+	renderer = new THREE.WebGLRenderer( {antialias: true});
+	renderer.sortObjects = false;
+	renderer.setPixelRatio( window.devicePixelRatio );
+	renderer.setSize( width, height );
+
+	// Append camera to the page
+	document.body.appendChild( renderer.domElement );
+
+	// Set resize (reshape) callback
+	window.addEventListener( 'resize', resize );
+
+	// Set up mouse callbacks.
+	// Call mousePressed, mouseDragged and mouseReleased functions if defined.
+	// Arrange for global mouse variables to be set before calling user callbacks.
+	mouseIsPressed = false;
+	mouseX = 0;
+	mouseY = 0;
+	pmouseX = 0;
+	pmouseY = 0;
+	var setMouse = function () {
+		mouseX = event.clientX;
+		mouseY = event.clientY;
+	}
+	renderer.domElement.addEventListener ( 'mousedown', function () {
+		setMouse();
+		mouseIsPressed = true;
+		if (typeof mousePressed !== 'undefined') mousePressed();
+	});
+	renderer.domElement.addEventListener ( 'mousemove', function () {
+		pmouseX = mouseX;
+		pmouseY = mouseY;
+		setMouse();
+		if (mouseIsPressed) {
+			if (typeof mouseDragged !== 'undefined') mouseDragged();
+		}
+		if (typeof mouseMoved !== 'undefined') mouseMoved();
+	});
+	renderer.domElement.addEventListener ( 'mouseup', function () {
+		mouseIsPressed = false;
+		if (typeof mouseReleased !== 'undefined') mouseReleased();
+	});
+
+	// If a setup function is defined, call it
+	if (typeof setup !== 'undefined') setup();
+
+	// First render
+	render();
+}
+
+//
+// Reshape callback
+//
+function resize() {
+	width = window.innerWidth;
+	height = window.innerHeight;
+	camera.right = width;
+	camera.bottom = height;
+	camera.updateProjectionMatrix();
+	renderer.setSize(width,height);
+	render();
+}
+
+//
+// The render callback
+//
+function render () {
+	requestAnimationFrame( render );
+	renderer.render( scene, camera );
+};
+
+//------------------------------------------------------------
+//
+// User code from here on
+//
+//------------------------------------------------------------
+
+var material; // A line material
+var selected; // Object that was picked
+
+function setup () {
+	material = new THREE.LineBasicMaterial ( {color:0xffffff, depthWrite:false, linewidth : 4 } );
+}
+
+function mousePressed() {
+	var point = new THREE.Vector3 (mouseX,mouseY,0);
+	var geometry = new THREE.Geometry();
+	geometry.vertices.push (point);
+	var line = new THREE.Line (geometry, material);
+	scene.add (line);
+	selected = line;
+}
+
+function mouseDragged() {
+	var line = selected;
+	var point = new THREE.Vector3 (mouseX,mouseY,0);
+	var oldgeometry = line.geometry;
+	var newgeometry = new THREE.Geometry();
+	newgeometry.vertices = oldgeometry.vertices;
+	newgeometry.vertices.push (point);
+	line.geometry = newgeometry;
+}
+
+function mouseReleased() {
+}
+
+init();
+
+*/

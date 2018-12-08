@@ -80,8 +80,26 @@ html, body {
   background-color: #23272a !important;
 }
 
+.btn-musica{
+  background-color: #505050;
+  border: 1px solid #303030;
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+}
 
+.btn-musica:hover {
+  background-color: #000000;
+}
 
+.navbar-musica-cima {
+  background-color: #000000;
+  height: 40px;
+}
+.navbar-musica-baixo {
+  background-color: #505050;
+  height: 250px;
+}
 
 /* FADE IN */
 
