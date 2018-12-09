@@ -5,13 +5,41 @@ $(document).ready(function() {
   });
 });
 
+Nexus.context = Tone.context;
+
 var camera, scene, renderer;
 var geometry, material, mesh;
 var data;
 
 var envelope = new Nexus.Envelope('#envelope_one', {
-  'size': [350, 300]
+  'size': [400, 150]
 });
+
+envelope.value = 0.5;
+envelope.colorize("accent", "#ff0");
+envelope.colorize("fill", "#333");
+
+var dial = new Nexus.Dial('#dial_one', {
+  'size': [75, 75],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 1,
+  'step': 0,
+  'value': 0
+});
+
+dial.value = 0.5
+dial.colorize("accent", "#ff0")
+dial.colorize("fill", "#333")
+
+var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
+  'size': [400, 150]
+})
+oscilloscope.value = 0.5;
+oscilloscope.colorize("accent", "#ff0");
+oscilloscope.colorize("fill", "#333");
+oscilloscope.connect(Tone.Master);
 
 var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5", "E5", "", "A#2", ""];
 var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
@@ -19,6 +47,7 @@ var synth;
 
 var distortion = new Tone.Distortion(2.5);
 var tremolo = new Tone.Tremolo().start();
+
 
 var oscilador = new Tone.Oscillator({
   "frequency": 550,
@@ -28,7 +57,7 @@ var oscilador = new Tone.Oscillator({
 var synth = new Tone.Synth().toMaster()
 
 _init();
-//animate();
+//_init_animate();
 
 function _init() {
 
@@ -49,7 +78,7 @@ function _init() {
 
 }
 
-/*function animate() {
+/*function _init_animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }*/
@@ -57,19 +86,14 @@ function _init() {
 function onMouseDown(event) {
 
   event.preventDefault();
-
   var data = {
     mouseX: 0,
     mouseY: 0
   };
-
   mouseX = (event.clientX);
   mouseY = (event.clientY);
-
   socket.emit('mouse', event.clientX);
-
   oscilador.start();
-
 }
 
 function onMouseUp(event) {
@@ -81,7 +105,6 @@ function onWindowResize() {
 
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-
   renderer.setSize(window.innerWidth, window.innerHeight);
   composer.setSize(window.innerWidth, window.innerHeight);
   composer.render();
@@ -95,7 +118,7 @@ function myFunc() {
 function createSynthWithEffects() {
   let vol = new Tone.Volume(-15).toMaster();
 
-  var compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+  var compressor = new Tone.Compressor(-99, -50); //CHECK THIS
 
   let reverb = new Tone.Freeverb(1.0).connect(vol);
   reverb.wet.value = 0.1;
@@ -116,7 +139,8 @@ function createSynthWithEffects() {
       "release": 4,
     }
   });
-  return polySynth.connect(vibrato, compressor);
+  polySynth.chain(compressor);
+  return polySynth.connect(vibrato);
 }
 
 function playNote(time, note) {
@@ -132,136 +156,3 @@ function myFunc() {
 function newDrawing() {
   synth.triggerAttackRelease('C6', '10n');
 }
-
-/* DESENHAR
-//
-// Global variables
-//
-var scene, width, height, camera, renderer;
-var mouseIsPressed, mouseX, mouseY, pmouseX, pmouseY;
-
-//
-// Initialization of global objects and set up callbacks for mouse and resize
-//
-function init() {
-
-	// Scene object
-	scene = new THREE.Scene();
-
-	// Will use the whole window for the webgl canvas
-	width = window.innerWidth;
-	height = window.innerHeight;
-
-	// Orthogonal camera for 2D drawing
-	camera = new THREE.OrthographicCamera( 0, width, 0, height, -height, height );
-	camera.lookAt (new THREE.Vector3 (0,0,0));
-
-	// Renderer will use a canvas taking the whole window
-	renderer = new THREE.WebGLRenderer( {antialias: true});
-	renderer.sortObjects = false;
-	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( width, height );
-
-	// Append camera to the page
-	document.body.appendChild( renderer.domElement );
-
-	// Set resize (reshape) callback
-	window.addEventListener( 'resize', resize );
-
-	// Set up mouse callbacks.
-	// Call mousePressed, mouseDragged and mouseReleased functions if defined.
-	// Arrange for global mouse variables to be set before calling user callbacks.
-	mouseIsPressed = false;
-	mouseX = 0;
-	mouseY = 0;
-	pmouseX = 0;
-	pmouseY = 0;
-	var setMouse = function () {
-		mouseX = event.clientX;
-		mouseY = event.clientY;
-	}
-	renderer.domElement.addEventListener ( 'mousedown', function () {
-		setMouse();
-		mouseIsPressed = true;
-		if (typeof mousePressed !== 'undefined') mousePressed();
-	});
-	renderer.domElement.addEventListener ( 'mousemove', function () {
-		pmouseX = mouseX;
-		pmouseY = mouseY;
-		setMouse();
-		if (mouseIsPressed) {
-			if (typeof mouseDragged !== 'undefined') mouseDragged();
-		}
-		if (typeof mouseMoved !== 'undefined') mouseMoved();
-	});
-	renderer.domElement.addEventListener ( 'mouseup', function () {
-		mouseIsPressed = false;
-		if (typeof mouseReleased !== 'undefined') mouseReleased();
-	});
-
-	// If a setup function is defined, call it
-	if (typeof setup !== 'undefined') setup();
-
-	// First render
-	render();
-}
-
-//
-// Reshape callback
-//
-function resize() {
-	width = window.innerWidth;
-	height = window.innerHeight;
-	camera.right = width;
-	camera.bottom = height;
-	camera.updateProjectionMatrix();
-	renderer.setSize(width,height);
-	render();
-}
-
-//
-// The render callback
-//
-function render () {
-	requestAnimationFrame( render );
-	renderer.render( scene, camera );
-};
-
-//------------------------------------------------------------
-//
-// User code from here on
-//
-//------------------------------------------------------------
-
-var material; // A line material
-var selected; // Object that was picked
-
-function setup () {
-	material = new THREE.LineBasicMaterial ( {color:0xffffff, depthWrite:false, linewidth : 4 } );
-}
-
-function mousePressed() {
-	var point = new THREE.Vector3 (mouseX,mouseY,0);
-	var geometry = new THREE.Geometry();
-	geometry.vertices.push (point);
-	var line = new THREE.Line (geometry, material);
-	scene.add (line);
-	selected = line;
-}
-
-function mouseDragged() {
-	var line = selected;
-	var point = new THREE.Vector3 (mouseX,mouseY,0);
-	var oldgeometry = line.geometry;
-	var newgeometry = new THREE.Geometry();
-	newgeometry.vertices = oldgeometry.vertices;
-	newgeometry.vertices.push (point);
-	line.geometry = newgeometry;
-}
-
-function mouseReleased() {
-}
-
-init();
-
-*/

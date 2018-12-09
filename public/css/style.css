@@ -101,6 +101,29 @@ html, body {
   height: 250px;
 }
 
+.akson_instrument {
+  position:absolute;
+  margin: auto;
+  width: 805px;
+  height: 600px;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+}
+
+.envelope_one {
+  position:absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.oscilloscope {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 /* FADE IN */
 
 .fade-in {
