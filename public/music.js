@@ -5,6 +5,9 @@ $(document).ready(function() {
   });
 });
 
+//CHECK MIDI ON THE WEB
+//CHECK SYSTEM PREFERENCES
+
 Nexus.context = Tone.context;
 
 var camera, scene, renderer;
@@ -17,7 +20,62 @@ var envelope = new Nexus.Envelope('#envelope_one', {
 
 envelope.value = 0.5;
 envelope.colorize("accent", "#ff0");
-envelope.colorize("fill", "#333");
+envelope.colorize("fill", "#000000");
+
+var position = new Nexus.Position('#position_one', {
+  'size': [150, 150],
+  'x': 0.5, // initial x value
+  'minX': 0,
+  'maxX': 1,
+  'stepX': 0,
+  'y': 0.5, // initial y value
+  'minY': 0,
+  'maxY': 1,
+  'stepY': 0
+});
+position.colorize("accent", "#ff0");
+position.colorize("fill", "#333");
+
+position.on('change', function(v) { //WORKS
+  console.log("POS X " + v.x);
+  console.log("POS Y " + v.y);
+});
+
+var position_two = new Nexus.Position('#position_two', {
+  'size': [150, 150],
+  'x': 0.5, // initial x value
+  'minX': 0,
+  'maxX': 1,
+  'stepX': 0,
+  'y': 0.5, // initial y value
+  'minY': 0,
+  'maxY': 1,
+  'stepY': 0
+});
+
+position_two.colorize("accent", "#ff0");
+position_two.colorize("fill", "#333");
+
+var piano = new Nexus.Piano('#piano_one', {
+  'size': [400, 150],
+  'mode': 'button', // 'button', 'toggle', or 'impulse'
+  'lowNote': 24,
+  'highNote': 60
+});
+
+piano.colorize("accent", "#6497b1");
+piano.colorize("fill", "#ff0");
+//piano.colorize("dark", "#ff0"); TECLAS PRETAS
+piano.colorize("light", "#a8a8a8"); //CINZENTO CLARO
+piano.colorize("mediumDark", "#ff0");
+piano.colorize("mediumLight", "#333"); // PARTE DE FORA
+//piano.connect(Tone.Master); CHECK THIS
+
+piano.on('change', function(v) { //WORKS
+  console.log("NOTE = " + v.note); //imprime a nota
+});
+
+
 
 var dial = new Nexus.Dial('#dial_one', {
   'size': [75, 75],
@@ -32,6 +90,8 @@ var dial = new Nexus.Dial('#dial_one', {
 dial.value = 0.5
 dial.colorize("accent", "#ff0")
 dial.colorize("fill", "#333")
+
+
 
 var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
   'size': [400, 150]
@@ -54,7 +114,7 @@ var oscilador = new Tone.Oscillator({
   "volume": -20
 }).chain(distortion, tremolo, Tone.Master);
 
-var synth = new Tone.Synth().toMaster()
+var synth = new Tone.Synth().toMaster();
 
 _init();
 //_init_animate();
@@ -103,12 +163,13 @@ function onMouseUp(event) {
 
 function onWindowResize() {
 
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  composer.setSize(window.innerWidth, window.innerHeight);
-  composer.render();
+  //camera.aspect = window.innerWidth / window.innerHeight;
+  //camera.updateProjectionMatrix();
+  //renderer.setSize(window.innerWidth, window.innerHeight);
+  //composer.setSize(window.innerWidth, window.innerHeight);
+  //composer.render();
   //renderer.render(scene, camera);
+  //oscilloscope.resize(20, 20);
 }
 
 function myFunc() {

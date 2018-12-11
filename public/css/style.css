@@ -114,7 +114,7 @@ html, body {
 
 .envelope_one {
   position:absolute;
-  bottom: 0;
+  bottom: 155px;
   left: 0;
 }
 
@@ -122,6 +122,23 @@ html, body {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+.piano_one {
+  position: absolute;
+  bottom:0;
+  left: 0;
+}
+
+.position_one {
+  position: absolute;
+  bottom: 155px;
+  left: 405px;
+}
+
+.position_two {
+  position: absolute;
+  bottom: 155px;
+  left: 560px;
 }
 
 /* FADE IN */
