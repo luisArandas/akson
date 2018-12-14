@@ -101,6 +101,11 @@ html, body {
   height: 250px;
 }
 
+[nexus-ui] {
+  border-radius: 5px;
+  overflow:hidden;
+}
+
 .akson_instrument {
   position:absolute;
   margin: auto;
@@ -139,6 +144,27 @@ html, body {
   position: absolute;
   bottom: 155px;
   left: 560px;
+}
+
+.reverb_slider_um {
+  background-color: #333;
+  position: absolute;
+  bottom: 155px;
+  left: 715px;
+}
+
+.harmonicity {
+  background-color: #333;
+  position: absolute;
+  bottom: 155px;
+  left: 740px;
+}
+
+.modulation {
+  background-color: #333;
+  position: absolute;
+  bottom: 155px;
+  left: 775px;
 }
 
 /* FADE IN */
