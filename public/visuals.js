@@ -4,6 +4,7 @@ $(document).ready(function() {
     e.preventDefault();
   });
 });
+//power de mais reduzir
 
 var container;
 var camera, scene, raycaster, renderer, parentTransform, sphereInter;

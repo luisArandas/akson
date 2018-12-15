@@ -4,7 +4,6 @@ $(document).ready(function() {
     e.preventDefault();
   });
 });
-
 Nexus.context = Tone.context;
 Nexus.clock.start();
 Nexus.colors.accent = "#ff0";
@@ -269,6 +268,7 @@ function onMouseDown(event) {
   mouseY = (event.clientY);
   socket.emit('mouse', event.clientX);
   console.log("teste");
+  listInputs();
 }
 
 function onMouseUp(event) {
@@ -282,4 +282,40 @@ function myFunc() {}
 function newDrawing() {
   //FUNCIONA E ISTO QUE TENHO DE MANDAR
   console.log("okok");
+}
+
+if (navigator.requestMIDIAccess) {
+  navigator.requestMIDIAccess({
+    sysex: false // check what sysex is
+  }).then(onMIDISuccess, onMIDIFailure);
+} else {
+  alert("No MIDI support in your browser.");
+}
+
+function onMIDISuccess(midiAccess) {
+  midi = midiAccess;
+
+  var inputs = midi.inputs.values();
+  for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+    input.value.onmidimessage = onMIDIMessage;
+  }
+  console.log('MIDI Access Object', midiAccess);
+}
+
+function onMIDIMessage(event) {
+  data = event.data;
+  midiValOne = data[0];
+  midiValTwo = data[1];
+  midiValThree = data[2];
+
+  if (midiValOne == 176 && midiValTwo == 8) {
+    console.log(midiValThree);
+    reverb_slider_um.value = midiValThree;
+    harmonicity.value = midiValThree;
+    modulation.value = midiValThree;
+  }
+}
+
+function onMIDIFailure(e) {
+  console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
 }
