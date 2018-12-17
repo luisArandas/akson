@@ -26,4 +26,17 @@ function newConnection(socket) {
     console.log(data);
     //MUST RESTART THE SERVER
   }
+
+  socket.on('nx', nxFunction);
+
+  function nxFunction(x) {
+    console.log(x);
+  }
+
+
+
+
+
+
+
 }

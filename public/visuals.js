@@ -1,9 +1,4 @@
-$(document).ready(function() {
-  $('.leftmenutrigger').on('click', function(e) {
-    $('.side-nav').toggleClass("open");
-    e.preventDefault();
-  });
-});
+$(document).ready(function() {});
 //power de mais reduzir
 
 var container;
@@ -15,6 +10,7 @@ var composer;
 
 init();
 animate();
+play();
 
 function init() {
 
@@ -163,7 +159,6 @@ function init() {
   });
 }
 
-
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
@@ -191,6 +186,35 @@ function render() {
   composer.render();
 }
 
-function newDrawing() {
+function newDrawing() {}
+
+function play() {
+  droneSynth = {
+    fm: new Tone.FMOscillator(100, "sawtooth", "sawtooth").start(),
+    fm2: new Tone.FMOscillator(112.5, "sawtooth", "sawtooth").start(),
+    vol: new Tone.Volume(-Infinity),
+    filter: new Tone.Filter(100, "bandpass"),
+    filterFeedback: new Tone.FeedbackCombFilter(0, 0), //default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
+    vibrato: new Tone.Vibrato(5, 0.1), //default maxDelay 0.0.5 frequency 5 depth 0.1 e type sine;
+    ppdelay: new Tone.PingPongDelay(0.25, 1), //defaults delayTime 0.25 maxDelayTime 1;
+    verb: new Tone.Freeverb(),
+    autopan: new Tone.AutoPanner(), //frequency 1 default sine  default depth 1
+    compressor: new Tone.Compressor(-30, 10)
+  }
+
+  droneSynth.fm.connect(droneSynth.filter);
+  droneSynth.fm2.connect(droneSynth.filter);
+  droneSynth.fm.connect(droneSynth.filterFeedback);
+  droneSynth.fm2.connect(droneSynth.filterFeedback);
+  droneSynth.fm.connect(droneSynth.vibrato);
+  droneSynth.fm2.connect(droneSynth.vibrato);
+  droneSynth.fm.connect(droneSynth.ppdelay);
+  droneSynth.fm2.connect(droneSynth.ppdelay);
+  droneSynth.fm.connect(droneSynth.autopan);
+  droneSynth.fm2.connect(droneSynth.autopan);
+  droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
+  droneSynth.vol.volume.rampTo(-20, 1);
+  droneSynth.fm.harmonicity.value = 4;
+  droneSynth.fm2.harmonicity.value = 4;
 
 }

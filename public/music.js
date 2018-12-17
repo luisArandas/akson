@@ -1,18 +1,40 @@
-$(document).ready(function() {
-  $('.leftmenutrigger').on('click', function(e) {
-    $('.side-nav').toggleClass("open");
-    e.preventDefault();
-  });
+window.onload = function() {
+  console.clear();
+  // can have Tone.Js setup
+};
+
+$(document).ready(function() {});
+/*
+CHANGE MOBILE THINGS AND PUT DIFFERENT BEHAVIORS (TONE PAYBACK IN VISUALS)
+loading bar on query
+call js function from another page
+document.onload = function ...
+document.addEventListener("DOMContentLoaded", function(){
+    //....
 });
+FADE OUT ON BUTTON CLICK
+METER CUBOS NA FRENTE
+SE MOBILE DEVICE ENTAO -> .VISUALS
+POR O OUTRO INSTRUMENTO
+CHECK DIALS
+VER SE CONSIGO TER UM VISUALIZADOR PARA A OSCILAÇAO OUTRO PARA O PIANO
+*/
+
 Nexus.context = Tone.context;
 Nexus.clock.start();
 Nexus.colors.accent = "#ff0";
 Nexus.colors.fill = "#333";
 
+/*nx.onload = function() {
+  nx.sendsTo("node");
+  // nx.sendsTo(function(data){
+  //     socket.emit('nx', { id: this.canvasID, data: data });
+  // });
+}*/
 
 droneSynth = {
-  fm: new Tone.FMOscillator(100, "sawtooth", "sawtooth").start(),
-  fm2: new Tone.FMOscillator(112.5, "sawtooth", "sawtooth").start(),
+  fm: new Tone.FMOscillator(100, "sine", "sine").start(),
+  fm2: new Tone.FMOscillator(112.5, "sine", "sine").start(),
   vol: new Tone.Volume(-Infinity),
   filter: new Tone.Filter(100, "bandpass"),
   filterFeedback: new Tone.FeedbackCombFilter(0, 0), //default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
@@ -34,9 +56,63 @@ droneSynth.fm2.connect(droneSynth.ppdelay);
 droneSynth.fm.connect(droneSynth.autopan);
 droneSynth.fm2.connect(droneSynth.autopan);
 droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-droneSynth.vol.volume.rampTo(-20, 1);
+droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
 droneSynth.fm.harmonicity.value = 4;
 droneSynth.fm2.harmonicity.value = 4;
+
+// --------------------------- SYNTH ---------------------------
+
+//WORKS THE PLAYER
+
+var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5", "E5", "", "A#2", ""];
+var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
+var synth;
+
+synth = createSynthWithEffects();
+
+Tone.Transport.bpm.value = 20;
+Tone.Transport.start();
+//console.log(Tone.Transport.bpm.value);
+
+
+var seq = new Tone.Sequence(playNote, pattern, "8n");
+seq.start();
+
+
+
+function createSynthWithEffects() {
+  let vol = new Tone.Volume(-15).toMaster();
+
+  var compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+
+  let reverb = new Tone.Freeverb(1.0).connect(vol);
+  reverb.wet.value = 0.1;
+
+  let delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
+  delay.wet.value = 0.1;
+
+  let vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
+
+  let polySynth = new Tone.PolySynth(3, Tone.Synth, {
+    "oscillator": {
+      "type": "sine"
+    },
+    "envelope": {
+      "attack": 0.01,
+      "decay": 0.1,
+      "sustain": 0.2,
+      "release": 4,
+    }
+  });
+  return polySynth.connect(vibrato, compressor);
+}
+
+function playNote(time, note) {
+  if (note != "") {
+    synth.triggerAttackRelease(note, "16n");
+  }
+}
+
 
 // --------------------------- TOGGLE ---------------------------
 
@@ -47,10 +123,10 @@ var toggle = new Nexus.Toggle('#power', {
 });
 
 toggle.on('change', function(v) {
-  if (v == true) {
+  if (v == false) {
     droneSynth.vol.volume.rampTo(-Infinity, 1);
   }
-  if (v == false) {
+  if (v == true) {
     droneSynth.vol.volume.rampTo(-20, 1);
   }
 });
@@ -108,7 +184,7 @@ autopanToggle.on('change', function(v) {
 // --------------------------- SLIDERS --------------------------
 
 var modulation = new Nexus.Slider('#modulation', {
-  'size': [20, 150],
+  'size': [20, 50],
 });
 modulation.min = 10;
 modulation.max = 20;
@@ -119,7 +195,7 @@ modulation.on('change', function(v) {
 });
 
 var reverb_slider_um = new Nexus.Slider('#reverb_slider_um', {
-  'size': [20, 150],
+  'size': [20, 50],
 });
 reverb_slider_um.min = 0;
 reverb_slider_um.max = 0.8;
@@ -129,7 +205,7 @@ reverb_slider_um.on('change', function(v) {
 });
 
 var harmonicity = new Nexus.Slider('#harmonicity', {
-  'size': [20, 150],
+  'size': [20, 50],
   'min': 0,
   'max': 1,
 })
@@ -145,7 +221,7 @@ harmonicity.on('change', function(v) {
 // --------------------------- POSITIONS -------------------------
 
 var position_one = new Nexus.Position('#position_one', {
-  'size': [150, 150],
+  'size': [150, 50],
 });
 position_one.minX = 50;
 position_one.maxX = 1400;
@@ -157,8 +233,10 @@ position_one.on('change', function(v) {
   droneSynth.filter.Q.value = v.y;
 });
 
+//position_one.element.className = 'example';
+
 var position_two = new Nexus.Position('#position_two', {
-  'size': [150, 150],
+  'size': [150, 50],
   'x': 1, // initial x value
   'y': 1, // initial x value
 });
@@ -186,9 +264,10 @@ oscilloscope.connect(Tone.Master);
 
 var piano = new Nexus.Piano('#piano_one', {
   'size': [400, 150],
+  //  size: [window.innerWidth, window.innerHeight / 15],
   'mode': 'button', // 'button', 'toggle', or 'impulse'
-  'lowNote': 24,
-  'highNote': 60
+  'lowNote': 60, //0
+  'highNote': 96 //120
 });
 
 piano.colorize("accent", "#ff0");
@@ -198,32 +277,28 @@ piano.colorize("light", "#a8a8a8"); //CINZENTO CLARO
 piano.colorize("mediumDark", "#ff0");
 piano.colorize("mediumLight", "#333"); // PARTE DE FORA
 
-piano.on('change', function(v) {
-  if (v.state == true) {
-    oscilador_piano.frequency.value = (v.note + 400);
-    console.log(oscilador_piano.frequency.value);
-    oscilador_piano.start();
-  }
-  if (v.state == false) {
-    oscilador_piano.stop();
+piano.on("change", function(v) {
+  console.log(Tone.Frequency(v.note, "midi").toNote());
+  if (v.state === true) {
+    synth.triggerAttack(Tone.Frequency(v.note, "midi").toNote());
+  } else if (v.state === false) {
+    synth.triggerRelease(Tone.Frequency(v.note, "midi").toNote());
   }
 });
-/*v.note = "C4";
+
+/*
+v.note = "C4";
 synth.triggerAttack(v.note);
 console.log("NOTE = " + v.note); //imprime a nota
-console.log("NOTE = " + v.state); //imprime o state*/
-/*
-});
-var oscilador_piano = new Tone.Oscillator({
-  "frequency": 440,
-  "volume": -10
-}).toMaster();
+console.log("NOTE = " + v.state); //imprime o state
 */
+
+
 
 // --------------------------- ENVELOPE ---------------------------
 
 var envelope = new Nexus.Envelope('#envelope_one', {
-  'size': [400, 150],
+  'size': [400, 50],
   'noNewPoints': true,
   'points': [{
       x: 0.1,
@@ -250,8 +325,6 @@ envelope.on('change', function(v) {
   //droneSynth.fm2.harmonicity.value = 4;
 });
 
-
-
 socket = io.connect(window.location.origin);
 socket.on('mouse', newDrawing);
 window.addEventListener('mousedown', onMouseDown, false);
@@ -268,7 +341,7 @@ function onMouseDown(event) {
   mouseY = (event.clientY);
   socket.emit('mouse', event.clientX);
   console.log("teste");
-  listInputs();
+  console.log(Tone.Transport.bpm.getSecondsAtTime());
 }
 
 function onMouseUp(event) {
@@ -283,6 +356,8 @@ function newDrawing() {
   //FUNCIONA E ISTO QUE TENHO DE MANDAR
   console.log("okok");
 }
+
+// --------------------------- MIDI -------------------------------
 
 if (navigator.requestMIDIAccess) {
   navigator.requestMIDIAccess({

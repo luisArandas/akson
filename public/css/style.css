@@ -11,12 +11,14 @@ html, body {
 
 .center_div {
     position:absolute;
-    top: 50%;
-    left: 50%;
-    width:30em;
-    height:18em;
-    margin-top: -9em; /*set to a negative number 1/2 of your height*/
-    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    width: 50%;
+    height: 50%;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
     background-color: #000000;
 }
 
@@ -96,10 +98,6 @@ html, body {
   background-color: #000000;
   height: 40px;
 }
-.navbar-musica-baixo {
-  background-color: #505050;
-  height: 250px;
-}
 
 [nexus-ui] {
   border-radius: 5px;
@@ -107,14 +105,44 @@ html, body {
 }
 
 .akson_instrument {
+  border-radius: 5px;
+  background-color: #ffffff;
   position:absolute;
   margin: auto;
-  width: 805px;
-  height: 600px;
-  top: 10%;
-  bottom: 10%;
-  left: 10%;
-  right: 10%;
+  top: 5%;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
+}
+
+.akson_instrument_header {
+  border-radius: 5px;
+  background-color: #505050;
+  position:absolute;
+  bottom: 90%;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.akson_instrument_body {
+  border-radius: 5px;
+  background-color: #505050;
+  position:absolute;
+  bottom: 45%;
+  top: 10.5%;
+  left: 0%;
+  right: 0%;
+}
+
+.akson_instrument_bottom {
+  border-radius: 5px;
+  background-color: #505050;
+  position:absolute;
+  bottom: 0%;
+  top: 55.5%;
+  left: 0%;
+  right: 0%;
 }
 
 .envelope_one {
@@ -131,7 +159,7 @@ html, body {
 .piano_one {
   position: absolute;
   bottom:0;
-  left: 0;
+  left: 2px;
 }
 
 .position_one {
@@ -166,6 +194,30 @@ html, body {
   bottom: 155px;
   left: 775px;
 }
+
+.feedbackToggle{
+  background-color: #000000;
+}
+.vibratoToggle{
+  background-color: #000000;
+}
+.ppdelayToggle{
+  background-color: #000000;
+}
+.autopanToggle{
+  background-color: #000000;
+}
+
+#position_one {
+  border-radius: 5px;
+  border-width:1px;
+  border-style: solid;
+  border-color: #000000;
+  overflow:hidden;
+}
+
+
+
 
 /* FADE IN */
 
@@ -225,6 +277,6 @@ html, body {
 
 @media (max-width: 992px) {
     .navbar{
-        display:none;
+      display:none;
     }
 }
