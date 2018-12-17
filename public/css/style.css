@@ -216,7 +216,28 @@ html, body {
   overflow:hidden;
 }
 
+#sequencer {
+  background-color: #000000;
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 20%;
+  right: 35%;
+  border-radius: 5px;
+}
 
+.row {
+  background-color: #ffffff;
+
+}
+.col-sm {
+  background-color: #f57575;
+  border:1px solid black !important;
+  border-radius: 3px;
+  border-width:1px;
+  border-color: #ffffff;
+  width: 12.5%;
+}
 
 
 /* FADE IN */

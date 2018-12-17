@@ -12,11 +12,7 @@ document.onload = function ...
 document.addEventListener("DOMContentLoaded", function(){
     //....
 });
-FADE OUT ON BUTTON CLICK
-METER CUBOS NA FRENTE
 SE MOBILE DEVICE ENTAO -> .VISUALS
-POR O OUTRO INSTRUMENTO
-CHECK DIALS
 VER SE CONSIGO TER UM VISUALIZADOR PARA A OSCILAÇAO OUTRO PARA O PIANO
 */
 
@@ -56,7 +52,7 @@ droneSynth.fm2.connect(droneSynth.ppdelay);
 droneSynth.fm.connect(droneSynth.autopan);
 droneSynth.fm2.connect(droneSynth.autopan);
 droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
+//droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
 droneSynth.fm.harmonicity.value = 4;
 droneSynth.fm2.harmonicity.value = 4;
 
@@ -76,9 +72,7 @@ Tone.Transport.start();
 
 
 var seq = new Tone.Sequence(playNote, pattern, "8n");
-seq.start();
-
-
+//seq.start();
 
 function createSynthWithEffects() {
   let vol = new Tone.Volume(-15).toMaster();
@@ -112,7 +106,6 @@ function playNote(time, note) {
     synth.triggerAttackRelease(note, "16n");
   }
 }
-
 
 // --------------------------- TOGGLE ---------------------------
 
@@ -237,8 +230,8 @@ position_one.on('change', function(v) {
 
 var position_two = new Nexus.Position('#position_two', {
   'size': [150, 50],
-  'x': 1, // initial x value
-  'y': 1, // initial x value
+  'x': 1,
+  'y': 1,
 });
 position_two.minX = 0;
 position_two.maxX = 1;
@@ -278,20 +271,13 @@ piano.colorize("mediumDark", "#ff0");
 piano.colorize("mediumLight", "#333"); // PARTE DE FORA
 
 piano.on("change", function(v) {
-  console.log(Tone.Frequency(v.note, "midi").toNote());
+  //console.log(Tone.Frequency(v.note, "midi").toNote());
   if (v.state === true) {
     synth.triggerAttack(Tone.Frequency(v.note, "midi").toNote());
   } else if (v.state === false) {
     synth.triggerRelease(Tone.Frequency(v.note, "midi").toNote());
   }
 });
-
-/*
-v.note = "C4";
-synth.triggerAttack(v.note);
-console.log("NOTE = " + v.note); //imprime a nota
-console.log("NOTE = " + v.state); //imprime o state
-*/
 
 
 
@@ -319,11 +305,10 @@ var envelope = new Nexus.Envelope('#envelope_one', {
   ]
 });
 
-envelope.on('change', function(v) {
-  //envelope.sortPoints();
-  //droneSynth.fm.harmonicity.value = 4;
-  //droneSynth.fm2.harmonicity.value = 4;
-});
+envelope.on('change', function(v) {});
+
+
+// ---------------------- SOCKETS -------------------------------
 
 socket = io.connect(window.location.origin);
 socket.on('mouse', newDrawing);
@@ -341,7 +326,24 @@ function onMouseDown(event) {
   mouseY = (event.clientY);
   socket.emit('mouse', event.clientX);
   console.log("teste");
-  console.log(Tone.Transport.bpm.getSecondsAtTime());
+
+  document.getElementById('nota1').innerHTML = "text";
+  document.getElementById('nota2').innerHTML = "text";
+  document.getElementById('nota3').innerHTML = "text";
+  document.getElementById('nota4').innerHTML = "text";
+  document.getElementById('nota5').innerHTML = "text";
+  document.getElementById('nota6').innerHTML = "text";
+  document.getElementById('nota7').innerHTML = "text";
+  document.getElementById('nota8').innerHTML = "text";
+  document.getElementById('nota9').innerHTML = "text";
+  document.getElementById('nota10').innerHTML = "text";
+  document.getElementById('nota11').innerHTML = "text";
+  document.getElementById('nota12').innerHTML = "text";
+  document.getElementById('nota13').innerHTML = "text";
+  document.getElementById('nota14').innerHTML = "text";
+  document.getElementById('nota15').innerHTML = "text";
+  document.getElementById('nota16').innerHTML = "text";
+
 }
 
 function onMouseUp(event) {
@@ -357,11 +359,26 @@ function newDrawing() {
   console.log("okok");
 }
 
+// ---------------------- LAPTOP KEYBOARD -------------------------
+//(Z o-) (X o+) linha do meio CDEFGABCDEF
+//link here https://github.com/kylestetz/AudioKeys
+
+var keyboard = new AudioKeys();
+
+keyboard.down(function(note) {
+  //note.keyCode, note.frequency, note.velocity, note.isActive, note.note;
+  piano.toggleKey(note.note, true);
+});
+
+keyboard.up(function(note) {
+  piano.toggleKey(note.note, false);
+});
+
 // --------------------------- MIDI -------------------------------
 
 if (navigator.requestMIDIAccess) {
   navigator.requestMIDIAccess({
-    sysex: false // check what sysex is
+    sysex: false
   }).then(onMIDISuccess, onMIDIFailure);
 } else {
   alert("No MIDI support in your browser.");
