@@ -1,5 +1,15 @@
 $(document).ready(function() {});
-//power de mais reduzir
+
+if (WEBGL.isWebGL2Available() === false) {
+  document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
+}
+
+// https://threejs.org/examples/?q=geometry#webgl_interactive_buffergeometry
+//VER E ESRE TAMBEM
+//https://threejs.org/examples/?q=geometry#webgl_buffergeometry_constructed_from_geometry
+
+
+
 
 var container;
 var camera, scene, raycaster, renderer, parentTransform, sphereInter;
@@ -81,7 +91,11 @@ function init() {
   }
   scene.add(parentTransformDois);
 
+  var canvas = document.createElement('canvas');
+  var context = canvas.getContext('webgl2');
   renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    context: context,
     antialias: true
   });
 
@@ -169,7 +183,7 @@ function animate() {
   requestAnimationFrame(animate);
   render();
 }
-
+//change render context dinamically
 function render() {
   var corFundo = Math.random() * (0.15 - 0) + 0;
   parentTransformDois.children.forEach(function(v) {
@@ -177,8 +191,8 @@ function render() {
   });
   //scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
-  camera.position.x = radius * Math.cos(THREE.Math.degToRad(theta));
-  camera.position.y = radius * Math.cos(THREE.Math.degToRad(theta));
+  camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
+  camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
   camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
   camera.lookAt(scene.position);
   camera.updateMatrixWorld();
