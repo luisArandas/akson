@@ -1,15 +1,15 @@
 /**
  * @author alteredq / http://alteredqualia.com/
  *
- * Full-screen textured quad shader
+ * Colorify shader
  */
 
-THREE.CopyShader = {
+THREE.ColorifyShader = {
 
 	uniforms: {
 
 		"tDiffuse": { value: null },
-		"opacity":  { value: 1.0 }
+		"color":    { value: new THREE.Color( 0xffffff ) }
 
 	},
 
@@ -28,8 +28,7 @@ THREE.CopyShader = {
 
 	fragmentShader: [
 
-		"uniform float opacity;",
-
+		"uniform vec3 color;",
 		"uniform sampler2D tDiffuse;",
 
 		"varying vec2 vUv;",
@@ -37,7 +36,11 @@ THREE.CopyShader = {
 		"void main() {",
 
 			"vec4 texel = texture2D( tDiffuse, vUv );",
-			"gl_FragColor = opacity * texel;",
+
+			"vec3 luma = vec3( 0.299, 0.587, 0.114 );",
+			"float v = dot( texel.xyz, luma );",
+
+			"gl_FragColor = vec4( v * color, texel.w );",
 
 		"}"
 

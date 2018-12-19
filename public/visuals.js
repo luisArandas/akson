@@ -4,23 +4,45 @@ if (WEBGL.isWebGL2Available() === false) {
   document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
 }
 
-// https://threejs.org/examples/?q=geometry#webgl_interactive_buffergeometry
-//VER E ESRE TAMBEM
-//https://threejs.org/examples/?q=geometry#webgl_buffergeometry_constructed_from_geometry
-
-
-
+//http://urmston.xyz/Tone.Editor/examples/midi.html
+//HOW TO USE MANY PAGES AND CALL FUNCTIONS WITHOUT HTML /INCLUDE
 
 var container;
-var camera, scene, raycaster, renderer, parentTransform, sphereInter;
+var camera,
+  scene,
+  raycaster,
+  renderer,
+  parentTransform,
+  parentTrasformDois,
+  sphereInter;
 var radius = 100;
 var theta = 0;
-var glitchPass;
+var teclaUm = false,
+  teclaDois = false,
+  teclaTres = false,
+  teclaQuatro = false,
+  teclaCinco = false,
+  teclaSeis = false,
+  teclaSete = false,
+  teclaOito = false,
+  teclaNove = false,
+  teclaDez = false;
+var mouse = new THREE.Vector2();
+var glitchPass = new THREE.GlitchPass();
+var shaderBleach = THREE.BleachBypassShader;
+var shaderSepia = THREE.SepiaShader;
+var shaderVignette = THREE.VignetteShader;
+var effectBleach = new THREE.ShaderPass(shaderBleach);
+var effectSepia = new THREE.ShaderPass(shaderSepia);
+var effectVignette = new THREE.ShaderPass(shaderVignette);
+var effectBloom = new THREE.BloomPass(0.5);
+var effectFilm = new THREE.FilmPass(0.35, 0.025, 648, false);
+var effectFilmBW = new THREE.FilmPass(0.35, 0.5, 2048, true);
+var effectDotScreen = new THREE.DotScreenPass(new THREE.Vector2(0, 0), 0.5, 0.8);
 var composer;
 
 init();
 animate();
-play();
 
 function init() {
 
@@ -29,8 +51,8 @@ function init() {
 
   container = document.createElement('div');
   document.body.appendChild(container);
-  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
-  //   camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
+  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+  //camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
 
@@ -91,6 +113,9 @@ function init() {
   }
   scene.add(parentTransformDois);
 
+  raycaster = new THREE.Raycaster();
+  raycaster.linePrecision = 3;
+
   var canvas = document.createElement('canvas');
   var context = canvas.getContext('webgl2');
   renderer = new THREE.WebGLRenderer({
@@ -104,59 +129,86 @@ function init() {
   container.appendChild(renderer.domElement);
 
   window.addEventListener('resize', onWindowResize, false);
+  document.addEventListener('mousemove', onDocumentMouseMove, false);
 
-
-  composer = new THREE.EffectComposer(renderer);
-  composer.addPass(new THREE.RenderPass(scene, camera));
-  composer.renderToScreen = true;
-  glitchPass = new THREE.GlitchPass();
   glitchPass.renderToScreen = false;
-  glitchPass.goWild = true;
+  composer = new THREE.EffectComposer(renderer);
+  composer.renderToScreen = true;
+
+  composer.addPass(new THREE.RenderPass(scene, camera));
   composer.addPass(glitchPass);
-  //CHECK OTHER EFFECTS NA LINHA DAS TECLAS DE BAIXO
+
   //METER OS IFS SE FUNCIONA CARREGAR DUAS VEZES
+  /*
+  Q_81 W_87 E_69 R_82 T_84 Y_89 U_85 I_73 O_79 P_80
+  */
 
   document.addEventListener("keydown", function(event) {
+    if (event.which == "32") {} //space
     if (event.which == "81") {
       console.log("Q");
-      camera.add(planoCamaraUm);
-      planoCamaraUm.position.set(0, 0, -3);
-      parentTransform.children.forEach(function(v) {
-        v.rotation.y = 1;
-      });
+      if (teclaUm == false) {
+        camera.add(planoCamaraUm);
+        planoCamaraUm.position.set(0, 0, -3);
+        parentTransform.children.forEach(function(v) {
+          v.rotation.y = 1;
+        });
+      }
+      if (teclaUm == true) {
+        camera.remove(planoCamaraUm);
+        planoCamaraUm.position.set(0, 0, 10);
+        parentTransform.children.forEach(function(v) {
+          v.rotation.y = Math.random() * 2 * Math.PI;
+        });
+      }
+      if (teclaUm == true) {
+        teclaUm = false;
+      } else {
+        teclaUm = true;
+      }
     }
     if (event.which == "87") {
       console.log("W");
-      camera.remove(planoCamaraUm);
-      parentTransformDois.children.forEach(function(v) {
-        v.position.set(Math.floor(Math.random() * 100) + 1, -100, 1);
-      });
+      if (teclaDois == false) {
+        camera.add(planoCamaraDois);
+        planoCamaraDois.scale.x = 6;
+        planoCamaraDois.position.set(0, 4.5, -3);
+      }
+      if (teclaDois == true) {
+        camera.remove(planoCamaraDois);
+        planoCamaraDois.position.set(0, 0, 10);
+        parentTransform.children.forEach(function(v) {
+          v.rotation.y = Math.random() * 2 * Math.PI;
+        });
+      }
+      if (teclaDois == true) {
+        teclaDois = false;
+      } else {
+        teclaDois = true;
+      }
     }
     if (event.which == "69") {
       console.log("E");
-      var render = function() {
-        //requestAnimationFrame(render);
-        //WORKS
-        //camera.position.x = 1;
-        //camera.position.y = 1;
-        //camera.position.z = 1;
-        //renderer.render(scene, camera);
-      };
-      render();
+      if (teclaTres == false) {
+
+      }
+      if (teclaTres == true) {
+
+      }
+      if (teclaTres == true) {
+        teclaTres = false;
+      } else {
+        teclaTres = true;
+      }
     }
     if (event.which == "82") {
-      console.log("R, POE GLITCH");
-      glitchPass.renderToScreen = true;
+      console.log("R");
     }
     if (event.which == "84") {
-      console.log("T, TIRA O GLITCH");
-      glitchPass.renderToScreen = false;
+      console.log("T");
     }
     if (event.which == "89") {
       console.log("Y");
-      camera.add(planoCamaraDois);
-      planoCamaraDois.scale.x = 6;
-      planoCamaraDois.position.set(0, 4.5, -3);
     }
     if (event.which == "85") {
       console.log("U");
@@ -169,8 +221,65 @@ function init() {
     }
     if (event.which == "80") {
       console.log("P");
+      parentTransformDois.children.forEach(function(v) {
+        v.position.set(Math.floor(Math.random() * 100) + 1, -100, 1);
+      });
+    }
+    /*
+    SEGUNDA
+    A_65 S_83 D_68 F_70 G_71 H_72 J_74 K_75 L_76 Ç_186
+    */
+    if (event.which == "65") {
+      console.log("A");
+      glitchPass.goWild = true;
+      if (glitchPass.renderToScreen == false) {
+        glitchPass.renderToScreen = true;
+      } else if (glitchPass.renderToScreen == true) {
+        glitchPass.renderToScreen = false;
+      }
+    }
+    if (event.which == "83") {
+      console.log("S");
+      glitchPass.goWild = false;
+      if (glitchPass.renderToScreen == false) {
+        glitchPass.renderToScreen = true;
+      } else if (glitchPass.renderToScreen == true) {
+        glitchPass.renderToScreen = false;
+      }
+    }
+    if (event.which == "79") {
+      console.log("D");
+    }
+    if (event.which == "80") {
+      console.log("F");
+    }
+    if (event.which == "65") {
+      console.log("G");
+    }
+    if (event.which == "83") {
+      console.log("H");
+    }
+    if (event.which == "79") {
+      console.log("J");
+    }
+    if (event.which == "80") {
+      console.log("K");
+    }
+    if (event.which == "79") {
+      console.log("L");
+    }
+    if (event.which == "80") {
+      console.log("Ç");
     }
   });
+
+  var geometry = new THREE.SphereBufferGeometry(5);
+  var material = new THREE.MeshBasicMaterial({
+    color: 0xff0000
+  });
+  sphereInter = new THREE.Mesh(geometry, material);
+  sphereInter.visible = false;
+  scene.add(sphereInter);
 }
 
 function onWindowResize() {
@@ -184,6 +293,13 @@ function animate() {
   render();
 }
 //change render context dinamically
+
+function onDocumentMouseMove(event) {
+  event.preventDefault();
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+}
+
 function render() {
   var corFundo = Math.random() * (0.15 - 0) + 0;
   parentTransformDois.children.forEach(function(v) {
@@ -196,39 +312,19 @@ function render() {
   camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
   camera.lookAt(scene.position);
   camera.updateMatrixWorld();
+
+  /*
+  RAYCASTER
+  raycaster.setFromCamera(mouse, camera);
+  var intersects = raycaster.intersectObjects(parentTransformDois.children, true);
+  if (intersects.length > 0) {
+    sphereInter.visible = true;
+    sphereInter.position.copy(intersects[0].point);
+  } else {
+    sphereInter.visible = false;
+  }*/
   renderer.render(scene, camera);
   composer.render();
 }
 
 function newDrawing() {}
-
-function play() {
-  droneSynth = {
-    fm: new Tone.FMOscillator(100, "sawtooth", "sawtooth").start(),
-    fm2: new Tone.FMOscillator(112.5, "sawtooth", "sawtooth").start(),
-    vol: new Tone.Volume(-Infinity),
-    filter: new Tone.Filter(100, "bandpass"),
-    filterFeedback: new Tone.FeedbackCombFilter(0, 0), //default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
-    vibrato: new Tone.Vibrato(5, 0.1), //default maxDelay 0.0.5 frequency 5 depth 0.1 e type sine;
-    ppdelay: new Tone.PingPongDelay(0.25, 1), //defaults delayTime 0.25 maxDelayTime 1;
-    verb: new Tone.Freeverb(),
-    autopan: new Tone.AutoPanner(), //frequency 1 default sine  default depth 1
-    compressor: new Tone.Compressor(-30, 10)
-  }
-
-  droneSynth.fm.connect(droneSynth.filter);
-  droneSynth.fm2.connect(droneSynth.filter);
-  droneSynth.fm.connect(droneSynth.filterFeedback);
-  droneSynth.fm2.connect(droneSynth.filterFeedback);
-  droneSynth.fm.connect(droneSynth.vibrato);
-  droneSynth.fm2.connect(droneSynth.vibrato);
-  droneSynth.fm.connect(droneSynth.ppdelay);
-  droneSynth.fm2.connect(droneSynth.ppdelay);
-  droneSynth.fm.connect(droneSynth.autopan);
-  droneSynth.fm2.connect(droneSynth.autopan);
-  droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  droneSynth.vol.volume.rampTo(-20, 1);
-  droneSynth.fm.harmonicity.value = 4;
-  droneSynth.fm2.harmonicity.value = 4;
-
-}
