@@ -104,95 +104,31 @@ html, body {
   overflow:hidden;
 }
 
-.akson_instrument {
-  border-radius: 5px;
-  background-color: #ffffff;
-  position:absolute;
-  margin: auto;
-  top: 5%;
-  bottom: 5%;
-  left: 5%;
-  right: 5%;
-}
-
-.akson_instrument_header {
-  border-radius: 5px;
-  background-color: #505050;
-  position:absolute;
-  bottom: 90%;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-}
-
-.akson_instrument_body {
-  border-radius: 5px;
-  background-color: #505050;
-  position:absolute;
-  bottom: 45%;
-  top: 10.5%;
-  left: 0%;
-  right: 0%;
-}
-
-.akson_instrument_bottom {
-  border-radius: 5px;
-  background-color: #505050;
-  position:absolute;
-  bottom: 0%;
-  top: 55.5%;
-  left: 0%;
-  right: 0%;
-}
 
 .envelope_one {
-  position:absolute;
-  bottom: 155px;
-  left: 0;
 }
 
 .oscilloscope {
-  position: absolute;
-  bottom: 0;
-  right: 0;
 }
 .piano_one {
-  position: absolute;
-  bottom:0;
-  left: 2px;
 }
 
 .position_one {
-  position: absolute;
-  bottom: 155px;
-  left: 405px;
 }
 
 .position_two {
-  position: absolute;
-  bottom: 155px;
-  left: 560px;
 }
 
 .reverb_slider_um {
   background-color: #333;
-  position: absolute;
-  bottom: 155px;
-  left: 715px;
 }
 
 .harmonicity {
   background-color: #333;
-  position: absolute;
-  bottom: 155px;
-  left: 740px;
 }
 
 .modulation {
   background-color: #333;
-  position: absolute;
-  bottom: 155px;
-  left: 775px;
 }
 
 .feedbackToggle{
@@ -226,18 +162,83 @@ html, body {
   border-radius: 5px;
 }
 
-.row {
-  background-color: #ffffff;
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
 
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
 }
-.col-sm {
-  background-color: #f57575;
-  border:1px solid black !important;
-  border-radius: 3px;
-  border-width:1px;
-  border-color: #ffffff;
-  width: 12.5%;
+
+.sidenav a:hover {
+  color: #f1f1f1;
 }
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.slidecontainer {
+  width: 90%;
+  position: absolute;
+  left: 5%;
+  right: 5%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #222222;
+  outline: 1px solid white;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 5px;
+  height: 100%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 5px;
+  height: 100%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
 
 
 /* FADE IN */

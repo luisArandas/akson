@@ -1,11 +1,14 @@
-$(document).ready(function() {});
+$(document).ready(function() {
+  if (WEBGL.isWebGLAvailable() === false) {
+    document.body.appendChild(WEBGL.getWebGLErrorMessage());
+  }
+});
 
-if (WEBGL.isWebGL2Available() === false) {
-  document.body.appendChild(WEBGL.getWebGL2ErrorMessage());
-}
 
 //http://urmston.xyz/Tone.Editor/examples/midi.html
 //HOW TO USE MANY PAGES AND CALL FUNCTIONS WITHOUT HTML /INCLUDE
+//OPEN THE TONE EDITOR OTHER PAGE
+//INCLUDE OTHER JS HERE
 
 var container;
 var camera,
@@ -27,6 +30,7 @@ var teclaUm = false,
   teclaOito = false,
   teclaNove = false,
   teclaDez = false;
+var sideBar = false;
 var mouse = new THREE.Vector2();
 var glitchPass = new THREE.GlitchPass();
 var shaderBleach = THREE.BleachBypassShader;
@@ -144,7 +148,19 @@ function init() {
   */
 
   document.addEventListener("keydown", function(event) {
-    if (event.which == "32") {} //space
+    if (event.which == "32") {
+      if (sideBar == false) {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      if (sideBar == true) {
+        document.getElementById("mySidenav").style.width = "0px";
+      }
+      if (sideBar == true) {
+        sideBar = false;
+      } else {
+        sideBar = true;
+      }
+    }
     if (event.which == "81") {
       console.log("Q");
       if (teclaUm == false) {
@@ -328,3 +344,226 @@ function render() {
 }
 
 function newDrawing() {}
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+//MUSIC
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+Nexus.context = Tone.context;
+Nexus.clock.start();
+Nexus.colors.accent = "#ff0";
+Nexus.colors.fill = "#333";
+
+/*nx.onload = function() {
+  nx.sendsTo("node");
+  // nx.sendsTo(function(data){
+  //     socket.emit('nx', { id: this.canvasID, data: data });
+  // });
+}*/
+
+droneSynth = {
+  fm: new Tone.FMOscillator(100, "sine", "sine").start(),
+  fm2: new Tone.FMOscillator(112.5, "sine", "sine").start(),
+  vol: new Tone.Volume(-Infinity),
+  filter: new Tone.Filter(100, "bandpass"),
+  filterFeedback: new Tone.FeedbackCombFilter(0, 0), //default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
+  vibrato: new Tone.Vibrato(5, 0.1), //default maxDelay 0.0.5 frequency 5 depth 0.1 e type sine;
+  ppdelay: new Tone.PingPongDelay(0.25, 1), //defaults delayTime 0.25 maxDelayTime 1;
+  verb: new Tone.Freeverb(),
+  autopan: new Tone.AutoPanner(), //frequency 1 default sine  default depth 1
+  compressor: new Tone.Compressor(-30, 10)
+}
+
+droneSynth.fm.connect(droneSynth.filter);
+droneSynth.fm2.connect(droneSynth.filter);
+droneSynth.fm.connect(droneSynth.filterFeedback);
+droneSynth.fm2.connect(droneSynth.filterFeedback);
+droneSynth.fm.connect(droneSynth.vibrato);
+droneSynth.fm2.connect(droneSynth.vibrato);
+droneSynth.fm.connect(droneSynth.ppdelay);
+droneSynth.fm2.connect(droneSynth.ppdelay);
+droneSynth.fm.connect(droneSynth.autopan);
+droneSynth.fm2.connect(droneSynth.autopan);
+droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
+droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
+droneSynth.fm.harmonicity.value = 4;
+droneSynth.fm2.harmonicity.value = 4;
+
+// --------------------------- SYNTH ---------------------------
+
+//WORKS THE PLAYER
+
+var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5", "E5", "", "A#2", ""];
+var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
+var synth;
+
+synth = createSynthWithEffects();
+
+Tone.Transport.bpm.value = 20;
+Tone.Transport.start();
+//console.log(Tone.Transport.bpm.value);
+
+
+var seq = new Tone.Sequence(playNote, pattern, "8n");
+seq.start();
+
+function createSynthWithEffects() {
+  let vol = new Tone.Volume(-15).toMaster();
+
+  var compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+
+  let reverb = new Tone.Freeverb(1.0).connect(vol);
+  reverb.wet.value = 0.1;
+
+  let delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
+  delay.wet.value = 0.1;
+
+  let vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
+
+  let polySynth = new Tone.PolySynth(3, Tone.Synth, {
+    "oscillator": {
+      "type": "sine"
+    },
+    "envelope": {
+      "attack": 0.01,
+      "decay": 0.1,
+      "sustain": 0.2,
+      "release": 4,
+    }
+  });
+  return polySynth.connect(vibrato, compressor);
+}
+
+function playNote(time, note) {
+  if (note != "") {
+    synth.triggerAttackRelease(note, "16n");
+  }
+}
+
+// --------------------------- OSCILOSCOPE -------------------------
+
+var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
+  'size': [400, 150]
+});
+oscilloscope.connect(Tone.Master);
+
+// ------------------------- SOCKETS -------------------------------
+
+socket = io.connect(window.location.origin);
+socket.on('mouse', newDrawing);
+window.addEventListener('mousedown', onMouseDown, false);
+
+var data;
+
+function onMouseDown(event) {
+  event.preventDefault();
+  var data = {
+    mouseX: 0,
+    mouseY: 0
+  };
+  mouseX = (event.clientX);
+  mouseY = (event.clientY);
+  socket.emit('mouse', event.clientX);
+  console.log("teste");
+}
+
+function onMouseUp(event) {
+  event.preventDefault();
+}
+
+function onWindowResize() {}
+
+function myFunc() {}
+
+function newDrawing() {
+  //FUNCIONA E ISTO QUE TENHO DE MANDAR
+  console.log("okok");
+}
+
+// ---------------------- LAPTOP KEYBOARD -------------------------
+
+//(Z o-) (X o+) linha do meio CDEFGABCDEF
+//link here https://github.com/kylestetz/AudioKeys
+
+var keyboard = new AudioKeys();
+
+keyboard.down(function(note) {
+  //note.keyCode, note.frequency, note.velocity, note.isActive, note.note;
+  piano.toggleKey(note.note, true);
+});
+
+keyboard.up(function(note) {
+  piano.toggleKey(note.note, false);
+});
+
+// --------------------------- MIDI -------------------------------
+
+if (navigator.requestMIDIAccess) {
+  navigator.requestMIDIAccess({
+    sysex: false
+  }).then(onMIDISuccess, onMIDIFailure);
+} else {
+  alert("No MIDI support in your browser.");
+}
+
+function onMIDISuccess(midiAccess) {
+  midi = midiAccess;
+
+  var inputs = midi.inputs.values();
+  for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+    input.value.onmidimessage = onMIDIMessage;
+  }
+  console.log('MIDI Access Object', midiAccess);
+}
+
+function onMIDIMessage(event) {
+  data = event.data;
+  midiValOne = data[0];
+  midiValTwo = data[1];
+  midiValThree = data[2];
+
+  if (midiValOne == 176 && midiValTwo == 8) {
+    console.log(midiValThree);
+    reverb_slider_um.value = midiValThree;
+    harmonicity.value = midiValThree;
+    modulation.value = midiValThree;
+  }
+}
+
+function onMIDIFailure(e) {
+  console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
+}
+
+// --------------------------------------------------------------------
+
+function functionSliderOne(val) {
+  //droneSynth.filter.frequency.value = val;
+  synth.set({
+    "envelope": {
+      "attack": val
+    }
+  });
+}
+//ADD FLOATS INSTEAD OF INTEGERS
+
+/*droneSynth.vol.volume.rampTo(-Infinity, 1); //-20
+droneSynth.filter.frequency.value = v.x;
+droneSynth.filter.Q.value = v.y;
+droneSynth.verb.roomSize.value = v;
+droneSynth.fm.modulationIndex.rampTo(v, 0.1);
+droneSynth.fm2.modulationIndex.rampTo(v, 0.1);
+droneSynth.verb.wet.value = v.x;
+droneSynth.verb.dampening.value = v.y;
+droneSynth.fm.harmonicity.rampTo(v, 0.1);
+droneSynth.fm2.harmonicity.rampTo(v, 0.1);*/
+
+function popitup(url) {
+  newwindow = window.open(url, 'name', 'height=300,width=300, location=0');
+  if (window.focus) {
+    newwindow.focus()
+  }
+  return false;
+}

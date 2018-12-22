@@ -52,7 +52,7 @@ droneSynth.fm2.connect(droneSynth.ppdelay);
 droneSynth.fm.connect(droneSynth.autopan);
 droneSynth.fm2.connect(droneSynth.autopan);
 droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-//droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
+droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
 droneSynth.fm.harmonicity.value = 4;
 droneSynth.fm2.harmonicity.value = 4;
 
