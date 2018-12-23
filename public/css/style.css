@@ -1,3 +1,11 @@
+html *
+{
+   color: #ffffff !important;
+   /*font-family: Arial !important;*/
+   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+   font-weight: 100;
+}
+
 html, body {
   background: #000000;
   padding: 0;
@@ -239,6 +247,49 @@ html, body {
   cursor: pointer;
 }
 
+/*
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+*/
+
+.labelUm {
+  color: white;
+  position: absolute;
+  top: 1px;
+}
+.labelDois {
+  color: white;
+  position: absolute;
+  top: 25px;
+}
+.labelTres {
+  color: white;
+  position: absolute;
+  top: 50px;
+}
+.labelQuatro {
+  color: white;
+  position: absolute;
+  top: 75px;
+}
+
+.help {
+  font-size: 1em;
+  font-weight: bold;
+  background-color: #000000;
+  color: black;
+}
+
+.buttons {
+  position: absolute;
+  top: 1px;
+}
 
 
 /* FADE IN */

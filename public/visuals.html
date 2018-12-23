@@ -19,20 +19,26 @@ cursor: none;
 
 <body class="fade-in">
   <div id="mySidenav" class="sidenav">
+    <div class=buttons>
+      <button class="help" onClick="help()">?</button>
+    </div>
     <div class="slidecontainer">
-      <input type="range" min="0" max="1" value="0" class="slider" id="myRange" onchange="functionSliderOne(this.value);">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange1">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange2">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange3">
+      <input type="range" min="0" max="1" value="0.5" step=0.01 class="slider" id="slider_One" onchange="functionSliderOne(this.value);">
+      <div class="labelUm unselectable">attack</div>
+      <input type="range" min="0" max="1" value="0.5" step=0.01 class="slider" id="slider_Two" onchange="functionSliderTwo(this.value);">
+      <div class="labelDois unselectable">decay</div>
+      <input type="range" min="0" max="1" value="0.5" step=0.01 class="slider" id="slider_Three" onchange="functionSliderThree(this.value);">
+      <div class="labelTres unselectable">sustain</div>
+      <input type="range" min="0" max="1" value="0.5" step=0.01 class="slider" id="slider_Four" onchange="functionSliderFour(this.value);">
+      <div class="labelQuatro unselectable">release</div>
+      <!--<div id="position_one" class="position_one"></div>-->
+      filter
+      <input type="range" min="1" max="100" value="50" class="slider" id="slider_Five" onchange="updateTextInput(this.value);">
+      <input type="range" min="1" max="100" value="50" class="slider" id="slider_Six">
+      <input type="range" min="1" max="100" value="50" class="slider" id="slider_Seven">
+      <input type="range" min="1" max="100" value="50" class="slider" id="slider_Eight">
       <!--<div id="position_one" class="position_one"></div>-->
       okok
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange4" onchange="updateTextInput(this.value);">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange5">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange6">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange7">
-      <!--<div id="position_one" class="position_one"></div>-->
-      okok
-      <input type="button" value="Open Window" onclick="return popitup('http://heera.it')" />
     </div>
 
 

@@ -547,6 +547,30 @@ function functionSliderOne(val) {
     }
   });
 }
+
+function functionSliderTwo(val) {
+  synth.set({
+    "envelope": {
+      "decay": val
+    }
+  });
+}
+
+function functionSliderThree(val) {
+  synth.set({
+    "envelope": {
+      "sustain": val
+    }
+  });
+}
+
+function functionSliderFour(val) {
+  synth.set({
+    "envelope": {
+      "release": val
+    }
+  });
+}
 //ADD FLOATS INSTEAD OF INTEGERS
 
 /*droneSynth.vol.volume.rampTo(-Infinity, 1); //-20
@@ -559,11 +583,3 @@ droneSynth.verb.wet.value = v.x;
 droneSynth.verb.dampening.value = v.y;
 droneSynth.fm.harmonicity.rampTo(v, 0.1);
 droneSynth.fm2.harmonicity.rampTo(v, 0.1);*/
-
-function popitup(url) {
-  newwindow = window.open(url, 'name', 'height=300,width=300, location=0');
-  if (window.focus) {
-    newwindow.focus()
-  }
-  return false;
-}
