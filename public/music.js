@@ -1,10 +1,189 @@
-window.onload = function() {
+//----------------------------------
+//  BUTTONS
+//----------------------------------
+var buttonOneVariable = false;
+
+function buttonOne() {
+  if (buttonOneVariable == false) {
+    document.getElementById("mySidenav").style.width = window.innerWidth;
+  }
+  if (buttonOneVariable == true) {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  if (buttonOneVariable == true) {
+    buttonOneVariable = false;
+  } else {
+    buttonOneVariable = true;
+  }
+}
+
+function buttonTwo() {
+  console.log("luis2");
+}
+
+function buttonThree() {
+  console.log("luis3");
+}
+
+//----------------------------------
+//  SLIDERS
+//----------------------------------
+
+
+function functionSliderOne(val) {
+  //droneSynth.filter.frequency.value = val;
+  synth.set({
+    "envelope": {
+      "attack": val
+    }
+  });
+}
+
+function functionSliderTwo(val) {
+  synth.set({
+    "envelope": {
+      "decay": val
+    }
+  });
+}
+
+function functionSliderThree(val) {
+  synth.set({
+    "envelope": {
+      "sustain": val
+    }
+  });
+}
+
+function functionSliderFour(val) {
+  synth.set({
+    "envelope": {
+      "release": val
+    }
+  });
+}
+
+// --------------------------- SLIDERS --------------------------
+
+/*var modulation = new Nexus.Slider('#modulation', {});
+modulation.min = 10;
+modulation.max = 20;
+modulation.on('change', function(v) {
+  console.log("fm slider1 modulation");
+  droneSynth.fm.modulationIndex.rampTo(v, 0.1);
+  droneSynth.fm2.modulationIndex.rampTo(v, 0.1);
+});*/
+
+var oscilOne_freq = new Nexus.Slider('#oscilOne_freq', {
+  'size': [200, 20]
+});
+oscilOne_freq.min = 50;
+oscilOne_freq.max = 2000;
+oscilOne_freq.value = 100;
+oscilOne_freq.on('change', function(v) {
+  console.log("Oscillator One Frequency");
+  droneSynth.fm.frequency.value = v;
+});
+
+var oscilOne_modIndex = new Nexus.Slider('#oscilOne_modIndex', {
+  'size': [200, 20]
+});
+oscilOne_modIndex.min = 50;
+oscilOne_modIndex.max = 2000;
+oscilOne_modIndex.value = 100;
+oscilOne_modIndex.on('change', function(v) {
+  console.log("Oscillator One Frequency");
+  droneSynth.fm.modulationIndex.value = v;
+});
+
+
+
+
+
+
+
+
+var reverb_roomsize = new Nexus.Slider('#reverb_roomsize', {
+  'size': [200, 20]
+});
+reverb_roomsize.min = 0;
+reverb_roomsize.max = 0.8;
+reverb_roomsize.value = 0.5;
+reverb_roomsize.on('change', function(v) {
+  console.log("Reverb RoomSize");
+  droneSynth.verb.roomSize.value = v;
+});
+
+var reverb_wetdry = new Nexus.Slider('#reverb_wetdry', {});
+reverb_wetdry.min = 0;
+reverb_wetdry.max = 0.3;
+reverb_wetdry.value = 0.1;
+reverb_wetdry.on('change', function(v) {
+  console.log("Reverb Wet Dry");
+  droneSynth.verb.wet.value = v;
+});
+
+var reverb_damp = new Nexus.Slider('#reverb_damp', {});
+reverb_damp.min = 1000;
+reverb_damp.max = 5000;
+reverb_damp.on('change', function(v) {
+  console.log("Reverb Damp");
+  droneSynth.verb.dampening.value = v;
+});
+
+
+var filter_frequency = new Nexus.Slider('#filter_frequency', {});
+filter_frequency.min = 50;
+filter_frequency.max = 1000;
+filter_frequency.value = 100;
+filter_frequency.on('change', function(v) {
+  console.log("Filter_Frequency");
+  droneSynth.filter.frequency.value = v;
+});
+
+var filter_q = new Nexus.Slider('#filter_q', {});
+filter_q.min = 0;
+filter_q.max = 0.3;
+filter_q.value = 0.1;
+filter_q.on('change', function(v) {
+  console.log("Filter_Q");
+  droneSynth.filter.Q.value = v;
+});
+
+
+let meter = new Nexus.Meter("#meter", {
+  size: [10, 53]
+});
+meter.colorize("fill", "#000");
+meter.colorize("accent", "#3480bf");
+meter.connect(Tone.Master);
+
+/*
+var harmonicity = new Nexus.Slider('#harmonicity', {
+  'min': 0,
+  'max': 1,
+})
+//harmonicity.min = 0;
+//harmonicity.max = 10;
+harmonicity.on('change', function(v) {
+  console.log("fm slider1 harmonicity");
+  console.log(v);
+  droneSynth.fm.harmonicity.rampTo(v, 0.1);
+  droneSynth.fm2.harmonicity.rampTo(v, 0.1);
+});
+
+
+*/
+
+
+
+/*window.onload = function() {
   console.clear();
   // can have Tone.Js setup
 };
 
 $(document).ready(function() {});
-/*
+
 CHANGE MOBILE THINGS AND PUT DIFFERENT BEHAVIORS (TONE PAYBACK IN VISUALS)
 loading bar on query
 call js function from another page
@@ -14,19 +193,19 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 SE MOBILE DEVICE ENTAO -> .VISUALS
 VER SE CONSIGO TER UM VISUALIZADOR PARA A OSCILAÇAO OUTRO PARA O PIANO
-*/
+
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
 Nexus.colors.accent = "#ff0";
 Nexus.colors.fill = "#333";
 
-/*nx.onload = function() {
+nx.onload = function() {
   nx.sendsTo("node");
   // nx.sendsTo(function(data){
   //     socket.emit('nx', { id: this.canvasID, data: data });
   // });
-}*/
+}
 
 droneSynth = {
   fm: new Tone.FMOscillator(100, "sine", "sine").start(),
@@ -410,4 +589,4 @@ function onMIDIMessage(event) {
 
 function onMIDIFailure(e) {
   console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
-}
+}*/

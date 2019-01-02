@@ -4,11 +4,12 @@ $(document).ready(function() {
   }
 });
 
-
 //http://urmston.xyz/Tone.Editor/examples/midi.html
 //HOW TO USE MANY PAGES AND CALL FUNCTIONS WITHOUT HTML /INCLUDE
 //OPEN THE TONE EDITOR OTHER PAGE
 //INCLUDE OTHER JS HERE
+//change scenes and add widgets
+//RAMPAS NO VOLUME
 
 var container;
 var camera,
@@ -347,15 +348,15 @@ function newDrawing() {}
 
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
-//MUSIC
+//              MUSIC
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
 
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
-Nexus.colors.accent = "#ff0";
-Nexus.colors.fill = "#333";
+Nexus.colors.accent = "#ffffff";
+Nexus.colors.fill = "#000000";
 
 /*nx.onload = function() {
   nx.sendsTo("node");
@@ -363,34 +364,6 @@ Nexus.colors.fill = "#333";
   //     socket.emit('nx', { id: this.canvasID, data: data });
   // });
 }*/
-
-droneSynth = {
-  fm: new Tone.FMOscillator(100, "sine", "sine").start(),
-  fm2: new Tone.FMOscillator(112.5, "sine", "sine").start(),
-  vol: new Tone.Volume(-Infinity),
-  filter: new Tone.Filter(100, "bandpass"),
-  filterFeedback: new Tone.FeedbackCombFilter(0, 0), //default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
-  vibrato: new Tone.Vibrato(5, 0.1), //default maxDelay 0.0.5 frequency 5 depth 0.1 e type sine;
-  ppdelay: new Tone.PingPongDelay(0.25, 1), //defaults delayTime 0.25 maxDelayTime 1;
-  verb: new Tone.Freeverb(),
-  autopan: new Tone.AutoPanner(), //frequency 1 default sine  default depth 1
-  compressor: new Tone.Compressor(-30, 10)
-}
-
-droneSynth.fm.connect(droneSynth.filter);
-droneSynth.fm2.connect(droneSynth.filter);
-droneSynth.fm.connect(droneSynth.filterFeedback);
-droneSynth.fm2.connect(droneSynth.filterFeedback);
-droneSynth.fm.connect(droneSynth.vibrato);
-droneSynth.fm2.connect(droneSynth.vibrato);
-droneSynth.fm.connect(droneSynth.ppdelay);
-droneSynth.fm2.connect(droneSynth.ppdelay);
-droneSynth.fm.connect(droneSynth.autopan);
-droneSynth.fm2.connect(droneSynth.autopan);
-droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
-droneSynth.fm.harmonicity.value = 4;
-droneSynth.fm2.harmonicity.value = 4;
 
 // --------------------------- SYNTH ---------------------------
 
@@ -400,56 +373,53 @@ var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5",
 var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
 var synth;
 
-synth = createSynthWithEffects();
 
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
 //console.log(Tone.Transport.bpm.value);
 
 
-var seq = new Tone.Sequence(playNote, pattern, "8n");
-seq.start();
 
-function createSynthWithEffects() {
-  let vol = new Tone.Volume(-15).toMaster();
 
-  var compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
-
-  let reverb = new Tone.Freeverb(1.0).connect(vol);
-  reverb.wet.value = 0.1;
-
-  let delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
-  delay.wet.value = 0.1;
-
-  let vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
-
-  let polySynth = new Tone.PolySynth(3, Tone.Synth, {
-    "oscillator": {
-      "type": "sine"
-    },
-    "envelope": {
-      "attack": 0.01,
-      "decay": 0.1,
-      "sustain": 0.2,
-      "release": 4,
-    }
-  });
-  return polySynth.connect(vibrato, compressor);
+droneSynth = {
+  fm: new Tone.FMOscillator(75, "sine", "sine").start(),
+  fm2: new Tone.FMOscillator(85, "sine", "sine").start(),
+  vol: new Tone.Volume(-Infinity),
+  filter: new Tone.Filter(100, "bandpass"),
+  filterFeedback: new Tone.FeedbackDelay(0.1, 0.1), //COMBFEEDBACK default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
+  vibrato: new Tone.Vibrato(5, 0.1), //default maxDelay 0.0.5 frequency 5 depth 0.1 e type sine;
+  ppdelay: new Tone.PingPongDelay(0.25, 1), //defaults delayTime 0.25 maxDelayTime 1;
+  verb: new Tone.Freeverb(),
+  autopan: new Tone.AutoPanner(), //frequency 1 default sine  default depth 1
+  compressor: new Tone.Compressor(-30, 10)
 }
 
-function playNote(time, note) {
-  if (note != "") {
-    synth.triggerAttackRelease(note, "16n");
-  }
-}
+droneSynth.fm.connect(droneSynth.filter);
+droneSynth.fm2.connect(droneSynth.filter);
+/*
+droneSynth.fm.connect(droneSynth.filterFeedback);
+droneSynth.fm2.connect(droneSynth.filterFeedback);
+droneSynth.fm.connect(droneSynth.vibrato);
+droneSynth.fm2.connect(droneSynth.vibrato);
+droneSynth.fm.connect(droneSynth.ppdelay);
+droneSynth.fm2.connect(droneSynth.ppdelay);
+droneSynth.fm.connect(droneSynth.autopan);
+droneSynth.fm2.connect(droneSynth.autopan);
+*/
+droneSynth.vol.volume.rampTo(-20, 1);
+droneSynth.filter.chain(droneSynth.compressor, droneSynth.vibrato, droneSynth.vol, droneSynth.verb, Tone.Master);
+droneSynth.fm.harmonicity.value = 4;
+droneSynth.fm2.harmonicity.value = 4;
+
+
 
 // --------------------------- OSCILOSCOPE -------------------------
-
+/*
 var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
   'size': [400, 150]
 });
 oscilloscope.connect(Tone.Master);
-
+*/
 // ------------------------- SOCKETS -------------------------------
 
 socket = io.connect(window.location.origin);
@@ -492,11 +462,11 @@ var keyboard = new AudioKeys();
 
 keyboard.down(function(note) {
   //note.keyCode, note.frequency, note.velocity, note.isActive, note.note;
-  piano.toggleKey(note.note, true);
+  //piano.toggleKey(note.note, true);
 });
 
 keyboard.up(function(note) {
-  piano.toggleKey(note.note, false);
+  //piano.toggleKey(note.note, false);
 });
 
 // --------------------------- MIDI -------------------------------
@@ -536,50 +506,3 @@ function onMIDIMessage(event) {
 function onMIDIFailure(e) {
   console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
 }
-
-// --------------------------------------------------------------------
-
-function functionSliderOne(val) {
-  //droneSynth.filter.frequency.value = val;
-  synth.set({
-    "envelope": {
-      "attack": val
-    }
-  });
-}
-
-function functionSliderTwo(val) {
-  synth.set({
-    "envelope": {
-      "decay": val
-    }
-  });
-}
-
-function functionSliderThree(val) {
-  synth.set({
-    "envelope": {
-      "sustain": val
-    }
-  });
-}
-
-function functionSliderFour(val) {
-  synth.set({
-    "envelope": {
-      "release": val
-    }
-  });
-}
-//ADD FLOATS INSTEAD OF INTEGERS
-
-/*droneSynth.vol.volume.rampTo(-Infinity, 1); //-20
-droneSynth.filter.frequency.value = v.x;
-droneSynth.filter.Q.value = v.y;
-droneSynth.verb.roomSize.value = v;
-droneSynth.fm.modulationIndex.rampTo(v, 0.1);
-droneSynth.fm2.modulationIndex.rampTo(v, 0.1);
-droneSynth.verb.wet.value = v.x;
-droneSynth.verb.dampening.value = v.y;
-droneSynth.fm.harmonicity.rampTo(v, 0.1);
-droneSynth.fm2.harmonicity.rampTo(v, 0.1);*/

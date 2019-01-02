@@ -9,39 +9,92 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <link rel='stylesheet' href='css/stylewelcome.css'>
+  <script src="libraries/NexusUI.js"></script>
   <link rel="stylesheet" href="css/style.css">
-
+  <!--<style>* {
+cursor: none;
+}</style>-->
   <title>Akson Environment</title>
-
 </head>
 
-<body>
-  <div id="initial-loader" class="padded"><span id="loader-text"></span></div>
+<body class="fade-in">
+  <div id="mySidenav" class="sidenav">
+    <div class=buttons>
+      <button class="help" onClick="buttonOne()">?</button>
+      <button class="help" onClick="buttonTwo()">?</button>
+      <button class="help" onClick="buttonThree()">?</button>
+    </div>
+    <div class="slidercontainer">
+      SYNTHESIZER<br>
+      <div id="oscilOne_freq" class="oscilOne_freq"></div>
+      <div id="oscilOne_modIndex" class="oscilOne_modIndex"></div>
 
-  <div class="center_div">
-    <a class="nav-link" href="music.html"><button class="btn btn-primary btn-sx btn-block nav-link" href="music.html" type="button"><span>play</span></button></a>
-    <br>
-    <a class="nav-link" href="visuals.html"><button class="btn btn-primary btn-sx btn-block nav-link" href="visuals.html" type="button"><span>see</span></button></a>
-    <br>
-    <a class="nav-link" href="about.html"><button class="btn btn-primary btn-sx btn-block nav-link" href="music.html" type="button"><span>about</span></button></a>
-  </div>
+      reverb
+      <div id="reverb_roomsize" class="reverb_slider_um"></div>
+      <div id="reverb_wetdry" class="reverb_wetdry"></div>
+      <div id="reverb_damp" class="reverb_damp"></div>
+      filter
+      <div id="filter_frequency" class="filter_frequency"></div>
+      <div id="filter_q" class="filter_q"></div>
+      <!--<div id="meter" class="meter"></div>-->
 
-  <div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/CopyShader.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/141552/03_glitch.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/EffectComposer.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/RenderPass.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/ShaderPass.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/MaskPass.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/141552/08_texturepass.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
-    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/GlitchPass.js'></script>
-    <script src="welcome.js"></script>
-  </div>
+      OSCILLATORS
+      <!--<div id="oscilloscope" class="oscilloscope"></div>
+      <div id="modulation" class="modulation"></div>
+    <div id="harmonicity" class="harmonicity"></div>-->
+    </div>
+
+
+    <!--<div id="power" class="power"></div>
+    <div id="log"></div>
+    <div id="feedbackToggle" class="feedbackToggle"></div>
+    <div id="vibratoToggle" class="feedbackToggle"></div>
+    <div id="ppdelayToggle" class="ppdelayToggle"></div>
+    <div id="autopanToggle" class="autopanToggle"></div>
+    <div id="modulation" class="modulation"></div>
+    <div id="harmonicity" class="harmonicity"></div>
+    <div id="reverb_slider_um" class="reverb_slider_um"></div>
+    <div id="position_one" class="position_one"></div>
+    <div id="position_two" class="position_two"></div>
+    <div id="piano_one" class="piano_one"></div>
+    <div id="envelope_one" class="envelope_one"></div>
+  </div>-->
+
+    <div>
+      <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+      <script src="libraries/three.min.js"></script>
+      <script src="libraries/Tone9.js"></script>
+      <script src="libraries/CopyShader.js"></script>
+      <script src="libraries/DigitalGlitch.js"></script>
+      <script src="libraries/EffectComposer.js"></script>
+      <script src="libraries/RenderPass.js"></script>
+      <script src="libraries/MaskPass.js"></script>
+      <script src="libraries/ShaderPass.js"></script>
+      <script src="libraries/GlitchPass.js"></script>
+      <script src="libraries/Projector.js"></script>
+      <script src="libraries/BleachBypassShader.js"></script>
+      <script src="libraries/ColorifyShader.js"></script>
+      <script src="libraries/ConvolutionShader.js"></script>
+      <script src="libraries/DotScreenShader.js"></script>
+      <script src="libraries/FilmShader.js"></script>
+      <script src="libraries/HorizontalBlurShader.js"></script>
+      <script src="libraries/SepiaShader.js"></script>
+      <script src="libraries/VerticalBlurShader.js"></script>
+      <script src="libraries/VignetteShader.js"></script>
+      <script src="libraries/BloomPass.js"></script>
+      <script src="libraries/FilmPass.js"></script>
+      <script src="libraries/DotScreenPass.js"></script>
+      <script src="libraries/TexturePass.js"></script>
+      <script src="libraries/WebGL.js"></script>
+      <script src="libraries/stats.min.js"></script>
+      <script src="libraries/dat.gui.min.js"></script>
+      <script src="libraries/audiokeys.js"></script>
+      <script src="index.js" type="text/javascript"></script>
+      <script src="music.js" type="text/javascript"></script>
+
+    </div>
+    <!-- BARRA DE BAIXO -->
+
 </body>
 
 </html>

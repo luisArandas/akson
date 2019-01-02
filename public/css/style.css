@@ -108,7 +108,8 @@ html, body {
 }
 
 [nexus-ui] {
-  border-radius: 5px;
+  /*border-radius: 5px;*/
+  outline: 1px solid white;
   overflow:hidden;
 }
 
@@ -127,16 +128,24 @@ html, body {
 .position_two {
 }
 
-.reverb_slider_um {
-  background-color: #333;
+.reverb_roomsize {
+  background-color: #000000;
+}
+
+.reverb_wetdry {
+  background-color: #000000;
+}
+
+.reverb_damp {
+  background-color: #000000;
 }
 
 .harmonicity {
-  background-color: #333;
+  background-color: #000000;
 }
 
 .modulation {
-  background-color: #333;
+  background-color: #000000;
 }
 
 .feedbackToggle{
@@ -209,11 +218,12 @@ html, body {
   .sidenav a {font-size: 18px;}
 }
 
-.slidecontainer {
+.slidercontainer {
   width: 90%;
   position: absolute;
   left: 5%;
   right: 5%;
+  /*background-color: #ff1;*/
 }
 
 .slider {
@@ -290,7 +300,6 @@ html, body {
   position: absolute;
   top: 1px;
 }
-
 
 /* FADE IN */
 
