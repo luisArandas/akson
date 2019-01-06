@@ -27,6 +27,11 @@ function newConnection(socket) {
     //MUST RESTART THE SERVER
   }
 
+
+
+
+
+
   socket.on('nx', nxFunction);
 
   function nxFunction(x) {

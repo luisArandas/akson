@@ -7,9 +7,6 @@ $(document).ready(function() {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   }
   if (detectmob() === false) { //&& onMouseDown() === true) {
-    var e = $.Event('keypress');
-    e.which = 81;
-    $('item').trigger(e);
   }
 });
 
@@ -57,6 +54,9 @@ var composerOne;
 var composerTwo;
 var composerThree;
 var parentTransformTres = new THREE.Object3D();
+
+var whichVisuals;
+
 
 init();
 animate();
@@ -167,6 +167,7 @@ function init() {
 
   window.addEventListener('resize', onWindowResize, false);
   window.addEventListener('mousedown', onMouseDown, false);
+  window.addEventListener("touchstart", handleStart, false);
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
   /*effectBleach.uniforms["opacity"].value = 0.95;
@@ -221,6 +222,8 @@ function init() {
         parentTransform.children.forEach(function(v) {
           v.rotation.y = 1;
         });
+        whichVisuals = event.which;
+        socket.emit('visuals', whichVisuals);
       }
       if (teclaUm == true) {
         camera.remove(planoCamaraUm);
@@ -516,6 +519,7 @@ oscilloscope.connect(Tone.Master);
 
 socket = io.connect(window.location.origin);
 socket.on('mouse', newDrawing);
+socket.on('visuals', broadCastVisuals);
 
 
 var data;
@@ -617,4 +621,8 @@ function detectmob() {
   } else {
     return false;
   }
+}
+
+function handleStart() {
+  scene.background = new THREE.Color(0xffffff);
 }
