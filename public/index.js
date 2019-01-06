@@ -6,7 +6,7 @@ $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   }
-  if (detectmob() === false && onMouseDown() === true) {
+  if (detectmob() === false) { //&& onMouseDown() === true) {
     var e = $.Event('keypress');
     e.which = 81;
     $('item').trigger(e);
