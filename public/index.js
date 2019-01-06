@@ -1,6 +1,15 @@
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ */
+
 $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
+  }
+  if (detectmob() === false && onMouseDown() === true) {
+    var e = $.Event('keypress');
+    e.which = 81;
+    $('item').trigger(e);
   }
 });
 
@@ -32,19 +41,22 @@ var teclaUm = false,
   teclaNove = false,
   teclaDez = false;
 var sideBar = false;
-var mouse = new THREE.Vector2();
+var mouse = new THREE.Vector2(),
+  INTERSECTED;
+
 var glitchPass = new THREE.GlitchPass();
-var shaderBleach = THREE.BleachBypassShader;
-var shaderSepia = THREE.SepiaShader;
-var shaderVignette = THREE.VignetteShader;
-var effectBleach = new THREE.ShaderPass(shaderBleach);
-var effectSepia = new THREE.ShaderPass(shaderSepia);
-var effectVignette = new THREE.ShaderPass(shaderVignette);
+var afterimagePass = new THREE.AfterimagePass();
+
 var effectBloom = new THREE.BloomPass(0.5);
 var effectFilm = new THREE.FilmPass(0.35, 0.025, 648, false);
 var effectFilmBW = new THREE.FilmPass(0.35, 0.5, 2048, true);
 var effectDotScreen = new THREE.DotScreenPass(new THREE.Vector2(0, 0), 0.5, 0.8);
-var composer;
+
+
+var composerOne;
+var composerTwo;
+var composerThree;
+var parentTransformTres = new THREE.Object3D();
 
 init();
 animate();
@@ -121,6 +133,26 @@ function init() {
   raycaster = new THREE.Raycaster();
   raycaster.linePrecision = 3;
 
+  var light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(1, 1, 1).normalize();
+  scene.add(light);
+
+
+  for (var i = 0; i < 100; i++) {
+    var geometry = new THREE.BoxGeometry(10, 1500, 10);
+    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
+      color: 0x5f5f5f,
+      //wireframe: true
+    }));
+    object.position.x = Math.random() * 800 - 400;
+    object.position.y = Math.random() * 800 - 400;
+    object.position.z = Math.random() * 800 - 400;
+    object.rotation.x = Math.random() * 2 * Math.PI;
+    //  object.rotation.y = Math.random() * 2 * Math.PI;
+    //  object.rotation.z = Math.random() * 2 * Math.PI;
+    parentTransformTres.add(object);
+  }
+
   var canvas = document.createElement('canvas');
   var context = canvas.getContext('webgl2');
   renderer = new THREE.WebGLRenderer({
@@ -134,24 +166,43 @@ function init() {
   container.appendChild(renderer.domElement);
 
   window.addEventListener('resize', onWindowResize, false);
+  window.addEventListener('mousedown', onMouseDown, false);
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
-  glitchPass.renderToScreen = false;
-  composer = new THREE.EffectComposer(renderer);
-  composer.renderToScreen = true;
+  /*effectBleach.uniforms["opacity"].value = 0.95;
+  effectSepia.uniforms["amount"].value = 0.9;
+  effectVignette.uniforms["offset"].value = 0.95;
+  effectVignette.uniforms["darkness"].value = 1.6;
+*/
 
-  composer.addPass(new THREE.RenderPass(scene, camera));
-  composer.addPass(glitchPass);
+
+  composerOne = new THREE.EffectComposer(renderer);
+  composerOne.addPass(new THREE.RenderPass(scene, camera));
+  composerOne.addPass(glitchPass);
+
+
+  composerTwo = new THREE.EffectComposer(renderer);
+  composerTwo.addPass(new THREE.RenderPass(scene, camera));
+  composerTwo.addPass(afterimagePass);
+
+  composerThree = new THREE.EffectComposer(renderer);
+  composerThree.addPass(new THREE.RenderPass(scene, camera));
+  composerThree.addPass(effectFilm);
+
+  glitchPass.renderToScreen = false;
+  afterimagePass.renderToScreen = false;
 
   //METER OS IFS SE FUNCIONA CARREGAR DUAS VEZES
   /*
   Q_81 W_87 E_69 R_82 T_84 Y_89 U_85 I_73 O_79 P_80
+  32 == SPACE
   */
 
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
         document.getElementById("mySidenav").style.width = "250px";
+        console.log(scene.children);
       }
       if (sideBar == true) {
         document.getElementById("mySidenav").style.width = "0px";
@@ -207,10 +258,12 @@ function init() {
     if (event.which == "69") {
       console.log("E");
       if (teclaTres == false) {
-
+        scene.remove(parentTransform);
+        scene.add(parentTransformTres);
       }
       if (teclaTres == true) {
-
+        scene.add(parentTransform);
+        scene.remove(parentTransformTres);
       }
       if (teclaTres == true) {
         teclaTres = false;
@@ -248,6 +301,7 @@ function init() {
     */
     if (event.which == "65") {
       console.log("A");
+      afterimagePass.renderToScreen = false;
       glitchPass.goWild = true;
       if (glitchPass.renderToScreen == false) {
         glitchPass.renderToScreen = true;
@@ -257,6 +311,7 @@ function init() {
     }
     if (event.which == "83") {
       console.log("S");
+      afterimagePass.renderToScreen = false;
       glitchPass.goWild = false;
       if (glitchPass.renderToScreen == false) {
         glitchPass.renderToScreen = true;
@@ -264,28 +319,40 @@ function init() {
         glitchPass.renderToScreen = false;
       }
     }
-    if (event.which == "79") {
+    if (event.which == "68") {
       console.log("D");
+      glitchPass.renderToScreen = false;
+      if (afterimagePass.renderToScreen == false) {
+        afterimagePass.renderToScreen = true;
+      } else if (afterimagePass.renderToScreen == true) {
+        afterimagePass.renderToScreen = false;
+      }
     }
-    if (event.which == "80") {
+    if (event.which == "70") {
       console.log("F");
+      effectBloom.renderToScreen = true;
+      /*  if (afterimagePass.renderToScreen == false) {
+          afterimagePass.renderToScreen = true;
+        } else if (afterimagePass.renderToScreen == true) {
+          afterimagePass.renderToScreen = false;
+        }*/
     }
-    if (event.which == "65") {
+    if (event.which == "71") {
       console.log("G");
     }
-    if (event.which == "83") {
+    if (event.which == "72") {
       console.log("H");
     }
-    if (event.which == "79") {
+    if (event.which == "74") {
       console.log("J");
     }
-    if (event.which == "80") {
+    if (event.which == "75") {
       console.log("K");
     }
-    if (event.which == "79") {
+    if (event.which == "76") {
       console.log("L");
     }
-    if (event.which == "80") {
+    if (event.which == "186") {
       console.log("Ç");
     }
   });
@@ -309,7 +376,6 @@ function animate() {
   requestAnimationFrame(animate);
   render();
 }
-//change render context dinamically
 
 function onDocumentMouseMove(event) {
   event.preventDefault();
@@ -330,6 +396,21 @@ function render() {
   camera.lookAt(scene.position);
   camera.updateMatrixWorld();
 
+  raycaster.setFromCamera(mouse, camera);
+  //parentTransform.children
+  var intersects = raycaster.intersectObjects(parentTransformTres.children);
+  if (intersects.length > 0) {
+    if (INTERSECTED != intersects[0].object) {
+      if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+      INTERSECTED = intersects[0].object;
+      INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+      INTERSECTED.material.emissive.setHex(0xffffff);
+    }
+  } else {
+    if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+    INTERSECTED = null;
+  }
+
   /*
   RAYCASTER
   raycaster.setFromCamera(mouse, camera);
@@ -340,8 +421,11 @@ function render() {
   } else {
     sphereInter.visible = false;
   }*/
+
   renderer.render(scene, camera);
-  composer.render();
+  composerOne.render();
+  composerTwo.render();
+  composerThree.render();
 }
 
 function newDrawing() {}
@@ -373,6 +457,7 @@ var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5",
 var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
 var synth;
 
+synth = createSynthWithEffects();
 
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
@@ -380,38 +465,45 @@ Tone.Transport.start();
 
 
 
+//var seq = new Tone.Sequence(playNote, pattern, "8n");
+//seq.start();
 
-droneSynth = {
-  fm: new Tone.FMOscillator(75, "sine", "sine").start(),
-  fm2: new Tone.FMOscillator(85, "sine", "sine").start(),
-  vol: new Tone.Volume(-Infinity),
-  filter: new Tone.Filter(100, "bandpass"),
-  filterFeedback: new Tone.FeedbackDelay(0.1, 0.1), //COMBFEEDBACK default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
-  vibrato: new Tone.Vibrato(5, 0.1), //default maxDelay 0.0.5 frequency 5 depth 0.1 e type sine;
-  ppdelay: new Tone.PingPongDelay(0.25, 1), //defaults delayTime 0.25 maxDelayTime 1;
-  verb: new Tone.Freeverb(),
-  autopan: new Tone.AutoPanner(), //frequency 1 default sine  default depth 1
-  compressor: new Tone.Compressor(-30, 10)
+
+
+function createSynthWithEffects() {
+  vol = new Tone.Volume(-15).toMaster();
+
+  compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+
+  reverb = new Tone.Freeverb(1.0).connect(vol);
+  reverb.wet.value = 0.1;
+
+  delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
+  delay.wet.value = 0.1;
+
+  vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
+
+  polySynth = new Tone.PolySynth(3, Tone.Synth, {
+    "oscillator": {
+      "type": "sine"
+    },
+    "envelope": {
+      "attack": 0.01,
+      "decay": 0.1,
+      "sustain": 0.2,
+      "release": 4,
+    }
+  });
+  return polySynth.connect(vibrato, compressor);
 }
 
-droneSynth.fm.connect(droneSynth.filter);
-droneSynth.fm2.connect(droneSynth.filter);
-/*
-droneSynth.fm.connect(droneSynth.filterFeedback);
-droneSynth.fm2.connect(droneSynth.filterFeedback);
-droneSynth.fm.connect(droneSynth.vibrato);
-droneSynth.fm2.connect(droneSynth.vibrato);
-droneSynth.fm.connect(droneSynth.ppdelay);
-droneSynth.fm2.connect(droneSynth.ppdelay);
-droneSynth.fm.connect(droneSynth.autopan);
-droneSynth.fm2.connect(droneSynth.autopan);
-*/
-droneSynth.vol.volume.rampTo(-20, 1);
-droneSynth.filter.chain(droneSynth.compressor, droneSynth.vibrato, droneSynth.vol, droneSynth.verb, Tone.Master);
-droneSynth.fm.harmonicity.value = 4;
-droneSynth.fm2.harmonicity.value = 4;
+function playNote(time, note) {
+  if (note != "") {
+    synth.triggerAttackRelease(note, "16n");
+  }
+}
 
-
+playNote("16n", "A3");
 
 // --------------------------- OSCILOSCOPE -------------------------
 /*
@@ -424,7 +516,7 @@ oscilloscope.connect(Tone.Master);
 
 socket = io.connect(window.location.origin);
 socket.on('mouse', newDrawing);
-window.addEventListener('mousedown', onMouseDown, false);
+
 
 var data;
 
@@ -438,6 +530,11 @@ function onMouseDown(event) {
   mouseY = (event.clientY);
   socket.emit('mouse', event.clientX);
   console.log("teste");
+
+  var intersectsClick = raycaster.intersectObjects(parentTransformTres.children);
+  if (intersectsClick.length > 0) {
+    playNote("16n", "A4");
+  } else {}
 }
 
 function onMouseUp(event) {
@@ -505,4 +602,19 @@ function onMIDIMessage(event) {
 
 function onMIDIFailure(e) {
   console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
+}
+
+function detectmob() {
+  if (navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/webOS/i) ||
+    navigator.userAgent.match(/iPhone/i) ||
+    navigator.userAgent.match(/iPad/i) ||
+    navigator.userAgent.match(/iPod/i) ||
+    navigator.userAgent.match(/BlackBerry/i) ||
+    navigator.userAgent.match(/Windows Phone/i)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }

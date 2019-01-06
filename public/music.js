@@ -25,159 +25,138 @@ function buttonThree() {
   console.log("luis3");
 }
 
-//----------------------------------
-//  SLIDERS
-//----------------------------------
-
-
-function functionSliderOne(val) {
-  //droneSynth.filter.frequency.value = val;
-  synth.set({
-    "envelope": {
-      "attack": val
-    }
-  });
-}
-
-function functionSliderTwo(val) {
-  synth.set({
-    "envelope": {
-      "decay": val
-    }
-  });
-}
-
-function functionSliderThree(val) {
-  synth.set({
-    "envelope": {
-      "sustain": val
-    }
-  });
-}
-
-function functionSliderFour(val) {
-  synth.set({
-    "envelope": {
-      "release": val
-    }
-  });
-}
 
 // --------------------------- SLIDERS --------------------------
-
-/*var modulation = new Nexus.Slider('#modulation', {});
-modulation.min = 10;
-modulation.max = 20;
-modulation.on('change', function(v) {
-  console.log("fm slider1 modulation");
-  droneSynth.fm.modulationIndex.rampTo(v, 0.1);
-  droneSynth.fm2.modulationIndex.rampTo(v, 0.1);
-});*/
-
-var oscilOne_freq = new Nexus.Slider('#oscilOne_freq', {
-  'size': [200, 20]
-});
-oscilOne_freq.min = 50;
-oscilOne_freq.max = 2000;
-oscilOne_freq.value = 100;
-oscilOne_freq.on('change', function(v) {
-  console.log("Oscillator One Frequency");
-  droneSynth.fm.frequency.value = v;
-});
-
-var oscilOne_modIndex = new Nexus.Slider('#oscilOne_modIndex', {
-  'size': [200, 20]
-});
-oscilOne_modIndex.min = 50;
-oscilOne_modIndex.max = 2000;
-oscilOne_modIndex.value = 100;
-oscilOne_modIndex.on('change', function(v) {
-  console.log("Oscillator One Frequency");
-  droneSynth.fm.modulationIndex.value = v;
-});
-
-
-
-
-
-
-
+//REVERB
 
 var reverb_roomsize = new Nexus.Slider('#reverb_roomsize', {
-  'size': [200, 20]
+  'size': [200, 20],
+  step: 0.1,
 });
-reverb_roomsize.min = 0;
-reverb_roomsize.max = 0.8;
-reverb_roomsize.value = 0.5;
+reverb_roomsize.min = 1;
+reverb_roomsize.max = 2;
+reverb_roomsize.value = 1;
 reverb_roomsize.on('change', function(v) {
-  console.log("Reverb RoomSize");
-  droneSynth.verb.roomSize.value = v;
+  console.log("Reverb Roomsize" + v);
+  reverb.roomSize.value = v;
+
 });
 
-var reverb_wetdry = new Nexus.Slider('#reverb_wetdry', {});
-reverb_wetdry.min = 0;
-reverb_wetdry.max = 0.3;
+var reverb_wetdry = new Nexus.Slider('#reverb_wetdry', {
+  step: 0.01,
+});
+reverb_wetdry.min = 0.1;
+reverb_wetdry.max = 0.2;
 reverb_wetdry.value = 0.1;
 reverb_wetdry.on('change', function(v) {
-  console.log("Reverb Wet Dry");
-  droneSynth.verb.wet.value = v;
+  console.log("Reverb WetDry" + v);
+  reverb.wet.value = v;
 });
 
 var reverb_damp = new Nexus.Slider('#reverb_damp', {});
 reverb_damp.min = 1000;
 reverb_damp.max = 5000;
 reverb_damp.on('change', function(v) {
-  console.log("Reverb Damp");
-  droneSynth.verb.dampening.value = v;
+  console.log("Reverb Damp" + v);
+  console.log("NOTWORKING ATM");
 });
 
+//VIBRATO
+
+var vibrato_frequency = new Nexus.Slider('#vibrato_frequency', {});
+vibrato_frequency.min = 0;
+vibrato_frequency.max = 10;
+vibrato_frequency.value = 5;
+vibrato_frequency.on('change', function(v) {
+  vibrato.frequency.value = v;
+  console.log("Vibrato Frequency" + v);
+});
+
+var vibrato_depth = new Nexus.Slider('#vibrato_depth', {
+  step: 0.001,
+});
+vibrato_depth.min = 0.1;
+vibrato_depth.max = 2;
+vibrato_depth.value = 0.2;
+vibrato_depth.on('change', function(v) {
+  vibrato.depth.value = v;
+  console.log("Vibrato Depth" + v);
+});
+
+var vibrato_maxdelay = new Nexus.Slider('#vibrato_maxdelay', {});
+vibrato_maxdelay.min = 0;
+vibrato_maxdelay.max = 0.01;
+vibrato_maxdelay.value = 0.005;
+vibrato_maxdelay.on('change', function(v) {
+  vibrato.maxdelay.value = v;
+  console.log("Vibrato Depth" + v);
+  console.log("NOT WORKING");
+});
+
+//SINTETIZADOR
+
+var sinth_attack = new Nexus.Slider('#sinth_attack', {
+  step: 0.01,
+});
+sinth_attack.min = 0.01;
+sinth_attack.max = 1;
+sinth_attack.value = 0.01;
+sinth_attack.on('change', function(v) {
+  console.log("Attack Synth" + v);
+  synth.set("attack", v);
+});
+
+var sinth_decay = new Nexus.Slider('#sinth_decay', {});
+sinth_decay.min = 0;
+sinth_decay.max = 0.01;
+sinth_decay.value = 0.005;
+sinth_decay.on('change', function(v) {
+  vibrato.maxdelay.value = v;
+  console.log("Vibrato Depth" + v);
+  console.log("NOT WORKING");
+});
+
+var sinth_sustain = new Nexus.Slider('#sinth_sustain', {});
+sinth_sustain.min = 0;
+sinth_sustain.max = 0.01;
+sinth_sustain.value = 0.005;
+sinth_sustain.on('change', function(v) {
+  vibrato.maxdelay.value = v;
+  console.log("Vibrato Depth" + v);
+  console.log("NOT WORKING");
+});
+
+var sinth_release = new Nexus.Slider('#sinth_release', {
+  step: 0.1,
+});
+sinth_release.min = 0;
+sinth_release.max = 10;
+sinth_release.value = 4;
+sinth_release.on('change', function(v) {
+  console.log("Synth Release" + v);
+  synth.set("release", v);
+});
+
+//FILTER AND Q
 
 var filter_frequency = new Nexus.Slider('#filter_frequency', {});
 filter_frequency.min = 50;
 filter_frequency.max = 1000;
 filter_frequency.value = 100;
-filter_frequency.on('change', function(v) {
-  console.log("Filter_Frequency");
-  droneSynth.filter.frequency.value = v;
-});
+filter_frequency.on('change', function(v) {});
 
 var filter_q = new Nexus.Slider('#filter_q', {});
 filter_q.min = 0;
 filter_q.max = 0.3;
 filter_q.value = 0.1;
-filter_q.on('change', function(v) {
-  console.log("Filter_Q");
-  droneSynth.filter.Q.value = v;
-});
+filter_q.on('change', function(v) {});
 
 
-let meter = new Nexus.Meter("#meter", {
-  size: [10, 53]
-});
-meter.colorize("fill", "#000");
-meter.colorize("accent", "#3480bf");
-meter.connect(Tone.Master);
+
+
 
 /*
-var harmonicity = new Nexus.Slider('#harmonicity', {
-  'min': 0,
-  'max': 1,
-})
-//harmonicity.min = 0;
-//harmonicity.max = 10;
-harmonicity.on('change', function(v) {
-  console.log("fm slider1 harmonicity");
-  console.log(v);
-  droneSynth.fm.harmonicity.rampTo(v, 0.1);
-  droneSynth.fm2.harmonicity.rampTo(v, 0.1);
-});
-
-
-*/
-
-
-
-/*window.onload = function() {
+window.onload = function() {
   console.clear();
   // can have Tone.Js setup
 };
@@ -206,387 +185,4 @@ nx.onload = function() {
   //     socket.emit('nx', { id: this.canvasID, data: data });
   // });
 }
-
-droneSynth = {
-  fm: new Tone.FMOscillator(100, "sine", "sine").start(),
-  fm2: new Tone.FMOscillator(112.5, "sine", "sine").start(),
-  vol: new Tone.Volume(-Infinity),
-  filter: new Tone.Filter(100, "bandpass"),
-  filterFeedback: new Tone.FeedbackCombFilter(0, 0), //default é 0.1 e 0.5 delayTime e Resonance nao ha nada mais interessante neste
-  vibrato: new Tone.Vibrato(5, 0.1), //default maxDelay 0.0.5 frequency 5 depth 0.1 e type sine;
-  ppdelay: new Tone.PingPongDelay(0.25, 1), //defaults delayTime 0.25 maxDelayTime 1;
-  verb: new Tone.Freeverb(),
-  autopan: new Tone.AutoPanner(), //frequency 1 default sine  default depth 1
-  compressor: new Tone.Compressor(-30, 10)
-}
-
-droneSynth.fm.connect(droneSynth.filter);
-droneSynth.fm2.connect(droneSynth.filter);
-droneSynth.fm.connect(droneSynth.filterFeedback);
-droneSynth.fm2.connect(droneSynth.filterFeedback);
-droneSynth.fm.connect(droneSynth.vibrato);
-droneSynth.fm2.connect(droneSynth.vibrato);
-droneSynth.fm.connect(droneSynth.ppdelay);
-droneSynth.fm2.connect(droneSynth.ppdelay);
-droneSynth.fm.connect(droneSynth.autopan);
-droneSynth.fm2.connect(droneSynth.autopan);
-droneSynth.filter.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-droneSynth.vol.volume.rampTo(-20, 1); //IF I WANT TO CHANGE STARTUP
-droneSynth.fm.harmonicity.value = 4;
-droneSynth.fm2.harmonicity.value = 4;
-
-// --------------------------- SYNTH ---------------------------
-
-//WORKS THE PLAYER
-
-var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5", "E5", "", "A#2", ""];
-var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
-var synth;
-
-synth = createSynthWithEffects();
-
-Tone.Transport.bpm.value = 20;
-Tone.Transport.start();
-//console.log(Tone.Transport.bpm.value);
-
-
-var seq = new Tone.Sequence(playNote, pattern, "8n");
-//seq.start();
-
-function createSynthWithEffects() {
-  let vol = new Tone.Volume(-15).toMaster();
-
-  var compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
-
-  let reverb = new Tone.Freeverb(1.0).connect(vol);
-  reverb.wet.value = 0.1;
-
-  let delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
-  delay.wet.value = 0.1;
-
-  let vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
-
-  let polySynth = new Tone.PolySynth(3, Tone.Synth, {
-    "oscillator": {
-      "type": "sine"
-    },
-    "envelope": {
-      "attack": 0.01,
-      "decay": 0.1,
-      "sustain": 0.2,
-      "release": 4,
-    }
-  });
-  return polySynth.connect(vibrato, compressor);
-}
-
-function playNote(time, note) {
-  if (note != "") {
-    synth.triggerAttackRelease(note, "16n");
-  }
-}
-
-// --------------------------- TOGGLE ---------------------------
-
-
-var toggle = new Nexus.Toggle('#power', {
-  'size': [40, 20],
-  'state': false
-});
-
-toggle.on('change', function(v) {
-  if (v == false) {
-    droneSynth.vol.volume.rampTo(-Infinity, 1);
-  }
-  if (v == true) {
-    droneSynth.vol.volume.rampTo(-20, 1);
-  }
-});
-
-var feedbackToggle = new Nexus.Toggle('#feedbackToggle', {
-  'size': [40, 20],
-  'state': false
-});
-feedbackToggle.on('change', function(v) {
-  if (v == true) {
-    droneSynth.filterFeedback.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  } else {
-    droneSynth.filterFeedback.disconnect(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  }
-});
-
-var vibratoToggle = new Nexus.Toggle('#vibratoToggle', {
-  'size': [40, 20],
-  'state': false
-});
-vibratoToggle.on('change', function(v) {
-  if (v == true) {
-    droneSynth.vibrato.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  } else {
-    droneSynth.vibrato.disconnect(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  }
-});
-
-var ppdelayToggle = new Nexus.Toggle('#ppdelayToggle', {
-  'size': [40, 20],
-  'state': false
-});
-ppdelayToggle.on('change', function(v) {
-  if (v == true) {
-    droneSynth.ppdelay.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  } else {
-    droneSynth.ppdelay.disconnect(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  }
-});
-
-var autopanToggle = new Nexus.Toggle('#autopanToggle', {
-  'size': [40, 20],
-  'state': false
-});
-autopanToggle.on('change', function(v) {
-  if (v == true) {
-    droneSynth.autopan.chain(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  } else {
-    droneSynth.autopan.disconnect(droneSynth.compressor, droneSynth.vol, droneSynth.verb, Tone.Master);
-  }
-});
-
-
-
-// --------------------------- SLIDERS --------------------------
-
-var modulation = new Nexus.Slider('#modulation', {
-  'size': [20, 50],
-});
-modulation.min = 10;
-modulation.max = 20;
-modulation.on('change', function(v) {
-  console.log("fm slider1 modulation");
-  droneSynth.fm.modulationIndex.rampTo(v, 0.1);
-  droneSynth.fm2.modulationIndex.rampTo(v, 0.1);
-});
-
-var reverb_slider_um = new Nexus.Slider('#reverb_slider_um', {
-  'size': [20, 50],
-});
-reverb_slider_um.min = 0;
-reverb_slider_um.max = 0.8;
-reverb_slider_um.on('change', function(v) {
-  console.log("reverb slider roomsize");
-  droneSynth.verb.roomSize.value = v;
-});
-
-var harmonicity = new Nexus.Slider('#harmonicity', {
-  'size': [20, 50],
-  'min': 0,
-  'max': 1,
-})
-//harmonicity.min = 0;
-//harmonicity.max = 10;
-harmonicity.on('change', function(v) {
-  console.log("fm slider1 harmonicity");
-  console.log(v);
-  droneSynth.fm.harmonicity.rampTo(v, 0.1);
-  droneSynth.fm2.harmonicity.rampTo(v, 0.1);
-})
-
-// --------------------------- POSITIONS -------------------------
-
-var position_one = new Nexus.Position('#position_one', {
-  'size': [150, 50],
-});
-position_one.minX = 50;
-position_one.maxX = 1400;
-position_one.minY = 0;
-position_one.maxY = 0.5; //see this
-position_one.on('change', function(v) {
-  console.log("filter slider frequency x q value y");
-  droneSynth.filter.frequency.value = v.x;
-  droneSynth.filter.Q.value = v.y;
-});
-
-//position_one.element.className = 'example';
-
-var position_two = new Nexus.Position('#position_two', {
-  'size': [150, 50],
-  'x': 1,
-  'y': 1,
-});
-position_two.minX = 0;
-position_two.maxX = 1;
-position_two.minY = 100;
-position_two.maxY = 1000;
-position_two.x = 1;
-position_two.y = 1000;
-
-position_two.on('change', function(v) {
-  console.log("reverb slider wet value x damp y");
-  droneSynth.verb.wet.value = v.x;
-  droneSynth.verb.dampening.value = v.y;
-});
-
-// --------------------------- OSCILOSCOPE -------------------------
-
-var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
-  'size': [400, 150]
-});
-oscilloscope.connect(Tone.Master);
-
-// --------------------------- PIANO -------------------------------
-
-var piano = new Nexus.Piano('#piano_one', {
-  'size': [400, 150],
-  //  size: [window.innerWidth, window.innerHeight / 15],
-  'mode': 'button', // 'button', 'toggle', or 'impulse'
-  'lowNote': 60, //0
-  'highNote': 96 //120
-});
-
-piano.colorize("accent", "#ff0");
-piano.colorize("fill", "#ff0");
-//piano.colorize("dark", "#ff0"); TECLAS PRETAS
-piano.colorize("light", "#a8a8a8"); //CINZENTO CLARO
-piano.colorize("mediumDark", "#ff0");
-piano.colorize("mediumLight", "#333"); // PARTE DE FORA
-
-piano.on("change", function(v) {
-  //console.log(Tone.Frequency(v.note, "midi").toNote());
-  if (v.state === true) {
-    synth.triggerAttack(Tone.Frequency(v.note, "midi").toNote());
-  } else if (v.state === false) {
-    synth.triggerRelease(Tone.Frequency(v.note, "midi").toNote());
-  }
-});
-
-
-
-// --------------------------- ENVELOPE ---------------------------
-
-var envelope = new Nexus.Envelope('#envelope_one', {
-  'size': [400, 50],
-  'noNewPoints': true,
-  'points': [{
-      x: 0.1,
-      y: 0.2,
-    },
-    {
-      x: 0.35,
-      y: 0.6
-    },
-    {
-      x: 0.65,
-      y: 0.2
-    },
-    {
-      x: 0.9,
-      y: 0.4
-    },
-  ]
-});
-
-envelope.on('change', function(v) {});
-
-
-// ---------------------- SOCKETS -------------------------------
-
-socket = io.connect(window.location.origin);
-socket.on('mouse', newDrawing);
-window.addEventListener('mousedown', onMouseDown, false);
-
-var data;
-
-function onMouseDown(event) {
-  event.preventDefault();
-  var data = {
-    mouseX: 0,
-    mouseY: 0
-  };
-  mouseX = (event.clientX);
-  mouseY = (event.clientY);
-  socket.emit('mouse', event.clientX);
-  console.log("teste");
-
-  document.getElementById('nota1').innerHTML = "text";
-  document.getElementById('nota2').innerHTML = "text";
-  document.getElementById('nota3').innerHTML = "text";
-  document.getElementById('nota4').innerHTML = "text";
-  document.getElementById('nota5').innerHTML = "text";
-  document.getElementById('nota6').innerHTML = "text";
-  document.getElementById('nota7').innerHTML = "text";
-  document.getElementById('nota8').innerHTML = "text";
-  document.getElementById('nota9').innerHTML = "text";
-  document.getElementById('nota10').innerHTML = "text";
-  document.getElementById('nota11').innerHTML = "text";
-  document.getElementById('nota12').innerHTML = "text";
-  document.getElementById('nota13').innerHTML = "text";
-  document.getElementById('nota14').innerHTML = "text";
-  document.getElementById('nota15').innerHTML = "text";
-  document.getElementById('nota16').innerHTML = "text";
-
-}
-
-function onMouseUp(event) {
-  event.preventDefault();
-}
-
-function onWindowResize() {}
-
-function myFunc() {}
-
-function newDrawing() {
-  //FUNCIONA E ISTO QUE TENHO DE MANDAR
-  console.log("okok");
-}
-
-// ---------------------- LAPTOP KEYBOARD -------------------------
-//(Z o-) (X o+) linha do meio CDEFGABCDEF
-//link here https://github.com/kylestetz/AudioKeys
-
-var keyboard = new AudioKeys();
-
-keyboard.down(function(note) {
-  //note.keyCode, note.frequency, note.velocity, note.isActive, note.note;
-  piano.toggleKey(note.note, true);
-});
-
-keyboard.up(function(note) {
-  piano.toggleKey(note.note, false);
-});
-
-// --------------------------- MIDI -------------------------------
-
-if (navigator.requestMIDIAccess) {
-  navigator.requestMIDIAccess({
-    sysex: false
-  }).then(onMIDISuccess, onMIDIFailure);
-} else {
-  alert("No MIDI support in your browser.");
-}
-
-function onMIDISuccess(midiAccess) {
-  midi = midiAccess;
-
-  var inputs = midi.inputs.values();
-  for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
-    input.value.onmidimessage = onMIDIMessage;
-  }
-  console.log('MIDI Access Object', midiAccess);
-}
-
-function onMIDIMessage(event) {
-  data = event.data;
-  midiValOne = data[0];
-  midiValTwo = data[1];
-  midiValThree = data[2];
-
-  if (midiValOne == 176 && midiValTwo == 8) {
-    console.log(midiValThree);
-    reverb_slider_um.value = midiValThree;
-    harmonicity.value = midiValThree;
-    modulation.value = midiValThree;
-  }
-}
-
-function onMIDIFailure(e) {
-  console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
-}*/
+*/

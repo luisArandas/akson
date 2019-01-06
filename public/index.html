@@ -25,10 +25,10 @@ cursor: none;
       <button class="help" onClick="buttonThree()">?</button>
     </div>
     <div class="slidercontainer">
-      SYNTHESIZER<br>
-      <div id="oscilOne_freq" class="oscilOne_freq"></div>
-      <div id="oscilOne_modIndex" class="oscilOne_modIndex"></div>
-
+      vibrato
+      <div id="vibrato_frequency" class="vibrato_frequency"></div>
+      <div id="vibrato_depth" class="vibrato_depth"></div>
+      <div id="vibrato_maxdelay" class="vibrato_maxdelay"></div>
       reverb
       <div id="reverb_roomsize" class="reverb_slider_um"></div>
       <div id="reverb_wetdry" class="reverb_wetdry"></div>
@@ -36,14 +36,12 @@ cursor: none;
       filter
       <div id="filter_frequency" class="filter_frequency"></div>
       <div id="filter_q" class="filter_q"></div>
-      <!--<div id="meter" class="meter"></div>-->
-
-      OSCILLATORS
-      <!--<div id="oscilloscope" class="oscilloscope"></div>
-      <div id="modulation" class="modulation"></div>
-    <div id="harmonicity" class="harmonicity"></div>-->
+      SINTH
+      <div id="sinth_attack" class="sinth_attack"></div>
+      <div id="sinth_decay" class="sinth_decay"></div>
+      <div id="sinth_sustain" class="sinth_sustain"></div>
+      <div id="sinth_release" class="sinth_release"></div>
     </div>
-
 
     <!--<div id="power" class="power"></div>
     <div id="log"></div>
@@ -63,6 +61,7 @@ cursor: none;
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
       <script src="libraries/three.min.js"></script>
+      <script src="libraries/tween.min.js"></script>
       <script src="libraries/Tone9.js"></script>
       <script src="libraries/CopyShader.js"></script>
       <script src="libraries/DigitalGlitch.js"></script>
@@ -89,6 +88,8 @@ cursor: none;
       <script src="libraries/stats.min.js"></script>
       <script src="libraries/dat.gui.min.js"></script>
       <script src="libraries/audiokeys.js"></script>
+      <script src="libraries/AfterimageShader.js"></script>
+      <script src="libraries/AfterimagePass.js"></script>
       <script src="index.js" type="text/javascript"></script>
       <script src="music.js" type="text/javascript"></script>
 
