@@ -525,6 +525,7 @@ socket.on('visuals', broadCastVisuals);
 var data;
 
 function onMouseDown(event) {
+
   event.preventDefault();
   var data = {
     mouseX: 0,
@@ -535,9 +536,30 @@ function onMouseDown(event) {
   socket.emit('mouse', event.clientX);
   console.log("teste");
 
+
+  //SEQUENCE OF NOTES
+  var sequenceOfNotes = [
+    'C4',
+    'E4',
+    'D4',
+    'G4',
+    'A4',
+    'C5',
+    'E5',
+    'D5',
+    'G5',
+    'A5',
+    'C6',
+    'E6',
+    'D6',
+    'G6',
+    'A6',
+  ];
+  var randomSequenceOfNotes = Math.floor(Math.random() * sequenceOfNotes.length);
+
   var intersectsClick = raycaster.intersectObjects(parentTransformTres.children);
   if (intersectsClick.length > 0) {
-    playNote("16n", "A4");
+    playNote("16n", sequenceOfNotes[randomSequenceOfNotes]);
   } else {}
 }
 
