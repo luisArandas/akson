@@ -1,20 +1,39 @@
+/*var Person = function(name, yearOfBirth, job){
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+}
+
+Person.prototype.calculateAge = function() {
+   console.log(2018 - this.yearOfBirth);
+}
+
+var john = new Person('John', 1990, 'teacher');
+var jane = new Person('Jane', 1995, 'designer');
+var mark = new Person('Mark', 1946, 'retired');
+
+john.calculateAge();
+jane.calculateAge();
+mark.calculateAge();*/
+
 //----------------------------------
 //  BUTTONS
 //----------------------------------
+
 var buttonOneVariable = false;
 
 function buttonOne() {
-  if (buttonOneVariable == false) {
-    document.getElementById("mySidenav").style.width = window.innerWidth;
-  }
-  if (buttonOneVariable == true) {
-    document.getElementById("mySidenav").style.width = "250px";
-  }
-  if (buttonOneVariable == true) {
-    buttonOneVariable = false;
-  } else {
-    buttonOneVariable = true;
-  }
+  /*  if (buttonOneVariable == false) {
+      document.getElementById("mySidenav").style.width = window.innerWidth;
+    }
+    if (buttonOneVariable == true) {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    if (buttonOneVariable == true) {
+      buttonOneVariable = false;
+    } else {
+      buttonOneVariable = true;
+    }*/
 }
 
 function buttonTwo() {

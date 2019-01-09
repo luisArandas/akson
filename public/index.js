@@ -10,12 +10,10 @@ $(document).ready(function() {
   }
 });
 
-//http://urmston.xyz/Tone.Editor/examples/midi.html
-//HOW TO USE MANY PAGES AND CALL FUNCTIONS WITHOUT HTML /INCLUDE
-//OPEN THE TONE EDITOR OTHER PAGE
-//INCLUDE OTHER JS HERE
-//change scenes and add widgets
+//A CENA DO RUI OUTSIDE CONTROLS
 //RAMPAS NO VOLUME
+//TRIGGER THE NOISE ON MOUSEDOWN
+//ADD THE NOISE IN THE SHADERS
 
 var container;
 var camera,
@@ -65,6 +63,16 @@ function init() {
 
   socket = io.connect(window.location.origin);
   socket.on('mouse', newDrawing);
+  socket.on('socketid', function(socketid) {
+    console.log(socketid + ' Key');
+    var div = document.getElementById('botRightPage');
+    div.innerHTML += 'Key - ' + socketid + '<br>' + '//////////////////////////' + '<br>';
+  });
+  socket.on('socketnumber', function(connections) {
+    console.log("There are currently " + connections + " connections");
+    var div = document.getElementById('botRightPage');
+    div.innerHTML += "There are currently " + connections + " connections" + '<br>' + '//////////////////////////' + '<br>';
+  });
 
   container = document.createElement('div');
   document.body.appendChild(container);
@@ -113,7 +121,7 @@ function init() {
     object.rotation.z = Math.random() * 2 * Math.PI;
     parentTransform.add(object);
   }
-  scene.add(parentTransform);
+  //scene.add(parentTransform);
 
   var materialPainel = new THREE.LineBasicMaterial({
     color: 0xffffff
@@ -152,6 +160,7 @@ function init() {
     //  object.rotation.z = Math.random() * 2 * Math.PI;
     parentTransformTres.add(object);
   }
+  scene.add(parentTransformTres);
 
   var canvas = document.createElement('canvas');
   var context = canvas.getContext('webgl2');
@@ -202,11 +211,16 @@ function init() {
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
-        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.width = '100%';
+        document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0.5)';
         console.log(scene.children);
+        console.log(false);
       }
       if (sideBar == true) {
-        document.getElementById("mySidenav").style.width = "0px";
+        document.getElementById("mySidenav").style.width = '0%';
+
+        document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0)';
+        console.log(true);
       }
       if (sideBar == true) {
         sideBar = false;
@@ -261,12 +275,12 @@ function init() {
     if (event.which == "69") {
       console.log("E");
       if (teclaTres == false) {
-        scene.remove(parentTransform);
-        scene.add(parentTransformTres);
-      }
-      if (teclaTres == true) {
         scene.add(parentTransform);
         scene.remove(parentTransformTres);
+      }
+      if (teclaTres == true) {
+        scene.remove(parentTransform);
+        scene.add(parentTransformTres);
       }
       if (teclaTres == true) {
         teclaTres = false;
@@ -519,8 +533,6 @@ oscilloscope.connect(Tone.Master);
 
 socket = io.connect(window.location.origin);
 socket.on('mouse', newDrawing);
-socket.on('visuals', broadCastVisuals);
-
 
 var data;
 
@@ -534,8 +546,6 @@ function onMouseDown(event) {
   mouseX = (event.clientX);
   mouseY = (event.clientY);
   socket.emit('mouse', event.clientX);
-  console.log("teste");
-
 
   //SEQUENCE OF NOTES
   var sequenceOfNotes = [
@@ -560,6 +570,8 @@ function onMouseDown(event) {
   var intersectsClick = raycaster.intersectObjects(parentTransformTres.children);
   if (intersectsClick.length > 0) {
     playNote("16n", sequenceOfNotes[randomSequenceOfNotes]);
+    var div = document.getElementById('botLeftPage');
+    div.innerHTML += sequenceOfNotes[randomSequenceOfNotes] + '/ ';
   } else {}
 }
 

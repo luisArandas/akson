@@ -11,13 +11,20 @@ var io = socket(server);
 
 io.sockets.on('connection', newConnection);
 
+var connections = 0;
+
 function newConnection(socket) {
+  connections++;
   console.log("new connection: " + socket.id);
+  console.log("There are currently " + connections + " connections");
+  var socketid = socket.id;
+  socket.broadcast.emit('socketid', socket.id);
+  socket.broadcast.emit('socketnumber', connections);
 
   //ao conectar (na função newConnection, e se receberes algo chamado 'mouse' faz a funcao mouseMsg)
   //enviar só numeros <- {object, object}
+
   socket.on('mouse', mouseMsg);
-  //next work would be make another socket.on function
 
   function mouseMsg(data) {
     socket.broadcast.emit('mouse', data);
@@ -26,22 +33,8 @@ function newConnection(socket) {
     console.log(data);
     //MUST RESTART THE SERVER
   }
-
-
-
-
-
-
-  socket.on('nx', nxFunction);
-
-  function nxFunction(x) {
-    console.log(x);
-  }
-
-
-
-
-
-
-
+  socket.on('disconnect', function() {
+    connections--;
+    console.log("There are currently " + connections + " connections");
+  });
 }
