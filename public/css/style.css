@@ -1,9 +1,9 @@
 html * {
-   color: #ffffff !important;
+   /*color: #ffffff !important;*/
    /*font-family: Arial !important;*/
    /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
    font-weight: 10;
-   font-size: 5px;
+   font-size: 8px;
 }
 
 html, body {
@@ -228,7 +228,6 @@ html, body {
   bottom: 5%;
   left: 5%;
   right: 5%;
-  background-color: #ffffff;
 }
 
 .controlcontainerbuttons {
@@ -321,6 +320,7 @@ html, body {
   width: 20%;
   height: 15%;
   background-color: rgba(0,0,0,0);
+  color: #ffffff;
   overflow: hidden;
 }
 
@@ -330,6 +330,7 @@ html, body {
   right: 0px;
   width: 25%;
   height: 10%;
+  color: #ffffff;
   background-color: rgba(0,0,0,0);
   }
 
@@ -340,7 +341,9 @@ html, body {
   width: 25%;
   height: 25%;
   background-color: rgba(0,0,0,0);
+  color: #ffffff;
   word-wrap: break-word;
+  overflow: hidden;
 }
 
 .botRightPage {
@@ -350,6 +353,7 @@ html, body {
   width: 15%;
   height: 25%;
   /*opacity: 0;*/
+  color: #ffffff;
   background-color: rgba(0,0,0,0);
 }
 

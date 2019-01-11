@@ -14,6 +14,7 @@ $(document).ready(function() {
 //RAMPAS NO VOLUME
 //TRIGGER THE NOISE ON MOUSEDOWN
 //ADD THE NOISE IN THE SHADERS
+//I STILL GET CRACKS ON THE SPEAKERS
 
 var container;
 var camera,
@@ -47,14 +48,23 @@ var effectFilm = new THREE.FilmPass(0.35, 0.025, 648, false);
 var effectFilmBW = new THREE.FilmPass(0.35, 0.5, 2048, true);
 var effectDotScreen = new THREE.DotScreenPass(new THREE.Vector2(0, 0), 0.5, 0.8);
 
-
 var composerOne;
 var composerTwo;
 var composerThree;
 var parentTransformTres = new THREE.Object3D();
 
 var whichVisuals;
+//ESTAMOS EM PENTATONICA MAIOR
+var sequenceOfNotesC = ['C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
+var sequenceOfNotesD = ['D4', 'E4', 'F#4', 'A4', 'B4', 'D5', 'E5', 'F#5', 'A5', 'B5', 'D6'];
+var sequenceOfNotesE = ['E4', 'F#4', 'G#4', 'B4', 'C#4', 'E5', 'F#5', 'G#5', 'B5', 'C#5', 'E6'];
+var sequenceOfNotesF = ['F4', 'G4', 'A4', 'C4', 'D4', 'F5', 'G5', 'A5', 'C5', 'D5', 'F6'];
+var sequenceOfNotesG = ['G4', 'A4', 'B4', 'D4', 'E4', 'G5', 'A5', 'B5', 'D5', 'E5', 'G6'];
+var sequenceOfNotesA = ['A4', 'B4', 'C#4', 'E4', 'F#4', 'A5', 'B5', 'C#5', 'E5', 'F#5', 'A6'];
+var sequenceOfNotesB = ['B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
+var scalePlaying;
 
+var hideShow = false;
 
 init();
 animate();
@@ -185,11 +195,9 @@ function init() {
   effectVignette.uniforms["darkness"].value = 1.6;
 */
 
-
   composerOne = new THREE.EffectComposer(renderer);
   composerOne.addPass(new THREE.RenderPass(scene, camera));
   composerOne.addPass(glitchPass);
-
 
   composerTwo = new THREE.EffectComposer(renderer);
   composerTwo.addPass(new THREE.RenderPass(scene, camera));
@@ -207,6 +215,10 @@ function init() {
   Q_81 W_87 E_69 R_82 T_84 Y_89 U_85 I_73 O_79 P_80
   32 == SPACE
   */
+
+  var div = document.getElementById('botLeftPage');
+  div.innerHTML += "We are currently in C" + '<br>';
+  scalePlaying = sequenceOfNotesC;
 
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
@@ -371,6 +383,71 @@ function init() {
     }
     if (event.which == "186") {
       console.log("Ç");
+      if (hideShow == false) {
+        document.getElementById("topLeftPage").style.color = 'rgba(0,0,0,0)';
+        document.getElementById("topRightPage").style.color = 'rgba(0,0,0,0)';
+        document.getElementById("botLeftPage").style.color = 'rgba(0,0,0,0)';
+        document.getElementById("botRightPage").style.color = 'rgba(0,0,0,0)';
+      }
+      if (hideShow == true) {
+        document.getElementById("topLeftPage").style.color = 'rgba(255,255,255,1)';
+        document.getElementById("topRightPage").style.color = 'rgba(255,255,255,1)';
+        document.getElementById("botLeftPage").style.color = 'rgba(255,255,255,1)';
+        document.getElementById("botRightPage").style.color = 'rgba(255,255,255,1)';
+      }
+      if (hideShow == true) {
+        hideShow = false;
+      } else {
+        hideShow = true;
+      }
+    }
+
+    /*
+    TERCEIRA
+    Z_90 X_88 C_67 V_86 B_66 N_78 M_77
+    , and . are not yet
+    */
+    if (event.which == "90") {
+      console.log("Z");
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += '<br>' + "We are currently in C ";
+      scalePlaying = sequenceOfNotesC;
+    }
+    if (event.which == "88") {
+      console.log("X");
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += '<br>' + "We are currently in D ";
+      scalePlaying = sequenceOfNotesD;
+    }
+    if (event.which == "67") {
+      console.log("C");
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += '<br>' + "We are currently in E ";
+      scalePlaying = sequenceOfNotesE;
+    }
+    if (event.which == "86") {
+      console.log("V");
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += '<br>' + "We are currently in F ";
+      scalePlaying = sequenceOfNotesF;
+    }
+    if (event.which == "66") {
+      console.log("B");
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += '<br>' + "We are currently in G ";
+      scalePlaying = sequenceOfNotesG;
+    }
+    if (event.which == "78") {
+      console.log("N");
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += '<br>' + "We are currently in A ";
+      scalePlaying = sequenceOfNotesA;
+    }
+    if (event.which == "77") {
+      console.log("M");
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += '<br>' + "We are currently in B ";
+      scalePlaying = sequenceOfNotesB;
     }
   });
 
@@ -428,17 +505,6 @@ function render() {
     INTERSECTED = null;
   }
 
-  /*
-  RAYCASTER
-  raycaster.setFromCamera(mouse, camera);
-  var intersects = raycaster.intersectObjects(parentTransformDois.children, true);
-  if (intersects.length > 0) {
-    sphereInter.visible = true;
-    sphereInter.position.copy(intersects[0].point);
-  } else {
-    sphereInter.visible = false;
-  }*/
-
   renderer.render(scene, camera);
   composerOne.render();
   composerTwo.render();
@@ -474,7 +540,7 @@ var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5",
 var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
 var synth;
 
-synth = createSynthWithEffects();
+//synth = createSynthWithEffects();
 
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
@@ -485,42 +551,41 @@ Tone.Transport.start();
 //var seq = new Tone.Sequence(playNote, pattern, "8n");
 //seq.start();
 
+//function createSynthWithEffects() {
+vol = new Tone.Volume(-15).toMaster();
 
+compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
 
-function createSynthWithEffects() {
-  vol = new Tone.Volume(-15).toMaster();
+//reverb = new Tone.Freeverb(1.0).connect(vol);
+//reverb.wet.value = 0.1;
 
-  compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+//delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
+//delay.wet.value = 0.1;
 
-  reverb = new Tone.Freeverb(1.0).connect(vol);
-  reverb.wet.value = 0.1;
+//vibrato = new Tone.Vibrato(0.5, 0.2).connect(delay);
 
-  delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
-  delay.wet.value = 0.1;
-
-  vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
-
-  polySynth = new Tone.PolySynth(3, Tone.Synth, {
-    "oscillator": {
-      "type": "sine"
-    },
-    "envelope": {
+var polySynth = new Tone.PolySynth(3, Tone.Synth, {
+  "oscillator": {
+    "type": "sine"
+  },
+  /*  "envelope": {
       "attack": 0.01,
       "decay": 0.1,
       "sustain": 0.2,
-      "release": 4,
-    }
-  });
-  return polySynth.connect(vibrato, compressor);
-}
+      "release": 1,
+    }*/
+});
+polySynth.connect(compressor);
 
+//}
+/*
 function playNote(time, note) {
   if (note != "") {
-    synth.triggerAttackRelease(note, "16n");
+    polySynth.triggerAttackRelease(note, "16n");
   }
 }
-
-playNote("16n", "A3");
+*/
+//playNote("16n", "A3");
 
 // --------------------------- OSCILOSCOPE -------------------------
 /*
@@ -547,31 +612,15 @@ function onMouseDown(event) {
   mouseY = (event.clientY);
   socket.emit('mouse', event.clientX);
 
-  //SEQUENCE OF NOTES
-  var sequenceOfNotes = [
-    'C4',
-    'E4',
-    'D4',
-    'G4',
-    'A4',
-    'C5',
-    'E5',
-    'D5',
-    'G5',
-    'A5',
-    'C6',
-    'E6',
-    'D6',
-    'G6',
-    'A6',
-  ];
-  var randomSequenceOfNotes = Math.floor(Math.random() * sequenceOfNotes.length);
+  var randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
+  console.log(randomSequenceOfNotes);
 
   var intersectsClick = raycaster.intersectObjects(parentTransformTres.children);
   if (intersectsClick.length > 0) {
-    playNote("16n", sequenceOfNotes[randomSequenceOfNotes]);
+    polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+    //playNote("4n", scalePlaying[randomSequenceOfNotes]);
     var div = document.getElementById('botLeftPage');
-    div.innerHTML += sequenceOfNotes[randomSequenceOfNotes] + '/ ';
+    div.innerHTML += scalePlaying[randomSequenceOfNotes] + '/ ';
   } else {}
 }
 
