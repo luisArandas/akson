@@ -112,49 +112,7 @@ vibrato_maxdelay.on('change', function(v) {
   console.log("NOT WORKING");
 });
 
-//SINTETIZADOR
 
-var sinth_attack = new Nexus.Slider('#sinth_attack', {
-  step: 0.01,
-});
-sinth_attack.min = 0.01;
-sinth_attack.max = 1;
-sinth_attack.value = 0.01;
-sinth_attack.on('change', function(v) {
-  console.log("Attack Synth" + v);
-  synth.set("attack", v);
-});
-
-var sinth_decay = new Nexus.Slider('#sinth_decay', {});
-sinth_decay.min = 0;
-sinth_decay.max = 0.01;
-sinth_decay.value = 0.005;
-sinth_decay.on('change', function(v) {
-  vibrato.maxdelay.value = v;
-  console.log("Vibrato Depth" + v);
-  console.log("NOT WORKING");
-});
-
-var sinth_sustain = new Nexus.Slider('#sinth_sustain', {});
-sinth_sustain.min = 0;
-sinth_sustain.max = 0.01;
-sinth_sustain.value = 0.005;
-sinth_sustain.on('change', function(v) {
-  vibrato.maxdelay.value = v;
-  console.log("Vibrato Depth" + v);
-  console.log("NOT WORKING");
-});
-
-var sinth_release = new Nexus.Slider('#sinth_release', {
-  step: 0.1,
-});
-sinth_release.min = 0;
-sinth_release.max = 10;
-sinth_release.value = 4;
-sinth_release.on('change', function(v) {
-  console.log("Synth Release" + v);
-  synth.set("release", v);
-});
 
 //FILTER AND Q
 
@@ -169,6 +127,13 @@ filter_q.min = 0;
 filter_q.max = 0.3;
 filter_q.value = 0.1;
 filter_q.on('change', function(v) {});
+
+
+
+// ------------------------------------------------------------------------
+
+
+
 
 
 

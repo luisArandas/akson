@@ -15,6 +15,7 @@ $(document).ready(function() {
 //TRIGGER THE NOISE ON MOUSEDOWN
 //ADD THE NOISE IN THE SHADERS
 //I STILL GET CRACKS ON THE SPEAKERS
+//SCENE TRANSITIONS
 
 var container;
 var camera,
@@ -42,15 +43,14 @@ var mouse = new THREE.Vector2(),
 
 var glitchPass = new THREE.GlitchPass();
 var afterimagePass = new THREE.AfterimagePass();
-
-var effectBloom = new THREE.BloomPass(0.5);
-var effectFilm = new THREE.FilmPass(0.35, 0.025, 648, false);
-var effectFilmBW = new THREE.FilmPass(0.35, 0.5, 2048, true);
-var effectDotScreen = new THREE.DotScreenPass(new THREE.Vector2(0, 0), 0.5, 0.8);
+var effectSobel;
+var pixelPass, params;
 
 var composerOne;
 var composerTwo;
 var composerThree;
+var composerFour;
+
 var parentTransformTres = new THREE.Object3D();
 
 var whichVisuals;
@@ -65,6 +65,17 @@ var sequenceOfNotesB = ['B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F
 var scalePlaying;
 
 var hideShow = false;
+var currentSynth;
+
+var glitchVarOne;
+var glitchVarTwo;
+var glitchVarThree;
+
+var renderPostOne = false;
+var renderPostTwo = false;
+var renderPostThree = false;
+var renderPostFour = false;
+
 
 init();
 animate();
@@ -133,21 +144,6 @@ function init() {
   }
   //scene.add(parentTransform);
 
-  var materialPainel = new THREE.LineBasicMaterial({
-    color: 0xffffff
-  });
-
-  parentTransformDois = new THREE.Object3D();
-
-  for (var i = 0; i < 5; i++) {
-    var painel;
-    painel = new THREE.PlaneGeometry(5, 400, 0);
-    var plane = new THREE.Mesh(painel, materialPainel);
-    plane.position.set(Math.floor(Math.random() * 100) + 1, -100, 1);
-    parentTransformDois.add(plane);
-  }
-  scene.add(parentTransformDois);
-
   raycaster = new THREE.Raycaster();
   raycaster.linePrecision = 3;
 
@@ -156,7 +152,8 @@ function init() {
   scene.add(light);
 
 
-  for (var i = 0; i < 100; i++) {
+
+  for (var i = 0; i < 90; i++) {
     var geometry = new THREE.BoxGeometry(10, 1500, 10);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x5f5f5f,
@@ -205,10 +202,30 @@ function init() {
 
   composerThree = new THREE.EffectComposer(renderer);
   composerThree.addPass(new THREE.RenderPass(scene, camera));
-  composerThree.addPass(effectFilm);
+  effectSobel = new THREE.ShaderPass(THREE.SobelOperatorShader);
+  effectSobel.uniforms.resolution.value.x = window.innerWidth;
+  effectSobel.uniforms.resolution.value.y = window.innerHeight;
+  composerThree.addPass(effectSobel);
+
+  composerFour = new THREE.EffectComposer(renderer);
+  composerFour.addPass(new THREE.RenderPass(scene, camera));
+  pixelPass = new THREE.ShaderPass(THREE.PixelShader);
+  pixelPass.uniforms.resolution.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+  pixelPass.uniforms.resolution.value.multiplyScalar(window.devicePixelRatio);
+  params = {
+    pixelSize: 16,
+    postprocessing: true
+  };
+  pixelPass.uniforms.pixelSize.value = params.pixelSize;
+  composerFour.addPass(pixelPass);
+
 
   glitchPass.renderToScreen = false;
   afterimagePass.renderToScreen = false;
+  effectSobel.renderToScreen = false;
+  pixelPass.renderToScreen = false;
+
+
 
   //METER OS IFS SE FUNCIONA CARREGAR DUAS VEZES
   /*
@@ -243,20 +260,24 @@ function init() {
     if (event.which == "81") {
       console.log("Q");
       if (teclaUm == false) {
+        scene.remove(parentTransformTres);
+        /*
         camera.add(planoCamaraUm);
         planoCamaraUm.position.set(0, 0, -3);
         parentTransform.children.forEach(function(v) {
           v.rotation.y = 1;
         });
         whichVisuals = event.which;
+      */
         socket.emit('visuals', whichVisuals);
       }
       if (teclaUm == true) {
-        camera.remove(planoCamaraUm);
-        planoCamaraUm.position.set(0, 0, 10);
-        parentTransform.children.forEach(function(v) {
-          v.rotation.y = Math.random() * 2 * Math.PI;
-        });
+        scene.add(parentTransformTres);
+        /*  camera.remove(planoCamaraUm);
+          planoCamaraUm.position.set(0, 0, 10);
+          parentTransform.children.forEach(function(v) {
+            v.rotation.y = Math.random() * 2 * Math.PI;
+          });*/
       }
       if (teclaUm == true) {
         teclaUm = false;
@@ -331,75 +352,91 @@ function init() {
     if (event.which == "65") {
       console.log("A");
       afterimagePass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
+      pixelPass.renderToScreen = false;
       glitchPass.goWild = true;
       if (glitchPass.renderToScreen == false) {
+        renderPostOne = true;
         glitchPass.renderToScreen = true;
       } else if (glitchPass.renderToScreen == true) {
+        renderPostOne = false;
         glitchPass.renderToScreen = false;
       }
+      console.log(glitchVarOne);
     }
     if (event.which == "83") {
       console.log("S");
       afterimagePass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
+      pixelPass.renderToScreen = false;
       glitchPass.goWild = false;
       if (glitchPass.renderToScreen == false) {
+        renderPostOne = true;
         glitchPass.renderToScreen = true;
       } else if (glitchPass.renderToScreen == true) {
+        renderPostOne = false;
         glitchPass.renderToScreen = false;
       }
     }
     if (event.which == "68") {
       console.log("D");
       glitchPass.renderToScreen = false;
+      pixelPass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
       if (afterimagePass.renderToScreen == false) {
+        renderPostTwo = true;
         afterimagePass.renderToScreen = true;
       } else if (afterimagePass.renderToScreen == true) {
+        renderPostTwo = true;
         afterimagePass.renderToScreen = false;
       }
     }
     if (event.which == "70") {
       console.log("F");
-      effectBloom.renderToScreen = true;
-      /*  if (afterimagePass.renderToScreen == false) {
-          afterimagePass.renderToScreen = true;
-        } else if (afterimagePass.renderToScreen == true) {
-          afterimagePass.renderToScreen = false;
-        }*/
+      glitchPass.renderToScreen = false;
+      afterimagePass.renderToScreen = false;
+      pixelPass.renderToScreen = false;
+      if (effectSobel.renderToScreen == false) {
+        renderPostThree = true;
+        effectSobel.renderToScreen = true;
+      } else if (effectSobel.renderToScreen == true) {
+        renderPostThree = false;
+        effectSobel.renderToScreen = false;
+      }
     }
     if (event.which == "71") {
       console.log("G");
+      glitchPass.renderToScreen = false;
+      afterimagePass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
+
+      if (pixelPass.renderToScreen == false) {
+        renderPostFour = true;
+        pixelPass.renderToScreen = true;
+      } else if (pixelPass.renderToScreen == true) {
+        renderPostFour = false;
+        pixelPass.renderToScreen = false;
+      }
     }
     if (event.which == "72") {
       console.log("H");
+      currentSynth = polySynthUm;
     }
     if (event.which == "74") {
       console.log("J");
+      currentSynth = polySynthDois;
     }
     if (event.which == "75") {
       console.log("K");
+      currentSynth = polySynthTres;
     }
     if (event.which == "76") {
       console.log("L");
+      currentSynth = polySynthQuatro;
     }
     if (event.which == "186") {
       console.log("Ç");
-      if (hideShow == false) {
-        document.getElementById("topLeftPage").style.color = 'rgba(0,0,0,0)';
-        document.getElementById("topRightPage").style.color = 'rgba(0,0,0,0)';
-        document.getElementById("botLeftPage").style.color = 'rgba(0,0,0,0)';
-        document.getElementById("botRightPage").style.color = 'rgba(0,0,0,0)';
-      }
-      if (hideShow == true) {
-        document.getElementById("topLeftPage").style.color = 'rgba(255,255,255,1)';
-        document.getElementById("topRightPage").style.color = 'rgba(255,255,255,1)';
-        document.getElementById("botLeftPage").style.color = 'rgba(255,255,255,1)';
-        document.getElementById("botRightPage").style.color = 'rgba(255,255,255,1)';
-      }
-      if (hideShow == true) {
-        hideShow = false;
-      } else {
-        hideShow = true;
-      }
+      currentSynth = polySynthCinco;
     }
 
     /*
@@ -449,15 +486,28 @@ function init() {
       div.innerHTML += '<br>' + "We are currently in B ";
       scalePlaying = sequenceOfNotesB;
     }
-  });
 
-  var geometry = new THREE.SphereBufferGeometry(5);
-  var material = new THREE.MeshBasicMaterial({
-    color: 0xff0000
+    //-------- MENOS
+    if (event.which == "189") {
+      if (hideShow == false) {
+        document.getElementById("topLeftPage").style.color = 'rgba(0,0,0,0)';
+        document.getElementById("topRightPage").style.color = 'rgba(0,0,0,0)';
+        document.getElementById("botLeftPage").style.color = 'rgba(0,0,0,0)';
+        document.getElementById("botRightPage").style.color = 'rgba(0,0,0,0)';
+      }
+      if (hideShow == true) {
+        document.getElementById("topLeftPage").style.color = 'rgba(255,255,255,1)';
+        document.getElementById("topRightPage").style.color = 'rgba(255,255,255,1)';
+        document.getElementById("botLeftPage").style.color = 'rgba(255,255,255,1)';
+        document.getElementById("botRightPage").style.color = 'rgba(255,255,255,1)';
+      }
+      if (hideShow == true) {
+        hideShow = false;
+      } else {
+        hideShow = true;
+      }
+    }
   });
-  sphereInter = new THREE.Mesh(geometry, material);
-  sphereInter.visible = false;
-  scene.add(sphereInter);
 }
 
 function onWindowResize() {
@@ -479,9 +529,7 @@ function onDocumentMouseMove(event) {
 
 function render() {
   var corFundo = Math.random() * (0.15 - 0) + 0;
-  parentTransformDois.children.forEach(function(v) {
-    v.material.color.setRGB(corFundo, corFundo, corFundo);
-  });
+  //if I want glitch cinzentos
   //scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
   camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
@@ -491,7 +539,6 @@ function render() {
   camera.updateMatrixWorld();
 
   raycaster.setFromCamera(mouse, camera);
-  //parentTransform.children
   var intersects = raycaster.intersectObjects(parentTransformTres.children);
   if (intersects.length > 0) {
     if (INTERSECTED != intersects[0].object) {
@@ -506,9 +553,19 @@ function render() {
   }
 
   renderer.render(scene, camera);
-  composerOne.render();
-  composerTwo.render();
-  composerThree.render();
+
+  if (renderPostOne == true) {
+    composerOne.render();
+  }
+  if (renderPostTwo == true) {
+    composerTwo.render();
+  }
+  if (renderPostThree == true) {
+    composerThree.render();
+  }
+  if (renderPostFour == true) {
+    composerFour.render();
+  }
 }
 
 function newDrawing() {}
@@ -534,66 +591,127 @@ Nexus.colors.fill = "#000000";
 
 // --------------------------- SYNTH ---------------------------
 
-//WORKS THE PLAYER
-
-var pattern = ["", "A4", "A#4", "D5", "F5", "", "A2", "", "", "A4", "A#4", "D5", "E5", "", "A#2", ""];
-var pattern2 = ["1", "", "", "", "", "", "", "", "1", "1", "", "", "", "", "", ""];
-var synth;
-
-//synth = createSynthWithEffects();
 
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
-//console.log(Tone.Transport.bpm.value);
 
+var compressor = new Tone.Compressor(-30, 30);
 
-
-//var seq = new Tone.Sequence(playNote, pattern, "8n");
-//seq.start();
-
-//function createSynthWithEffects() {
-vol = new Tone.Volume(-15).toMaster();
-
-compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
-
-//reverb = new Tone.Freeverb(1.0).connect(vol);
-//reverb.wet.value = 0.1;
-
-//delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
-//delay.wet.value = 0.1;
-
-//vibrato = new Tone.Vibrato(0.5, 0.2).connect(delay);
-
-var polySynth = new Tone.PolySynth(3, Tone.Synth, {
+var polySynthUm = new Tone.PolySynth(3, Tone.Synth, {
   "oscillator": {
-    "type": "sine"
-  },
-  /*  "envelope": {
-      "attack": 0.01,
-      "decay": 0.1,
-      "sustain": 0.2,
-      "release": 1,
-    }*/
-});
-polySynth.connect(compressor);
-
-//}
-/*
-function playNote(time, note) {
-  if (note != "") {
-    polySynth.triggerAttackRelease(note, "16n");
+    "type": "sawtooth6"
   }
-}
-*/
-//playNote("16n", "A3");
+}).chain(compressor, Tone.Master);
 
-// --------------------------- OSCILOSCOPE -------------------------
-/*
+var distortion = new Tone.Distortion(0.6);
+var tremolo = new Tone.Tremolo().start();
+
+var polySynthDois = new Tone.PolySynth(4, Tone.Synth).chain(distortion, tremolo, Tone.Master);
+
+
+var polySynthTres = new Tone.Synth({
+  oscillator: {
+    type: 'triangle8'
+  },
+  envelope: {
+    attack: 2,
+    decay: 1,
+    sustain: 0.4,
+    release: 4
+  }
+}).chain(distortion, tremolo, Tone.Master);
+
+var polySynthQuatro = new Tone.Synth({
+  oscillator: {
+    type: 'fmsquare',
+    modulationType: 'sawtooth',
+    modulationIndex: 3,
+    harmonicity: 3.4
+  },
+  envelope: {
+    attack: 0.001,
+    decay: 0.1,
+    sustain: 0.1,
+    release: 0.1
+  }
+}).chain(distortion, tremolo, Tone.Master);
+
+var polySynthCinco = new Tone.FMSynth({
+  harmonicity: 10,
+  modulationIndex: 10,
+  detune: 0,
+  oscillator: {
+    type: "sine"
+  },
+  envelope: {
+    attack: 0.01,
+    decay: 0.01,
+    sustain: 1,
+    release: 3
+  },
+  modulation: {
+    type: "sine"
+  },
+  modulationEnvelope: {
+    attack: 0.5,
+    decay: 0,
+    sustain: 1,
+    release: 0.5
+  }
+}).toMaster();
+
+
+var noise = new Tone.Noise("pink").start();
+
+//make an autofilter to shape the noise
+var autoFilter = new Tone.AutoFilter({
+  "frequency": "8m",
+  "min": 800,
+  "max": 15000
+}).connect(Tone.Master);
+noise.connect(autoFilter);
+autoFilter.start();
+
+currentSynth = polySynthUm;
+
+
+
+
+
+// --------------------------- OSCILOSCOPE GAIN AND VOL -------------------------
+
 var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
-  'size': [400, 150]
+  'size': [250, 100]
 });
 oscilloscope.connect(Tone.Master);
-*/
+
+var dialVolume = new Nexus.Dial('#volumedial', {
+  'size': [40, 40],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'relative', // "absolute" or "relative"
+  'min': -30,
+  'max': 0,
+  'step': 0.01,
+  'value': -15
+});
+dialVolume.on('change', function(v) {
+  polySynth.volume.value = v;
+});
+
+var dialGain = new Nexus.Dial('#gaindial', {
+  'size': [40, 40],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 1,
+  'step': 0,
+  'value': 0
+});
+dialGain.on('change', function(v) {
+  console.log(v);
+});
+
+
 // ------------------------- SOCKETS -------------------------------
 
 socket = io.connect(window.location.origin);
@@ -602,7 +720,6 @@ socket.on('mouse', newDrawing);
 var data;
 
 function onMouseDown(event) {
-
   event.preventDefault();
   var data = {
     mouseX: 0,
@@ -617,7 +734,7 @@ function onMouseDown(event) {
 
   var intersectsClick = raycaster.intersectObjects(parentTransformTres.children);
   if (intersectsClick.length > 0) {
-    polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+    currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
     //playNote("4n", scalePlaying[randomSequenceOfNotes]);
     var div = document.getElementById('botLeftPage');
     div.innerHTML += scalePlaying[randomSequenceOfNotes] + '/ ';

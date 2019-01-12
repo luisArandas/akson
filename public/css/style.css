@@ -119,8 +119,29 @@ html, body {
 }
 
 .oscilloscope {
+  position: absolute;
+  right: 10%;
+  border: auto;
+  top: 10%;
+  bottom: 10%;
+  border-radius: 5px;
+  outline: 1px solid transparent;
 }
-.piano_one {
+
+.volumedial {
+  position: absolute;
+  right: 3%;
+  border: auto;
+  top: 15%;
+  background-color: rgba(150,150,150,1);
+}
+
+.gaindial {
+  position: absolute;
+  right: 3%;
+  border: auto;
+  bottom: 15%;
+  background-color: rgba(150,150,150,1);
 }
 
 .position_one {
@@ -228,15 +249,34 @@ html, body {
   bottom: 5%;
   left: 5%;
   right: 5%;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0);
 }
 
-.controlcontainerbuttons {
+.controlcontainerheader {
   position: absolute;
-  margin: auto;
-  width: 90%;
-  left: 5%;
-  right: 5%;
-  height: 15%;
+  width: 100%;
+  top: 0px;
+  height: 10%;
+  border-radius: 5px;
+  background-color: rgba(100,100,100,1);
+}
+.controlcontainerbody{
+  position: absolute;
+  width: 100%;
+  top: 11%;
+  height: 70%;
+  border-radius: 5px;
+  background-color: rgba(100,100,100,1);
+}
+
+.controlcontainerbottom {
+  position: absolute;
+  width: 100%;
+  top: 82%;
+  height: 18%;
+  border-radius: 5px;
+  background-color: rgba(100,100,100,1);
 }
 
 .slider {
