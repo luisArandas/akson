@@ -59,7 +59,9 @@ THREE.GlitchPass.prototype = Object.assign(Object.create(THREE.Pass.prototype), 
       this.generateTrigger();
 
     } else if (this.curF % this.randX < this.randX / 5) {
-
+      if (this.curF % this.randX < this.randX / 5 == true) {
+        //glitchOne();
+      }
       glitchVarOne = this.curF;
       glitchVarTwo = this.randX;
       glitchVarThree = this.randX / 5;

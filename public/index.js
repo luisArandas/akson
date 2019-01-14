@@ -24,19 +24,20 @@ var camera,
   renderer,
   parentTransform,
   parentTrasformDois,
+  parentTransformQuatro,
   sphereInter;
 var radius = 100;
 var theta = 0;
-var teclaUm = false,
-  teclaDois = false,
-  teclaTres = false,
-  teclaQuatro = false,
-  teclaCinco = false,
-  teclaSeis = false,
-  teclaSete = false,
-  teclaOito = false,
-  teclaNove = false,
-  teclaDez = false;
+var teclaQ = false,
+  teclaW = false,
+  teclaE = false,
+  teclaR = false,
+  teclaT = false,
+  teclaY = false,
+  teclaU = false,
+  teclaI = false,
+  teclaO = false,
+  teclaP = false;
 var sideBar = false;
 var mouse = new THREE.Vector2(),
   INTERSECTED;
@@ -55,13 +56,13 @@ var parentTransformTres = new THREE.Object3D();
 
 var whichVisuals;
 //ESTAMOS EM PENTATONICA MAIOR
-var sequenceOfNotesC = ['C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
-var sequenceOfNotesD = ['D4', 'E4', 'F#4', 'A4', 'B4', 'D5', 'E5', 'F#5', 'A5', 'B5', 'D6'];
-var sequenceOfNotesE = ['E4', 'F#4', 'G#4', 'B4', 'C#4', 'E5', 'F#5', 'G#5', 'B5', 'C#5', 'E6'];
-var sequenceOfNotesF = ['F4', 'G4', 'A4', 'C4', 'D4', 'F5', 'G5', 'A5', 'C5', 'D5', 'F6'];
-var sequenceOfNotesG = ['G4', 'A4', 'B4', 'D4', 'E4', 'G5', 'A5', 'B5', 'D5', 'E5', 'G6'];
-var sequenceOfNotesA = ['A4', 'B4', 'C#4', 'E4', 'F#4', 'A5', 'B5', 'C#5', 'E5', 'F#5', 'A6'];
-var sequenceOfNotesB = ['B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
+var sequenceOfNotesC = ['C2', 'D2', 'E2', 'G2', 'A2', 'C3', 'D3', 'E3', 'G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
+var sequenceOfNotesD = ['D2', 'E2', 'F#2', 'A2', 'B2', 'D3', 'E3', 'F#3', 'A3', 'B3', 'D4', 'E4', 'F#4', 'A4', 'B4', 'D5', 'E5', 'F#5', 'A5', 'B5', 'D6'];
+var sequenceOfNotesE = ['E2', 'F#2', 'G#2', 'B2', 'C#2', 'E3', 'F#3', 'G#3', 'B3', 'C#3', 'E4', 'F#4', 'G#4', 'B4', 'C#4', 'E5', 'F#5', 'G#5', 'B5', 'C#5', 'E6'];
+var sequenceOfNotesF = ['F2', 'G2', 'A2', 'C2', 'D2', 'F3', 'G3', 'A3', 'C3', 'D3', 'F4', 'G4', 'A4', 'C4', 'D4', 'F5', 'G5', 'A5', 'C5', 'D5', 'F6'];
+var sequenceOfNotesG = ['G2', 'A2', 'B2', 'D2', 'E2', 'G3', 'A3', 'B3', 'D3', 'E3', 'G4', 'A4', 'B4', 'D4', 'E4', 'G5', 'A5', 'B5', 'D5', 'E5', 'G6'];
+var sequenceOfNotesA = ['A2', 'B2', 'C#2', 'E2', 'F#2', 'A3', 'B3', 'C#3', 'E3', 'F#3', 'A4', 'B4', 'C#4', 'E4', 'F#4', 'A5', 'B5', 'C#5', 'E5', 'F#5', 'A6'];
+var sequenceOfNotesB = ['B2', 'C#2', 'D#2', 'F#2', 'G#2', 'B3', 'C#3', 'D#3', 'F#3', 'G#3', 'B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
 var scalePlaying;
 
 var hideShow = false;
@@ -76,6 +77,7 @@ var renderPostTwo = false;
 var renderPostThree = false;
 var renderPostFour = false;
 
+var randomSequenceOfNotes;
 
 init();
 animate();
@@ -97,19 +99,11 @@ function init() {
 
   container = document.createElement('div');
   document.body.appendChild(container);
-  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+  camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
   //camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
+  camera.position.z = 1000;
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
-
-
-  var planosCamara = new THREE.BoxGeometry(1, 10, 1);
-  var materialum = new THREE.MeshBasicMaterial({
-    color: 0xffffff
-  });
-  var planoCamaraUm = new THREE.Mesh(planosCamara, materialum);
-  var planoCamaraDois = new THREE.Mesh(planosCamara, materialum);
-  var planoCamaraTres = new THREE.Mesh(planosCamara, materialum);
   scene.add(camera);
 
   var material = new THREE.LineBasicMaterial({
@@ -225,8 +219,6 @@ function init() {
   effectSobel.renderToScreen = false;
   pixelPass.renderToScreen = false;
 
-
-
   //METER OS IFS SE FUNCIONA CARREGAR DUAS VEZES
   /*
   Q_81 W_87 E_69 R_82 T_84 Y_89 U_85 I_73 O_79 P_80
@@ -259,67 +251,30 @@ function init() {
     }
     if (event.which == "81") {
       console.log("Q");
-      if (teclaUm == false) {
+      if (teclaQ == false) {
         scene.remove(parentTransformTres);
-        /*
-        camera.add(planoCamaraUm);
-        planoCamaraUm.position.set(0, 0, -3);
-        parentTransform.children.forEach(function(v) {
-          v.rotation.y = 1;
-        });
-        whichVisuals = event.which;
-      */
-        socket.emit('visuals', whichVisuals);
       }
-      if (teclaUm == true) {
+      if (teclaQ == true) {
         scene.add(parentTransformTres);
-        /*  camera.remove(planoCamaraUm);
-          planoCamaraUm.position.set(0, 0, 10);
-          parentTransform.children.forEach(function(v) {
-            v.rotation.y = Math.random() * 2 * Math.PI;
-          });*/
       }
-      if (teclaUm == true) {
-        teclaUm = false;
+      if (teclaQ == true) {
+        teclaQ = false;
       } else {
-        teclaUm = true;
+        teclaQ = true;
       }
     }
     if (event.which == "87") {
       console.log("W");
-      if (teclaDois == false) {
-        camera.add(planoCamaraDois);
-        planoCamaraDois.scale.x = 6;
-        planoCamaraDois.position.set(0, 4.5, -3);
-      }
-      if (teclaDois == true) {
-        camera.remove(planoCamaraDois);
-        planoCamaraDois.position.set(0, 0, 10);
-        parentTransform.children.forEach(function(v) {
-          v.rotation.y = Math.random() * 2 * Math.PI;
-        });
-      }
-      if (teclaDois == true) {
-        teclaDois = false;
+      if (teclaW == false) {}
+      if (teclaW == true) {}
+      if (teclaW == true) {
+        teclaW = false;
       } else {
-        teclaDois = true;
+        teclaW = true;
       }
     }
     if (event.which == "69") {
       console.log("E");
-      if (teclaTres == false) {
-        scene.add(parentTransform);
-        scene.remove(parentTransformTres);
-      }
-      if (teclaTres == true) {
-        scene.remove(parentTransform);
-        scene.add(parentTransformTres);
-      }
-      if (teclaTres == true) {
-        teclaTres = false;
-      } else {
-        teclaTres = true;
-      }
     }
     if (event.which == "82") {
       console.log("R");
@@ -341,10 +296,21 @@ function init() {
     }
     if (event.which == "80") {
       console.log("P");
-      parentTransformDois.children.forEach(function(v) {
-        v.position.set(Math.floor(Math.random() * 100) + 1, -100, 1);
-      });
+      if (teclaP == false) {
+        scene.add(parentTransform);
+        scene.remove(parentTransformTres);
+      }
+      if (teclaP == true) {
+        scene.remove(parentTransform);
+        scene.add(parentTransformTres);
+      }
+      if (teclaP == true) {
+        teclaP = false;
+      } else {
+        teclaP = true;
+      }
     }
+
     /*
     SEGUNDA
     A_65 S_83 D_68 F_70 G_71 H_72 J_74 K_75 L_76 Ç_186
@@ -356,10 +322,12 @@ function init() {
       pixelPass.renderToScreen = false;
       glitchPass.goWild = true;
       if (glitchPass.renderToScreen == false) {
+        noiseOne.start();
         renderPostOne = true;
         glitchPass.renderToScreen = true;
       } else if (glitchPass.renderToScreen == true) {
         renderPostOne = false;
+        noiseOne.stop();
         glitchPass.renderToScreen = false;
       }
       console.log(glitchVarOne);
@@ -527,46 +495,6 @@ function onDocumentMouseMove(event) {
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
-function render() {
-  var corFundo = Math.random() * (0.15 - 0) + 0;
-  //if I want glitch cinzentos
-  //scene.background = new THREE.Color(corFundo, corFundo, corFundo);
-  theta += 0.2;
-  camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
-  camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
-  camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
-  camera.lookAt(scene.position);
-  camera.updateMatrixWorld();
-
-  raycaster.setFromCamera(mouse, camera);
-  var intersects = raycaster.intersectObjects(parentTransformTres.children);
-  if (intersects.length > 0) {
-    if (INTERSECTED != intersects[0].object) {
-      if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-      INTERSECTED = intersects[0].object;
-      INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-      INTERSECTED.material.emissive.setHex(0xffffff);
-    }
-  } else {
-    if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-    INTERSECTED = null;
-  }
-
-  renderer.render(scene, camera);
-
-  if (renderPostOne == true) {
-    composerOne.render();
-  }
-  if (renderPostTwo == true) {
-    composerTwo.render();
-  }
-  if (renderPostThree == true) {
-    composerThree.render();
-  }
-  if (renderPostFour == true) {
-    composerFour.render();
-  }
-}
 
 function newDrawing() {}
 
@@ -595,7 +523,7 @@ Nexus.colors.fill = "#000000";
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
 
-var compressor = new Tone.Compressor(-30, 30);
+var compressor = new Tone.Compressor(-50, 30);
 
 var polySynthUm = new Tone.PolySynth(3, Tone.Synth, {
   "oscillator": {
@@ -607,7 +535,6 @@ var distortion = new Tone.Distortion(0.6);
 var tremolo = new Tone.Tremolo().start();
 
 var polySynthDois = new Tone.PolySynth(4, Tone.Synth).chain(distortion, tremolo, Tone.Master);
-
 
 var polySynthTres = new Tone.Synth({
   oscillator: {
@@ -659,20 +586,52 @@ var polySynthCinco = new Tone.FMSynth({
     release: 0.5
   }
 }).toMaster();
+var limiter = new Tone.Limiter(-90);
 
 
-var noise = new Tone.Noise("pink").start();
+var noiseOne = new Tone.Noise("pink");
 
-//make an autofilter to shape the noise
-var autoFilter = new Tone.AutoFilter({
+var autoFilterOne = new Tone.AutoFilter({
   "frequency": "8m",
   "min": 800,
   "max": 15000
 }).connect(Tone.Master);
-noise.connect(autoFilter);
-autoFilter.start();
+noiseOne.connect(autoFilterOne);
+autoFilterOne.start();
 
-currentSynth = polySynthUm;
+var noiseDois = new Tone.Noise("brown").toMaster();
+//noiseDois.start();
+
+polySynthSeis = createSynthWithEffects();
+
+function createSynthWithEffects() {
+  vol = new Tone.Volume(-15).toMaster();
+
+  compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+
+  reverb = new Tone.Freeverb(1.0).connect(vol);
+  reverb.wet.value = 0.1;
+
+  delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
+  delay.wet.value = 0.1;
+
+  vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
+
+  polySynth = new Tone.PolySynth(3, Tone.Synth, {
+    "oscillator": {
+      "type": "sine"
+    },
+    "envelope": {
+      "attack": 0.01,
+      "decay": 0.1,
+      "sustain": 0.2,
+      "release": 4,
+    }
+  });
+  return polySynth.connect(vibrato, compressor);
+}
+
+currentSynth = polySynthSeis;
 
 
 
@@ -714,22 +673,19 @@ dialGain.on('change', function(v) {
 
 // ------------------------- SOCKETS -------------------------------
 
-socket = io.connect(window.location.origin);
-socket.on('mouse', newDrawing);
-
 var data;
 
 function onMouseDown(event) {
+
   event.preventDefault();
   var data = {
-    mouseX: 0,
-    mouseY: 0
+    x: event.clientX,
+    y: event.clientY
   };
-  mouseX = (event.clientX);
-  mouseY = (event.clientY);
-  socket.emit('mouse', event.clientX);
 
-  var randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
+  socket.emit('mouse', data);
+
+  randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
   console.log(randomSequenceOfNotes);
 
   var intersectsClick = raycaster.intersectObjects(parentTransformTres.children);
@@ -749,9 +705,12 @@ function onWindowResize() {}
 
 function myFunc() {}
 
-function newDrawing() {
-  //FUNCIONA E ISTO QUE TENHO DE MANDAR
-  console.log("okok");
+function newDrawing(data) {
+  //THIS IS WHAT HAPPENS IN ANOTHER CLIENT
+  console.log(data.x);
+  console.log(data.y);
+  randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
+  currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
 }
 
 // ---------------------- LAPTOP KEYBOARD -------------------------
@@ -825,4 +784,46 @@ function detectmob() {
 
 function handleStart() {
   scene.background = new THREE.Color(0xffffff);
+}
+
+
+function render() {
+  var corFundo = Math.random() * (0.15 - 0) + 0;
+  //if I want glitch cinzentos
+  //scene.background = new THREE.Color(corFundo, corFundo, corFundo);
+  theta += 0.2;
+  camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
+  camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
+  camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
+  camera.lookAt(scene.position);
+  camera.updateMatrixWorld();
+
+  raycaster.setFromCamera(mouse, camera);
+  var intersects = raycaster.intersectObjects(parentTransformTres.children);
+  if (intersects.length > 0) {
+    if (INTERSECTED != intersects[0].object) {
+      if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+      INTERSECTED = intersects[0].object;
+      INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+      INTERSECTED.material.emissive.setHex(0xffffff);
+    }
+  } else {
+    if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+    INTERSECTED = null;
+  }
+
+  renderer.render(scene, camera);
+
+  if (renderPostOne == true) {
+    composerOne.render();
+  }
+  if (renderPostTwo == true) {
+    composerTwo.render();
+  }
+  if (renderPostThree == true) {
+    composerThree.render();
+  }
+  if (renderPostFour == true) {
+    composerFour.render();
+  }
 }
