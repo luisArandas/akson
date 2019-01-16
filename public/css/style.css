@@ -6,6 +6,7 @@ html * {
    font-size: 8px;
 }
 
+
 html, body {
   background: #000000;
   padding: 0;
@@ -462,4 +463,15 @@ html, body {
 
 
 
-/* -------------------------------------BOTTONS -------------------------------------*/
+/* -------------------------------------LOADER -------------------------------------*/
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.introLoadTimer {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url("../img/load.gif") center no-repeat #000000;
+}

@@ -10,21 +10,36 @@ $(document).ready(function() {
   }
 });
 
+$(document).ready(function() {
+  $(".introLoadTimer").fadeIn("slow", function() {
+    $(".introLoadTimer").delay(3000).fadeOut(2500);
+  });
+});
+
 //A CENA DO RUI OUTSIDE CONTROLS
 //RAMPAS NO VOLUME
 //TRIGGER THE NOISE ON MOUSEDOWN
 //ADD THE NOISE IN THE SHADERS
 //I STILL GET CRACKS ON THE SPEAKERS
 //SCENE TRANSITIONS
+//VECTREX IF IS RENDER ON SCREEN THEN CHANGE FILTERS
 
 var container;
+var light;
+var scene;
+var scene2;
 var camera,
-  scene,
   raycaster,
   renderer,
   parentTransform,
-  parentTrasformDois,
+  parentTransformDois,
+  parentTransformTres,
   parentTransformQuatro,
+  parentTransformCinco,
+  parentTransformCincoDois,
+  parentTransformCincoTres,
+  parentTransformSeis,
+  parentTransformSete,
   sphereInter;
 var radius = 100;
 var theta = 0;
@@ -52,8 +67,6 @@ var composerTwo;
 var composerThree;
 var composerFour;
 
-var parentTransformTres = new THREE.Object3D();
-
 var whichVisuals;
 //ESTAMOS EM PENTATONICA MAIOR
 var sequenceOfNotesC = ['C2', 'D2', 'E2', 'G2', 'A2', 'C3', 'D3', 'E3', 'G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
@@ -64,6 +77,8 @@ var sequenceOfNotesG = ['G2', 'A2', 'B2', 'D2', 'E2', 'G3', 'A3', 'B3', 'D3', 'E
 var sequenceOfNotesA = ['A2', 'B2', 'C#2', 'E2', 'F#2', 'A3', 'B3', 'C#3', 'E3', 'F#3', 'A4', 'B4', 'C#4', 'E4', 'F#4', 'A5', 'B5', 'C#5', 'E5', 'F#5', 'A6'];
 var sequenceOfNotesB = ['B2', 'C#2', 'D#2', 'F#2', 'G#2', 'B3', 'C#3', 'D#3', 'F#3', 'G#3', 'B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
 var scalePlaying;
+
+var isMouseDown = false;
 
 var hideShow = false;
 var currentSynth;
@@ -105,63 +120,8 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
   scene.add(camera);
-
-  var material = new THREE.LineBasicMaterial({
-    color: 0xffffff
-  });
-
-  var lineGeometry = new THREE.BufferGeometry();
-  var points = [];
-  var point = new THREE.Vector3();
-  var direction = new THREE.Vector3();
-  for (var i = 0; i < 150; i++) {
-    direction.x = 0;
-    direction.y = 0;
-    direction.z = 5;
-    point.add(direction);
-    points.push(point.x, point.y, point.z);
-  }
-  lineGeometry.addAttribute('position', new THREE.Float32BufferAttribute(points, 3));
-
-  parentTransform = new THREE.Object3D();
-
-  for (var i = 0; i < 150; i++) {
-    var object;
-    object = new THREE.Line(lineGeometry, material);
-    object.position.x = 1;
-    object.position.y = 1; //Math.floor(Math.random() * 6) + 1;
-    object.position.z = Math.random() * 400 - 200;
-    object.rotation.x = 1;
-    object.rotation.y = Math.random() * 2 * Math.PI;
-    object.rotation.z = Math.random() * 2 * Math.PI;
-    parentTransform.add(object);
-  }
-  //scene.add(parentTransform);
-
   raycaster = new THREE.Raycaster();
   raycaster.linePrecision = 3;
-
-  var light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(1, 1, 1).normalize();
-  scene.add(light);
-
-
-
-  for (var i = 0; i < 90; i++) {
-    var geometry = new THREE.BoxGeometry(10, 1500, 10);
-    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
-      color: 0x5f5f5f,
-      //wireframe: true
-    }));
-    object.position.x = Math.random() * 800 - 400;
-    object.position.y = Math.random() * 800 - 400;
-    object.position.z = Math.random() * 800 - 400;
-    object.rotation.x = Math.random() * 2 * Math.PI;
-    //  object.rotation.y = Math.random() * 2 * Math.PI;
-    //  object.rotation.z = Math.random() * 2 * Math.PI;
-    parentTransformTres.add(object);
-  }
-  scene.add(parentTransformTres);
 
   var canvas = document.createElement('canvas');
   var context = canvas.getContext('webgl2');
@@ -175,8 +135,169 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
+  document.body.appendChild(renderer.domElement);
+
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.addEventListener('change', render); // call this only in static scenes (i.e., if there is no animation loop)
+  controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+  controls.dampingFactor = 0.25;
+  controls.screenSpacePanning = false;
+  controls.minDistance = 100;
+  controls.maxDistance = 500;
+  controls.maxPolarAngle = Math.PI / 2;
+
+
+  light = new THREE.DirectionalLight(0xd3d3d3, 1);
+  light.position.set(1, 1, 1).normalize();
+  scene.add(light);
+  var ambientLight = new THREE.AmbientLight(0xd3d3d3, 0.1);
+  scene.add(ambientLight);
+  /*var light = new THREE.SpotLight(0xd3d3d3, 3);
+  light.position.set(5, 5, 2);
+  light.castShadow = true;
+  light.shadow.mapSize.width = 10000;
+  light.shadow.mapSize.height = light.shadow.mapSize.width;
+  light.penumbra = 0.5;
+  var lightBack = new THREE.PointLight(0xd3d3d3, 1);
+  lightBack.position.set(0, -3, -1);
+  scene.add(light);
+  scene.add(lightBack);
+  var rectSize = 2;
+  var intensity = 100;
+  var rectLight = new THREE.RectAreaLight(0x0FFFFF, intensity, rectSize, rectSize);
+  rectLight.position.set(0, 0, 1);
+  rectLight.lookAt(0, 0, 0);
+  scene.add(rectLight)
+
+  rectLightHelper = new THREE.RectAreaLightHelper(rectLight);
+  //scene.add( rectLightHelper );*/
+
+
+  parentTransform = new THREE.Object3D();
+  for (var i = 0; i < 90; i++) {
+    var geometry = new THREE.BoxGeometry(10, 1500, 10);
+    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
+      color: 0x5f5f5f,
+      morphTargets: true,
+      //wireframe: true
+    }));
+    object.position.x = Math.random() * 800 - 400;
+    object.position.y = Math.random() * 800 - 400;
+    object.position.z = Math.random() * 800 - 400;
+    object.rotation.x = Math.random() * 2 * Math.PI;
+    //object.rotation.y = Math.random() * 2 * Math.PI;
+    //object.rotation.z = Math.random() * 2 * Math.PI;
+
+    //object.rotation.z = Math.PI / 2;
+    parentTransform.add(object);
+
+  }
+  scene.add(parentTransform);
+
+  parentTransformDois = new THREE.Object3D();
+  var vertices = new THREE.DodecahedronGeometry(10).vertices;
+  for (var i = 0; i < vertices.length; i++) {
+    //vertices[ i ].add( randomPoint().multiplyScalar( 2 ) ); // wiggle the points
+  }
+  var pointsMaterial = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 1,
+    alphaTest: 0.5
+  });
+  var pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
+  var points = new THREE.Points(pointsGeometry, pointsMaterial);
+  parentTransformDois.add(points);
+
+  var meshMaterial = new THREE.MeshLambertMaterial({
+    color: 0xffffff,
+    opacity: 0.5,
+    transparent: true
+  });
+  var meshGeometry = new THREE.ConvexBufferGeometry(vertices);
+  var mesh = new THREE.Mesh(meshGeometry, meshMaterial);
+  mesh.material.side = THREE.BackSide; // back faces
+  mesh.renderOrder = 0;
+  parentTransformDois.add(mesh);
+  var mesh = new THREE.Mesh(meshGeometry, meshMaterial.clone());
+  mesh.material.side = THREE.FrontSide; // front faces
+  mesh.renderOrder = 1;
+  parentTransformDois.add(mesh);
+
+
+
+
+
+
+
+
+
+  parentTransformTres = new THREE.Object3D();
+  for (var i = 0; i < 90; i++) {
+    var geometry = new THREE.BoxGeometry(2, 1500, 2);
+    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
+      color: 0x5f5f5f,
+      //wireframe: true
+    }));
+    object.position.x = Math.random() * 800 - 400;
+    object.position.y = Math.random() * 800 - 400;
+    object.position.z = Math.random() * 800 - 400;
+    object.rotation.x = Math.random() * 2 * Math.PI;
+    //  object.rotation.y = Math.random() * 2 * Math.PI;
+    //  object.rotation.z = Math.random() * 2 * Math.PI;
+    parentTransformTres.add(object);
+  }
+
+
+  parentTransformQuatro = new THREE.Object3D();
+  for (var i = 0; i < 90; i++) {
+    var geometry = new THREE.BoxGeometry(10, 100, 10);
+    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
+      color: 0x5f5f5f,
+      //wireframe: true
+    }));
+    object.position.x = Math.random() * 800 - 400;
+    object.position.y = Math.random() * 800 - 400;
+    object.position.z = Math.random() * 800 - 400;
+    object.rotation.x = Math.random() * 2 * Math.PI;
+    //object.rotation.y = Math.random() * 2 * Math.PI;
+    //object.rotation.z = Math.random() * 2 * Math.PI;
+    parentTransformQuatro.add(object);
+  }
+
+  parentTransformCinco = new THREE.Object3D();
+  parentTransformSeis = new THREE.Object3D();
+  parentTransformSete = new THREE.Object3D();
+
+  var lineGeometry = new THREE.BufferGeometry();
+  var points = [];
+  var point = new THREE.Vector3();
+  var direction = new THREE.Vector3();
+  for (var i = 0; i < 150; i++) {
+    direction.x = 0;
+    direction.y = 0;
+    direction.z = 5;
+    point.add(direction);
+    points.push(point.x, point.y, point.z);
+  }
+  lineGeometry.addAttribute('position', new THREE.Float32BufferAttribute(points, 3));
+  var material = new THREE.LineBasicMaterial({
+    color: 0xffffff
+  });
+  for (var i = 0; i < 150; i++) {
+    var object;
+    object = new THREE.Line(lineGeometry, material);
+    object.position.x = 1;
+    object.position.y = 1; //Math.floor(Math.random() * 6) + 1;
+    object.position.z = Math.random() * 400 - 200;
+    object.rotation.x = 1;
+    object.rotation.y = Math.random() * 2 * Math.PI;
+    object.rotation.z = Math.random() * 2 * Math.PI;
+    parentTransformSete.add(object);
+  }
+
   window.addEventListener('resize', onWindowResize, false);
   window.addEventListener('mousedown', onMouseDown, false);
+  window.addEventListener('mouseup', onMouseUp, false);
   window.addEventListener("touchstart", handleStart, false);
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
@@ -251,42 +372,90 @@ function init() {
     }
     if (event.which == "81") {
       console.log("Q");
-      if (teclaQ == false) {
-        scene.remove(parentTransformTres);
-      }
-      if (teclaQ == true) {
-        scene.add(parentTransformTres);
-      }
-      if (teclaQ == true) {
-        teclaQ = false;
-      } else {
-        teclaQ = true;
-      }
+      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      scene.add(parentTransform);
+      scene.remove(parentTransformDois);
+      scene.remove(parentTransformTres);
+      scene.remove(parentTransformQuatro);
+      scene.remove(parentTransformCinco);
+      scene.remove(parentTransformSeis);
+      scene.remove(parentTransformSete);
     }
     if (event.which == "87") {
       console.log("W");
-      if (teclaW == false) {}
-      if (teclaW == true) {}
-      if (teclaW == true) {
-        teclaW = false;
-      } else {
-        teclaW = true;
+      camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
+      afterimagePass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
+      pixelPass.renderToScreen = false;
+      glitchPass.goWild = false;
+      if (glitchPass.renderToScreen == false) {
+        renderPostOne = true;
+        glitchPass.renderToScreen = true;
+      } else if (glitchPass.renderToScreen == true) {
+        renderPostOne = false;
+        glitchPass.renderToScreen = false;
       }
+      scene.add(parentTransformDois);
+      scene.remove(parentTransform);
+      scene.remove(parentTransformTres);
+      scene.remove(parentTransformQuatro);
+      scene.remove(parentTransformCinco);
+      scene.remove(parentTransformSeis);
+      scene.remove(parentTransformSete);
     }
     if (event.which == "69") {
       console.log("E");
+      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      scene.add(parentTransformTres);
+      scene.remove(parentTransform);
+      scene.remove(parentTransformDois);
+      scene.remove(parentTransformQuatro);
+      scene.remove(parentTransformCinco);
+      scene.remove(parentTransformSeis);
+      scene.remove(parentTransformSete);
     }
     if (event.which == "82") {
       console.log("R");
+      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      scene.add(parentTransformQuatro);
+      scene.remove(parentTransform);
+      scene.remove(parentTransformDois);
+      scene.remove(parentTransformTres);
+      scene.remove(parentTransformCinco);
+      scene.remove(parentTransformSeis);
+      scene.remove(parentTransformSete);
     }
     if (event.which == "84") {
       console.log("T");
+      /* ----------------------------------------------------------------------------------------------------------------------------*/
+      scene.remove(parentTransform);
+      scene.remove(parentTransformDois);
+      scene.remove(parentTransformTres);
+      scene.remove(parentTransformQuatro);
+      scene.remove(parentTransformSeis);
+      scene.remove(parentTransformSete);
     }
     if (event.which == "89") {
       console.log("Y");
+      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      scene.add(parentTransformSeis);
+      scene.remove(parentTransform);
+      scene.remove(parentTransformDois);
+      scene.remove(parentTransformTres);
+      scene.remove(parentTransformQuatro);
+      scene.remove(parentTransformCinco);
+      scene.remove(parentTransformSete);
     }
     if (event.which == "85") {
       console.log("U");
+      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      scene.add(parentTransformSete);
+      scene.remove(parentTransform);
+      scene.remove(parentTransformDois);
+      scene.remove(parentTransformTres);
+      scene.remove(parentTransformQuatro);
+      scene.remove(parentTransformCinco);
+      scene.remove(parentTransformSeis);
     }
     if (event.which == "73") {
       console.log("I");
@@ -296,19 +465,15 @@ function init() {
     }
     if (event.which == "80") {
       console.log("P");
-      if (teclaP == false) {
-        scene.add(parentTransform);
-        scene.remove(parentTransformTres);
-      }
-      if (teclaP == true) {
-        scene.remove(parentTransform);
-        scene.add(parentTransformTres);
-      }
-      if (teclaP == true) {
-        teclaP = false;
-      } else {
-        teclaP = true;
-      }
+      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      scene.add(parentTransformSete);
+      //
+      scene.remove(parentTransform);
+      scene.remove(parentTransformDois);
+      scene.remove(parentTransformTres);
+      scene.remove(parentTransformQuatro);
+      scene.remove(parentTransformCinco);
+      scene.remove(parentTransformSeis);
     }
 
     /*
@@ -388,7 +553,7 @@ function init() {
     }
     if (event.which == "72") {
       console.log("H");
-      currentSynth = polySynthUm;
+      currentSynth = polySynthSeis;
     }
     if (event.which == "74") {
       console.log("J");
@@ -405,6 +570,10 @@ function init() {
     if (event.which == "186") {
       console.log("Ç");
       currentSynth = polySynthCinco;
+    }
+    if (event.which == "222") {
+      console.log("~");
+      currentSynth = polySynthUm;
     }
 
     /*
@@ -485,6 +654,8 @@ function onWindowResize() {
 }
 
 function animate() {
+  parentTransformDois.rotation.y += 0.005;
+
   requestAnimationFrame(animate);
   render();
 }
@@ -493,6 +664,7 @@ function onDocumentMouseMove(event) {
   event.preventDefault();
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
 }
 
 
@@ -602,39 +774,42 @@ autoFilterOne.start();
 var noiseDois = new Tone.Noise("brown").toMaster();
 //noiseDois.start();
 
-polySynthSeis = createSynthWithEffects();
 
-function createSynthWithEffects() {
-  vol = new Tone.Volume(-15).toMaster();
+vol = new Tone.Volume(-15).toMaster();
 
-  compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
+compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
 
-  reverb = new Tone.Freeverb(1.0).connect(vol);
-  reverb.wet.value = 0.1;
+reverb = new Tone.Freeverb(1.0).connect(vol);
+reverb.wet.value = 0.1;
 
-  delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
-  delay.wet.value = 0.1;
+//delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
+//delay.wet.value = 0.1;
 
-  vibrato = new Tone.Vibrato(5, 0.2).connect(delay);
+vibrato = new Tone.Vibrato(5, 0.2).connect(reverb);
 
-  polySynth = new Tone.PolySynth(3, Tone.Synth, {
-    "oscillator": {
-      "type": "sine"
-    },
-    "envelope": {
-      "attack": 0.01,
-      "decay": 0.1,
-      "sustain": 0.2,
-      "release": 4,
-    }
-  });
-  return polySynth.connect(vibrato, compressor);
-}
+polySynthSeis = new Tone.PolySynth(3, Tone.Synth, {
+  "oscillator": {
+    "type": "sine"
+  },
+  "envelope": {
+    "attack": 0.01,
+    "decay": 0.1,
+    "sustain": 0.2,
+    "release": 4,
+  }
+});
+
+polySynthSeis.connect(Tone.Master);
+
 
 currentSynth = polySynthSeis;
 
+/*check this
 
-
+var player = new Tone.Player("./path/to/sample.mp3").toMaster();
+  play as soon as the buffer is loaded
+player.autostart = true;
+*/
 
 
 // --------------------------- OSCILOSCOPE GAIN AND VOL -------------------------
@@ -688,17 +863,20 @@ function onMouseDown(event) {
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
   console.log(randomSequenceOfNotes);
 
-  var intersectsClick = raycaster.intersectObjects(parentTransformTres.children);
+  var intersectsClick = raycaster.intersectObjects(parentTransform.children);
   if (intersectsClick.length > 0) {
     currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
     //playNote("4n", scalePlaying[randomSequenceOfNotes]);
     var div = document.getElementById('botLeftPage');
     div.innerHTML += scalePlaying[randomSequenceOfNotes] + '/ ';
   } else {}
+  isMouseDown = true;
 }
 
 function onMouseUp(event) {
   event.preventDefault();
+  isMouseDown = false;
+
 }
 
 function onWindowResize() {}
@@ -795,11 +973,12 @@ function render() {
   camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
   camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
   camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
+
   camera.lookAt(scene.position);
   camera.updateMatrixWorld();
 
   raycaster.setFromCamera(mouse, camera);
-  var intersects = raycaster.intersectObjects(parentTransformTres.children);
+  var intersects = raycaster.intersectObjects(parentTransform.children);
   if (intersects.length > 0) {
     if (INTERSECTED != intersects[0].object) {
       if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
@@ -813,6 +992,10 @@ function render() {
   }
 
   renderer.render(scene, camera);
+  renderer.autoClear = false;
+  renderer.shadowMap.enabled = false;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.needsUpdate = true;
 
   if (renderPostOne == true) {
     composerOne.render();
@@ -826,4 +1009,5 @@ function render() {
   if (renderPostFour == true) {
     composerFour.render();
   }
+
 }
