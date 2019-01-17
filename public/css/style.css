@@ -4,6 +4,8 @@ html * {
    /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
    font-weight: 10;
    font-size: 8px;
+   cursor: cell;
+   transition: background-color .5s;
 }
 
 
@@ -12,6 +14,18 @@ html, body {
   padding: 0;
   margin: 0;
 }
+/*
+body.fadeOut {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    -ms-transition: 3s;
+    -o-transition: 3s;
+    transition: 3s;
+    opacity: 0;
+}
+body.fadeIn {
+    opacity: 1;
+}*/
 
 .navbar {
     background: #505050;
@@ -475,3 +489,4 @@ html, body {
 	z-index: 9999;
 	background: url("../img/load.gif") center no-repeat #000000;
 }
+/* ---------------------------------------------------------------------------------*/

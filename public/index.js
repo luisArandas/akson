@@ -16,10 +16,6 @@ $(document).ready(function() {
   });
 });
 
-//A CENA DO RUI OUTSIDE CONTROLS
-//RAMPAS NO VOLUME
-//TRIGGER THE NOISE ON MOUSEDOWN
-//ADD THE NOISE IN THE SHADERS
 //I STILL GET CRACKS ON THE SPEAKERS
 //SCENE TRANSITIONS
 //VECTREX IF IS RENDER ON SCREEN THEN CHANGE FILTERS
@@ -78,10 +74,22 @@ var sequenceOfNotesA = ['A2', 'B2', 'C#2', 'E2', 'F#2', 'A3', 'B3', 'C#3', 'E3',
 var sequenceOfNotesB = ['B2', 'C#2', 'D#2', 'F#2', 'G#2', 'B3', 'C#3', 'D#3', 'F#3', 'G#3', 'B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
 var scalePlaying;
 
-var isMouseDown = false;
+var isSceneOne = true;
+var isSceneTwo = false;
+var isSceneThree = false;
+var isSceneFour = false;
+var isSceneFive = false;
+var isSceneSix = false;
+var isSceneSeven = false;
+var isSceneSeven = false;
+var isSceneEight = false;
+var isSceneNine = false;
+var isSceneTen = false;
 
 var hideShow = false;
 var currentSynth;
+
+var color = "#0000FF";
 
 var glitchVarOne;
 var glitchVarTwo;
@@ -91,6 +99,9 @@ var renderPostOne = false;
 var renderPostTwo = false;
 var renderPostThree = false;
 var renderPostFour = false;
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
 
 var randomSequenceOfNotes;
 
@@ -138,14 +149,24 @@ function init() {
   document.body.appendChild(renderer.domElement);
 
   var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.addEventListener('change', render); // call this only in static scenes (i.e., if there is no animation loop)
+  controls.addEventListener('change', () => {
+    render();
+    orbitControls();
+  });
+
+  function orbitControls() {
+    if (isSceneTwo == true) {
+      autoFilterOne.frequency.value = event.clientX;
+      console.log(autoFilterOne.frequency.value);
+    }
+  }
   controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
   controls.dampingFactor = 0.25;
   controls.screenSpacePanning = false;
   controls.minDistance = 100;
   controls.maxDistance = 500;
   controls.maxPolarAngle = Math.PI / 2;
-
+  controls.enabled = false;
 
   light = new THREE.DirectionalLight(0xd3d3d3, 1);
   light.position.set(1, 1, 1).normalize();
@@ -195,7 +216,7 @@ function init() {
   scene.add(parentTransform);
 
   parentTransformDois = new THREE.Object3D();
-  var vertices = new THREE.DodecahedronGeometry(10).vertices;
+  var vertices = new THREE.DodecahedronGeometry(50).vertices;
   for (var i = 0; i < vertices.length; i++) {
     //vertices[ i ].add( randomPoint().multiplyScalar( 2 ) ); // wiggle the points
   }
@@ -224,16 +245,9 @@ function init() {
   parentTransformDois.add(mesh);
 
 
-
-
-
-
-
-
-
   parentTransformTres = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
-    var geometry = new THREE.BoxGeometry(2, 1500, 2);
+    var geometry = new THREE.BoxGeometry(50, 500, 50);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x5f5f5f,
       //wireframe: true
@@ -246,7 +260,6 @@ function init() {
     //  object.rotation.z = Math.random() * 2 * Math.PI;
     parentTransformTres.add(object);
   }
-
 
   parentTransformQuatro = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
@@ -340,7 +353,7 @@ function init() {
   effectSobel.renderToScreen = false;
   pixelPass.renderToScreen = false;
 
-  //METER OS IFS SE FUNCIONA CARREGAR DUAS VEZES
+
   /*
   Q_81 W_87 E_69 R_82 T_84 Y_89 U_85 I_73 O_79 P_80
   32 == SPACE
@@ -372,7 +385,26 @@ function init() {
     }
     if (event.which == "81") {
       console.log("Q");
+      isSceneOne = true;
+      isSceneTwo = false;
+      isSceneThree = false;
+      isSceneFour = false;
+      isSceneFive = false;
+      isSceneSix = false;
+      isSceneSeven = false;
+      isSceneSeven = false;
+      isSceneEight = false;
+      isSceneNine = false;
+      isSceneTen = false;
+
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      afterimagePass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
+      pixelPass.renderToScreen = false;
+      glitchPass.renderToScreen = false;
+
+      controls.enabled = false;
+
       scene.add(parentTransform);
       scene.remove(parentTransformDois);
       scene.remove(parentTransformTres);
@@ -383,6 +415,13 @@ function init() {
     }
     if (event.which == "87") {
       console.log("W");
+      isSceneOne = false;
+      isSceneTwo = true;
+      isSceneThree = false;
+      isSceneFour = false;
+
+      controls.enabled = true;
+
       camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
       afterimagePass.renderToScreen = false;
       effectSobel.renderToScreen = false;
@@ -391,9 +430,6 @@ function init() {
       if (glitchPass.renderToScreen == false) {
         renderPostOne = true;
         glitchPass.renderToScreen = true;
-      } else if (glitchPass.renderToScreen == true) {
-        renderPostOne = false;
-        glitchPass.renderToScreen = false;
       }
       scene.add(parentTransformDois);
       scene.remove(parentTransform);
@@ -405,7 +441,17 @@ function init() {
     }
     if (event.which == "69") {
       console.log("E");
+      isSceneOne = false;
+      isSceneTwo = false;
+      isSceneThree = true;
+      isSceneFour = false;
+
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      afterimagePass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
+      pixelPass.renderToScreen = false;
+      glitchPass.renderToScreen = false;
+
       scene.add(parentTransformTres);
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
@@ -415,8 +461,21 @@ function init() {
       scene.remove(parentTransformSete);
     }
     if (event.which == "82") {
-      console.log("R");
+      console.log("R")
+      isSceneOne = false;
+      isSceneTwo = false;
+      isSceneThree = false;
+      isSceneFour = true;
+
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+      afterimagePass.renderToScreen = false;
+      effectSobel.renderToScreen = false;
+      pixelPass.renderToScreen = false;
+      glitchPass.goWild = true;
+      if (glitchPass.renderToScreen == false) {
+        renderPostOne = true;
+        glitchPass.renderToScreen = true;
+      }
       scene.add(parentTransformQuatro);
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
@@ -427,6 +486,8 @@ function init() {
     }
     if (event.which == "84") {
       console.log("T");
+      isSceneOne = false;
+      isSceneTwo = false;
       /* ----------------------------------------------------------------------------------------------------------------------------*/
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
@@ -437,6 +498,8 @@ function init() {
     }
     if (event.which == "89") {
       console.log("Y");
+      isSceneOne = false;
+      isSceneTwo = false;
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       scene.add(parentTransformSeis);
       scene.remove(parentTransform);
@@ -448,6 +511,9 @@ function init() {
     }
     if (event.which == "85") {
       console.log("U");
+      changeScene();
+      isSceneOne = false;
+      isSceneTwo = false;
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       scene.add(parentTransformSete);
       scene.remove(parentTransform);
@@ -459,12 +525,18 @@ function init() {
     }
     if (event.which == "73") {
       console.log("I");
+      isSceneOne = false;
+      isSceneTwo = false;
     }
     if (event.which == "79") {
       console.log("O");
+      isSceneOne = false;
+      isSceneTwo = false;
     }
     if (event.which == "80") {
       console.log("P");
+      isSceneOne = false;
+      isSceneTwo = false;
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       scene.add(parentTransformSete);
       //
@@ -481,18 +553,17 @@ function init() {
     A_65 S_83 D_68 F_70 G_71 H_72 J_74 K_75 L_76 Ç_186
     */
     if (event.which == "65") {
+      // AQUI METER UM TIMER E POR NO E
       console.log("A");
       afterimagePass.renderToScreen = false;
       effectSobel.renderToScreen = false;
       pixelPass.renderToScreen = false;
       glitchPass.goWild = true;
       if (glitchPass.renderToScreen == false) {
-        noiseOne.start();
         renderPostOne = true;
         glitchPass.renderToScreen = true;
       } else if (glitchPass.renderToScreen == true) {
         renderPostOne = false;
-        noiseOne.stop();
         glitchPass.renderToScreen = false;
       }
       console.log(glitchVarOne);
@@ -655,7 +726,8 @@ function onWindowResize() {
 
 function animate() {
   parentTransformDois.rotation.y += 0.005;
-
+  parentTransformDois.rotation.x += 0.005;
+  parentTransformDois.rotation.z += 0.005;
   requestAnimationFrame(animate);
   render();
 }
@@ -664,11 +736,10 @@ function onDocumentMouseMove(event) {
   event.preventDefault();
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  mouseX = (event.clientX - windowHalfX) * 10;
+  mouseY = (event.clientY - windowHalfY) * 10;
 
 }
-
-
-function newDrawing() {}
 
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
@@ -758,11 +829,8 @@ var polySynthCinco = new Tone.FMSynth({
     release: 0.5
   }
 }).toMaster();
-var limiter = new Tone.Limiter(-90);
-
 
 var noiseOne = new Tone.Noise("pink");
-
 var autoFilterOne = new Tone.AutoFilter({
   "frequency": "8m",
   "min": 800,
@@ -770,22 +838,16 @@ var autoFilterOne = new Tone.AutoFilter({
 }).connect(Tone.Master);
 noiseOne.connect(autoFilterOne);
 autoFilterOne.start();
+noiseOne.volume.value = -99;
+noiseOne.start();
+noiseOne.volume.rampTo(-10, 10);
 
-var noiseDois = new Tone.Noise("brown").toMaster();
-//noiseDois.start();
+vol = new Tone.Volume(-5).toMaster();
 
+compressor = new Tone.Compressor(-10, 10).connect(vol);
 
-vol = new Tone.Volume(-15).toMaster();
-
-compressor = new Tone.Compressor(-30, 30).toMaster(); //CHECK THE COMPRESSOR
-
-reverb = new Tone.Freeverb(1.0).connect(vol);
+reverb = new Tone.Freeverb(0.8).connect(compressor);
 reverb.wet.value = 0.1;
-
-//delay = new Tone.FeedbackDelay(0.304, 0.5).connect(reverb);
-//delay.wet.value = 0.1;
-
-vibrato = new Tone.Vibrato(5, 0.2).connect(reverb);
 
 polySynthSeis = new Tone.PolySynth(3, Tone.Synth, {
   "oscillator": {
@@ -798,14 +860,18 @@ polySynthSeis = new Tone.PolySynth(3, Tone.Synth, {
     "release": 4,
   }
 });
-
-polySynthSeis.connect(Tone.Master);
+//var feedback = new Tone.FeedbackCombFilter(0.2, 0.5).connect(Tone.Master);
+polySynthSeis.connect(reverb);
 
 
 currentSynth = polySynthSeis;
 
-/*check this
 
+
+
+
+
+/*check this
 var player = new Tone.Player("./path/to/sample.mp3").toMaster();
   play as soon as the buffer is loaded
 player.autostart = true;
@@ -851,7 +917,6 @@ dialGain.on('change', function(v) {
 var data;
 
 function onMouseDown(event) {
-
   event.preventDefault();
   var data = {
     x: event.clientX,
@@ -859,24 +924,24 @@ function onMouseDown(event) {
   };
 
   socket.emit('mouse', data);
+  //CRIAR OUTRO ONLY ON INTERSECT
 
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
   console.log(randomSequenceOfNotes);
+  if (isSceneOne == true) {
+    var intersectsClick = raycaster.intersectObjects(parentTransform.children);
+    if (intersectsClick.length > 0) {
+      currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+      //playNote("4n", scalePlaying[randomSequenceOfNotes]);
+      var div = document.getElementById('botLeftPage');
+      div.innerHTML += scalePlaying[randomSequenceOfNotes] + '/ ';
+    } else {}
+  }
 
-  var intersectsClick = raycaster.intersectObjects(parentTransform.children);
-  if (intersectsClick.length > 0) {
-    currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
-    //playNote("4n", scalePlaying[randomSequenceOfNotes]);
-    var div = document.getElementById('botLeftPage');
-    div.innerHTML += scalePlaying[randomSequenceOfNotes] + '/ ';
-  } else {}
-  isMouseDown = true;
 }
 
 function onMouseUp(event) {
   event.preventDefault();
-  isMouseDown = false;
-
 }
 
 function onWindowResize() {}
@@ -889,6 +954,7 @@ function newDrawing(data) {
   console.log(data.y);
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
   currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+
 }
 
 // ---------------------- LAPTOP KEYBOARD -------------------------
@@ -961,7 +1027,8 @@ function detectmob() {
 }
 
 function handleStart() {
-  scene.background = new THREE.Color(0xffffff);
+  //scene.background = new THREE.Color(0xffffff);
+  //I THINK THESE ARE MOBILES
 }
 
 
@@ -970,10 +1037,11 @@ function render() {
   //if I want glitch cinzentos
   //scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
-  camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
-  camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
-  camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
-
+  if (isSceneOne == true) {
+    camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
+    camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
+    camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
+  }
   camera.lookAt(scene.position);
   camera.updateMatrixWorld();
 
@@ -1010,4 +1078,21 @@ function render() {
     composerFour.render();
   }
 
+  if (isSceneThree == true) {
+    var time = Date.now() * 0.001;
+    var rx = Math.sin(time * 0.7) * 0.5,
+      ry = Math.sin(time * 0.3) * 0.5,
+      rz = Math.sin(time * 0.2) * 0.5;
+    camera.position.x += (mouseX - camera.position.x) * 0.05;
+    camera.position.y += (-mouseY - camera.position.y) * 0.05;
+    camera.lookAt(scene.position);
+    parentTransformTres.rotation.x = rx;
+    parentTransformTres.rotation.y = ry;
+    parentTransformTres.rotation.z = rz;
+  }
 }
+
+/*function transition() {
+  document.body.classList.add('fadeOut');
+  //if I want to add cool transitions
+}*/
