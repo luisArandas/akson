@@ -490,3 +490,39 @@ body.fadeIn {
 	background: url("../img/load.gif") center no-repeat #000000;
 }
 /* ---------------------------------------------------------------------------------*/
+/* HIDE THINGS ON MOBILE */
+
+@media screen and (max-width: 600px) {
+  .topRightPage {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+  .topLeftPage {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+  .botRightPage {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+  .botLeftPage {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
