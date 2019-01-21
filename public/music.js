@@ -1,150 +1,266 @@
-/*var Person = function(name, yearOfBirth, job){
-    this.name = name;
-    this.yearOfBirth = yearOfBirth;
-    this.job = job;
+$(".dropdown-menu li a").click(function() {
+  $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+  $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+});
+
+Nexus.context = Tone.context;
+Nexus.clock.start();
+Nexus.colors.accent = "#ffffff";
+Nexus.colors.fill = "#000000";
+
+/*nx.onload = function() {
+  nx.sendsTo("node");
+  // nx.sendsTo(function(data){
+  //     socket.emit('nx', { id: this.canvasID, data: data });
+  // });
+}*/
+
+Tone.Transport.bpm.value = 20;
+Tone.Transport.start();
+
+var noiseOne = new Tone.Noise("pink");
+var autoFilterOne = new Tone.AutoFilter({
+  "frequency": "8m",
+  "min": 800,
+  "max": 15000
+}).connect(Tone.Master);
+noiseOne.connect(autoFilterOne);
+autoFilterOne.start();
+noiseOne.volume.value = -99;
+noiseOne.start();
+noiseOne.volume.rampTo(-10, 10);
+
+vol = new Tone.Volume(-5).toMaster();
+
+compressor = new Tone.Compressor(-25, 10).connect(vol);
+
+reverb = new Tone.Freeverb(0.8).connect(compressor);
+reverb.wet.value = 0.1;
+
+polySynth = new Tone.PolySynth(6, Tone.Synth, {
+  harmonicity: 10,
+  modulationIndex: 10,
+  detune: 0,
+  oscillator: {
+    //sawtooth6
+    //triangle8
+    //fmsquare
+    //square
+    //osc.type = 'sine2'
+    //synth.set("detune", -1200);
+    type: "sine",
+    modulationType: 'sawtooth',
+    modulationIndex: 3,
+    harmonicity: 3.4
+  },
+  envelope: {
+    attack: 0.01,
+    decay: 0.1,
+    sustain: 0.2,
+    release: 4,
+  },
+  modulation: {
+    type: "sine"
+  },
+  modulationEnvelope: {
+    attack: 0.5,
+    decay: 0,
+    sustain: 1,
+    release: 0.5
+  },
+});
+polySynth.connect(reverb);
+
+
+function buttonOne() {}
+
+function buttonTwo() {}
+
+function buttonThree() {}
+
+function buttonFour() {}
+
+function buttonFive() {
+  if (Tone.Master.mute == false) {
+    Tone.Master.mute = true;
+  } else {
+    Tone.Master.mute = false;
+  }
 }
 
-Person.prototype.calculateAge = function() {
-   console.log(2018 - this.yearOfBirth);
-}
-
-var john = new Person('John', 1990, 'teacher');
-var jane = new Person('Jane', 1995, 'designer');
-var mark = new Person('Mark', 1946, 'retired');
-
-john.calculateAge();
-jane.calculateAge();
-mark.calculateAge();*/
-
-//----------------------------------
-//  BUTTONS
-//----------------------------------
-
-var buttonOneVariable = false;
-
-function buttonOne() {
-  /*  if (buttonOneVariable == false) {
-      document.getElementById("mySidenav").style.width = window.innerWidth;
-    }
-    if (buttonOneVariable == true) {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    if (buttonOneVariable == true) {
-      buttonOneVariable = false;
-    } else {
-      buttonOneVariable = true;
-    }*/
-}
-
-function buttonTwo() {
-  console.log("luis2");
-}
-
-function buttonThree() {
-  console.log("luis3");
-}
-
-
-// --------------------------- SLIDERS --------------------------
-//REVERB
-
-var reverb_roomsize = new Nexus.Slider('#reverb_roomsize', {
-  'size': [200, 20],
-  step: 0.1,
+var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
+  'size': [250, 100]
 });
-reverb_roomsize.min = 1;
-reverb_roomsize.max = 2;
-reverb_roomsize.value = 1;
-reverb_roomsize.on('change', function(v) {
-  console.log("Reverb Roomsize" + v);
-  reverb.roomSize.value = v;
+oscilloscope.connect(Tone.Master);
 
+var synthvolume = new Nexus.Dial('#synthvolume', {
+  'size': [40, 40],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': -30,
+  'max': 0,
+  'step': 0.001,
+  'value': -15
+});
+synthvolume.on('change', function(v) {
+  polySynth.volume.value = v;
 });
 
-var reverb_wetdry = new Nexus.Slider('#reverb_wetdry', {
-  step: 0.01,
+var backgroundvolume = new Nexus.Dial('#backgroundvolume', {
+  'size': [40, 40],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': -50,
+  'max': -10,
+  'step': 0.001,
+  'value': -12
 });
-reverb_wetdry.min = 0.1;
-reverb_wetdry.max = 0.2;
-reverb_wetdry.value = 0.1;
-reverb_wetdry.on('change', function(v) {
-  console.log("Reverb WetDry" + v);
-  reverb.wet.value = v;
-});
-
-var reverb_damp = new Nexus.Slider('#reverb_damp', {});
-reverb_damp.min = 1000;
-reverb_damp.max = 5000;
-reverb_damp.on('change', function(v) {
-  console.log("Reverb Damp" + v);
-  console.log("NOTWORKING ATM");
+backgroundvolume.on('change', function(v) {
+  noiseOne.volume.value = v;
 });
 
-//VIBRATO
-
-var vibrato_frequency = new Nexus.Slider('#vibrato_frequency', {});
-vibrato_frequency.min = 0;
-vibrato_frequency.max = 10;
-vibrato_frequency.value = 5;
-vibrato_frequency.on('change', function(v) {
-  vibrato.frequency.value = v;
-  console.log("Vibrato Frequency" + v);
-});
-
-var vibrato_depth = new Nexus.Slider('#vibrato_depth', {
+var synthAttack = new Nexus.Slider('#synthAttack', {
+  min: 0.01,
+  max: 0.8,
   step: 0.001,
+  mode: 'absolute',
+  value: 0.01
 });
-vibrato_depth.min = 0.1;
-vibrato_depth.max = 2;
-vibrato_depth.value = 0.2;
-vibrato_depth.on('change', function(v) {
-  vibrato.depth.value = v;
-  console.log("Vibrato Depth" + v);
-});
-
-var vibrato_maxdelay = new Nexus.Slider('#vibrato_maxdelay', {});
-vibrato_maxdelay.min = 0;
-vibrato_maxdelay.max = 0.01;
-vibrato_maxdelay.value = 0.005;
-vibrato_maxdelay.on('change', function(v) {
-  vibrato.maxdelay.value = v;
-  console.log("Vibrato Depth" + v);
-  console.log("NOT WORKING");
+synthAttack.on('change', function(v) {
+  polySynth.set({
+    "envelope": {
+      "attack": v
+    }
+  });
 });
 
+var synthDecay = new Nexus.Slider('#synthDecay', {
+  min: 0,
+  max: 1,
+  step: 0.01,
+  mode: 'absolute',
+  value: 0.1
+});
+synthDecay.on('change', function(v) {
+  polySynth.set({
+    "envelope": {
+      "decay": v
+    }
+  });
+});
+
+var synthSustain = new Nexus.Slider('#synthSustain', {
+  min: 0,
+  max: 1,
+  step: 0.01,
+  mode: 'absolute',
+  value: 0.2
+});
+synthSustain.on('change', function(v) {
+  polySynth.set({
+    "envelope": {
+      "sustain": v
+    }
+  });
+});
+
+var synthRelease = new Nexus.Slider('#synthRelease', {
+  min: 0,
+  max: 10,
+  step: 0.01,
+  mode: 'absolute',
+  value: 4
+});
+synthRelease.on('change', function(v) {
+  polySynth.set({
+    "envelope": {
+      "release": v
+    }
+  });
+});
+
+var harmonicity = new Nexus.Slider('#harmonicity', {
+  min: 0,
+  max: 50,
+  step: 0.1,
+  mode: 'absolute',
+  value: 10
+});
+harmonicity.on('change', function(v) {
+  polySynth.set({
+    "harmonicity": v
+  });
+});
+
+var modulationindex = new Nexus.Slider('#modulationindex', {
+  min: 0,
+  max: 50,
+  step: 0.1,
+  mode: 'absolute',
+  value: 10
+});
+modulationindex.on('change', function(v) {
+  polySynth.set({
+    "modulationIndex": v
+  });
+});
+
+var detune = new Nexus.Slider('#detune', {
+  min: 0,
+  max: 5000,
+  step: 0.1,
+  mode: 'absolute',
+  value: 0
+});
+detune.on('change', function(v) {
+  polySynth.set({
+    "detune": v
+  });
+});
 
 
-//FILTER AND Q
 
-var filter_frequency = new Nexus.Slider('#filter_frequency', {});
-filter_frequency.min = 50;
-filter_frequency.max = 1000;
-filter_frequency.value = 100;
-filter_frequency.on('change', function(v) {});
+var select = new Nexus.Select('#select', {
+  'size': [100, 30],
+  'options': ['default', 'options']
+});
+select.on('change', function(v) {
+  console.log(v);
+});
 
-var filter_q = new Nexus.Slider('#filter_q', {});
-filter_q.min = 0;
-filter_q.max = 0.3;
-filter_q.value = 0.1;
-filter_q.on('change', function(v) {});
+var oscillatorModulationIndex = new Nexus.Slider('#oscillatorModulationIndex', {
+  min: 0,
+  max: 10,
+  step: 0.01,
+  mode: 'absolute',
+  value: 3
+});
+oscillatorModulationIndex.on('change', function(v) {
+  polySynth.set({
+    "oscillator": {
+      "modulationIndex": v
+    }
+  });
+});
 
-
-
-// ------------------------------------------------------------------------
-
-
-
-
-
+var oscillatorHarmonicity = new Nexus.Slider('#oscillatorHarmonicity', {
+  min: 0,
+  max: 10,
+  step: 0.01,
+  mode: 'absolute',
+  value: 3.4
+});
+oscillatorHarmonicity.on('change', function(v) {
+  polySynth.set({
+    "oscillator": {
+      "harmonicity": v
+    }
+  });
+});
 
 
 
 /*
-window.onload = function() {
-  console.clear();
-  // can have Tone.Js setup
-};
-
 $(document).ready(function() {});
 
 CHANGE MOBILE THINGS AND PUT DIFFERENT BEHAVIORS (TONE PAYBACK IN VISUALS)
@@ -170,3 +286,34 @@ nx.onload = function() {
   // });
 }
 */
+/*check this
+var player = new Tone.Player("./path/to/sample.mp3").toMaster();
+  play as soon as the buffer is loaded
+player.autostart = true;
+*/
+
+/*var Person = function(name, yearOfBirth, job){
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+}
+
+Person.prototype.calculateAge = function() {
+   console.log(2018 - this.yearOfBirth);
+}
+
+var john = new Person('John', 1990, 'teacher');
+var jane = new Person('Jane', 1995, 'designer');
+var mark = new Person('Mark', 1946, 'retired');
+
+john.calculateAge();
+jane.calculateAge();
+mark.calculateAge();*/
+
+function sawTooth() {
+  polySynth.set({
+    "oscillator": {
+      "type": "sawtooth6"
+    }
+  });
+}

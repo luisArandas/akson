@@ -46,89 +46,17 @@ body.fadeIn {
 }
 
 .btn {
-  font-family: monospace;
-  background-color: #505050;
-  border: 1px solid #303030;
   border-radius: 5px;
-  height: 40px;
-  width: 80px;
-
 }
 
-.btn span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
 
-.btn span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
 
-.btn:hover span {
-  padding-right: 25px;
-}
-
-.btn:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary.active, .btn-primary.target, .open>.dropdown-toggle.btn-primary {
-  color: #ffffff;
-  background-color: #23272a;
-  border-color: #ffffff;
-}
-
-.btn:active, .btn:focus {
-  background-color: #23272a !important;
-  border: 1px solid #303030 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  transform: translateY(4px);
-}
-
-.botton_baixo_esquerda {
-  width: 25%;
-}
-
-.about-div{
-  position: fixed; /* or absolute */
-  top: 50%;
-  left: 50%;
-  border: 3px solid green;
-  background-color: #23272a !important;
-}
-
-.btn-musica{
-  background-color: #505050;
-  border: 1px solid #303030;
-  border-radius: 5px;
-  width: 35px;
-  height: 35px;
-}
-
-.btn-musica:hover {
-  background-color: #000000;
-}
-
-.navbar-musica-cima {
-  background-color: #000000;
-  height: 40px;
-}
 
 [nexus-ui] {
-  /*border-radius: 5px;*/
-  outline: 1px solid white;
+  border-radius: 5px;
+  /*outline: 1px solid white;*/
   overflow:hidden;
 }
-
 
 .envelope_one {
 }
@@ -137,162 +65,66 @@ body.fadeIn {
   position: absolute;
   right: 10%;
   border: auto;
-  top: 10%;
+  /*top: 10%;*/
   bottom: 10%;
   border-radius: 5px;
   outline: 1px solid transparent;
 }
 
-.volumedial {
+.synthvolume {
   position: absolute;
   right: 3%;
   border: auto;
-  top: 15%;
+  bottom: 27%;
   background-color: rgba(150,150,150,1);
 }
 
-.gaindial {
+.backgroundvolume {
   position: absolute;
   right: 3%;
   border: auto;
-  bottom: 15%;
-  background-color: rgba(150,150,150,1);
-}
-
-.position_one {
-}
-
-.position_two {
-}
-
-.reverb_roomsize {
-  background-color: #000000;
-}
-
-.reverb_wetdry {
-  background-color: #000000;
-}
-
-.reverb_damp {
-  background-color: #000000;
-}
-
-.harmonicity {
-  background-color: #000000;
-}
-
-.modulation {
-  background-color: #000000;
-}
-
-.feedbackToggle{
-  background-color: #000000;
-}
-.vibratoToggle{
-  background-color: #000000;
-}
-.ppdelayToggle{
-  background-color: #000000;
-}
-.autopanToggle{
-  background-color: #000000;
-}
-
-#position_one {
-  border-radius: 5px;
-  border-width:1px;
-  border-style: solid;
-  border-color: #000000;
-  overflow:hidden;
-}
-
-#sequencer {
-  background-color: #000000;
-  position: absolute;
-  top: 10%;
   bottom: 10%;
-  left: 20%;
-  right: 35%;
-  border-radius: 5px;
+  background-color: rgba(150,150,150,1);
 }
 
 .sidenav {
-  height: 100%;
-  width: 0%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(0,0,0,0);
-  overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 60px;
-}
-/*
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
+  height: 0%;
+  width: 100%;
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(100,100,100,1);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: 0.3s;
 }
-*/
+
+#maincontrols {
+  position: absolute;
+  right: 1%;
+  top: 3%;
+}
+
+.teste {
+  height: 25px;
+  width: 120px;
+  font-size: 10px;
+  background-color: rgba(255,255,255,1);
+}
+
+.oscillatorHarmonicity {
+  position: absolute;
+  left: 125px;
+  top: 10px;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
 
-.controlcontainer {
-  position: absolute;
-  margin: auto;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  bottom: 5%;
-  left: 5%;
-  right: 5%;
-  border-radius: 10px;
-  background-color: rgba(0,0,0,0);
-}
-
-.controlcontainerheader {
-  position: absolute;
-  width: 100%;
-  top: 0px;
-  height: 10%;
-  border-radius: 5px;
-  background-color: rgba(100,100,100,1);
-}
-.controlcontainerbody{
-  position: absolute;
-  width: 100%;
-  top: 11%;
-  height: 70%;
-  border-radius: 5px;
-  background-color: rgba(100,100,100,1);
-}
-
-.controlcontainerbottom {
-  position: absolute;
-  width: 100%;
-  top: 82%;
-  height: 18%;
-  border-radius: 5px;
-  background-color: rgba(100,100,100,1);
-}
 
 .slider {
   -webkit-appearance: none;

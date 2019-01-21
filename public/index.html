@@ -33,52 +33,59 @@
   <div id="botRightPage" class="botRightPage"></div>
 
   <div id="mySidenav" class="sidenav">
-    <div class="controlcontainer">
-      <div class="controlcontainerheader">
-        <button class="btn btn-primary btn-sx btn-block" onClick=""><span>Mute</span></button></a>
-        <button class="btn btn-primary btn-sx btn-block" onClick=""><span>Mute</span></button></a>
-        <button class="btn btn-primary btn-sx btn-block" onClick=""><span>Mute</span></button></a>
-        <button class="btn btn-primary btn-sx btn-block" onClick=""><span>Mute</span></button></a>
-
-        <button class="help" onClick="buttonOne()">?</button>
-        <button class="help" onClick="buttonTwo()">?</button>
-        <button class="help" onClick="buttonThree()">?</button>
+    <div class="btn-group btn-group-sm" role="group" id="maincontrols" aria-label="...">
+      <div>
+        <button type="button" class="btn btn-secondary" onClick="buttonOne()"></button>
       </div>
-      <div class="controlcontainerbody">
-        vibrato
-        <div id="vibrato_frequency" class="vibrato_frequency"></div>
-        <div id="vibrato_depth" class="vibrato_depth"></div>
-        <div id="vibrato_maxdelay" class="vibrato_maxdelay"></div>
-        reverb
-        <div id="reverb_roomsize" class="reverb_slider_um"></div>
-        <div id="reverb_wetdry" class="reverb_wetdry"></div>
-        <div id="reverb_damp" class="reverb_damp"></div>
-        filter
-        <div id="filter_frequency" class="filter_frequency"></div>
-        <div id="filter_q" class="filter_q"></div>
-
+      <div>
+        <button type="button" class="btn btn-secondary" onClick="buttonTwo()"></button>
       </div>
-      <div class="controlcontainerbottom">
-        <div id="oscilloscope" class="oscilloscope"></div>
-        <div id="volumedial" class="volumedial"></div>
-        <div id="gaindial" class="gaindial"></div>
+      <div>
+        <button type="button" class="btn btn-secondary" onClick="buttonThree()"></button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-secondary" onClick="buttonFour()">Perform</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-secondary" onClick="buttonFive()">Mute</button>
       </div>
     </div>
-
-    <!--<div id="power" class="power"></div>
-    <div id="log"></div>
-    <div id="feedbackToggle" class="feedbackToggle"></div>
-    <div id="vibratoToggle" class="feedbackToggle"></div>
-    <div id="ppdelayToggle" class="ppdelayToggle"></div>
-    <div id="autopanToggle" class="autopanToggle"></div>
-    <div id="modulation" class="modulation"></div>
+    <div id="oscilloscope" class="oscilloscope"></div>
+    <div id="synthvolume" class="synthvolume"></div>
+    <div id="backgroundvolume" class="backgroundvolume"></div>
+    modulationEnvelope: {
+    attack: 0.5,
+    decay: 0,
+    sustain: 1,
+    release: 0.5
+    },
+    adsr
+    <div id="synthAttack" class="synthAttack"></div>
+    <div id="synthDecay" class="synthDecay"></div>
+    <div id="synthSustain" class="synthSustain"></div>
+    <div id="synthRelease" class="synthRelease"></div>
+    methods
     <div id="harmonicity" class="harmonicity"></div>
-    <div id="reverb_slider_um" class="reverb_slider_um"></div>
-    <div id="position_one" class="position_one"></div>
-    <div id="position_two" class="position_two"></div>
-    <div id="piano_one" class="piano_one"></div>
-    <div id="envelope_one" class="envelope_one"></div>
-  </div>-->
+    <div id="modulationindex" class="modulationindex"></div>
+    <div id="detune" class="detune"></div>
+    osc type
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle teste" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Dropdown
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#" data-value="action">Sine</a></li>
+        <li><a href="#" data-value="another action">Saw</a></li>
+        <li><a href="#" data-value="something else here">Square</a></li>
+        <li><a href="#" data-value="separated link" onClick="sawTooth()">Sawtooth6</a></li>
+        <li><a href="#" data-value="separated link">triangle8</a></li>
+        <li><a href="#" data-value="separated link">FMSquare</a></li>
+      </ul>
+    </div>
+    <div id="select" class="select"></div>
+    <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
+    <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
 
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>

@@ -14,11 +14,8 @@ $(document).ready(function() {
   $(".introLoadTimer").fadeIn("slow", function() {
     $(".introLoadTimer").delay(3000).fadeOut(2500);
   });
+  //console.clear(); ADD THIS
 });
-
-//I STILL GET CRACKS ON THE SPEAKERS
-//SCENE TRANSITIONS
-//VECTREX IF IS RENDER ON SCREEN THEN CHANGE FILTERS
 
 var container;
 var light;
@@ -87,7 +84,6 @@ var isSceneNine = false;
 var isSceneTen = false;
 
 var hideShow = false;
-var currentSynth;
 
 var color = "#0000FF";
 
@@ -366,16 +362,12 @@ function init() {
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
-        document.getElementById("mySidenav").style.width = '100%';
-        document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0.5)';
-        console.log(scene.children);
-        console.log(false);
+        document.getElementById("mySidenav").style.height = '33%';
+        //document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0.5)';
       }
       if (sideBar == true) {
-        document.getElementById("mySidenav").style.width = '0%';
-
-        document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0)';
-        console.log(true);
+        document.getElementById("mySidenav").style.height = '0%';
+        //document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0)';
       }
       if (sideBar == true) {
         sideBar = false;
@@ -624,27 +616,21 @@ function init() {
     }
     if (event.which == "72") {
       console.log("H");
-      currentSynth = polySynthSeis;
     }
     if (event.which == "74") {
       console.log("J");
-      currentSynth = polySynthDois;
     }
     if (event.which == "75") {
       console.log("K");
-      currentSynth = polySynthTres;
     }
     if (event.which == "76") {
       console.log("L");
-      currentSynth = polySynthQuatro;
     }
     if (event.which == "186") {
       console.log("Ç");
-      currentSynth = polySynthCinco;
     }
     if (event.which == "222") {
       console.log("~");
-      currentSynth = polySynthUm;
     }
 
     /*
@@ -741,177 +727,6 @@ function onDocumentMouseMove(event) {
 
 }
 
-// ------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------
-//              MUSIC
-// ------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------
-
-
-Nexus.context = Tone.context;
-Nexus.clock.start();
-Nexus.colors.accent = "#ffffff";
-Nexus.colors.fill = "#000000";
-
-/*nx.onload = function() {
-  nx.sendsTo("node");
-  // nx.sendsTo(function(data){
-  //     socket.emit('nx', { id: this.canvasID, data: data });
-  // });
-}*/
-
-// --------------------------- SYNTH ---------------------------
-
-
-Tone.Transport.bpm.value = 20;
-Tone.Transport.start();
-
-var compressor = new Tone.Compressor(-50, 30);
-
-var polySynthUm = new Tone.PolySynth(3, Tone.Synth, {
-  "oscillator": {
-    "type": "sawtooth6"
-  }
-}).chain(compressor, Tone.Master);
-
-var distortion = new Tone.Distortion(0.6);
-var tremolo = new Tone.Tremolo().start();
-
-var polySynthDois = new Tone.PolySynth(4, Tone.Synth).chain(distortion, tremolo, Tone.Master);
-
-var polySynthTres = new Tone.Synth({
-  oscillator: {
-    type: 'triangle8'
-  },
-  envelope: {
-    attack: 2,
-    decay: 1,
-    sustain: 0.4,
-    release: 4
-  }
-}).chain(distortion, tremolo, Tone.Master);
-
-var polySynthQuatro = new Tone.Synth({
-  oscillator: {
-    type: 'fmsquare',
-    modulationType: 'sawtooth',
-    modulationIndex: 3,
-    harmonicity: 3.4
-  },
-  envelope: {
-    attack: 0.001,
-    decay: 0.1,
-    sustain: 0.1,
-    release: 0.1
-  }
-}).chain(distortion, tremolo, Tone.Master);
-
-var polySynthCinco = new Tone.FMSynth({
-  harmonicity: 10,
-  modulationIndex: 10,
-  detune: 0,
-  oscillator: {
-    type: "sine"
-  },
-  envelope: {
-    attack: 0.01,
-    decay: 0.01,
-    sustain: 1,
-    release: 3
-  },
-  modulation: {
-    type: "sine"
-  },
-  modulationEnvelope: {
-    attack: 0.5,
-    decay: 0,
-    sustain: 1,
-    release: 0.5
-  }
-}).toMaster();
-
-var noiseOne = new Tone.Noise("pink");
-var autoFilterOne = new Tone.AutoFilter({
-  "frequency": "8m",
-  "min": 800,
-  "max": 15000
-}).connect(Tone.Master);
-noiseOne.connect(autoFilterOne);
-autoFilterOne.start();
-noiseOne.volume.value = -99;
-noiseOne.start();
-noiseOne.volume.rampTo(-10, 10);
-
-vol = new Tone.Volume(-5).toMaster();
-
-compressor = new Tone.Compressor(-10, 10).connect(vol);
-
-reverb = new Tone.Freeverb(0.8).connect(compressor);
-reverb.wet.value = 0.1;
-
-polySynthSeis = new Tone.PolySynth(3, Tone.Synth, {
-  "oscillator": {
-    "type": "sine"
-  },
-  "envelope": {
-    "attack": 0.01,
-    "decay": 0.1,
-    "sustain": 0.2,
-    "release": 4,
-  }
-});
-//var feedback = new Tone.FeedbackCombFilter(0.2, 0.5).connect(Tone.Master);
-polySynthSeis.connect(reverb);
-
-
-currentSynth = polySynthSeis;
-
-
-
-
-
-
-/*check this
-var player = new Tone.Player("./path/to/sample.mp3").toMaster();
-  play as soon as the buffer is loaded
-player.autostart = true;
-*/
-
-
-// --------------------------- OSCILOSCOPE GAIN AND VOL -------------------------
-
-var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
-  'size': [250, 100]
-});
-oscilloscope.connect(Tone.Master);
-
-var dialVolume = new Nexus.Dial('#volumedial', {
-  'size': [40, 40],
-  'interaction': 'radial', // "radial", "vertical", or "horizontal"
-  'mode': 'relative', // "absolute" or "relative"
-  'min': -30,
-  'max': 0,
-  'step': 0.01,
-  'value': -15
-});
-dialVolume.on('change', function(v) {
-  polySynth.volume.value = v;
-});
-
-var dialGain = new Nexus.Dial('#gaindial', {
-  'size': [40, 40],
-  'interaction': 'radial', // "radial", "vertical", or "horizontal"
-  'mode': 'relative', // "absolute" or "relative"
-  'min': 0,
-  'max': 1,
-  'step': 0,
-  'value': 0
-});
-dialGain.on('change', function(v) {
-  console.log(v);
-});
-
-
 // ------------------------- SOCKETS -------------------------------
 
 var data;
@@ -931,7 +746,7 @@ function onMouseDown(event) {
   if (isSceneOne == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransform.children);
     if (intersectsClick.length > 0) {
-      currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+      polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
       //playNote("4n", scalePlaying[randomSequenceOfNotes]);
       var div = document.getElementById('botLeftPage');
       div.innerHTML += scalePlaying[randomSequenceOfNotes] + '/ ';
@@ -953,7 +768,7 @@ function newDrawing(data) {
   console.log(data.x);
   console.log(data.y);
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
-  currentSynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+  polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
 
 }
 
@@ -1001,9 +816,6 @@ function onMIDIMessage(event) {
 
   if (midiValOne == 176 && midiValTwo == 8) {
     console.log(midiValThree);
-    reverb_slider_um.value = midiValThree;
-    harmonicity.value = midiValThree;
-    modulation.value = midiValThree;
   }
 }
 
@@ -1091,8 +903,3 @@ function render() {
     parentTransformTres.rotation.z = rz;
   }
 }
-
-/*function transition() {
-  document.body.classList.add('fadeOut');
-  //if I want to add cool transitions
-}*/
