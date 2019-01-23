@@ -52,6 +52,14 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     modulationType: 'sawtooth',
     modulationIndex: 3,
     harmonicity: 3.4
+    /*
+    type  : sine ,
+    frequency  : 440 ,
+    detune  : 0 ,
+    phase  : 0 ,
+    partials  : [] ,
+    partialCount  : 0
+    */
   },
   envelope: {
     attack: 0.01,
@@ -218,16 +226,6 @@ detune.on('change', function(v) {
   });
 });
 
-
-
-var select = new Nexus.Select('#select', {
-  'size': [100, 30],
-  'options': ['default', 'options']
-});
-select.on('change', function(v) {
-  console.log(v);
-});
-
 var oscillatorModulationIndex = new Nexus.Slider('#oscillatorModulationIndex', {
   min: 0,
   max: 10,
@@ -258,7 +256,91 @@ oscillatorHarmonicity.on('change', function(v) {
   });
 });
 
+var modulationEnvelopeAttack = new Nexus.Slider('#modulationEnvelopeAttack', {
+  min: 0.01,
+  max: 0.8,
+  step: 0.001,
+  mode: 'absolute',
+  value: 0.5
+});
+modulationEnvelopeAttack.on('change', function(v) {
+  polySynth.set({
+    "modulationEnvelope": {
+      "attack": v
+    }
+  });
+});
 
+var modulationEnvelopeDecay = new Nexus.Slider('#modulationEnvelopeDecay', {
+  min: 0.01,
+  max: 0.8,
+  step: 0.001,
+  mode: 'absolute',
+  value: 0
+});
+modulationEnvelopeDecay.on('change', function(v) {
+  polySynth.set({
+    "modulationEnvelope": {
+      "decay": v
+    }
+  });
+});
+
+var modulationEnvelopeSustain = new Nexus.Slider('#modulationEnvelopeSustain', {
+  min: 0.01,
+  max: 0.8,
+  step: 0.001,
+  mode: 'absolute',
+  value: 0.8
+});
+modulationEnvelopeSustain.on('change', function(v) {
+  polySynth.set({
+    "modulationEnvelope": {
+      "sustain": v
+    }
+  });
+});
+
+var modulationEnvelopeRelease = new Nexus.Slider('#modulationEnvelopeRelease', {
+  min: 0.01,
+  max: 0.8,
+  step: 0.001,
+  mode: 'absolute',
+  value: 0.5
+});
+modulationEnvelopeRelease.on('change', function(v) {
+  polySynth.set({
+    "modulationEnvelope": {
+      "release": v
+    }
+  });
+});
+
+
+var reverbRoomSize = new Nexus.Slider('#reverbRoomSize', {
+  min: 0.01,
+  max: 0.8,
+  step: 0.001,
+  mode: 'absolute',
+  value: 0.8
+});
+reverbRoomSize.on('change', function(v) {
+  reverb.roomSize.value = v;
+});
+
+var reverbWetValue = new Nexus.Slider('#reverbWetValue', {
+  min: 0.01,
+  max: 0.8,
+  step: 0.001,
+  mode: 'absolute',
+  value: 0.1
+});
+reverbWetValue.on('change', function(v) {
+  reverb.wet.value = v;
+});
+
+//FAZER O RESTO DO REVERB
+//  console.log(reverb.dampening.value);
 
 /*
 $(document).ready(function() {});
@@ -274,10 +356,6 @@ SE MOBILE DEVICE ENTAO -> .VISUALS
 VER SE CONSIGO TER UM VISUALIZADOR PARA A OSCILAÇAO OUTRO PARA O PIANO
 
 
-Nexus.context = Tone.context;
-Nexus.clock.start();
-Nexus.colors.accent = "#ff0";
-Nexus.colors.fill = "#333";
 
 nx.onload = function() {
   nx.sendsTo("node");
@@ -310,10 +388,9 @@ john.calculateAge();
 jane.calculateAge();
 mark.calculateAge();*/
 
-function sawTooth() {
-  polySynth.set({
-    "oscillator": {
-      "type": "sawtooth6"
-    }
-  });
-}
+/*------------------------------------------------------------------------------------------------------------*/
+
+var select = new Nexus.Select('#select', {
+  'size': [100, 30],
+  'options': ['default', 'options']
+})

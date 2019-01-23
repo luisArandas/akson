@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/luisArandas/akson#readme",
   "dependencies": {
+    "bootstrap-select": "^1.13.5",
     "express": "^4.16.4",
     "resonance-audio": "^1.0.0",
     "socket.io": "^2.1.1"

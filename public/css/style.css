@@ -27,39 +27,13 @@ body.fadeIn {
     opacity: 1;
 }*/
 
-.navbar {
-    background: #505050;
-    height: 60px;
-}
-
-.center_div {
-    position:absolute;
-    width: 50%;
-    height: 50%;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    margin: auto;
-    background-color: #000000;
-}
-
-.btn {
-  border-radius: 5px;
-}
-
-
-
 
 [nexus-ui] {
-  border-radius: 5px;
+  border-radius: 3px;
   /*outline: 1px solid white;*/
   overflow:hidden;
 }
 
-.envelope_one {
-}
 
 .oscilloscope {
   position: absolute;
@@ -107,54 +81,51 @@ body.fadeIn {
   top: 3%;
 }
 
-.teste {
-  height: 25px;
-  width: 120px;
-  font-size: 10px;
-  background-color: rgba(255,255,255,1);
-}
-
 .oscillatorHarmonicity {
   position: absolute;
   left: 125px;
   top: 10px;
 }
 
+.modulationEnvelopeAttack {
+  position: absolute;
+  left: 125px;
+  top: 30px;
+}
+
+.modulationEnvelopeDecay {
+  position: absolute;
+  left: 125px;
+  top: 50px;
+}
+
+.modulationEnvelopeSustain {
+  position: absolute;
+  left: 125px;
+  top: 70px;
+}
+
+.modulationEnvelopeRelease {
+  position: absolute;
+  left: 125px;
+  top: 90px;
+}
+
+.reverbRoomSize {
+  position: absolute;
+  left: 125px;
+  top: 110px;
+}
+
+.reverbWetValue {
+  position: absolute;
+  left: 125px;
+  top: 130px;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-}
-
-
-.slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 25px;
-  background: #222222;
-  outline: 1px solid white;
-  opacity: 1;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 5px;
-  height: 100%;
-  background: #ffffff;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 5px;
-  height: 100%;
-  background: #ffffff;
-  cursor: pointer;
 }
 
 /*
@@ -167,35 +138,6 @@ body.fadeIn {
     user-select: none;
 }
 */
-
-.labelUm {
-  color: white;
-  position: absolute;
-  top: 1px;
-}
-.labelDois {
-  color: white;
-  position: absolute;
-  top: 25px;
-}
-.labelTres {
-  color: white;
-  position: absolute;
-  top: 50px;
-}
-.labelQuatro {
-  color: white;
-  position: absolute;
-  top: 75px;
-}
-
-.help {
-  font-size: 1em;
-  font-weight: bold;
-  background-color: #000000;
-  color: black;
-}
-
 
 /* FADE IN */
 
@@ -358,3 +300,6 @@ body.fadeIn {
     display: none;
   }
 }
+
+
+ /*-------------------------------------------*/
