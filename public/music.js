@@ -1,7 +1,24 @@
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ */
+
+/*
 $(".dropdown-menu li a").click(function() {
   $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
   $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-});
+}); */
+
+
+var instrumentOne = false;
+var instrumentTwo = false;
+var instrumentThree = false;
+var instrumentFour = false;
+
+var connectSoundVisuals = false;
+
+//EQUALIZE THE MASTER
+//STOP THE VISUALS
+//CRIAR O BOTAO DE SEPARATE AUDIO FROM VISUALS
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
@@ -53,9 +70,6 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     modulationIndex: 3,
     harmonicity: 3.4
     /*
-    type  : sine ,
-    frequency  : 440 ,
-    detune  : 0 ,
     phase  : 0 ,
     partials  : [] ,
     partialCount  : 0
@@ -79,23 +93,6 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
 });
 polySynth.connect(reverb);
 
-
-function buttonOne() {}
-
-function buttonTwo() {}
-
-function buttonThree() {}
-
-function buttonFour() {}
-
-function buttonFive() {
-  if (Tone.Master.mute == false) {
-    Tone.Master.mute = true;
-  } else {
-    Tone.Master.mute = false;
-  }
-}
-
 var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
   'size': [250, 100]
 });
@@ -118,14 +115,29 @@ var backgroundvolume = new Nexus.Dial('#backgroundvolume', {
   'size': [40, 40],
   'interaction': 'radial', // "radial", "vertical", or "horizontal"
   'mode': 'absolute', // "absolute" or "relative"
+  'min': -99,
+  'max': 0,
+  'step': 0.001,
+  'value': -15
+});
+backgroundvolume.on('change', function(v) {
+  Tone.Master.volume.value = v;
+  console.log(Tone.Master.volume.value);
+});
+
+var mainvolume = new Nexus.Dial('#mainvolume', {
+  'size': [40, 40],
+  'interaction': 'radial', // "radial", "vertical", or "horizontal"
+  'mode': 'absolute', // "absolute" or "relative"
   'min': -50,
   'max': -10,
   'step': 0.001,
   'value': -12
 });
-backgroundvolume.on('change', function(v) {
+mainvolume.on('change', function(v) {
   noiseOne.volume.value = v;
 });
+
 
 var synthAttack = new Nexus.Slider('#synthAttack', {
   min: 0.01,
@@ -339,6 +351,24 @@ reverbWetValue.on('change', function(v) {
   reverb.wet.value = v;
 });
 
+var reverbDampValue = new Nexus.Slider('#reverbDampValue', {
+  min: 2000,
+  max: 4000,
+  step: 0.1,
+  mode: 'absolute',
+  value: 3000
+});
+reverbDampValue.on('change', function(v) {
+  reverb.dampening.value = v;
+});
+
+
+
+
+
+
+
+
 //FAZER O RESTO DO REVERB
 //  console.log(reverb.dampening.value);
 
@@ -364,7 +394,8 @@ nx.onload = function() {
   // });
 }
 */
-/*check this
+/*
+check this
 var player = new Tone.Player("./path/to/sample.mp3").toMaster();
   play as soon as the buffer is loaded
 player.autostart = true;
@@ -390,7 +421,88 @@ mark.calculateAge();*/
 
 /*------------------------------------------------------------------------------------------------------------*/
 
-var select = new Nexus.Select('#select', {
-  'size': [100, 30],
-  'options': ['default', 'options']
-})
+
+function leadInstrumentDiv() {
+  document.getElementById("instrumentoUm").style.height = '100%';
+  document.getElementById("instrumentoDois").style.height = '0%';
+  document.getElementById("instrumentoTres").style.height = '0%';
+  document.getElementById("instrumentoQuatro").style.height = '0%';
+  if (connectSoundVisuals == true) {
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 81,
+      'which': 81
+    });
+    document.dispatchEvent(evt);
+  }
+}
+
+function backgroundInstrumentDiv() {
+  document.getElementById("instrumentoDois").style.height = '100%';
+  document.getElementById("instrumentoUm").style.height = '0%';
+  document.getElementById("instrumentoTres").style.height = '0%';
+  document.getElementById("instrumentoQuatro").style.height = '0%';
+  if (connectSoundVisuals == true) {
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 87,
+      'which': 87
+    });
+    document.dispatchEvent(evt);
+  }
+}
+
+function sequencerInstrumentDiv() {
+  document.getElementById("instrumentoTres").style.height = '100%';
+  document.getElementById("instrumentoUm").style.height = '0%';
+  document.getElementById("instrumentoDois").style.height = '0%';
+  document.getElementById("instrumentoQuatro").style.height = '0%';
+  if (connectSoundVisuals == true) {
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 69,
+      'which': 69
+    });
+    document.dispatchEvent(evt);
+  }
+}
+
+function backTwoInstrumentDiv() {
+  document.getElementById("instrumentoQuatro").style.height = '100%';
+  document.getElementById("instrumentoUm").style.height = '0%';
+  document.getElementById("instrumentoDois").style.height = '0%';
+  document.getElementById("instrumentoTres").style.height = '0%';
+  if (connectSoundVisuals == true) {
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 82,
+      'which': 82
+    });
+    document.dispatchEvent(evt);
+  }
+}
+
+function muteButton() {
+  if (Tone.Master.mute == false) {
+    Tone.Master.mute = true;
+  } else {
+    Tone.Master.mute = false;
+  }
+}
+
+function connectButton() {
+  if (connectSoundVisuals == true) {
+    connectSoundVisuals = false;
+    console.log("not connected");
+  } else {
+    connectSoundVisuals = true;
+    console.log("connected");
+  }
+}
+
+
+
+
+function selectOneSaw() {
+  polySynth.set({
+    "oscillator": {
+      "type": "saw"
+    }
+  });
+}

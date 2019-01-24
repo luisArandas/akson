@@ -4,10 +4,11 @@ html * {
    /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
    font-weight: 10;
    font-size: 8px;
-   cursor: cell;
+   cursor: cell !important;
    transition: background-color .5s;
+   overflow-x: hidden !important;
+   overflow-y: hidden !important;
 }
-
 
 html, body {
   background: #000000;
@@ -37,7 +38,7 @@ body.fadeIn {
 
 .oscilloscope {
   position: absolute;
-  right: 10%;
+  right: 3%;
   border: auto;
   /*top: 10%;*/
   bottom: 10%;
@@ -48,16 +49,24 @@ body.fadeIn {
 .synthvolume {
   position: absolute;
   right: 3%;
+  top: 20%;
   border: auto;
-  bottom: 27%;
   background-color: rgba(150,150,150,1);
 }
 
 .backgroundvolume {
   position: absolute;
-  right: 3%;
+  right: 7%;
+  top: 20%;
   border: auto;
-  bottom: 10%;
+  background-color: rgba(150,150,150,1);
+}
+
+.mainvolume {
+  position: absolute;
+  right: 11%;
+  top: 20%;
+  border: auto;
   background-color: rgba(150,150,150,1);
 }
 
@@ -121,6 +130,12 @@ body.fadeIn {
   position: absolute;
   left: 125px;
   top: 130px;
+}
+
+.reverbDampValue {
+  position: absolute;
+  left: 125px;
+  top: 155px;
 }
 
 @media screen and (max-height: 450px) {
@@ -302,4 +317,69 @@ body.fadeIn {
 }
 
 
- /*-------------------------------------------*/
+/*------------------- NAVBAR ------------------------*/
+
+.muteButton {
+  position: absolute;
+  right: 2%;
+}
+
+.connectButton {
+  position: absolute;
+  right: 8%;
+}
+
+.instrumentoUm {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: rgb(255,0,0,1);
+  transition: 0.3s;
+
+}
+.instrumentoDois {
+  position: absolute;
+  width: 70%;
+  height: 0%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: rgb(0,255,0,1);
+  transition: 0.3s;
+
+}
+.instrumentoTres {
+  position: absolute;
+  width: 70%;
+  height: 0%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: rgb(0,0,255,1);
+  transition: 0.3s;
+
+}
+.instrumentoQuatro {
+  position: absolute;
+  width: 70%;
+  height: 0%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: rgb(255,255,255,1);
+  transition: 0.3s;
+
+}
+.instrumentoCinco {
+  position: absolute;
+  width: 70%;
+  height: 0%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: rgb(0,0,0,1);
+  transition: 0.3s;
+
+}
+
+.select {
+  -webkit-appearance: button;
+}

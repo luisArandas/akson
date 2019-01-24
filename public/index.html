@@ -21,7 +21,8 @@
 
 <body class="fade-in">
   <div class="introLoadTimer"></div>
-  <div id="topLeftPage" class="topLeftPage">CAUTION press space for the engine default controls to appear <br>
+  <div id="topLeftPage" class="topLeftPage">
+    CAUTION press space for the engine default controls to appear <br>
     keyboard controls { <br>
     first line QWERTY -> geometries; STOP AT "T" <br>
     CAUTION second line ASDFG -> shaders and audio filters; <br>
@@ -33,54 +34,56 @@
   <div id="botRightPage" class="botRightPage"></div>
 
   <div id="mySidenav" class="sidenav">
-    <div class="btn-group btn-group-sm" role="group" id="maincontrols" aria-label="...">
-      <div>
-        <button type="button" class="btn btn-secondary" onClick="buttonOne()"></button>
-      </div>
-      <div>
-        <button type="button" class="btn btn-secondary" onClick="buttonTwo()"></button>
-      </div>
-      <div>
-        <button type="button" class="btn btn-secondary" onClick="buttonThree()"></button>
-      </div>
-      <div>
-        <button type="button" class="btn btn-secondary" onClick="buttonFour()">Perform</button>
-      </div>
-      <div>
-        <button type="button" class="btn btn-secondary" onClick="buttonFive()">Mute</button>
-      </div>
-    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <button class="btn btn-sm btn-outline-secondary" type="button" onClick="leadInstrumentDiv()">Lead</button>
+      <button class="btn btn-sm btn-outline-secondary" type="button" onClick="backgroundInstrumentDiv()">Back</button>
+      <button class="btn btn-sm btn-outline-secondary" type="button" onClick="sequencerInstrumentDiv()">Sequ</button>
+      <button class="btn btn-sm btn-outline-secondary" type="button" onClick="backTwoInstrumentDiv()">BckT</button>
+      <button class="btn btn-sm btn-outline-secondary muteButton" type="button" onClick="muteButton()">Mute</button>
+      <button class="btn btn-sm btn-outline-secondary connectButton" type="button" onClick="connectButton()">⇅</button>
+    </nav>
     <div id="oscilloscope" class="oscilloscope"></div>
     <div id="synthvolume" class="synthvolume"></div>
     <div id="backgroundvolume" class="backgroundvolume"></div>
-    modulationEnvelope: {
-    attack: 0.5,
-    decay: 0,
-    sustain: 1,
-    release: 0.5
-    },
-    adsr
-    <div id="synthAttack" class="synthAttack"></div>
-    <div id="synthDecay" class="synthDecay"></div>
-    <div id="synthSustain" class="synthSustain"></div>
-    <div id="synthRelease" class="synthRelease"></div>
-    methods
-    <div id="harmonicity" class="harmonicity"></div>
-    <div id="modulationindex" class="modulationindex"></div>
-    <div id="detune" class="detune"></div>
-    osc type
-    <div id="select" class"select"></div>
+    <div id="mainvolume" class="mainvolume"></div>
 
-    <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
-    <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
+    <div id="instrumentoUm" class="instrumentoUm">
+      adsr
+      <div id="synthAttack" class="synthAttack"></div>
+      <div id="synthDecay" class="synthDecay"></div>
+      <div id="synthSustain" class="synthSustain"></div>
+      <div id="synthRelease" class="synthRelease"></div>
+      methods
+      <div id="harmonicity" class="harmonicity"></div>
+      <div id="modulationindex" class="modulationindex"></div>
+      <div id="detune" class="detune"></div>
+      osc type
 
-    <div id="modulationEnvelopeAttack" class="modulationEnvelopeAttack"></div>
-    <div id="modulationEnvelopeDecay" class="modulationEnvelopeDecay"></div>
-    <div id="modulationEnvelopeSustain" class="modulationEnvelopeSustain"></div>
-    <div id="modulationEnvelopeRelease" class="modulationEnvelopeRelease"></div>
+      <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
+      <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
 
-    <div id="reverbRoomSize" class="reverbRoomSize"></div>
-    <div id="reverbWetValue" class="reverbWetValue"></div>
+      <div id="modulationEnvelopeAttack" class="modulationEnvelopeAttack"></div>
+      <div id="modulationEnvelopeDecay" class="modulationEnvelopeDecay"></div>
+      <div id="modulationEnvelopeSustain" class="modulationEnvelopeSustain"></div>
+      <div id="modulationEnvelopeRelease" class="modulationEnvelopeRelease"></div>
+
+      <div id="reverbRoomSize" class="reverbRoomSize"></div>
+      <div id="reverbWetValue" class="reverbWetValue"></div>
+      <div id="reverbDampValue" class="reverbDampValue"></div>
+    </div>
+    <div id="instrumentoDois" class="instrumentoDois">
+      instrumentoDois
+    </div>
+    <div id="instrumentoTres" class="instrumentoTres">
+      instrumentoTres
+    </div>
+    <div id="instrumentoQuatro" class="instrumentoQuatro">
+      instrumentoQuatro
+    </div>
+    <div id="instrumentoCinco" class="instrumentoCinco">
+      instrumentoCinco
+    </div>
+
 
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
