@@ -48,6 +48,12 @@
     <div id="mainvolume" class="mainvolume"></div>
 
     <div id="instrumentoUm" class="instrumentoUm">
+      <div class="btn-group-vertical btn-group-sm" role="group" aria-label="ok">
+        <button type="button" class="btn btn-secondary" onClick="selectOneSine()">Sine</button>
+        <button type="button" class="btn btn-secondary" onClick="selectOneSquare()">Square</button>
+        <button type="button" class="btn btn-secondary" onClick="selectOneSaw()">Saw</button>
+        <button type="button" class="btn btn-secondary" onClick="selectOneTriangle()">Triangle</button>
+      </div>
       adsr
       <div id="synthAttack" class="synthAttack"></div>
       <div id="synthDecay" class="synthDecay"></div>
@@ -58,7 +64,6 @@
       <div id="modulationindex" class="modulationindex"></div>
       <div id="detune" class="detune"></div>
       osc type
-
       <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
       <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
 
@@ -72,8 +77,10 @@
       <div id="reverbDampValue" class="reverbDampValue"></div>
     </div>
     <div id="instrumentoDois" class="instrumentoDois">
+
       instrumentoDois
     </div>
+
     <div id="instrumentoTres" class="instrumentoTres">
       instrumentoTres
     </div>
@@ -83,7 +90,6 @@
     <div id="instrumentoCinco" class="instrumentoCinco">
       instrumentoCinco
     </div>
-
 
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>

@@ -19,6 +19,7 @@ var connectSoundVisuals = false;
 //EQUALIZE THE MASTER
 //STOP THE VISUALS
 //CRIAR O BOTAO DE SEPARATE AUDIO FROM VISUALS
+//SET PRESETS
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
@@ -70,7 +71,9 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     modulationIndex: 3,
     harmonicity: 3.4
     /*
+    THIS
     phase  : 0 ,
+    osc.phase = 180; //flips the phase of the oscillator
     partials  : [] ,
     partialCount  : 0
     */
@@ -496,13 +499,34 @@ function connectButton() {
   }
 }
 
-
-
+function selectOneSine() {
+  polySynth.set({
+    "oscillator": {
+      "type": "sawtooth6"
+    }
+  });
+}
 
 function selectOneSaw() {
   polySynth.set({
     "oscillator": {
-      "type": "saw"
+      "type": "sawtooth6"
+    }
+  });
+}
+
+function selectOneSquare() {
+  polySynth.set({
+    "oscillator": {
+      "type": "square4"
+    }
+  });
+}
+
+function selectOneTriangle() {
+  polySynth.set({
+    "oscillator": {
+      "type": "triangle8"
     }
   });
 }

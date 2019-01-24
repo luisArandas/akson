@@ -143,16 +143,7 @@ body.fadeIn {
   .sidenav a {font-size: 18px;}
 }
 
-/*
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-*/
+
 
 /* FADE IN */
 
@@ -343,8 +334,8 @@ body.fadeIn {
   position: absolute;
   width: 70%;
   height: 0%;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  /*overflow-x: hidden;
+  overflow-y: hidden;*/
   background-color: rgb(0,255,0,1);
   transition: 0.3s;
 
@@ -378,8 +369,4 @@ body.fadeIn {
   background-color: rgb(0,0,0,1);
   transition: 0.3s;
 
-}
-
-.select {
-  -webkit-appearance: button;
 }
