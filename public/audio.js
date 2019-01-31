@@ -16,10 +16,15 @@ var instrumentFour = false;
 
 var connectSoundVisuals = false;
 
+//MAKE DATA MUSIC
 //EQUALIZE THE MASTER
 //STOP THE VISUALS
 //CRIAR O BOTAO DE SEPARATE AUDIO FROM VISUALS
 //SET PRESETS
+//TOCAR MAIS QUE UMA NOTA QUANDO EU onMouseDown
+//https://tonejs.github.io/docs/r13/CtrlMarkov
+//STREAM OS CONTROLOS
+
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
@@ -95,6 +100,10 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
   },
 });
 polySynth.connect(reverb);
+
+
+/* ---------------------------- NEXUS ---------------------------- */
+
 
 var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
   'size': [250, 100]
@@ -366,45 +375,70 @@ reverbDampValue.on('change', function(v) {
 });
 
 
+/* ------------------------- NOISE -------------------------- */
 
-
-
-
-
-
-//FAZER O RESTO DO REVERB
-//  console.log(reverb.dampening.value);
-
-/*
-$(document).ready(function() {});
-
-CHANGE MOBILE THINGS AND PUT DIFFERENT BEHAVIORS (TONE PAYBACK IN VISUALS)
-loading bar on query
-call js function from another page
-document.onload = function ...
-document.addEventListener("DOMContentLoaded", function(){
-    //....
+var noiseOnePlaybackRate = new Nexus.Slider('#noiseOnePlaybackRate', {
+  min: 2000,
+  max: 4000,
+  step: 0.1,
+  mode: 'absolute',
+  value: 3000
 });
-SE MOBILE DEVICE ENTAO -> .VISUALS
-VER SE CONSIGO TER UM VISUALIZADOR PARA A OSCILAÇAO OUTRO PARA O PIANO
+noiseOnePlaybackRate.on('change', function(v) {});
 
 
+var autoFilterFrequency = new Nexus.Slider('#autoFilterFrequency', {
+  min: 2000,
+  max: 4000,
+  step: 0.1,
+  mode: 'absolute',
+  value: 3000
+});
+autoFilterFrequency.on('change', function(v) {});
 
-nx.onload = function() {
-  nx.sendsTo("node");
-  // nx.sendsTo(function(data){
-  //     socket.emit('nx', { id: this.canvasID, data: data });
-  // });
-}
-*/
+var autoFilterMin = new Nexus.Slider('#autoFilterMin', {
+  min: 2000,
+  max: 4000,
+  step: 0.1,
+  mode: 'absolute',
+  value: 3000
+});
+autoFilterMin.on('change', function(v) {});
+
+
+var autoFilterMax = new Nexus.Slider('#autoFilterMax', {
+  min: 2000,
+  max: 4000,
+  step: 0.1,
+  mode: 'absolute',
+  value: 3000
+});
+autoFilterMax.on('change', function(v) {});
+
 /*
+AUTOFILTER
+frequency  : 1 ,
+type  : sine ,
+depth  : 1 ,
+baseFrequency  : 200 ,
+octaves  : 2.6 ,
+filter  : {
+type  : lowpass ,
+rolloff  : -12 ,
+Q  : 1
+}
+
+*/
+
+
+/*
+
 check this
 var player = new Tone.Player("./path/to/sample.mp3").toMaster();
   play as soon as the buffer is loaded
 player.autostart = true;
-*/
 
-/*var Person = function(name, yearOfBirth, job){
+var Person = function(name, yearOfBirth, job){
     this.name = name;
     this.yearOfBirth = yearOfBirth;
     this.job = job;
@@ -422,7 +456,7 @@ john.calculateAge();
 jane.calculateAge();
 mark.calculateAge();*/
 
-/*------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
 
 
 function leadInstrumentDiv() {
@@ -528,5 +562,23 @@ function selectOneTriangle() {
     "oscillator": {
       "type": "triangle8"
     }
+  });
+}
+
+function noiseWhite() {
+  noiseOne.type = "white";
+}
+
+function noiseBrown() {
+  noiseOne.type = "brown";
+}
+
+function noisePink() {
+  noiseOne.type = "pink";
+}
+
+function noiseOneFrequencyTime(data) {
+  autoFilterOne.set({
+    "frequency": data
   });
 }

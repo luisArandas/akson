@@ -13,6 +13,9 @@ io.sockets.on('connection', newConnection);
 
 var connections = 0;
 
+//https://github.com/guergana/socket-tone/blob/master/index.js
+//https://github.com/zoutepopcorn/audio_socket/blob/master/html/index.html
+
 function newConnection(socket) {
   connections++;
   console.log("new connection: " + socket.id);

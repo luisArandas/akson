@@ -48,6 +48,7 @@
     <div id="mainvolume" class="mainvolume"></div>
 
     <div id="instrumentoUm" class="instrumentoUm">
+      instrumentoum
       <div class="btn-group-vertical btn-group-sm" role="group" aria-label="ok">
         <button type="button" class="btn btn-secondary" onClick="selectOneSine()">Sine</button>
         <button type="button" class="btn btn-secondary" onClick="selectOneSquare()">Square</button>
@@ -77,10 +78,34 @@
       <div id="reverbDampValue" class="reverbDampValue"></div>
     </div>
     <div id="instrumentoDois" class="instrumentoDois">
-
       instrumentoDois
+      <div class="btn-group-vertical btn-group-sm" role="group" aria-label="ok">
+        <button type="button" class="btn btn-secondary" onClick="noiseWhite()">White</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseBrown()">Brown</button>
+        <button type="button" class="btn btn-secondary" onClick="noisePink()">Pink</button>
+      </div>
+      <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
+      <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
+      <div id="autoFilterMin" class="autoFilterMin"></div>
+      <div id="autoFilterMax" class="autoFilterMax"></div>
+      <div class="btn-group-horizontal btn-group-sm" role="group" aria-label="ok">
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2m')">2m</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4m')">4m</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8m')">8m</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16m')">16m</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32m')">32m</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2n')">2n</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4n')">4n</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8n')">8n</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16n')">16n</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32n')">32n</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2t')">2t</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4t')">4t</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8t')">8t</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16t')">16t</button>
+        <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32t')">32t</button>
+      </div>
     </div>
-
     <div id="instrumentoTres" class="instrumentoTres">
       instrumentoTres
     </div>
@@ -141,7 +166,8 @@
       <script src="libraries/AfterimagePass.js"></script>
       <script src="libraries/Tone.Editor.js" charset="utf-8"></script>
       <script src="index.js" type="text/javascript"></script>
-      <script src="music.js" type="text/javascript"></script>
+      <script src="audio.js" type="text/javascript"></script>
+      <script src="markov.js" type="text/javascript"></script>
     </div>
     <!-- BARRA DE BAIXO -->
 

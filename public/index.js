@@ -2,6 +2,24 @@
  * @author Luis Arandas  http://luisarandas.org
  */
 
+
+/*
+var windowWidth = $(window).width(),
+  windowHeight = $(window).height();
+var isMobile = navigator.userAgent.match(/mobile/i);
+var webGLTrue = false;
+
+if (window.WebGLRenderingContext) {
+  webGLTrue = true;
+}
+
+if (isMobile) {
+  $('body').addClass('mobile');
+} else if (!isMobile) {
+  $('body').addClass('desktop');
+}
+*/
+
 $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
@@ -17,6 +35,8 @@ $(document).ready(function() {
   //console.clear(); ADD THIS
   console.log("volume " + Tone.Master.volume.value);
 });
+
+//https://github.com/yiwenl/Alfrid
 
 var container;
 var light;
@@ -62,6 +82,7 @@ var composerThree;
 var composerFour;
 
 var whichVisuals;
+
 //ESTAMOS EM PENTATONICA MAIOR
 var sequenceOfNotesC = ['C2', 'D2', 'E2', 'G2', 'A2', 'C3', 'D3', 'E3', 'G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
 var sequenceOfNotesD = ['D2', 'E2', 'F#2', 'A2', 'B2', 'D3', 'E3', 'F#3', 'A3', 'B3', 'D4', 'E4', 'F#4', 'A4', 'B4', 'D5', 'E5', 'F#5', 'A5', 'B5', 'D6'];
@@ -733,6 +754,7 @@ function onDocumentMouseMove(event) {
 var data;
 
 function onMouseDown(event) {
+  markovNote();
   event.preventDefault();
   var data = {
     x: event.clientX,
