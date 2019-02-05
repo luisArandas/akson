@@ -38,11 +38,10 @@ $(document).ready(function() {
 
 //https://github.com/yiwenl/Alfrid
 
-var container;
-var light;
-var scene;
-var scene2;
 var camera,
+  scene,
+  light,
+  container,
   raycaster,
   renderer,
   parentTransform,
@@ -57,16 +56,6 @@ var camera,
   sphereInter;
 var radius = 100;
 var theta = 0;
-var teclaQ = false,
-  teclaW = false,
-  teclaE = false,
-  teclaR = false,
-  teclaT = false,
-  teclaY = false,
-  teclaU = false,
-  teclaI = false,
-  teclaO = false,
-  teclaP = false;
 var sideBar = false;
 var mouse = new THREE.Vector2(),
   INTERSECTED;
