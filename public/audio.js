@@ -106,7 +106,7 @@ polySynth.connect(reverb);
 
 
 var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
-  'size': [250, 100]
+  'size': [243, 100]
 });
 oscilloscope.connect(Tone.Master);
 

@@ -30,22 +30,25 @@ body.fadeIn {
 
 
 [nexus-ui] {
-  border-radius: 3px;
-  /*outline: 1px solid white;*/
-  overflow:hidden;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
+  box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
+  overflow: hidden;
 }
 
 
 .oscilloscope {
   position: absolute;
-  right: 3%;
-  border: auto;
-  /*top: 10%;*/
-  bottom: 10%;
+  margin: auto;
+  left: 5%;
+  bottom: 3%;
   border-radius: 5px;
-  outline: 1px solid transparent;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
+  box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
 }
-
+/*
 .synthvolume {
   position: absolute;
   right: 3%;
@@ -69,7 +72,7 @@ body.fadeIn {
   border: auto;
   background-color: rgba(150,150,150,1);
 }
-
+*/
 .sidenav {
   height: 0%;
   width: 100%;
@@ -89,7 +92,7 @@ body.fadeIn {
   right: 1%;
   top: 3%;
 }
-
+/*
 .oscillatorHarmonicity {
   position: absolute;
   left: 125px;
@@ -137,7 +140,7 @@ body.fadeIn {
   left: 125px;
   top: 155px;
 }
-
+*/
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -369,4 +372,10 @@ body.fadeIn {
   background-color: rgb(0,0,0,1);
   transition: 0.3s;
 
+}
+
+/*NEW GUI*/
+
+.wui-dialog-header {
+  height: 500px;
 }

@@ -37,7 +37,6 @@ $(document).ready(function() {
 });
 
 //https://github.com/yiwenl/Alfrid
-
 var camera,
   scene,
   light,
