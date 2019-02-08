@@ -376,6 +376,7 @@ body.fadeIn {
 
 /*NEW GUI*/
 
-.wui-dialog-header {
-  height: 500px;
+.wui-tab {
+  border-bottom: none;
+  border-top: none;
 }
