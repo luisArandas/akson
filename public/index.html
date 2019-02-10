@@ -21,20 +21,17 @@
 
 <body class="fade-in">
   <div class="introLoadTimer"></div>
-  <div id="topLeftPage" class="topLeftPage">
-    CAUTION press space for the engine default controls to appear <br>
-    keyboard controls { <br>
-    first line QWERTY -> geometries; STOP AT "T" <br>
-    CAUTION second line ASDFG -> shaders and audio filters; <br>
-    third line ZXCV -> change scales; <br>
-    press "-" to remove text from screen;
-  </div>
   <div id="master_dialog">
     <div>
       <div id="synthvolume" class="synthvolume"></div>
       <div id="backgroundvolume" class="backgroundvolume"></div>
       <div id="mainvolume" class="mainvolume"></div>
       <div id="oscilloscope" class="oscilloscope"></div>
+    </div>
+  </div>
+
+  <div id="logs_ok">
+    <div id="logs" style="text-align: center; font-size: 10pt; color:white ; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
     </div>
   </div>
 
@@ -48,6 +45,12 @@
       </div>
       <div>
         <div>
+          <div class="btn-group-vertical btn-group-sm buttonsone" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary" onClick="selectOneSine()">Sine</button>
+            <button type="button" class="btn btn-secondary" onClick="selectOneSquare()">Square</button>
+            <button type="button" class="btn btn-secondary" onClick="selectOneSaw()">Saw</button>
+            <button type="button" class="btn btn-secondary" onClick="selectOneTriangle()">Triangle</button>
+          </div>
           <div id="demo_integrated_dialog" style="position: relative;">
             <div style="text-align: center; font-size: 9pt; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
               <div id="synthAttack" class="synthAttack"></div>
@@ -82,8 +85,44 @@
           </div>
         </div>
         <div>
-          SEGUNDA LINHA
-          <div id="my_dropdown"></div>
+          <div class="btn-group-vertical btn-group-sm buttonsone" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary" onClick="noiseWhite()">White</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseBrown()">Brown</button>
+            <button type="button" class="btn btn-secondary" onClick="noisePink()">Pink</button>
+          </div>
+          <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
+          <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
+          <div id="autoFilterMin" class="autoFilterMin"></div>
+          <div id="autoFilterMax" class="autoFilterMax"></div>
+
+          <div id="autoFilterWet" class="autoFilterWet"></div>
+          <div id="autoFilterDepth" class="autoFilterDepth"></div>
+
+          <div class="btn-group-vertical btn-group-sm buttonsone" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary" onClick="">AF_Sine</button>
+            <button type="button" class="btn btn-secondary" onClick="">AF_Square</button>
+            <button type="button" class="btn btn-secondary" onClick="">AF_Saw</button>
+            <button type="button" class="btn btn-secondary" onClick="">AF_Triangle</button>
+          </div>
+
+
+          <div class="btn-group-horizontal btn-group-sm" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2m')">2m</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4m')">4m</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8m')">8m</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16m')">16m</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32m')">32m</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2n')">2n</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4n')">4n</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8n')">8n</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16n')">16n</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32n')">32n</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2t')">2t</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4t')">4t</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8t')">8t</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16t')">16t</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32t')">32t</button>
+          </div>
         </div>
         <div>
           TERCEIRA LINHA
@@ -110,49 +149,7 @@
       </nav>
 
 
-      <div id="instrumentoUm" class="instrumentoUm">
-        instrumentoum
-        <div class="btn-group-vertical btn-group-sm" role="group" aria-label="ok">
-          <button type="button" class="btn btn-secondary" onClick="selectOneSine()">Sine</button>
-          <button type="button" class="btn btn-secondary" onClick="selectOneSquare()">Square</button>
-          <button type="button" class="btn btn-secondary" onClick="selectOneSaw()">Saw</button>
-          <button type="button" class="btn btn-secondary" onClick="selectOneTriangle()">Triangle</button>
-        </div>
 
-
-
-
-
-      </div>
-      <div id="instrumentoDois" class="instrumentoDois">
-        instrumentoDois
-        <div class="btn-group-vertical btn-group-sm" role="group" aria-label="ok">
-          <button type="button" class="btn btn-secondary" onClick="noiseWhite()">White</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseBrown()">Brown</button>
-          <button type="button" class="btn btn-secondary" onClick="noisePink()">Pink</button>
-        </div>
-        <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
-        <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
-        <div id="autoFilterMin" class="autoFilterMin"></div>
-        <div id="autoFilterMax" class="autoFilterMax"></div>
-        <div class="btn-group-horizontal btn-group-sm" role="group" aria-label="ok">
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2m')">2m</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4m')">4m</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8m')">8m</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16m')">16m</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32m')">32m</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2n')">2n</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4n')">4n</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8n')">8n</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16n')">16n</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32n')">32n</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2t')">2t</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4t')">4t</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8t')">8t</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16t')">16t</button>
-          <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32t')">32t</button>
-        </div>
-      </div>
       <div id="instrumentoTres" class="instrumentoTres">
         instrumentoTres
       </div>

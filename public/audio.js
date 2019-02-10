@@ -110,6 +110,8 @@ var oscilloscope = new Nexus.Oscilloscope('#oscilloscope', {
 });
 oscilloscope.connect(Tone.Master);
 
+//----------------------
+
 var synthvolume = new Nexus.Dial('#synthvolume', {
   'size': [40, 40],
   'interaction': 'radial', // "radial", "vertical", or "horizontal"
@@ -121,6 +123,13 @@ var synthvolume = new Nexus.Dial('#synthvolume', {
 });
 synthvolume.on('change', function(v) {
   polySynth.volume.value = v;
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  console.log(_v);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "Synth volume -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
 var backgroundvolume = new Nexus.Dial('#backgroundvolume', {
@@ -135,6 +144,13 @@ var backgroundvolume = new Nexus.Dial('#backgroundvolume', {
 backgroundvolume.on('change', function(v) {
   Tone.Master.volume.value = v;
   console.log(Tone.Master.volume.value);
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  console.log(_v);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "Background volume -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
 var mainvolume = new Nexus.Dial('#mainvolume', {
@@ -148,8 +164,16 @@ var mainvolume = new Nexus.Dial('#mainvolume', {
 });
 mainvolume.on('change', function(v) {
   noiseOne.volume.value = v;
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  console.log(_v);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "Master volume -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
+//----------------------
 
 var synthAttack = new Nexus.Slider('#synthAttack', {
   min: 0.01,
@@ -210,6 +234,8 @@ synthRelease.on('change', function(v) {
     }
   });
 });
+
+//----------------------
 
 var harmonicity = new Nexus.Slider('#harmonicity', {
   min: 0,
@@ -279,6 +305,8 @@ oscillatorHarmonicity.on('change', function(v) {
     }
   });
 });
+
+//----------------------
 
 var modulationEnvelopeAttack = new Nexus.Slider('#modulationEnvelopeAttack', {
   min: 0.01,
@@ -378,55 +406,90 @@ reverbDampValue.on('change', function(v) {
 /* ------------------------- NOISE -------------------------- */
 
 var noiseOnePlaybackRate = new Nexus.Slider('#noiseOnePlaybackRate', {
-  min: 2000,
-  max: 4000,
-  step: 0.1,
+  min: 0.5,
+  max: 35,
+  step: 0.01,
   mode: 'absolute',
-  value: 3000
+  value: 1
 });
-noiseOnePlaybackRate.on('change', function(v) {});
+noiseOnePlaybackRate.on('change', function(v) {
+  noiseOne.playbackRate = v;
+});
 
 
 var autoFilterFrequency = new Nexus.Slider('#autoFilterFrequency', {
-  min: 2000,
-  max: 4000,
+  min: 500,
+  max: 5000,
   step: 0.1,
   mode: 'absolute',
-  value: 3000
+  value: 500
 });
-autoFilterFrequency.on('change', function(v) {});
+autoFilterFrequency.on('change', function(v) {
+  autoFilterOne.set({
+    "frequency": v
+  });
+  console.log("autoFilter Frequency" + v);
+});
 
 var autoFilterMin = new Nexus.Slider('#autoFilterMin', {
-  min: 2000,
-  max: 4000,
+  min: 100,
+  max: 1000,
   step: 0.1,
   mode: 'absolute',
   value: 3000
 });
-autoFilterMin.on('change', function(v) {});
+autoFilterMin.on('change', function(v) {
+  noiseOne.min = v;
+  console.log(noiseOne.min);
+});
 
 
 var autoFilterMax = new Nexus.Slider('#autoFilterMax', {
-  min: 2000,
-  max: 4000,
+  min: 1000,
+  max: 15000,
   step: 0.1,
   mode: 'absolute',
   value: 3000
 });
-autoFilterMax.on('change', function(v) {});
+autoFilterMax.on('change', function(v) {
+  noiseOne.max = v;
+  console.log(noiseOne.max);
+});
+
+
+var autoFilterWet = new Nexus.Slider('#autoFilterWet', {
+  min: 0,
+  max: 1,
+  step: 0.01,
+  mode: 'absolute',
+  value: 0.5
+});
+autoFilterWet.on('change', function(v) {
+  noiseOne.wet = v;
+  console.log(noiseOne.wet);
+});
+
+var autoFilterDepth = new Nexus.Slider('#autoFilterDepth', {
+  min: 0,
+  max: 1,
+  step: 0.01,
+  mode: 'absolute',
+  value: 1
+});
+autoFilterDepth.on('change', function(v) {
+  noiseOne.depth = v;
+  console.log(noiseOne.depth);
+});
+
 
 /*
-AUTOFILTER
-frequency  : 1 ,
-type  : sine ,
 depth  : 1 ,
 baseFrequency  : 200 ,
 octaves  : 2.6 ,
-filter  : {
 type  : lowpass ,
 rolloff  : -12 ,
 Q  : 1
-}
+
 
 */
 

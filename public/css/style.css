@@ -146,56 +146,6 @@ body.fadeIn {
   .sidenav a {font-size: 18px;}
 }
 
-
-
-/* FADE IN */
-
-
-.topLeftPage {
-  position: absolute;
-  top: 1%;
-  left: 1%;
-  width: 20%;
-  height: 15%;
-  background-color: rgba(0,0,0,0);
-  color: #ffffff;
-  overflow: hidden;
-}
-
-.topRightPage {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 25%;
-  height: 10%;
-  color: #ffffff;
-  background-color: rgba(0,0,0,0);
-  }
-
-.botLeftPage {
-  position: absolute;
-  bottom: 0px;
-  left: 2%;
-  width: 25%;
-  height: 25%;
-  background-color: rgba(0,0,0,0);
-  color: #ffffff;
-  word-wrap: break-word;
-  overflow: hidden;
-}
-
-.botRightPage {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 15%;
-  height: 25%;
-  /*opacity: 0;*/
-  color: #ffffff;
-  background-color: rgba(0,0,0,0);
-}
-
-
 /* FADE IN */
 
 .fade-in {
@@ -376,7 +326,7 @@ body.fadeIn {
 
 /*NEW GUI*/
 
-.wui-tab {
-  border-bottom: none;
-  border-top: none;
+.buttonsone {
+  position: absolute;
+  right: 5%;
 }

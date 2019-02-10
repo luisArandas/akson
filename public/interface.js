@@ -9,7 +9,10 @@ var master_dialog = WUI_Dialog.create("master_dialog", {
   open: true,
   minimized: false,
   on_open: null,
-  on_close: null,
+  on_close: function() {
+    //WUI_Dialog.open("cockpit_dialog");
+    //WUI_Dialog.create("master_dialog");
+  },
   on_pre_detach: function() {},
   on_detach: function(new_window) {
     new_window.document.title = "Master";
@@ -64,27 +67,9 @@ var cockpit_dialog = WUI_Dialog.create("cockpit_dialog", {
 
 WUI_Tabs.create("my_tabs", {
   // function called when a tab is clicked (tab index will be passed as argument)
-  on_tab_click: console.log("ok"),
+  // on_tab_click: console.log("ok"),
   // style value for the content height
 });
-
-
-WUI_DropDown.create("my_dropdown", {
-    width: "100px",
-    height: "35px",
-    // the space between the floating list of items and the dropdown "button"
-    vspacing: 10,
-    // time before the floating list close
-    ms_before_hiding: 500,
-    // default item (id) to be selected after creation
-    selected_id: 0,
-    vertical: false,
-    // function called when an item is selected, the item index is passed as argument
-    on_item_selected: console.log("on_item_selected_func")
-  },
-  // a list of items
-  ["First item", "Second item", "Third item"]
-);
 
 WUI_Dialog.create("demo_integrated_dialog", {
   title: "adsr",
@@ -147,4 +132,18 @@ WUI_Dialog.create("demo_integrated_dialog_3", {
     },
     class_name: ""
   }],
+});
+
+
+WUI_Dialog.create("logs_ok", {
+  title: "Logs",
+  width: "275px",
+  height: "400px",
+  halign: "right",
+  valign: "center",
+  closable: false,
+  draggable: true,
+  minimizable: true,
+  resizable: false,
+  status_bar: true
 });

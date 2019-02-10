@@ -23,9 +23,9 @@ if (isMobile) {
 $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
-  }
+  };
   if (detectmob() === false) { //&& onMouseDown() === true) {
-  }
+  };
 });
 
 $(document).ready(function() {
@@ -35,6 +35,7 @@ $(document).ready(function() {
   //console.clear(); ADD THIS
   console.log("volume " + Tone.Master.volume.value);
 });
+
 
 //https://github.com/yiwenl/Alfrid
 var camera,
@@ -319,6 +320,7 @@ function init() {
   window.addEventListener('mouseup', onMouseUp, false);
   window.addEventListener("touchstart", handleStart, false);
   document.addEventListener('mousemove', onDocumentMouseMove, false);
+
 
   /*effectBleach.uniforms["opacity"].value = 0.95;
   effectSepia.uniforms["amount"].value = 0.9;
@@ -638,9 +640,13 @@ function init() {
     }
     if (event.which == "186") {
       console.log("Ç");
+      WUI_Dialog.open("master_dialog");
+      WUI_Dialog.open("cockpit_dialog");
     }
     if (event.which == "222") {
       console.log("~");
+      WUI_Dialog.close("master_dialog");
+      WUI_Dialog.close("cockpit_dialog");
     }
 
     /*
@@ -757,13 +763,17 @@ function onMouseDown(event) {
   if (isSceneOne == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransform.children);
     if (intersectsClick.length > 0) {
-      polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
-      //playNote("4n", scalePlaying[randomSequenceOfNotes]);
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += scalePlaying[randomSequenceOfNotes] + '/ ';
+      Tone.context.resume().then(() => {
+        polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+        //playNote("4n", scalePlaying[randomSequenceOfNotes]);
+        var logs = document.getElementById('logs'),
+          output_node = document.createElement("div");
+        output_node.innerHTML = scalePlaying[randomSequenceOfNotes];
+        logs.appendChild(output_node);
+        logs.scrollTop = logs.scrollHeight;
+      });
     } else {}
   }
-
 }
 
 function onMouseUp(event) {

@@ -1083,9 +1083,7 @@
 
 .wui-toolbar-dropdown-content {
     visibility: hidden;
-
     opacity: 0;
-
     -webkit-transition: visibility 0s ease 250ms, opacity 250ms ease;
     transition: visibility 0s ease 250ms, opacity 250ms ease;
 
