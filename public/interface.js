@@ -10,6 +10,7 @@ var master_dialog = WUI_Dialog.create("master_dialog", {
   minimized: false,
   on_open: null,
   on_close: function() {
+    test();
     //WUI_Dialog.open("cockpit_dialog");
     //WUI_Dialog.create("master_dialog");
   },
@@ -209,5 +210,12 @@ WUI_RangeSlider.create("my_range_slider", {
   },
 
   // function to call when the slider value change with the value passed as argument
-  on_change: console.log("ok") //slider_change
+  on_change: function() {
+    console.log("ok");
+  } //slider_change
 });
+
+function test() {
+  WUI_Dialog.open("master_dialog");
+  console.log("abre");
+}
