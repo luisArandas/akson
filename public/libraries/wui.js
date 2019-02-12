@@ -924,7 +924,7 @@ var WUI_Dialog = new (function() {
         var widget = _widget_list[dialog.id],
 
             resize_handler = widget.resize_handler;
-
+                      
         if (widget.dialog !== dialog) {
             _minimize(widget.header_minimaxi_btn, widget.dialog);
         }

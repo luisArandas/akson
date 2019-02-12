@@ -1,6 +1,6 @@
 window.WUI_Reporting = true;
 
-var master_dialog = WUI_Dialog.create("master_dialog", {
+WUI_Dialog.create("master_dialog", {
   title: "Master Controls",
   width: "275px",
   height: "400px",
@@ -10,9 +10,8 @@ var master_dialog = WUI_Dialog.create("master_dialog", {
   minimized: false,
   on_open: null,
   on_close: function() {
-    test();
     //WUI_Dialog.open("cockpit_dialog");
-    //WUI_Dialog.create("master_dialog");
+    //WUI_Dialog.open("master_dialog");
   },
   on_pre_detach: function() {},
   on_detach: function(new_window) {
@@ -20,22 +19,24 @@ var master_dialog = WUI_Dialog.create("master_dialog", {
     bind_contextmenu();
   },
   on_resize: function(new_width, new_height) {},
+  on_minimize: function() {
+    console.log("teste");
+  },
   modal: false,
   closable: false,
   draggable: true,
   minimizable: true,
   resizable: false,
-  detachable: true,
+  //detachable: true,
   keep_align_when_resized: false,
   top: -250,
   left: 0
 });
 
-
-var cockpit_dialog = WUI_Dialog.create("cockpit_dialog", {
+WUI_Dialog.create("cockpit_dialog", {
   title: "Instruments", //'<div style="font-family: Monospace; font-size: 10px; color: lightgrey; position: absolute; margin-left: 8px;">---</div><span style="font-family: Monospace; font-size: 10px; color: lightgrey;">Instruments</span>',
   width: "850px",
-  height: "280px",
+  height: "325px",
   halign: "center",
   valign: "bottom",
   open: true,
@@ -58,7 +59,7 @@ var cockpit_dialog = WUI_Dialog.create("cockpit_dialog", {
   closable: false,
   draggable: true,
   minimizable: true,
-  detachable: true,
+  //detachable: true,
   min_width: "title",
   min_height: 64,
   keep_align_when_resized: true,
@@ -66,7 +67,7 @@ var cockpit_dialog = WUI_Dialog.create("cockpit_dialog", {
   left: 0,
 });
 
-WUI_Tabs.create("my_tabs", {
+WUI_Tabs.create("tabs_instrumentos", {
   // function called when a tab is clicked (tab index will be passed as argument)
   // on_tab_click: console.log("ok"),
   // style value for the content height
@@ -135,8 +136,7 @@ WUI_Dialog.create("demo_integrated_dialog_3", {
   }],
 });
 
-
-WUI_Dialog.create("logs_ok", {
+WUI_Dialog.create("logs_dialog", {
   title: "Logs",
   width: "275px",
   height: "400px",
@@ -149,45 +149,34 @@ WUI_Dialog.create("logs_ok", {
   status_bar: true
 });
 
-WUI_RangeSlider.create("my_range_slider", {
+/*---------------------------------------------------*/
+WUI_RangeSlider.create("slider_teste", {
   // width/height of the slider, if you make a vertical slider, you should swap theses values
   width: 300,
   height: 8,
-
   // the value range, -100 <-> 100, optional
   min: -100,
   max: 100,
-
   // standard increment when dragging NOTE : can be "any" if you need to accept both decimals and integers for the validation ("step" is just the bare "step" input attribute value actually!)
   step: 1,
-
   // on mouse wheel increment
   scroll_step: 2,
-
   vertical: false,
-
   // max number of decimals to display for decimal values (default to 4)
   decimals: 4,
-
   // the widget default value (used for "reset to default" behaviors)
   default_value: 0,
-
   // the widget current value
   value: 0.5,
-
   // this will place the title on top and the value at the bottom, good for vertical sliders
   title_on_top: true,
-
   title: "my range slider",
-
   // enable the slider to be controllable by MIDI
   // can be a boolean (or anything) if you do not need to configure it, otherwise an object with a fiel "type" with value "rel" or "abs", by default the control type is set to "abs"
   midi: false,
-
   // used to line up multiple sliders perfectly
   title_min_width: 150,
   value_min_width: 48,
-
   // allow the user to configure the parameters of the slider, a settings button will appear around the slider and when it is clicked, a box with input fields will allow the user to change range and step values
   // this can be usefull if an "unlimited" slider is needed or simply to allow the step to be changed by the user
   // Note: if you want a few parameters to be configurable, just remove those you don't want in that object
@@ -208,14 +197,9 @@ WUI_RangeSlider.create("my_range_slider", {
       max: 5
     }
   },
-
   // function to call when the slider value change with the value passed as argument
   on_change: function() {
     console.log("ok");
   } //slider_change
 });
-
-function test() {
-  WUI_Dialog.open("master_dialog");
-  console.log("abre");
-}
+/*---------------------------------------------------*/

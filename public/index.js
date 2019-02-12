@@ -374,13 +374,9 @@ function init() {
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
-        document.getElementById("mySidenav").style.height = '33%';
-        //document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0.5)';
+        //I don't think I need this anymore;
       }
-      if (sideBar == true) {
-        document.getElementById("mySidenav").style.height = '0%';
-        //document.getElementById("mySidenav").style.backgroundColor = 'rgb(0, 0, 0, 0)';
-      }
+      if (sideBar == true) {}
       if (sideBar == true) {
         sideBar = false;
       } else {

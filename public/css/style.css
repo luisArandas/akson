@@ -39,10 +39,10 @@ body.fadeIn {
 
 
 .oscilloscope {
-  position: absolute;
+  position: relative;
   margin: auto;
-  left: 5%;
-  bottom: 3%;
+  left: 0px;
+  bottom: -125px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
   -moz-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
@@ -73,25 +73,7 @@ body.fadeIn {
   background-color: rgba(150,150,150,1);
 }
 */
-.sidenav {
-  height: 0%;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgb(100,100,100,1);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  transition: 0.3s;
-}
 
-#maincontrols {
-  position: absolute;
-  right: 1%;
-  top: 3%;
-}
 /*
 .oscillatorHarmonicity {
   position: absolute;
@@ -262,6 +244,17 @@ body.fadeIn {
 
 
 /*------------------- NAVBAR ------------------------*/
+
+.topBar {
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+  background-color: transparent !important;
+}
+
+/*.navbar {
+  background-color: t;
+}*/
 
 .muteButton {
   position: absolute;

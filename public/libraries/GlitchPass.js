@@ -58,6 +58,10 @@ THREE.GlitchPass.prototype = Object.assign(Object.create(THREE.Pass.prototype), 
       this.curF = 0;
       this.generateTrigger();
 
+      // Add some variables and change this code.
+      // This will granulate the sound.
+      console.log(this.generateTrigger() + " test");
+
     } else if (this.curF % this.randX < this.randX / 5) {
       if (this.curF % this.randX < this.randX / 5 == true) {
         //glitchOne();

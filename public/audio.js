@@ -520,63 +520,14 @@ jane.calculateAge();
 mark.calculateAge();*/
 
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
-
-
-function leadInstrumentDiv() {
-  document.getElementById("instrumentoUm").style.height = '100%';
-  document.getElementById("instrumentoDois").style.height = '0%';
-  document.getElementById("instrumentoTres").style.height = '0%';
-  document.getElementById("instrumentoQuatro").style.height = '0%';
-  if (connectSoundVisuals == true) {
-    var evt = new KeyboardEvent('keydown', {
-      'keyCode': 81,
-      'which': 81
-    });
-    document.dispatchEvent(evt);
-  }
-}
-
-function backgroundInstrumentDiv() {
-  document.getElementById("instrumentoDois").style.height = '100%';
-  document.getElementById("instrumentoUm").style.height = '0%';
-  document.getElementById("instrumentoTres").style.height = '0%';
-  document.getElementById("instrumentoQuatro").style.height = '0%';
-  if (connectSoundVisuals == true) {
-    var evt = new KeyboardEvent('keydown', {
-      'keyCode': 87,
-      'which': 87
-    });
-    document.dispatchEvent(evt);
-  }
-}
-
-function sequencerInstrumentDiv() {
-  document.getElementById("instrumentoTres").style.height = '100%';
-  document.getElementById("instrumentoUm").style.height = '0%';
-  document.getElementById("instrumentoDois").style.height = '0%';
-  document.getElementById("instrumentoQuatro").style.height = '0%';
-  if (connectSoundVisuals == true) {
-    var evt = new KeyboardEvent('keydown', {
-      'keyCode': 69,
-      'which': 69
-    });
-    document.dispatchEvent(evt);
-  }
-}
-
-function backTwoInstrumentDiv() {
-  document.getElementById("instrumentoQuatro").style.height = '100%';
-  document.getElementById("instrumentoUm").style.height = '0%';
-  document.getElementById("instrumentoDois").style.height = '0%';
-  document.getElementById("instrumentoTres").style.height = '0%';
-  if (connectSoundVisuals == true) {
-    var evt = new KeyboardEvent('keydown', {
-      'keyCode': 82,
-      'which': 82
-    });
-    document.dispatchEvent(evt);
-  }
-}
+/*
+if (connectSoundVisuals == true) {
+  var evt = new KeyboardEvent('keydown', {
+    'keyCode': 81,
+    'which': 81
+  });
+  document.dispatchEvent(evt);
+  */
 
 function muteButton() {
   if (Tone.Master.mute == false) {
@@ -586,6 +537,7 @@ function muteButton() {
   }
 }
 
+/* NOT USING THIS
 function connectButton() {
   if (connectSoundVisuals == true) {
     connectSoundVisuals = false;
@@ -594,7 +546,7 @@ function connectButton() {
     connectSoundVisuals = true;
     console.log("connected");
   }
-}
+} */
 
 function selectOneSine() {
   polySynth.set({
