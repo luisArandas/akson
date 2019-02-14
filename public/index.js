@@ -26,8 +26,9 @@ $(document).ready(function() {
   };
   if (detectmob() === false) { //&& onMouseDown() === true) {
   };
+  console.log("testeokokaalala");
 });
-
+/*REMOVE MIDI IF SAFARI*/
 $(document).ready(function() {
   $(".introLoadTimer").fadeIn("slow", function() {
     $(".introLoadTimer").delay(3000).fadeOut(2500);
