@@ -2,43 +2,36 @@
  * @author Luis Arandas  http://luisarandas.org
  */
 
-
-/*
-var windowWidth = $(window).width(),
-  windowHeight = $(window).height();
-var isMobile = navigator.userAgent.match(/mobile/i);
-var webGLTrue = false;
-
-if (window.WebGLRenderingContext) {
-  webGLTrue = true;
-}
-
-if (isMobile) {
-  $('body').addClass('mobile');
-} else if (!isMobile) {
-  $('body').addClass('desktop');
-}
-*/
-
 $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
-  if (detectmob() === false) { //&& onMouseDown() === true) {
+  if (detectmob() === true) {
+    /*If he is mobile then change the scenes everytime someone changes*/
+    /*Make pans*/
+    /*Add partials to the main oscillators*/
+    document.getElementById("topBar").style.display = "none";
+    WUI_Dialog.close("master_dialog");
+    WUI_Dialog.close("cockpit_dialog");
+    WUI_Dialog.close("logs_dialog");
   };
-  console.log("testeokokaalala");
+  if (window.AudioContext === null) {
+    alert("AudioContext is Undefined");
+  }
 });
-/*REMOVE MIDI IF SAFARI*/
-/*$(document).ready(function() {
+$(document).ready(function() {
   $(".introLoadTimer").fadeIn("slow", function() {
     $(".introLoadTimer").delay(3000).fadeOut(2500);
   });
-  //console.clear(); ADD THIS
+  //Para limpar console.clear();
   console.log("volume " + Tone.Master.volume.value);
-});*/
-
+  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
+    //Try alert.
+  }
+});
 
 //https://github.com/yiwenl/Alfrid
+
 var camera,
   scene,
   light,
@@ -70,7 +63,6 @@ var composerOne;
 var composerTwo;
 var composerThree;
 var composerFour;
-
 var whichVisuals;
 
 //ESTAMOS EM PENTATONICA MAIOR
@@ -319,7 +311,6 @@ function init() {
   window.addEventListener('resize', onWindowResize, false);
   window.addEventListener('mousedown', onMouseDown, false);
   window.addEventListener('mouseup', onMouseUp, false);
-  window.addEventListener("touchstart", handleStart, false);
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
 
@@ -397,7 +388,6 @@ function init() {
       isSceneEight = false;
       isSceneNine = false;
       isSceneTen = false;
-
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
       effectSobel.renderToScreen = false;
@@ -420,7 +410,6 @@ function init() {
       isSceneTwo = true;
       isSceneThree = false;
       isSceneFour = false;
-
       controls.enabled = true;
 
       camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
@@ -446,7 +435,6 @@ function init() {
       isSceneTwo = false;
       isSceneThree = true;
       isSceneFour = false;
-
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
       effectSobel.renderToScreen = false;
@@ -484,7 +472,12 @@ function init() {
       scene.remove(parentTransformCinco);
       scene.remove(parentTransformSeis);
       scene.remove(parentTransformSete);
+
+      var synth = new Tone.FMSynth().connect(phaser);
+      polySynth.connect(phaser);
+
     }
+
     if (event.which == "84") {
       console.log("T");
       isSceneOne = false;
@@ -745,7 +738,8 @@ function onDocumentMouseMove(event) {
 var data;
 
 function onMouseDown(event) {
-  markovNote();
+  console.log(glitchPass);
+  markovNote(); // console logs next chain note
   event.preventDefault();
   var data = {
     x: event.clientX,
@@ -807,7 +801,6 @@ keyboard.up(function(note) {
 });
 
 // --------------------------- MIDI -------------------------------
-
 if (navigator.requestMIDIAccess) {
   navigator.requestMIDIAccess({
     sysex: false
@@ -855,12 +848,6 @@ function detectmob() {
     return false;
   }
 }
-
-function handleStart() {
-  //scene.background = new THREE.Color(0xffffff);
-  //I THINK THESE ARE MOBILES
-}
-
 
 function render() {
   var corFundo = Math.random() * (0.15 - 0) + 0;

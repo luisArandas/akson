@@ -249,7 +249,24 @@ body.fadeIn {
   position: absolute;
   left: 50%;
   transform: translatex(-50%);
-  background-color: transparent !important;
+  background-color: black !important;
+  border-radius: 5px;
+  top: 5px;
+  border: 1px solid rgba(50,50,50,1);
+  color: #ffffff;
+}
+
+.btnCima {
+  background-color: black !important;
+	border: 1px solid rgba(50,50,50,1);
+  color: #ffffff;
+  width: 35px;
+  height: 20px;
+}
+
+.btnCima:hover {
+  background-image: none !important;
+  background-color: #ffffff !important;
 }
 
 /*.navbar {

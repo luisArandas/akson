@@ -102,6 +102,14 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
 polySynth.connect(reverb);
 
 
+
+var phaser = new Tone.Phaser({
+  "frequency": 500,
+  "octaves": 5,
+  "baseFrequency": 1000
+}).toMaster();
+
+
 /* ---------------------------- NEXUS ---------------------------- */
 
 
@@ -481,7 +489,6 @@ autoFilterDepth.on('change', function(v) {
   console.log(noiseOne.depth);
 });
 
-
 /*
 depth  : 1 ,
 baseFrequency  : 200 ,
@@ -489,10 +496,7 @@ octaves  : 2.6 ,
 type  : lowpass ,
 rolloff  : -12 ,
 Q  : 1
-
-
 */
-
 
 /*
 
@@ -537,60 +541,21 @@ function muteButton() {
   }
 }
 
-/* NOT USING THIS
-function connectButton() {
-  if (connectSoundVisuals == true) {
-    connectSoundVisuals = false;
-    console.log("not connected");
-  } else {
-    connectSoundVisuals = true;
-    console.log("connected");
-  }
-} */
 
-function selectOneSine() {
+function synthWave(data) {
   polySynth.set({
     "oscillator": {
-      "type": "sawtooth6"
+      "type": data
     }
   });
+  console.log(data);
 }
 
-function selectOneSaw() {
-  polySynth.set({
-    "oscillator": {
-      "type": "sawtooth6"
-    }
-  });
+function noiteType(data) {
+  noiseOne.type = data;
+  console.log(data);
 }
 
-function selectOneSquare() {
-  polySynth.set({
-    "oscillator": {
-      "type": "square4"
-    }
-  });
-}
-
-function selectOneTriangle() {
-  polySynth.set({
-    "oscillator": {
-      "type": "triangle8"
-    }
-  });
-}
-
-function noiseWhite() {
-  noiseOne.type = "white";
-}
-
-function noiseBrown() {
-  noiseOne.type = "brown";
-}
-
-function noisePink() {
-  noiseOne.type = "pink";
-}
 
 function noiseOneFrequencyTime(data) {
   autoFilterOne.set({

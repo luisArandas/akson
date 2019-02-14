@@ -58,24 +58,16 @@ THREE.GlitchPass.prototype = Object.assign(Object.create(THREE.Pass.prototype), 
       this.curF = 0;
       this.generateTrigger();
 
-      // Add some variables and change this code.
-      // This will granulate the sound.
-      console.log(this.generateTrigger() + " test");
-
     } else if (this.curF % this.randX < this.randX / 5) {
-      if (this.curF % this.randX < this.randX / 5 == true) {
-        //glitchOne();
-      }
-      glitchVarOne = this.curF;
-      glitchVarTwo = this.randX;
-      glitchVarThree = this.randX / 5;
 
-      this.uniforms['amount'].value = Math.random() / 90;
+      this.uniforms['amount'].value = shaderGlitchAmmount;
+
       this.uniforms['angle'].value = THREE.Math.randFloat(-Math.PI, Math.PI);
       this.uniforms['distortion_x'].value = THREE.Math.randFloat(0, 1);
       this.uniforms['distortion_y'].value = THREE.Math.randFloat(0, 1);
       this.uniforms['seed_x'].value = THREE.Math.randFloat(-0.3, 0.3);
-      this.uniforms['seed_y'].value = THREE.Math.randFloat(-0.3, 0.3);
+      this.uniforms['seed_y'].value = shaderSeedY;
+
 
     } else if (this.goWild == false) {
 
