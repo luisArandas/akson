@@ -29,13 +29,13 @@ $(document).ready(function() {
   console.log("testeokokaalala");
 });
 /*REMOVE MIDI IF SAFARI*/
-$(document).ready(function() {
+/*$(document).ready(function() {
   $(".introLoadTimer").fadeIn("slow", function() {
     $(".introLoadTimer").delay(3000).fadeOut(2500);
   });
   //console.clear(); ADD THIS
   console.log("volume " + Tone.Master.volume.value);
-});
+});*/
 
 
 //https://github.com/yiwenl/Alfrid
