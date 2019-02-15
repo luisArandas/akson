@@ -402,7 +402,7 @@ function init() {
       isSceneNine = false;
       isSceneTen = false;
 
-      var whichScene = "Q";
+      var whichScene = 81;
       socket.emit('scene', whichScene);
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
@@ -428,6 +428,10 @@ function init() {
       isSceneThree = false;
       isSceneFour = false;
       controls.enabled = true;
+
+      var whichScene = 87;
+      socket.emit('scene', whichScene);
+
 
       camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
       afterimagePass.renderToScreen = false;
@@ -458,6 +462,10 @@ function init() {
       pixelPass.renderToScreen = false;
       glitchPass.renderToScreen = false;
 
+      var whichScene = 69;
+      socket.emit('scene', whichScene);
+
+
       scene.add(parentTransformTres);
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
@@ -472,6 +480,9 @@ function init() {
       isSceneTwo = false;
       isSceneThree = false;
       isSceneFour = true;
+
+      var whichScene = 82;
+      socket.emit('scene', whichScene);
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
@@ -799,10 +810,11 @@ function newDrawing(data) {
 
 function changeScene(data) {
   /* Mobile scene changer stream */
+
   if (detectmob() === true) {
     var evt = new KeyboardEvent('keydown', {
-      'keyCode': 81,
-      'which': 81
+      'keyCode': data,
+      'which': data
     });
     document.dispatchEvent(evt);
   }
