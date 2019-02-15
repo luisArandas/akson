@@ -10,6 +10,9 @@ $(document).ready(function() {
     /*If he is mobile then change the scenes everytime someone changes*/
     /*Make pans*/
     /*Add partials to the main oscillators*/
+    isMobile = true;
+
+
     document.getElementById("topBar").style.display = "none";
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
@@ -30,8 +33,12 @@ $(document).ready(function() {
   }
 });
 
-//https://github.com/yiwenl/Alfrid
-
+/*
+  THIS
+  https://github.com/yiwenl/Alfrid
+  https://github.com/jiahaog/nativefier
+*/
+var isMobile = false;
 var camera,
   scene,
   light,
@@ -112,6 +119,9 @@ function init() {
 
   socket = io.connect(window.location.origin);
   socket.on('mouse', newDrawing);
+
+  socket.on('scene', changeScene);
+
   socket.on('socketid', function(socketid) {
     console.log(socketid + ' Key');
     var div = document.getElementById('botRightPage');
@@ -363,6 +373,9 @@ function init() {
   div.innerHTML += "We are currently in C" + '<br>';
   scalePlaying = sequenceOfNotesC;
 
+
+  var whichScene;
+
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
@@ -376,7 +389,7 @@ function init() {
       }
     }
     if (event.which == "81") {
-      console.log("Q");
+      //console.log("Q");
       isSceneOne = true;
       isSceneTwo = false;
       isSceneThree = false;
@@ -388,6 +401,10 @@ function init() {
       isSceneEight = false;
       isSceneNine = false;
       isSceneTen = false;
+
+      var whichScene = "Q";
+      socket.emit('scene', whichScene);
+
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
       effectSobel.renderToScreen = false;
@@ -738,16 +755,14 @@ function onDocumentMouseMove(event) {
 var data;
 
 function onMouseDown(event) {
-  console.log(glitchPass);
   markovNote(); // console logs next chain note
   event.preventDefault();
+
   var data = {
     x: event.clientX,
     y: event.clientY
   };
-
   socket.emit('mouse', data);
-  //CRIAR OUTRO ONLY ON INTERSECT
 
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
   console.log(randomSequenceOfNotes);
@@ -773,7 +788,6 @@ function onMouseUp(event) {
 
 function onWindowResize() {}
 
-function myFunc() {}
 
 function newDrawing(data) {
   //THIS IS WHAT HAPPENS IN ANOTHER CLIENT
@@ -781,8 +795,22 @@ function newDrawing(data) {
   console.log(data.y);
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
   polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
-
 }
+
+function changeScene(data) {
+  /* Mobile scene changer stream */
+  if (detectmob() === true) {
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 81,
+      'which': 81
+    });
+    document.dispatchEvent(evt);
+  }
+}
+
+
+
+
 
 // ---------------------- LAPTOP KEYBOARD -------------------------
 

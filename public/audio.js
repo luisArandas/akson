@@ -2,11 +2,6 @@
  * @author Luis Arandas  http://luisarandas.org
  */
 
-/*
-$(".dropdown-menu li a").click(function() {
-  $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-  $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-}); */
 
 
 var instrumentOne = false;
@@ -16,7 +11,6 @@ var instrumentFour = false;
 
 var connectSoundVisuals = false;
 
-//MAKE DATA MUSIC
 //EQUALIZE THE MASTER
 //STOP THE VISUALS
 //CRIAR O BOTAO DE SEPARATE AUDIO FROM VISUALS
@@ -24,7 +18,6 @@ var connectSoundVisuals = false;
 //TOCAR MAIS QUE UMA NOTA QUANDO EU onMouseDown
 //https://tonejs.github.io/docs/r13/CtrlMarkov
 //STREAM OS CONTROLOS
-
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
@@ -524,14 +517,6 @@ jane.calculateAge();
 mark.calculateAge();*/
 
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
-/*
-if (connectSoundVisuals == true) {
-  var evt = new KeyboardEvent('keydown', {
-    'keyCode': 81,
-    'which': 81
-  });
-  document.dispatchEvent(evt);
-  */
 
 function muteButton() {
   if (Tone.Master.mute == false) {
@@ -540,7 +525,6 @@ function muteButton() {
     Tone.Master.mute = false;
   }
 }
-
 
 function synthWave(data) {
   polySynth.set({

@@ -40,4 +40,11 @@ function newConnection(socket) {
     connections--;
     console.log("There are currently " + connections + " connections");
   });
+
+  socket.on('scene', mobileScene);
+
+  function mobileScene(data) {
+    socket.broadcast.emit('scene', data);
+    console.log(data);
+  }
 }

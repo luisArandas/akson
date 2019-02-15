@@ -199,7 +199,7 @@ WUI_RangeSlider.create("slider_teste", {
   },
   // function to call when the slider value change with the value passed as argument
   on_change: function() {
-    console.log("ok");
+    console.log("");
   } //slider_change
 });
 /*---------------------------------------------------*/
