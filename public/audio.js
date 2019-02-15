@@ -522,9 +522,10 @@ function topBar(data) {
   if (data == "muteAudio") {
     if (Tone.Master.mute == false) {
       Tone.Master.mute = true;
-      document.getElementById("muteButton").style.background = '#00ff00';
+      document.getElementById("muteButton").style.color = "black";
     } else {
       Tone.Master.mute = false;
+      document.getElementById("muteButton").style.color = "white";
     }
   }
   if (data == "hideMouse") {
@@ -532,10 +533,13 @@ function topBar(data) {
     document.body.style.cursor = 'none';
   }
   if (data == "hideGui") {
+    guiIsVisible = false;
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
     WUI_Dialog.close("logs_dialog");
+    document.getElementById("topBar").style.visibility = "hidden";
   }
+
   if (data == "recordAudio") {
     /* Record audio here */
   }

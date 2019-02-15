@@ -36,7 +36,6 @@ $(document).ready(function() {
   https://github.com/yiwenl/Alfrid
   https://github.com/jiahaog/nativefier
 */
-var isMobile = false;
 var camera,
   scene,
   light,
@@ -463,7 +462,6 @@ function init() {
       var whichScene = 69;
       socket.emit('scene', whichScene);
 
-
       scene.add(parentTransformTres);
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
@@ -479,8 +477,8 @@ function init() {
       isSceneThree = false;
       isSceneFour = true;
 
-      var whichScene = 82;
-      socket.emit('scene', whichScene);
+      /*var whichScene = 82;
+      socket.emit('scene', whichScene);*/
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
@@ -499,10 +497,9 @@ function init() {
       scene.remove(parentTransformSeis);
       scene.remove(parentTransformSete);
 
-      if (detectmob() === false) {
-        var synth = new Tone.FMSynth().connect(phaser);
-        polySynth.connect(phaser);
-      }
+      var synth = new Tone.FMSynth().connect(phaser);
+      polySynth.connect(phaser);
+
     }
 
     if (event.which == "84") {
@@ -665,75 +662,6 @@ function init() {
       WUI_Dialog.close("master_dialog");
       WUI_Dialog.close("cockpit_dialog");
     }
-
-    /*
-    TERCEIRA
-    Z_90 X_88 C_67 V_86 B_66 N_78 M_77
-    , and . are not yet
-    */
-    if (event.which == "90") {
-      console.log("Z");
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += '<br>' + "We are currently in C ";
-      scalePlaying = sequenceOfNotesC;
-    }
-    if (event.which == "88") {
-      console.log("X");
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += '<br>' + "We are currently in D ";
-      scalePlaying = sequenceOfNotesD;
-    }
-    if (event.which == "67") {
-      console.log("C");
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += '<br>' + "We are currently in E ";
-      scalePlaying = sequenceOfNotesE;
-    }
-    if (event.which == "86") {
-      console.log("V");
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += '<br>' + "We are currently in F ";
-      scalePlaying = sequenceOfNotesF;
-    }
-    if (event.which == "66") {
-      console.log("B");
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += '<br>' + "We are currently in G ";
-      scalePlaying = sequenceOfNotesG;
-    }
-    if (event.which == "78") {
-      console.log("N");
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += '<br>' + "We are currently in A ";
-      scalePlaying = sequenceOfNotesA;
-    }
-    if (event.which == "77") {
-      console.log("M");
-      var div = document.getElementById('botLeftPage');
-      div.innerHTML += '<br>' + "We are currently in B ";
-      scalePlaying = sequenceOfNotesB;
-    }
-
-    //-------- MENOS
-    if (event.which == "189") {
-      if (hideShow == false) {
-        document.getElementById("topLeftPage").style.color = 'rgba(0,0,0,0)';
-        document.getElementById("topRightPage").style.color = 'rgba(0,0,0,0)';
-        document.getElementById("botLeftPage").style.color = 'rgba(0,0,0,0)';
-        document.getElementById("botRightPage").style.color = 'rgba(0,0,0,0)';
-      }
-      if (hideShow == true) {
-        document.getElementById("topLeftPage").style.color = 'rgba(255,255,255,1)';
-        document.getElementById("topRightPage").style.color = 'rgba(255,255,255,1)';
-        document.getElementById("botLeftPage").style.color = 'rgba(255,255,255,1)';
-        document.getElementById("botRightPage").style.color = 'rgba(255,255,255,1)';
-      }
-      if (hideShow == true) {
-        hideShow = false;
-      } else {
-        hideShow = true;
-      }
-    }
   });
 }
 
@@ -755,8 +683,8 @@ function onDocumentMouseMove(event) {
   event.preventDefault();
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  mouseX = (event.clientX - windowHalfX) * 10;
-  mouseY = (event.clientY - windowHalfY) * 10;
+  mouseX = (event.clientX - windowHalfX) * 5;
+  mouseY = (event.clientY - windowHalfY) * 5;
 
 }
 
