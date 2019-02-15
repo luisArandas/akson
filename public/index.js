@@ -10,9 +10,7 @@ $(document).ready(function() {
     /*If he is mobile then change the scenes everytime someone changes*/
     /*Make pans*/
     /*Add partials to the main oscillators*/
-    isMobile = true;
-
-
+    /*Stream audio parameters*/
     document.getElementById("topBar").style.display = "none";
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
@@ -501,9 +499,10 @@ function init() {
       scene.remove(parentTransformSeis);
       scene.remove(parentTransformSete);
 
-      var synth = new Tone.FMSynth().connect(phaser);
-      polySynth.connect(phaser);
-
+      if (detectmob() === false) {
+        var synth = new Tone.FMSynth().connect(phaser);
+        polySynth.connect(phaser);
+      }
     }
 
     if (event.which == "84") {

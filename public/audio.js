@@ -520,14 +520,29 @@ mark.calculateAge();*/
 
 function topBar(data) {
   if (data == "muteAudio") {
-    console.log(data);
-  }
-
-  /*  if (Tone.Master.mute == false) {
+    if (Tone.Master.mute == false) {
       Tone.Master.mute = true;
+      document.getElementById("muteButton").style.background = '#00ff00';
     } else {
       Tone.Master.mute = false;
-    }*/
+    }
+  }
+  if (data == "hideMouse") {
+    /* Pôr visivel na barra */
+    document.body.style.cursor = 'none';
+  }
+  if (data == "hideGui") {
+    WUI_Dialog.close("master_dialog");
+    WUI_Dialog.close("cockpit_dialog");
+    WUI_Dialog.close("logs_dialog");
+  }
+  if (data == "recordAudio") {
+    /* Record audio here */
+  }
+  if (data == "aboutMe") {
+    /* Check modal from example WUI */
+  }
+
 }
 
 
