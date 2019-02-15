@@ -539,17 +539,13 @@ function topBar(data) {
     WUI_Dialog.close("logs_dialog");
     document.getElementById("topBar").style.visibility = "hidden";
   }
-
   if (data == "recordAudio") {
     /* Record audio here */
   }
   if (data == "aboutMe") {
     /* Check modal from example WUI */
   }
-
 }
-
-
 
 function synthWave(data) {
   polySynth.set({
@@ -564,7 +560,6 @@ function noiteType(data) {
   noiseOne.type = data;
   console.log(data);
 }
-
 
 function noiseOneFrequencyTime(data) {
   autoFilterOne.set({
