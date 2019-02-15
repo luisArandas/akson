@@ -518,13 +518,19 @@ mark.calculateAge();*/
 
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
 
-function muteButton() {
-  if (Tone.Master.mute == false) {
-    Tone.Master.mute = true;
-  } else {
-    Tone.Master.mute = false;
+function topBar(data) {
+  if (data == "muteAudio") {
+    console.log(data);
   }
+
+  /*  if (Tone.Master.mute == false) {
+      Tone.Master.mute = true;
+    } else {
+      Tone.Master.mute = false;
+    }*/
 }
+
+
 
 function synthWave(data) {
   polySynth.set({

@@ -810,13 +810,14 @@ function newDrawing(data) {
 
 function changeScene(data) {
   /* Mobile scene changer stream */
-
   if (detectmob() === true) {
-    var evt = new KeyboardEvent('keydown', {
-      'keyCode': data,
-      'which': data
+    Tone.context.resume().then(() => {
+      var evt = new KeyboardEvent('keydown', {
+        'keyCode': data,
+        'which': data
+      });
+      document.dispatchEvent(evt);
     });
-    document.dispatchEvent(evt);
   }
 }
 
