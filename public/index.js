@@ -34,7 +34,8 @@ $(document).ready(function() {
 });
 
 /*
-  THIS
+  https://stackoverflow.com/questions/38314521/change-color-of-mesh-using-mouseover-in-three-js/38325167
+  The distance of intersection isSceneOne can be amplitude
   https://github.com/yiwenl/Alfrid
   https://github.com/jiahaog/nativefier
 */
@@ -43,16 +44,12 @@ var camera,
   light,
   container,
   raycaster,
+  raycasterTwo,
   renderer,
   parentTransform,
   parentTransformDois,
   parentTransformTres,
   parentTransformQuatro,
-  parentTransformCinco,
-  parentTransformCincoDois,
-  parentTransformCincoTres,
-  parentTransformSeis,
-  parentTransformSete,
   sphereInter;
 var radius = 100;
 var theta = 0;
@@ -105,7 +102,7 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
 var randomSequenceOfNotes;
-
+var isBlack = false;
 var light1;
 var light2;
 
@@ -257,10 +254,10 @@ function init() {
 
 
   parentTransformQuatro = new THREE.Object3D();
-  for (var i = 0; i < 90; i++) {
-    var geometry = new THREE.BoxGeometry(50, 500, 50);
+  for (var i = 0; i < 40; i++) {
+    var geometry = new THREE.BoxGeometry(30, 1000, 30);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
-      color: 0x707070,
+      color: 0xffffff,
       wireframe: true
     }));
     object.position.x = Math.random() * 800 - 400;
@@ -283,10 +280,10 @@ function init() {
       //object.rotation.z = Math.random() * 2 * Math.PI;*/
     parentTransformQuatro.add(object);
   }
-  light2 = new THREE.DirectionalLight(0x808080, 4);
+  light2 = new THREE.DirectionalLight(0x0c0c0c, 4);
   light2.position.set(1, 5, 1).normalize();
   parentTransformQuatro.add(light2);
-  var ambientLight2 = new THREE.AmbientLight(0x808080, 4);
+  var ambientLight2 = new THREE.AmbientLight(0x0c0c0c, 4);
   parentTransformQuatro.add(ambientLight2);
 
   /* This might be important anytime soon
@@ -395,13 +392,6 @@ function init() {
       isSceneTwo = false;
       isSceneThree = false;
       isSceneFour = false;
-      isSceneFive = false;
-      isSceneSix = false;
-      isSceneSeven = false;
-      isSceneSeven = false;
-      isSceneEight = false;
-      isSceneNine = false;
-      isSceneTen = false;
 
       var whichScene = 81;
       socket.emit('scene', whichScene);
@@ -655,6 +645,18 @@ function onMouseDown(event) {
   if (isSceneFour == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransformQuatro.children);
     if (intersectsClick.length > 0) {
+      console.log(intersectsClick[0].object.material.color);
+      intersectsClick[0].object.wireframe = false;
+
+      if (isBlack == false) {
+        intersectsClick[0].object.material.color.set(0x181818);
+        isBlack = true;
+      }
+      if (isBlack == true) {
+        intersectsClick[0].object.material.color.set(0xff66ff);
+        isBlack = false;
+      }
+
       Tone.context.resume().then(() => {
         polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
@@ -674,9 +676,7 @@ function onMouseUp(event) {
 
 function onWindowResize() {}
 
-
 function newDrawing(data) {
-  //THIS IS WHAT HAPPENS IN ANOTHER CLIENT
   console.log(data.x);
   console.log(data.y);
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
@@ -791,6 +791,22 @@ function render() {
     if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
     INTERSECTED = null;
   }
+  var intersectsTwo = raycaster.intersectObjects(parentTransformQuatro.children);
+  if (intersectsTwo.length > 0) {
+    if (INTERSECTEDTWO != intersectsTwo[0].object) {
+      if (INTERSECTEDTWO) INTERSECTEDTWO.material.emissive.setHex(INTERSECTEDTWO.currentHex);
+      INTERSECTEDTWO = intersectsTwo[0].object;
+      INTERSECTEDTWO.currentHex = INTERSECTEDTWO.material.emissive.getHex(); //take this out
+      INTERSECTEDTWO.material.wireframe = false;
+      INTERSECTEDTWO.material.emissive.setHex(0x000000);
+    }
+  } else {
+    //if (INTERSECTEDTWO) INTERSECTEDTWO.material.wireframe == false;
+    //if (INTERSECTEDTWO) INTERSECTEDTWO.material.emissive.setHex(INTERSECTEDTWO.currentHex);
+    if (INTERSECTEDTWO)(INTERSECTEDTWO.material.wireframe = true);
+    INTERSECTEDTWO = null;
+  }
+
 
   renderer.render(scene, camera);
   renderer.autoClear = false;

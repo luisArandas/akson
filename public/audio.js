@@ -543,7 +543,7 @@ function topBar(data) {
     /* Record audio here */
   }
   if (data == "aboutMe") {
-    /* Check modal from example WUI */
+
   }
 }
 
