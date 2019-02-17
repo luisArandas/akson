@@ -39,10 +39,8 @@ body.fadeIn {
 
 
 .oscilloscope {
-  position: relative;
-  margin: auto;
-  left: 0px;
-  bottom: -125px;
+  position: absolute;
+  top: 250px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
   -moz-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
@@ -338,7 +336,100 @@ body.fadeIn {
 
 .buttonsone {
   position: absolute;
+  background-color: rgba(0,0,0,1);
+  left: 1%;
+  bottom: 5%;
+}
+
+.buttonstwo {
+  position: absolute;
+  background-color: rgba(0,0,0,1);
   right: 5%;
+  bottom: 5%;
+}
+
+.buttonsthree {
+  position: absolute;
+  background-color: rgba(0,0,0,1);
+  right: 5%;
+  top: 20%;
+}
+.buttonsfour {
+  position: absolute;
+  background-color: rgba(0,0,0,1);
+  right: 5%;
+  top: 30%;
+}
+.buttonsfive {
+  position: absolute;
+  background-color: rgba(0,0,0,1);
+  right: 5%;
+  top: 40%;
+}
+.buttonssix {
+  position: absolute;
+  background-color: rgba(0,0,0,1);
+  right: 5%;
+  top: 50%;
+}
+
+.master_dialog {
+  color: white !important;
+}
+
+.synthvolume {
+  position: absolute;
+  left: 25%;
+  top: 50px;
+}
+
+.backgroundvolume {
+  position:absolute;
+  left: 50%;
+  top: 50px;
+}
+.mainvolume{
+  position: absolute;
+  left: 75%;
+  top: 50px;
+}
+
+.eqbass {
+  position: absolute;
+  left: 25%;
+  top: 100px;
+}
+
+.eqmid {
+  position:absolute;
+  left: 50%;
+  top: 100px;
+}
+
+.eqhigh {
+  position: absolute;
+  left: 75%;
+  top: 100px;
+}
+
+.highfreq {
+  position: absolute;
+  left: 75%;
+  top: 150px;
+}
+
+.lowfreq {
+  position: absolute;
+  left: 50%;
+  top: 150px;
+}
+
+.mastercontrols{
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  width: 25%;
+  color: white !important;
 }
 
 .modal {

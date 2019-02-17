@@ -344,8 +344,6 @@ function init() {
   32 == SPACE
   */
 
-  var div = document.getElementById('botLeftPage');
-  div.innerHTML += "We are currently in C" + '<br>';
   scalePlaying = sequenceOfNotesC;
 
 

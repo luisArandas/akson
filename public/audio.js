@@ -9,6 +9,7 @@ var instrumentOne = false;
 var instrumentTwo = false;
 var instrumentThree = false;
 var instrumentFour = false;
+var typeofOsc = "sine";
 
 var connectSoundVisuals = false;
 //EQUALIZE THE MASTER
@@ -65,6 +66,51 @@ var UI = {
     'max': 0,
     'step': 0.001,
     'value': -12
+  }),
+  eqbass: new Nexus.Dial('#eqbass', {
+    'size': [40, 40],
+    'interaction': 'radial', // "radial", "vertical", or "horizontal"
+    'mode': 'absolute', // "absolute" or "relative"
+    'min': -50,
+    'max': 15,
+    'step': 0.001,
+    'value': -12
+  }),
+  eqmid: new Nexus.Dial('#eqmid', {
+    'size': [40, 40],
+    'interaction': 'radial', // "radial", "vertical", or "horizontal"
+    'mode': 'absolute', // "absolute" or "relative"
+    'min': -50,
+    'max': 15,
+    'step': 0.001,
+    'value': -10
+  }),
+  eqhigh: new Nexus.Dial('#eqhigh', {
+    'size': [40, 40],
+    'interaction': 'radial', // "radial", "vertical", or "horizontal"
+    'mode': 'absolute', // "absolute" or "relative"
+    'min': -50,
+    'max': 15,
+    'step': 0.001,
+    'value': 0
+  }),
+  lowfreq: new Nexus.Dial('#lowfreq', {
+    'size': [40, 40],
+    'interaction': 'radial', // "radial", "vertical", or "horizontal"
+    'mode': 'absolute', // "absolute" or "relative"
+    'min': 20,
+    'max': 2000,
+    'step': 0.001,
+    'value': 400
+  }),
+  highfreq: new Nexus.Dial('#highfreq', {
+    'size': [40, 40],
+    'interaction': 'radial', // "radial", "vertical", or "horizontal"
+    'mode': 'absolute', // "absolute" or "relative"
+    'min': 20,
+    'max': 2000,
+    'step': 0.001,
+    'value': 2500
   }),
   synthAttack: new Nexus.Slider('#synthAttack', {
     min: 0.01,
@@ -185,6 +231,21 @@ var UI = {
     mode: 'absolute',
     value: 1
   }),
+  noiseq: new Nexus.Slider("#noiseq", {
+    min: 0,
+    max: 10,
+    step: 0.01,
+    mode: 'absolute',
+    value: 1
+  }),
+  noiseoctaves: new Nexus.Slider("#noiseoctaves", {
+    min: -10,
+    max: 10,
+    step: 0.01,
+    mode: 'absolute',
+    value: 2.6
+  }),
+
   autoFilterFrequency: new Nexus.Slider('#autoFilterFrequency', {
     min: 500,
     max: 5000,
@@ -192,14 +253,14 @@ var UI = {
     mode: 'absolute',
     value: 500
   }),
-  autoFilterMin: new Nexus.Slider('#autoFilterMin', {
+  noiseMin: new Nexus.Slider('#noiseMin', {
     min: 100,
     max: 1000,
     step: 0.1,
     mode: 'absolute',
     value: 3000
   }),
-  autoFilterMax: new Nexus.Slider('#autoFilterMax', {
+  noiseMax: new Nexus.Slider('#noiseMax', {
     min: 1000,
     max: 15000,
     step: 0.1,
@@ -220,14 +281,21 @@ var UI = {
     mode: 'absolute',
     value: 1
   }),
+  afbasefrequency: new Nexus.Slider('#afbasefrequency', {
+    min: 100,
+    max: 1000,
+    step: 0.01,
+    mode: 'absolute',
+    value: 200
+  }),
 }
-//CENA DOIS 2 N
+
 
 for (var key in UI) {
   UI[key].on('change', function(value) {
     var logs = document.getElementById('logs'),
       output_node = document.createElement("div");
-    output_node.innerHTML = UI[key] + value;
+    output_node.innerHTML = value;
     logs.appendChild(output_node);
     logs.scrollTop = logs.scrollHeight;
   });
@@ -247,7 +315,20 @@ noiseOne.volume.value = -99;
 noiseOne.start();
 noiseOne.volume.rampTo(-10, 10);
 
-vol = new Tone.Volume(-5).toMaster();
+var eq = new Tone.EQ3(0, 0, 0);
+
+eq.connect(Tone.Master);
+/*
+{
+low  : 0 ,
+mid  : 0 ,
+high  : 0 ,
+lowFrequency  : 400 ,
+highFrequency  : 2500
+}
+*/
+
+vol = new Tone.Volume(-5).connect(eq);
 
 compressor = new Tone.Compressor(-25, 10).connect(vol);
 
@@ -259,12 +340,6 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
   modulationIndex: 10,
   detune: 0,
   oscillator: {
-    //sawtooth6
-    //triangle8
-    //fmsquare
-    //square
-    //osc.type = 'sine2'
-    //synth.set("detune", -1200);
     type: "sine",
     modulationType: 'sawtooth',
     modulationIndex: 3,
@@ -296,13 +371,13 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
 polySynth.connect(reverb);
 
 
-
+/*
 var phaser = new Tone.Phaser({
   "frequency": 500,
   "octaves": 5,
   "baseFrequency": 1000
 }).toMaster();
-
+*/
 
 /* ---------------------------- NEXUS ---------------------------- */
 
@@ -444,10 +519,10 @@ UI.autoFilterFrequency.on('change', function(v) {
     "frequency": v
   });
 });
-UI.autoFilterMin.on('change', function(v) {
+UI.noiseMin.on('change', function(v) {
   noiseOne.min = v;
 });
-UI.autoFilterMax.on('change', function(v) {
+UI.noiseMax.on('change', function(v) {
   noiseOne.max = v;
 });
 UI.autoFilterWet.on('change', function(v) {
@@ -458,14 +533,51 @@ UI.autoFilterDepth.on('change', function(v) {
   console.log(noiseOne.depth);
 });
 
-/*
-depth  : 1 ,
-baseFrequency  : 200 ,
-octaves  : 2.6 ,
-type  : lowpass ,
-rolloff  : -12 ,
-Q  : 1
-*/
+UI.noiseq.on('change', function(v) {
+  autoFilterOne.set({
+    "filter": {
+      "q": v
+    }
+  });
+});
+
+UI.noiseoctaves.on('change', function(v) {
+  autoFilterOne.set({
+    "octaves": v
+  });
+});
+
+UI.afbasefrequency.on('change', function(v) {
+  autoFilterOne.set({
+    "baseFrequency": v
+  });
+});
+
+UI.eqbass.on('change', function(v) {
+  eq.low.value = v
+  console.log(eq.low.value);
+});
+
+UI.eqmid.on('change', function(v) {
+  eq.mid.value = v
+  console.log(eq.mid.value);
+});
+
+UI.eqhigh.on('change', function(v) {
+  eq.high.value = v
+  console.log(eq.high.value);
+});
+
+UI.lowfreq.on('change', function(v) {
+  eq.lowFrequency.value = v
+  console.log(eq.lowFrequency.value);
+});
+
+UI.highfreq.on('change', function(v) {
+  eq.highFrequency.value = v
+  console.log(eq.highFrequency.value);
+});
+
 
 
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
@@ -532,16 +644,40 @@ function synthWave(data) {
       "type": data
     }
   });
-  console.log(data);
+  typeofOsc = data;
 }
 
-function noiteType(data) {
+function noiseType(data) {
   noiseOne.type = data;
-  console.log(data);
+  if (data == 'white') {
+    noiseOne.volume.value = -10;
+  }
 }
 
 function noiseOneFrequencyTime(data) {
   autoFilterOne.set({
     "frequency": data
+  });
+}
+
+function partialCount(data) {
+  polySynth.set({
+    "oscillator": {
+      "type": typeofOsc + data
+    }
+  });
+}
+
+function noiseRoloff(data) {
+  autoFilterOne.set({
+    "filter": {
+      "rolloff": data
+    }
+  });
+}
+
+function autofilterWave(data) {
+  autoFilterOne.set({
+    "type": data
   });
 }

@@ -30,10 +30,20 @@
 <body class="fade-in">
   <div class="introLoadTimer"></div>
   <div id="master_dialog">
-    <div>
+    <div style="text-align: center; font-size: 5pt;">
       <div id="synthvolume" class="synthvolume"></div>
       <div id="backgroundvolume" class="backgroundvolume"></div>
       <div id="mainvolume" class="mainvolume"></div>
+
+      <div id="eqbass" class="eqbass"></div>
+      <div id="eqmid" class="eqmid"></div>
+      <div id="eqhigh" class="eqhigh"></div>
+
+      <div id="lowfreq" class="lowfreq"></div>
+      <div id="highfreq" class="highfreq"></div>
+      <div id="mastercontrols" class="mastercontrols"></div>
+
+
       <div id="oscilloscope" class="oscilloscope"></div>
     </div>
   </div>
@@ -88,72 +98,121 @@
       <div>
         <div>Synth</div>
         <div>Back</div>
-        <div>Crusher</div>
         <div>Range</div>
         <div>ProstPro</div>
       </div>
       <div>
         <div>
-          <div class="btn-group-vertical btn-group-sm buttonsone" role="group" aria-label="ok">
+          <div class="btn-group-horizontal btn-group-sm buttonsone" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary" onClick="synthWave('sine')">Sine</button>
             <button type="button" class="btn btn-secondary" onClick="synthWave('square')">Square</button>
             <button type="button" class="btn btn-secondary" onClick="synthWave('sawtooth')">Saw</button>
             <button type="button" class="btn btn-secondary" onClick="synthWave('triangle')">Triangle</button>
           </div>
+          <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary" onClick="partialCount('2')">2m</button>
+            <button type="button" class="btn btn-secondary" onClick="partialCount('4')">4m</button>
+            <button type="button" class="btn btn-secondary" onClick="partialCount('8')">8m</button>
+            <button type="button" class="btn btn-secondary" onClick="partialCount('16')">16m</button>
+          </div>
           <div id="demo_integrated_dialog" style="position: relative;">
-            <div style="text-align: center; font-size: 9pt; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
+            <div style="text-align: center; font-size: 5pt;">
+              synth_att
               <div id="synthAttack" class="synthAttack"></div>
+              synth_dec
               <div id="synthDecay" class="synthDecay"></div>
+              synth_sus
               <div id="synthSustain" class="synthSustain"></div>
+              synth_rel
               <div id="synthRelease" class="synthRelease"></div>
             </div>
           </div>
           <div id="demo_integrated_dialog_2" style="position: relative;">
             <div style="text-align: center; font-size: 5pt;">
-              harmonicity - modulationIndex - detune
+              harmonicity
               <div id="harmonicity" class="harmonicity"></div>
+              m_modulationIndex
               <div id="modulationindex" class="modulationindex"></div>
+              detune
               <div id="detune" class="detune"></div>
-              osc type
+              osc_modIndex
               <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
+              osc_harmonicity
               <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
             </div>
           </div>
           <div id="demo_integrated_dialog_3" style="position: relative;">
-            <div style="text-align: center; font-size: 9pt; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
-              modenvelopeADSR - reverb-RS-wet-damp
+            <div style="text-align: center; font-size: 5pt;">
+              mod_envelope_att
               <div id="modulationEnvelopeAttack" class="modulationEnvelopeAttack"></div>
+              mod_envelope_dec
               <div id="modulationEnvelopeDecay" class="modulationEnvelopeDecay"></div>
+              mod_envelope_sus
               <div id="modulationEnvelopeSustain" class="modulationEnvelopeSustain"></div>
+              mod_envelope_rel
               <div id="modulationEnvelopeRelease" class="modulationEnvelopeRelease"></div>
-
+            </div>
+          </div>
+          <div id="demo_integrated_dialog_4" style="position: relative;">
+            <div style="text-align: center; font-size: 5pt;">
+              rev_RoomSize
               <div id="reverbRoomSize" class="reverbRoomSize"></div>
+              rev_Wet
               <div id="reverbWetValue" class="reverbWetValue"></div>
+              rev_Damp
               <div id="reverbDampValue" class="reverbDampValue"></div>
             </div>
           </div>
         </div>
         <div>
-          <div class="btn-group-vertical btn-group-sm buttonsone" role="group" aria-label="ok">
+          <div id="demo_integrated_dialog_5" style="position: relative;">
+            <div style="text-align: center; font-size: 5pt;">
+              noise_playbackrate
+              <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
+              noise_min
+              <div id="noiseMin" class="noiseMin"></div>
+              noise_max
+              <div id="noiseMax" class="noiseMax"></div>
+              af_baseFrequency
+              <div id="afbasefrequency" class="afbasefrequency"></div>
+
+            </div>
+          </div>
+          <div id="demo_integrated_dialog_6" style="position: relative;">
+            <div style="text-align: center; font-size: 5pt;">
+              autofilter_Q
+              <div id="noiseq" class="noiseq"></div>
+              autofilter_Rolloff
+              <div id="noiserol" class="noiserol"></div>
+              autofilter_octaves
+              <div id="noiseoctaves" class="noiseoctaves"></div>
+              autofilter_freq
+              <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
+              autofilter_wet
+              <div id="autoFilterWet" class="autoFilterWet"></div>
+              autofilter_depth
+              <div id="autoFilterDepth" class="autoFilterDepth"></div>
+            </div>
+          </div>
+
+          <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary" onClick="noiseType('white')">White</button>
             <button type="button" class="btn btn-secondary" onClick="noiseType('brown')">Brown</button>
             <button type="button" class="btn btn-secondary" onClick="noiseType('pink')">Pink</button>
           </div>
-          <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
-          <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
-          <div id="autoFilterMin" class="autoFilterMin"></div>
-          <div id="autoFilterMax" class="autoFilterMax"></div>
-
-          <div id="autoFilterWet" class="autoFilterWet"></div>
-          <div id="autoFilterDepth" class="autoFilterDepth"></div>
-
-          <div class="btn-group-vertical btn-group-sm buttonsone" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary" onClick="">AF_Sine</button>
-            <button type="button" class="btn btn-secondary" onClick="">AF_Square</button>
-            <button type="button" class="btn btn-secondary" onClick="">AF_Saw</button>
-            <button type="button" class="btn btn-secondary" onClick="">AF_Triangle</button>
+          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-12')">rollof_-12</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-24')">rollof_-24</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-48')">rollof_-48</button>
+            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-96')">rollof_-96</button>
           </div>
-          <div class="btn-group-horizontal btn-group-sm" role="group" aria-label="ok">
+          <div class="btn-group-horizontal btn-group-sm buttonsfive" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary" onClick="autofilterWave('sine')">AF_Sine</button>
+            <button type="button" class="btn btn-secondary" onClick="autofilterWave('square')">AF_Square</button>
+            <button type="button" class="btn btn-secondary" onClick="autofilterWave('sawtooth')">AF_Saw</button>
+            <button type="button" class="btn btn-secondary" onClick="autofilterWave('triangle')">AF_Triangle</button>
+          </div>
+          <div class="btn-group-horizontal btn-group-sm buttonssix" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2m')">2m</button>
             <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4m')">4m</button>
             <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8m')">8m</button>
@@ -177,26 +236,10 @@
         </div>
         <div>
           QUARTA LINHA
-          <div id="slider_teste"></div>
         </div>
 
       </div>
     </div>
-    <div id="topRightPage" class="topRightPage"></div>
-    <div id="botLeftPage" class="botLeftPage"><br></div>
-    <div id="botRightPage" class="botRightPage"></div>
-
-    <div id="instrumentoTres" class="instrumentoTres">
-      instrumentoTres
-    </div>
-    <div id="instrumentoQuatro" class="instrumentoQuatro">
-      instrumentoQuatro
-    </div>
-    <div id="instrumentoCinco" class="instrumentoCinco">
-      instrumentoCinco
-    </div>
-    <!-- MODAL -->
-
 
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
