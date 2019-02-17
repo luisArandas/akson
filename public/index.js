@@ -11,6 +11,7 @@ $(document).ready(function() {
     /*Make pans*/
     /*Add partials to the main oscillators*/
     /*Stream audio parameters*/
+    /* geolocation API and a new logger */
     document.getElementById("topBar").style.display = "none";
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
@@ -38,7 +39,9 @@ $(document).ready(function() {
   The distance of intersection isSceneOne can be amplitude
   https://github.com/yiwenl/Alfrid
   https://github.com/jiahaog/nativefier
+  https://github.com/mdn/web-dictaphone
 */
+
 var camera,
   scene,
   light,
@@ -61,8 +64,6 @@ var mouseTwo = new THREE.Vector2(),
 
 var glitchPass = new THREE.GlitchPass();
 var afterimagePass = new THREE.AfterimagePass();
-var effectSobel;
-var pixelPass, params;
 
 var composerOne;
 var composerTwo;
@@ -102,7 +103,8 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
 var randomSequenceOfNotes;
-var isBlack = false;
+var isBlackSceneOne = false;
+var isBlackSceneFour = false;
 var light1;
 var light2;
 
@@ -117,14 +119,18 @@ function init() {
   socket.on('scene', changeScene);
 
   socket.on('socketid', function(socketid) {
-    console.log(socketid + ' Key');
-    var div = document.getElementById('botRightPage');
-    div.innerHTML += 'Key - ' + socketid + '<br>' + '//////////////////////////' + '<br>';
+    var logs = document.getElementById('logs'),
+      output_node = document.createElement("div");
+    output_node.innerHTML = 'Key - ' + socketid + '<br>' + '//////////////////////////' + '<br>';
+    logs.appendChild(output_node);
+    logs.scrollTop = logs.scrollHeight;
   });
   socket.on('socketnumber', function(connections) {
-    console.log("There are currently " + connections + " connections");
-    var div = document.getElementById('botRightPage');
-    div.innerHTML += "There are currently " + connections + " connections" + '<br>' + '//////////////////////////' + '<br>';
+    var logs = document.getElementById('logs'),
+      output_node = document.createElement("div");
+    output_node.innerHTML = "There are currently " + connections + " connections" + '<br>' + '//////////////////////////' + '<br>';
+    logs.appendChild(output_node);
+    logs.scrollTop = logs.scrollHeight;
   });
 
   container = document.createElement('div');
@@ -321,13 +327,6 @@ function init() {
   window.addEventListener('mouseup', onMouseUp, false);
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
-
-  /*effectBleach.uniforms["opacity"].value = 0.95;
-  effectSepia.uniforms["amount"].value = 0.9;
-  effectVignette.uniforms["offset"].value = 0.95;
-  effectVignette.uniforms["darkness"].value = 1.6;
-*/
-
   composerOne = new THREE.EffectComposer(renderer);
   composerOne.addPass(new THREE.RenderPass(scene, camera));
   composerOne.addPass(glitchPass);
@@ -336,30 +335,8 @@ function init() {
   composerTwo.addPass(new THREE.RenderPass(scene, camera));
   composerTwo.addPass(afterimagePass);
 
-  composerThree = new THREE.EffectComposer(renderer);
-  composerThree.addPass(new THREE.RenderPass(scene, camera));
-  effectSobel = new THREE.ShaderPass(THREE.SobelOperatorShader);
-  effectSobel.uniforms.resolution.value.x = window.innerWidth;
-  effectSobel.uniforms.resolution.value.y = window.innerHeight;
-  composerThree.addPass(effectSobel);
-
-  composerFour = new THREE.EffectComposer(renderer);
-  composerFour.addPass(new THREE.RenderPass(scene, camera));
-  pixelPass = new THREE.ShaderPass(THREE.PixelShader);
-  pixelPass.uniforms.resolution.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
-  pixelPass.uniforms.resolution.value.multiplyScalar(window.devicePixelRatio);
-  params = {
-    pixelSize: 16,
-    postprocessing: true
-  };
-  pixelPass.uniforms.pixelSize.value = params.pixelSize;
-  composerFour.addPass(pixelPass);
-
-
   glitchPass.renderToScreen = false;
   afterimagePass.renderToScreen = false;
-  effectSobel.renderToScreen = false;
-  pixelPass.renderToScreen = false;
 
 
   /*
@@ -398,8 +375,6 @@ function init() {
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
-      pixelPass.renderToScreen = false;
       glitchPass.renderToScreen = false;
 
       controls.enabled = false;
@@ -422,8 +397,6 @@ function init() {
 
       camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
       afterimagePass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
-      pixelPass.renderToScreen = false;
       glitchPass.goWild = false;
       if (glitchPass.renderToScreen == false) {
         renderPostOne = true;
@@ -443,8 +416,6 @@ function init() {
       isSceneFour = false;
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
-      pixelPass.renderToScreen = false;
       glitchPass.renderToScreen = false;
 
       var whichScene = 69;
@@ -467,8 +438,6 @@ function init() {
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
-      pixelPass.renderToScreen = false;
       /*  glitchPass.goWild = true;
         if (glitchPass.renderToScreen == false) {
           renderPostOne = true;
@@ -495,8 +464,6 @@ function init() {
       // AQUI METER UM TIMER E POR NO E
       console.log("A");
       afterimagePass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
-      pixelPass.renderToScreen = false;
       glitchPass.goWild = true;
       if (glitchPass.renderToScreen == false) {
         renderPostOne = true;
@@ -510,8 +477,6 @@ function init() {
     if (event.which == "83") {
       console.log("S");
       afterimagePass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
-      pixelPass.renderToScreen = false;
       glitchPass.goWild = false;
       if (glitchPass.renderToScreen == false) {
         renderPostOne = true;
@@ -524,8 +489,6 @@ function init() {
     if (event.which == "68") {
       console.log("D");
       glitchPass.renderToScreen = false;
-      pixelPass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
       if (afterimagePass.renderToScreen == false) {
         renderPostTwo = true;
         afterimagePass.renderToScreen = true;
@@ -538,28 +501,11 @@ function init() {
       console.log("F");
       glitchPass.renderToScreen = false;
       afterimagePass.renderToScreen = false;
-      pixelPass.renderToScreen = false;
-      if (effectSobel.renderToScreen == false) {
-        renderPostThree = true;
-        effectSobel.renderToScreen = true;
-      } else if (effectSobel.renderToScreen == true) {
-        renderPostThree = false;
-        effectSobel.renderToScreen = false;
-      }
     }
     if (event.which == "71") {
       console.log("G");
       glitchPass.renderToScreen = false;
       afterimagePass.renderToScreen = false;
-      effectSobel.renderToScreen = false;
-
-      if (pixelPass.renderToScreen == false) {
-        renderPostFour = true;
-        pixelPass.renderToScreen = true;
-      } else if (pixelPass.renderToScreen == true) {
-        renderPostFour = false;
-        pixelPass.renderToScreen = false;
-      }
     }
     if (event.which == "72") {
       console.log("H");
@@ -619,7 +565,6 @@ var data;
 function onMouseDown(event) {
   markovNote(); // console logs next chain note
   event.preventDefault();
-
   var data = {
     x: event.clientX,
     y: event.clientY
@@ -631,6 +576,17 @@ function onMouseDown(event) {
   if (isSceneOne == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransform.children);
     if (intersectsClick.length > 0) {
+      if (isBlackSceneOne == false) {
+        intersectsClick[0].object.material.color.set(0x181818);
+      }
+      if (isBlackSceneOne == true) {
+        intersectsClick[0].object.material.color.set(0xBEBEBE);
+      }
+      if (isBlackSceneOne == true) {
+        isBlackSceneOne = false;
+      } else {
+        isBlackSceneOne = true;
+      }
       Tone.context.resume().then(() => {
         polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
@@ -648,13 +604,16 @@ function onMouseDown(event) {
       console.log(intersectsClick[0].object.material.color);
       intersectsClick[0].object.wireframe = false;
 
-      if (isBlack == false) {
+      if (isBlackSceneFour == false) {
         intersectsClick[0].object.material.color.set(0x181818);
-        isBlack = true;
       }
-      if (isBlack == true) {
-        intersectsClick[0].object.material.color.set(0xff66ff);
-        isBlack = false;
+      if (isBlackSceneFour == true) {
+        intersectsClick[0].object.material.color.set(0xBEBEBE);
+      }
+      if (isBlackSceneFour == true) {
+        isBlackSceneFour = false;
+      } else {
+        isBlackSceneFour = true;
       }
 
       Tone.context.resume().then(() => {

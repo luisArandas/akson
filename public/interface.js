@@ -149,6 +149,7 @@ WUI_Dialog.create("logs_dialog", {
   status_bar: true
 });
 
+
 /*---------------------------------------------------*/
 WUI_RangeSlider.create("slider_teste", {
   // width/height of the slider, if you make a vertical slider, you should swap theses values
