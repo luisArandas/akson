@@ -62,10 +62,32 @@ chain.value = "beginning";
 //chain.next(); //returns "end" with 80% probability or "middle" with 20%.
 */
 
-function scaleButtonsColor() {
-  if (document.getElementById("scale1").style.background != "yellow") {
-    document.getElementById("scale1").style.background = "white";
-  } else if (document.getElementById("scale1").style.background == "yellow") {
-    document.getElementById("scale1").style.background = "black";
+function scaleButtons(data) {
+  if (document.getElementById(data).style.background != "white") {
+    document.getElementById(data).style.background = "white";
+    document.getElementById(data).style.color = "black";
+  } else if (document.getElementById(data).style.background == "white") {
+    document.getElementById(data).style.background = "black";
+    document.getElementById(data).style.color = "white";
   }
+  if (data == "major") {
+    consoleLog(); // Do some stuff.
+  }
+  if (data == "minor") {
+    consoleLog(); // Do some more stuff.
+  }
+  /* Print you are in major pentatonic */
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "You are in Pentatonic major. <br> The buttons will work soon. <br> I am currently working on variable markov models for note and possibly chord progression.";
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
+}
+
+function consoleLog(v) {
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "This doesn't work right now, sorry.";
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 }

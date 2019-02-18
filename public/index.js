@@ -6,6 +6,11 @@ $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
+  /* Retirar isto depois da Jam
+  document.getElementById("topBar").style.display = "none";
+  WUI_Dialog.close("master_dialog");
+  WUI_Dialog.close("cockpit_dialog");
+  WUI_Dialog.close("logs_dialog");*/
   if (detectmob() === true) {
     /*If he is mobile then change the scenes everytime someone changes*/
     /*Make pans*/
@@ -29,6 +34,11 @@ $(document).ready(function() {
     $(".introLoadTimer").delay(3000).fadeOut(2500);
   });
   //console.log("volume " + Tone.Master.volume.value);
+  var v = document.querySelectorAll("#c2, #d2, #e2, #g2, #a2, #c3, #d3, #e3, #g3, #a3, #c4, #d4, #e4, #g4, #a4, #c5, #d5, #e5, #g5, #a5");
+  v.forEach(function(v) {
+    v.style.background = "white";
+    v.style.color = "black";
+  });
   if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
     //Try alert.
   }
@@ -169,7 +179,6 @@ function init() {
   function orbitControls() {
     if (isSceneTwo == true) {
       autoFilterOne.frequency.value = event.clientX;
-      console.log(autoFilterOne.frequency.value);
     }
   }
   controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
@@ -203,7 +212,6 @@ function init() {
 
     //object.rotation.z = Math.PI / 2;
     parentTransform.add(object);
-
   }
   scene.add(parentTransform);
 
@@ -352,9 +360,17 @@ function init() {
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
-        //I don't think I need this anymore;
+        document.getElementById("topBar").style.display = "inline";
+        WUI_Dialog.open("master_dialog");
+        WUI_Dialog.open("cockpit_dialog");
+        WUI_Dialog.open("logs_dialog");
       }
-      if (sideBar == true) {}
+      if (sideBar == true) {
+        document.getElementById("topBar").style.display = "none";
+        WUI_Dialog.close("master_dialog");
+        WUI_Dialog.close("cockpit_dialog");
+        WUI_Dialog.close("logs_dialog");
+      }
       if (sideBar == true) {
         sideBar = false;
       } else {
@@ -738,8 +754,8 @@ function detectmob() {
 
 function render() {
   var corFundo = Math.random() * (0.15 - 0) + 0;
-  // Grey glitch
-  //scene.background = new THREE.Color(corFundo, corFundo, corFundo);
+  // Grey glitch.
+  // scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
   if (isSceneOne == true || isSceneFour == true) {
     camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
@@ -805,6 +821,9 @@ function render() {
       rz = Math.sin(time * 0.2) * 0.5;
     camera.position.x += (mouseX - camera.position.x) * 0.05;
     camera.position.y += (-mouseY - camera.position.y) * 0.05;
+
+    /* Here change the scenes */
+
     camera.lookAt(scene.position);
     parentTransformTres.rotation.x = rx;
     parentTransformTres.rotation.y = ry;

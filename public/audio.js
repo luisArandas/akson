@@ -617,19 +617,19 @@ function topBar(data) {
   }
   if (data == "hideMouse") {
     /* Pôr visivel na barra */
-    //document.getElementById('body').style.cursor = 'none';
-    document.body.style.cursor = 'none !important';
-    console.log("hideCursor");
+    consoleLog();
   }
   if (data == "hideGui") {
-    guiIsVisible = false;
+    /*guiIsVisible = false;
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
     WUI_Dialog.close("logs_dialog");
-    document.getElementById("topBar").style.visibility = "hidden";
+    document.getElementById("topBar").style.visibility = "hidden";*/
+    consoleLog();
   }
   if (data == "recordAudio") {
     /* Record audio here */
+    consoleLog();
   }
   if (data == "aboutMe") {
     modal.style.display = "block";

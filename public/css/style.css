@@ -499,6 +499,43 @@ body.fadeIn {
 /*        Scales        */
 
 
-.scale1 {
-  background-color: rgba(255,0,0,1);
+.gruponotas2 {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translatex(-55%);
+  top: 65px;
+}
+.gruponotas3 {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translatex(-55%);
+  top: 95px;
+}
+.gruponotas4 {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translatex(-55%);
+  top: 125px;
+}
+.gruponotas5 {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translatex(-55%);
+  top: 155px;
+}
+
+.grupomaior {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translatex(-55%);
+  top: 185px;
+}
+
+.buttonMajor {
+  width: 100px;
 }
