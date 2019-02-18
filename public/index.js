@@ -104,6 +104,7 @@ var windowHalfY = window.innerHeight / 2;
 
 var randomSequenceOfNotes;
 var isBlackSceneOne = false;
+var isBlackSceneOne_ = false;
 var isBlackSceneFour = false;
 var light1;
 var light2;
@@ -114,8 +115,7 @@ animate();
 function init() {
 
   socket = io.connect(window.location.origin);
-  socket.on('mouse', newDrawing);
-
+  socket.on('mouse', clickStream);
   socket.on('scene', changeScene);
 
   socket.on('socketid', function(socketid) {
@@ -633,11 +633,25 @@ function onMouseUp(event) {
 
 function onWindowResize() {}
 
-function newDrawing(data) {
+function clickStream(data) {
+
   console.log(data.x);
   console.log(data.y);
+
   randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
   polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+  var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];
+  if (isBlackSceneOne_ == false) {
+    randomItem.material.color.set(0x181818);
+  }
+  if (isBlackSceneOne_ == true) {
+    randomItem.material.color.set(0xBEBEBE);
+  }
+  if (isBlackSceneOne_ == true) {
+    isBlackSceneOne_ = false;
+  } else {
+    isBlackSceneOne_ = true;
+  }
 }
 
 function changeScene(data) {

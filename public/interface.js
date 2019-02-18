@@ -3,7 +3,7 @@ window.WUI_Reporting = true;
 WUI_Dialog.create("master_dialog", {
   title: "Master Controls",
   width: "275px",
-  height: "400px",
+  height: "290px",
   halign: "left",
   valign: "center",
   open: true,
@@ -29,7 +29,7 @@ WUI_Dialog.create("master_dialog", {
   resizable: false,
   //detachable: true,
   keep_align_when_resized: false,
-  top: -250,
+  top: -500,
   left: 0
 });
 

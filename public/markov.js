@@ -61,3 +61,11 @@ var chain = new Tone.CtrlMarkov({
 chain.value = "beginning";
 //chain.next(); //returns "end" with 80% probability or "middle" with 20%.
 */
+
+function scaleButtonsColor() {
+  if (document.getElementById("scale1").style.background != "yellow") {
+    document.getElementById("scale1").style.background = "white";
+  } else if (document.getElementById("scale1").style.background == "yellow") {
+    document.getElementById("scale1").style.background = "black";
+  }
+}

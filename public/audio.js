@@ -72,7 +72,7 @@ var UI = {
     'interaction': 'radial', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
-    'max': 15,
+    'max': 5,
     'step': 0.001,
     'value': -12
   }),
@@ -81,7 +81,7 @@ var UI = {
     'interaction': 'radial', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
-    'max': 15,
+    'max': 5,
     'step': 0.001,
     'value': -10
   }),
@@ -90,7 +90,7 @@ var UI = {
     'interaction': 'radial', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
-    'max': 15,
+    'max': 5,
     'step': 0.001,
     'value': 0
   }),
@@ -395,7 +395,6 @@ UI.synthvolume.on('change', function(v) {
 UI.backgroundvolume.on('change', function(v) {
   noiseOne.volume.value = v;
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  console.log(_v);
   var logs = document.getElementById('logs'),
     output_node = document.createElement("div");
   output_node.innerHTML = "Background volume -" + _v;
@@ -405,7 +404,6 @@ UI.backgroundvolume.on('change', function(v) {
 UI.mainvolume.on('change', function(v) {
   Tone.Master.volume.value = v;
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  console.log(_v);
   var logs = document.getElementById('logs'),
     output_node = document.createElement("div");
   output_node.innerHTML = "Master volume -" + _v;
@@ -555,27 +553,52 @@ UI.afbasefrequency.on('change', function(v) {
 
 UI.eqbass.on('change', function(v) {
   eq.low.value = v
-  console.log(eq.low.value);
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "EQ Low freq -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
 UI.eqmid.on('change', function(v) {
   eq.mid.value = v
-  console.log(eq.mid.value);
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "EQ Mid freq -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
 UI.eqhigh.on('change', function(v) {
   eq.high.value = v
-  console.log(eq.high.value);
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "EQ high freq -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
 UI.lowfreq.on('change', function(v) {
   eq.lowFrequency.value = v
-  console.log(eq.lowFrequency.value);
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "Low-freq-crossover -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
 UI.highfreq.on('change', function(v) {
   eq.highFrequency.value = v
-  console.log(eq.highFrequency.value);
+  _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = "High-freq-crossover -" + _v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 });
 
 

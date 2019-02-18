@@ -31,6 +31,9 @@
   <div class="introLoadTimer"></div>
   <div id="master_dialog">
     <div style="text-align: center; font-size: 5pt;">
+      <div id="controlos" class="controlos">
+        synth-vol ; <br>back-vol ; <br>master-vol ; <br>eq-bass ; <br>eq-mid ; <br>eq-high ; <br>lowfreq-crossover ; <br>hifreq-crossover ;
+      </div>
       <div id="synthvolume" class="synthvolume"></div>
       <div id="backgroundvolume" class="backgroundvolume"></div>
       <div id="mainvolume" class="mainvolume"></div>
@@ -42,7 +45,6 @@
       <div id="lowfreq" class="lowfreq"></div>
       <div id="highfreq" class="highfreq"></div>
       <div id="mastercontrols" class="mastercontrols"></div>
-
 
       <div id="oscilloscope" class="oscilloscope"></div>
     </div>
@@ -104,16 +106,16 @@
       <div>
         <div>
           <div class="btn-group-horizontal btn-group-sm buttonsone" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary" onClick="synthWave('sine')">Sine</button>
-            <button type="button" class="btn btn-secondary" onClick="synthWave('square')">Square</button>
-            <button type="button" class="btn btn-secondary" onClick="synthWave('sawtooth')">Saw</button>
-            <button type="button" class="btn btn-secondary" onClick="synthWave('triangle')">Triangle</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sine')">Sine</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('square')">Square</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sawtooth')">Saw</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('triangle')">Triangle</button>
           </div>
           <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary" onClick="partialCount('2')">2m</button>
-            <button type="button" class="btn btn-secondary" onClick="partialCount('4')">4m</button>
-            <button type="button" class="btn btn-secondary" onClick="partialCount('8')">8m</button>
-            <button type="button" class="btn btn-secondary" onClick="partialCount('16')">16m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('2')">2m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('4')">4m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('8')">8m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('16')">16m</button>
           </div>
           <div id="demo_integrated_dialog" style="position: relative;">
             <div style="text-align: center; font-size: 5pt;">
@@ -196,43 +198,42 @@
           </div>
 
           <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary" onClick="noiseType('white')">White</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseType('brown')">Brown</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseType('pink')">Pink</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('white')">White</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('brown')">Brown</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('pink')">Pink</button>
           </div>
           <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-12')">rollof_-12</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-24')">rollof_-24</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-48')">rollof_-48</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseRoloff('-96')">rollof_-96</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-12')">rollof_-12</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-24')">rollof_-24</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-48')">rollof_-48</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-96')">rollof_-96</button>
           </div>
           <div class="btn-group-horizontal btn-group-sm buttonsfive" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary" onClick="autofilterWave('sine')">AF_Sine</button>
-            <button type="button" class="btn btn-secondary" onClick="autofilterWave('square')">AF_Square</button>
-            <button type="button" class="btn btn-secondary" onClick="autofilterWave('sawtooth')">AF_Saw</button>
-            <button type="button" class="btn btn-secondary" onClick="autofilterWave('triangle')">AF_Triangle</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sine')">AF_Sine</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('square')">AF_Square</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sawtooth')">AF_Saw</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('triangle')">AF_Triangle</button>
           </div>
           <div class="btn-group-horizontal btn-group-sm buttonssix" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2m')">2m</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4m')">4m</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8m')">8m</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16m')">16m</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32m')">32m</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2n')">2n</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4n')">4n</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8n')">8n</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16n')">16n</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32n')">32n</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('2t')">2t</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('4t')">4t</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('8t')">8t</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('16t')">16t</button>
-            <button type="button" class="btn btn-secondary" onClick="noiseOneFrequencyTime('32t')">32t</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2m')">2m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4m')">4m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8m')">8m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16m')">16m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32m')">32m</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2n')">2n</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4n')">4n</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8n')">8n</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16n')">16n</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32n')">32n</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2t')">2t</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4t')">4t</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8t')">8t</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16t')">16t</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32t')">32t</button>
           </div>
         </div>
         <div>
-          TERCEIRA LINHA
-          <div id="shaderControlOne" class="shaderControlOne"></div>
+          <button type="button" class="btn btn-secondary buttonColor" id="scale1" onclick="scaleButtonsColor()">C3</button>
         </div>
         <div>
           QUARTA LINHA
