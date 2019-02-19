@@ -12,11 +12,12 @@ $(document).ready(function() {
   WUI_Dialog.close("cockpit_dialog");
   WUI_Dialog.close("logs_dialog");*/
   if (detectmob() === true) {
-    /*If he is mobile then change the scenes everytime someone changes*/
-    /*Make pans*/
-    /*Add partials to the main oscillators*/
-    /*Stream audio parameters*/
-    /* geolocation API and a new logger */
+    /*If he is mobile then change the scenes everytime someone changes
+    Make pans
+    Midi
+    Add partials to the main oscillators
+    Stream audio parameters
+    geolocation API and a new logger */
     document.getElementById("topBar").style.display = "none";
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
