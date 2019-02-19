@@ -7,7 +7,7 @@
 
 
 
-Indices and tables
+Doc Structure
 ==================
 
 * :ref:`genindex`
