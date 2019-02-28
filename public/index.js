@@ -17,7 +17,9 @@ $(document).ready(function() {
     Midi
     Add partials to the main oscillators
     Stream audio parameters
-    geolocation API and a new logger */
+    geolocation API and a new logger
+    Presets
+    Master fadeOut*/
     document.getElementById("topBar").style.display = "none";
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
@@ -46,12 +48,14 @@ $(document).ready(function() {
 });
 
 /*
+  ADD the choices, on master control and streaming widgets + stop playing
   https://stackoverflow.com/questions/38314521/change-color-of-mesh-using-mouseover-in-three-js/38325167
   The distance of intersection isSceneOne can be amplitude
   https://github.com/yiwenl/Alfrid
-  https://github.com/jiahaog/nativefier
+  https://github.com/jiahaog/nativefier -> Export as app
   https://github.com/mdn/web-dictaphone
 */
+// const ios; Atribute.
 
 var camera,
   scene,
@@ -83,13 +87,7 @@ var composerFour;
 var whichVisuals;
 
 /*  Currently using Pentatonic Major  */
-var sequenceOfNotesC = ['C2', 'D2', 'E2', 'G2', 'A2', 'C3', 'D3', 'E3', 'G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
-var sequenceOfNotesD = ['D2', 'E2', 'F#2', 'A2', 'B2', 'D3', 'E3', 'F#3', 'A3', 'B3', 'D4', 'E4', 'F#4', 'A4', 'B4', 'D5', 'E5', 'F#5', 'A5', 'B5', 'D6'];
-var sequenceOfNotesE = ['E2', 'F#2', 'G#2', 'B2', 'C#2', 'E3', 'F#3', 'G#3', 'B3', 'C#3', 'E4', 'F#4', 'G#4', 'B4', 'C#4', 'E5', 'F#5', 'G#5', 'B5', 'C#5', 'E6'];
-var sequenceOfNotesF = ['F2', 'G2', 'A2', 'C2', 'D2', 'F3', 'G3', 'A3', 'C3', 'D3', 'F4', 'G4', 'A4', 'C4', 'D4', 'F5', 'G5', 'A5', 'C5', 'D5', 'F6'];
-var sequenceOfNotesG = ['G2', 'A2', 'B2', 'D2', 'E2', 'G3', 'A3', 'B3', 'D3', 'E3', 'G4', 'A4', 'B4', 'D4', 'E4', 'G5', 'A5', 'B5', 'D5', 'E5', 'G6'];
-var sequenceOfNotesA = ['A2', 'B2', 'C#2', 'E2', 'F#2', 'A3', 'B3', 'C#3', 'E3', 'F#3', 'A4', 'B4', 'C#4', 'E4', 'F#4', 'A5', 'B5', 'C#5', 'E5', 'F#5', 'A6'];
-var sequenceOfNotesB = ['B2', 'C#2', 'D#2', 'F#2', 'G#2', 'B3', 'C#3', 'D#3', 'F#3', 'G#3', 'B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
+
 var scalePlaying;
 
 var isSceneOne = true;
@@ -113,12 +111,13 @@ var renderPostFour = false;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
-var randomSequenceOfNotes;
 var isBlackSceneOne = false;
 var isBlackSceneOne_ = false;
 var isBlackSceneFour = false;
 var light1;
 var light2;
+
+var isStreaming = false;
 
 init();
 animate();
@@ -353,9 +352,6 @@ function init() {
   32 == SPACE
   */
 
-  scalePlaying = sequenceOfNotesC;
-
-
   var whichScene;
 
   document.addEventListener("keydown", function(event) {
@@ -576,6 +572,7 @@ function onDocumentMouseMove(event) {
 // ------------------------- SOCKETS -------------------------------
 
 var data;
+var novaEscala = new ScalePlaying();
 
 function onMouseDown(event) {
   markovNote(); // console logs next chain note
@@ -586,8 +583,10 @@ function onMouseDown(event) {
   };
   socket.emit('mouse', data);
 
-  randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
-  console.log(randomSequenceOfNotes);
+  var escala = novaEscala.cMajorPentatonic();
+  var note = Math.floor(Math.random() * novaEscala.cMajorPentatonic().length);
+
+  console.log(escala[note]);
   if (isSceneOne == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransform.children);
     if (intersectsClick.length > 0) {
@@ -603,11 +602,11 @@ function onMouseDown(event) {
         isBlackSceneOne = true;
       }
       Tone.context.resume().then(() => {
-        polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+        polySynth.triggerAttackRelease(escala[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
         var logs = document.getElementById('logs'),
           output_node = document.createElement("div");
-        output_node.innerHTML = scalePlaying[randomSequenceOfNotes];
+        output_node.innerHTML = escala[note];
         logs.appendChild(output_node);
         logs.scrollTop = logs.scrollHeight;
       });
@@ -632,11 +631,11 @@ function onMouseDown(event) {
       }
 
       Tone.context.resume().then(() => {
-        polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+        polySynth.triggerAttackRelease(escala[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
         var logs = document.getElementById('logs'),
           output_node = document.createElement("div");
-        output_node.innerHTML = scalePlaying[randomSequenceOfNotes];
+        output_node.innerHTML = escala[note];
         logs.appendChild(output_node);
         logs.scrollTop = logs.scrollHeight;
       });
@@ -650,13 +649,18 @@ function onMouseUp(event) {
 
 function onWindowResize() {}
 
+
+
+
 function clickStream(data) {
 
   console.log(data.x);
   console.log(data.y);
 
-  randomSequenceOfNotes = Math.floor(Math.random() * scalePlaying.length);
-  polySynth.triggerAttackRelease(scalePlaying[randomSequenceOfNotes], "4n");
+  var escala = novaEscala.cMajorPentatonic();
+  var note = Math.floor(Math.random() * novaEscala.cMajorPentatonic().length);
+  polySynth.triggerAttackRelease(escala[note], "4n");
+
   var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];
   if (isBlackSceneOne_ == false) {
     randomItem.material.color.set(0x181818);
@@ -794,7 +798,6 @@ function render() {
     if (INTERSECTEDTWO)(INTERSECTEDTWO.material.wireframe = true);
     INTERSECTEDTWO = null;
   }
-
 
   renderer.render(scene, camera);
   renderer.autoClear = false;

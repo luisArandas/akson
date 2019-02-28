@@ -2,8 +2,19 @@
  * @author Luis Arandas  http://luisarandas.org
  */
 
-var span = document.getElementsByClassName("close")[0];
-var modal = document.getElementById('myModal');
+var spanOne = document.getElementsByClassName("closeOne")[0];
+var spanTwo = document.getElementsByClassName("closeTwo")[0];
+var modalOne = document.getElementById('modalOne');
+var modalTwo = document.getElementById('modalTwo');
+
+socket = io.connect(window.location.origin);
+socket.on('uisocket', streamControls);
+
+var values = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]; //34 make vars here
+var value01;
+var value02;
+var value03;
+
 
 var instrumentOne = false;
 var instrumentTwo = false;
@@ -12,13 +23,6 @@ var instrumentFour = false;
 var typeofOsc = "sine";
 
 var connectSoundVisuals = false;
-//EQUALIZE THE MASTER
-//STOP THE VISUALS
-//CRIAR O BOTAO DE SEPARATE AUDIO FROM VISUALS
-//SET PRESETS
-//TOCAR MAIS QUE UMA NOTA QUANDO EU onMouseDown
-//https://tonejs.github.io/docs/r13/CtrlMarkov
-//STREAM OS CONTROLOS
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
@@ -290,7 +294,6 @@ var UI = {
   }),
 }
 
-
 for (var key in UI) {
   UI[key].on('change', function(value) {
     var logs = document.getElementById('logs'),
@@ -300,8 +303,6 @@ for (var key in UI) {
     logs.scrollTop = logs.scrollHeight;
   });
 }
-
-
 
 var noiseOne = new Tone.Noise("pink");
 var autoFilterOne = new Tone.AutoFilter({
@@ -412,6 +413,11 @@ UI.mainvolume.on('change', function(v) {
 });
 
 UI.synthAttack.on('change', function(v) {
+  var data = {
+    x: v,
+    y: "synthAttack"
+  };
+  socket.emit('uisocket', data);
   polySynth.set({
     "envelope": {
       "attack": v
@@ -419,6 +425,11 @@ UI.synthAttack.on('change', function(v) {
   });
 });
 UI.synthDecay.on('change', function(v) {
+  var data = {
+    x: v,
+    y: "synthDecay"
+  };
+  socket.emit('uisocket', data);
   polySynth.set({
     "envelope": {
       "decay": v
@@ -426,6 +437,11 @@ UI.synthDecay.on('change', function(v) {
   });
 });
 UI.synthSustain.on('change', function(v) {
+  var data = {
+    x: v,
+    y: "synthSustain"
+  };
+  socket.emit('uisocket', data);
   polySynth.set({
     "envelope": {
       "sustain": v
@@ -433,6 +449,11 @@ UI.synthSustain.on('change', function(v) {
   });
 });
 UI.synthRelease.on('change', function(v) {
+  var data = {
+    x: v,
+    y: "synthRelease"
+  };
+  socket.emit('uisocket', data);
   polySynth.set({
     "envelope": {
       "release": v
@@ -632,17 +653,33 @@ function topBar(data) {
     consoleLog();
   }
   if (data == "aboutMe") {
-    modal.style.display = "block";
+    modalOne.style.display = "block";
+    closeGui();
+  }
+  if (data == "changeMode") {
+    modalTwo.style.display = "block";
     closeGui();
   }
 }
-span.onclick = function() {
-  modal.style.display = "none";
+
+spanOne.onclick = function() {
+  modalOne.style.display = "none";
+  modalTwo.style.display = "none";
   openGui();
 }
+spanTwo.onclick = function() {
+  modalOne.style.display = "none";
+  modalTwo.style.display = "none";
+  openGui();
+}
+
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modalOne) {
+    modalOne.style.display = "none";
+    openGui();
+  }
+  if (event.target == modalTwo) {
+    modalTwo.style.display = "none";
     openGui();
   }
 }
@@ -703,4 +740,41 @@ function autofilterWave(data) {
   autoFilterOne.set({
     "type": data
   });
+}
+
+//----------------------------------- Change the Network State
+
+function changeState(v) {
+  if (v == "descenter") {
+    console.log("1");
+  }
+  if (v == "streamed") {
+    console.log(isStreaming);
+  }
+  if (v == "alocate") {
+    console.log("Remove the sockets, Alocate people in my UI");
+  }
+}
+
+function streamControls(data) {
+  // Ok this is experimental but port to everything else
+  //var isStreaming is false to a button
+  if (isStreaming == true) {
+    if (data.y == "synthAttack") {
+      value01 = data.x;
+      if (value01 != UI.synthAttack.value) {
+        UI.synthAttack.value = value01;
+      } else {
+        console.log("");
+      }
+    }
+    if (data.y == "synthDecay") {
+      value02 = data.x;
+      if (value02 != UI.synthDecay.value) {
+        UI.synthDecay.value = value02;
+      } else {
+        console.log("");
+      }
+    }
+  }
 }

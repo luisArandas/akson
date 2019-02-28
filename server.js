@@ -47,4 +47,11 @@ function newConnection(socket) {
     socket.broadcast.emit('scene', data);
     console.log(data);
   }
+
+  socket.on('uisocket', streamUi);
+
+  function streamUi(data) {
+    console.log(data);
+    socket.broadcast.emit('uisocket', data);
+  }
 }

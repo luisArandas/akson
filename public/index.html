@@ -82,15 +82,18 @@
         <button class="btn btn-sm btnCima" type="button" onClick="topBar('hideMouse')"><i class="fas fa-mouse-pointer"></i></button>
       </div>
       <div class="btn-group mr-2" role="group" aria-label="Fifth group">
+        <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')"><i class="fas fa-arrows-alt-h"></i></button>
+      </div>
+      <div class="btn-group mr-2" role="group" aria-label="Sixth group">
         <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('muteAudio')"><i class="fas fa-volume-mute"></i></button>
       </div>
   </div>
 
-  <div id="myModal" class="modal">
+  <div id="modalOne" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="closeOne">&times;</span>
       <div class="modal-text">
         synopsis.<br>
         Akson is the name of a networked audio-visual system that allows large-scale playback and collaboration between artists.
@@ -105,8 +108,52 @@
         Computer Music, New Media Art, Networked Art, Digital Interaction, Interfacing Art
       </div>
     </div>
-
   </div>
+
+
+  <div id="modalTwo" class="modalTwo">
+    <div class="modal-content">
+      <span class="closeTwo">&times;</span>
+      <div class="modal-text">
+        <button type="button" class="btn btn-dark" onClick="changeState('descenter')">Descenter</button>
+        <button type="button" class="btn btn-dark" onClick="changeState('streamed')">Streamed</button>
+        <button type="button" class="btn btn-dark" onClick="changeState('alocate')">Alocate</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalScale" class="modalScale">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="closeOne">&times;</span>
+      <div class="modal-text">
+        <button type="button" class="btn btn-dark">Pentatonic Major</button>
+        <br>
+        <button type="button" class="btn btn-dark">Pentatonic Minor</button>
+        <br>
+        <button type="button" class="btn btn-dark">Major</button>
+        <br>
+        <button type="button" class="btn btn-dark">Minor</button>
+        <br>
+        <button type="button" class="btn btn-dark">Harmonic Minor</button>
+        <br>
+        <button type="button" class="btn btn-dark">Melodic Minor</button>
+        <br>
+        <button type="button" class="btn btn-dark">Ionian</button>
+        <br>
+        <button type="button" class="btn btn-dark">Locrian</button>
+        <br>
+        <button type="button" class="btn btn-dark">Adonai Malakh</button>
+        <br>
+        <button type="button" class="btn btn-dark">Hirajoshi Japan</button>
+        <br>
+        <button type="button" class="btn btn-dark">Hungarian Major</button>
+        <br>
+      </div>
+    </div>
+  </div>
+
+
 
   <div id="logs_dialog">
     <div id="logs" style="text-align: center; font-size: 10pt; color:white ; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
@@ -312,11 +359,11 @@
           </div>
 
           <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor buttonMajor" id="major" onclick="scaleButtons('major')">major</button>
-            <button type="button" class="btn btn-secondary buttonColor buttonMajor" id="minor" onclick="scaleButtons('minor')">minor</button>
+            <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleButtons('scale')">Scale</button>
           </div>
-
         </div>
+
+        <!--Post process-->
         <div>
           <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('noise1')">Noise</button>
@@ -378,11 +425,11 @@
       <script src="libraries/AfterimagePass.js"></script>
       <script src="libraries/Tone.Editor.js" charset="utf-8"></script>
       <script src="libraries/wui.js" type="text/javascript"></script>
-      <script src="index.js" type="text/javascript"></script>
       <script src="audio.js" type="text/javascript"></script>
       <script src="interface.js" type="text/javascript"></script>
       <script src="grgui.js" type="text/javascript"></script>
       <script src="markov.js" type="text/javascript"></script>
+      <script src="index.js" type="text/javascript"></script>
     </div>
     <!-- BARRA DE BAIXO -->
 </body>
