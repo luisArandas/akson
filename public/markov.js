@@ -61,24 +61,204 @@ var chain = new Tone.CtrlMarkov({
 chain.value = "beginning";
 //chain.next(); //returns "end" with 80% probability or "middle" with 20%.
 */
-var modalOne = document.getElementById('modalScale');
+
+var colorMajorPentatonic = ["#c2, #d2, #e2, #g2, #a2, #c3, #d3, #e3, #g3, #a3, #c4, #d4, #e4, #g4, #a4, #c5, #d5, #e5, #g5, #a5"];
+var colorMinorPentatonic = ["#c2, #ds2, #f2, #g2, #as2, #c3, #ds3, #f3, #g3, #as3, #c4, #ds4, #f4, #g4, #as4, #c5, #ds5, #f5, #g5, #as5"];
+var colorMajor = ["#c2, #d2, #e2, #f2, #g2, #a2, #b2, #c3, #d3, #e3, #f3, #g3, #a3, #b3, #c4, #d4, #e4, #f4, #g4, #a4, #b4, #c5, #d5, #e5, #f5, #g5, #a5, #b5, #c6"];
+var colorMinor = ["#c2, #d2, #ds2, #f2, #g2, #gs2, #as2, #c3, #d3, #ds3, #f3, #g3, #gs3, #as3, #c4, #d4, #ds4, #f4, #g4, #gs4, #as4, #c5, #d5, #ds5, #f5, #g5, #gs5, #as5, #c6"];
+var colorAdonai = ["#c2, #cs2, #d2, #ds2, #f2, #g2, #a2, #as2, #c3, #cs3, #d3, #ds3, #f3, #g3, #a3, #as3, #c4, #cs4, #d4, #ds4, #f4, #g4, #a4, #as4, #c5, #cs5, #d5, #ds5, #f5, #g5, #a5, #as5, #c6"];
+var colorHungarian = ["#c2, #ds2, #e2, #fs2, #g2, #a2, #as2, #c3, #ds3, #e3, #fs3, #g3, #a3, #as3, #c4, #ds4, #e4, #fs4, #g4, #a4, #as4, #c5, #ds5, #e5, #fs5, #g5, #a5, #as5, #c6"];
+var colorHarmonic = ["#c2, #d2, #ds2, #f2, #g2, #gs2, #b2, #c3, #d3, #ds3, #f3, #g3, #gs3, #b3, #c4, #d4, #ds4, #f4, #g4, #gs4, #b4, #c5, #d5, #ds5, #f5, #g5, #gs5, #b5, #c6"];
+var colorMelodic = ["#c2, #d2, #ds2, #f2, #g2, #a2, #b2, #c3, #d3, #ds3, #f3, #g3, #a3, #b3, #c4, #d4, #ds4, #f4, #g4, #a4, #b4, #c5, #d5, #ds5, #f5, #g5, #a5, #b5, #c6"];
+var colorHirajoshi = ["#c2, #d2, #ds2, #g2, #gs2, #c3, #d3, #ds3, #g3, #gs3, #c4, #d4, #ds4, #g4, #gs4, #c5, #d5, #ds5, #g5, #gs5, #c6"];
+var colorIonian = ["#c2, #d2, #e2, #f2, #g2, #a2, #b2, #c3, #d3, #e3, #f3, #g3, #a3, #b3, #c4, #d4, #e4, #f4, #g4, #a4, #b4, #c5, #d5, #e5, #f5, #g5, #a5, #b5, #c6"];
+var colorLocrian = ["#c2, #cs2, #ds2, #f2, #fs2, #gs2, #as2, #c3, #cs3, #ds3, #f3, #fs3, #gs3, #as3, #c4, #cs4, #ds4, #f4, #fs4, #gs4, #as4, #c5, #cs5, #ds5, #f5, #fs5, #gs5, #as5, #c6"];
 
 
-function scaleButtons(data) {
-  /*if (document.getElementById(data).style.background != "white") {
-    document.getElementById(data).style.background = "white";
-    document.getElementById(data).style.color = "black";
-  } else if (document.getElementById(data).style.background == "white") {
-    document.getElementById(data).style.background = "black";
-    document.getElementById(data).style.color = "white";
-  }*/
-  if (data == "scale") {
-    modalOne.style.display = "block";
-    closeGui();
-    consoleLog(); // Do some stuff.
-  }
+function changeScale(data) {
+  var x = document.querySelectorAll("#c2, #cs2, #d2, #ds2, #e2, #f2, #fs2, #g2, #gs2, #a2, #as2, #b2, #c3, #cs3, #d3, #ds3, #e3, #f3, #fs3, #g3, #gs3, #a3, #as3, #b3, #c4, #cs4, #d4, #ds4, #e4, #f4, #fs4, #g4, #gs4, #a4, #as4, #b4, #c5, #cs5, #d5, #ds5, #e5, #f5, #fs5, #g5, #gs5, #a5, #as5, #b5, #c6");
+  x.forEach(function(x) {
+    x.style.background = "black";
+    x.style.color = "white";
+  });
 
+  if (data == "pentatonicMajor") {
+    scale = newScale.cMajorPentatonic();
+    document.getElementById('scaleInfo').innerHTML = 'C Major Pentatonic';
+    var v = document.querySelectorAll(colorMajorPentatonic);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+    console.log(scale);
+    modalAbout.style.display = "none";
+    modalMode.style.display = "none";
+    modalScale.style.display = "none";
+    openGui();
+  };
+
+  if (data == "pentatonicMinor") {
+    scale = newScale.cMinorPentatonic();
+    document.getElementById('scaleInfo').innerHTML = 'C Minor Pentatonic';
+    var v = document.querySelectorAll(colorMinorPentatonic);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+    console.log(scale);
+    modalAbout.style.display = "none";
+    modalMode.style.display = "none";
+    modalScale.style.display = "none";
+    openGui();
+  };
+
+  if (data == "major") {
+    scale = newScale.cMajor();
+    document.getElementById('scaleInfo').innerHTML = 'C Major';
+    var v = document.querySelectorAll(colorMajor);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+    console.log(scale);
+    modalAbout.style.display = "none";
+    modalMode.style.display = "none";
+    modalScale.style.display = "none";
+    openGui();
+  };
+
+  if (data == "minor") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cMinor();
+    document.getElementById('scaleInfo').innerHTML = 'C Minor';
+    var v = document.querySelectorAll(colorMinor);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+
+
+  if (data == "harmonicMinor") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cHarmonicMinor();
+    document.getElementById('scaleInfo').innerHTML = 'C Harmonic Minor';
+    var v = document.querySelectorAll(colorHarmonic);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+
+  if (data == "melodicMinor") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cMelodicMinor();
+    document.getElementById('scaleInfo').innerHTML = 'C Melodic Minor';
+    var v = document.querySelectorAll(colorMelodic);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+
+  if (data == "ionian") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cIonian();
+    document.getElementById('scaleInfo').innerHTML = 'C Ionian';
+    var v = document.querySelectorAll(colorIonian);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+
+  if (data == "locrian") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cLocrian();
+    document.getElementById('scaleInfo').innerHTML = 'C Locrian';
+    var v = document.querySelectorAll(colorLocrian);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+
+  if (data == "adonai") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cAdonaiMalakh();
+    document.getElementById('scaleInfo').innerHTML = 'C Adonai Malakh';
+    var v = document.querySelectorAll(colorAdonai);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+
+  if (data == "hirajoshi") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cHirajoshiJapan();
+    document.getElementById('scaleInfo').innerHTML = 'C Hirajoshi';
+    var v = document.querySelectorAll(colorHirajoshi);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+
+  if (data == "hungarian") {
+    var x = document.querySelectorAll(colorMajorPentatonic, colorMinorPentatonic, colorMajor, colorMinor, colorAdonai, colorHungarian, colorHarmonic, colorMelodic, colorHirajoshi, colorIonian, colorLocrian);
+    x.forEach(function(x) {
+      x.style.background = "black";
+      x.style.color = "white";
+    });
+    scale = newScale.cHungarianMajor();
+    document.getElementById('scaleInfo').innerHTML = 'C Hungarian Major';
+    var v = document.querySelectorAll(colorHungarian);
+    v.forEach(function(v) {
+      v.style.background = "white";
+      v.style.color = "black";
+    });
+  };
+  console.log(scale);
+  modalAbout.style.display = "none";
+  modalMode.style.display = "none";
+  modalScale.style.display = "none";
+  openGui();
 }
+
+function scaleModal() {
+  modalScale.style.display = "block";
+  closeGui();
+}
+
 
 function consoleLog(v) {
   var logs = document.getElementById('logs'),
@@ -87,49 +267,6 @@ function consoleLog(v) {
   logs.appendChild(output_node);
   logs.scrollTop = logs.scrollHeight;
 }
-
-/*
-class Ellipse {
-  constructor(width, height) {
-    this._width = width;
-    this._height = height;
-  }
-  get area() { return Math.PI * this._width * this._height; }
-  set width(w) { this._width = w; }
-  set height(h) { this._height = h; }
-}
-class Circle extends Ellipse {
-  constructor(radius) {
-    super(radius, radius); //functions and methods of parent
-  }
-  set radius(r) { super.width = r; super.height = r; }
-}
-// create a circle
-var c = new Circle(4)
-// returns: Circle {_width: 4, _height: 4}
-c.radius = 2
-// c is now: Circle {_width: 2, _height: 2}
-c.area
-// returns: 12.566370614359172
-c.radius = 5
-c.area
-// returns: 78.53981633974483
-*/
-
-class teste {
-  constructor(radius, ok) {
-    this.radius = radius;
-    this.ok = ok;
-  }
-  circleRadius() {
-    return "yes";
-  }
-}
-// use it
-var c = new teste("ok", "rabo");
-// returns: Circle {radius: 4}
-//console.log(c.ok);
-
 
 class ScalePlaying {
   constructor(type, state) {
@@ -149,8 +286,8 @@ class ScalePlaying {
     return ['C2', 'D2', 'E2', 'F2', 'G2', 'A2', 'B2', 'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5', 'C6'];
   }
   cMinor() {
-    //C, D#, F, G, A#
-    return ['C2', 'D#2', 'F2', 'G2', 'A#2', 'C3', 'D#3', 'F3', 'G3', 'A#3', 'C4', 'D#4', 'F4', 'G4', 'A#4', 'C5', 'D#5', 'F5', 'G5', 'A#5', 'C6'];
+    //C, D, D#, F, G, G#, A#
+    return ['C2', 'D2', 'D#2', 'F2', 'G2', 'G#2', 'A#2', 'C3', 'D3', 'D#3', 'F3', 'G3', 'G#3', 'A#3', 'C4', 'D4', 'D#4', 'F4', 'G4', 'G#4', 'A#4', 'C5', 'D5', 'D#5', 'F5', 'G5', 'G#5', 'A#5', 'C6'];
   }
   cHarmonicMinor() {
     //C, D, D#, F, G, G#, B

@@ -2,10 +2,13 @@
  * @author Luis Arandas  http://luisarandas.org
  */
 
-var spanOne = document.getElementsByClassName("closeOne")[0];
-var spanTwo = document.getElementsByClassName("closeTwo")[0];
-var modalOne = document.getElementById('modalOne');
-var modalTwo = document.getElementById('modalTwo');
+var spanAbout = document.getElementsByClassName("closeAbout")[0];
+var spanMode = document.getElementsByClassName("closeMode")[0];
+var spanScale = document.getElementsByClassName("closeScale")[0];
+var modalAbout = document.getElementById('modalAbout');
+var modalMode = document.getElementById('modalMode');
+var modalScale = document.getElementById('modalScale');
+
 
 socket = io.connect(window.location.origin);
 socket.on('uisocket', streamControls);
@@ -31,14 +34,16 @@ Nexus.colors.fill = "#000000";
 
 /*nx.onload = function() {
   nx.sendsTo("node");
-  // nx.sendsTo(function(data){
-  //     socket.emit('nx', { id: this.canvasID, data: data });
-  // });
+  nx.sendsTo(function(data) {
+    socket.emit('nx', {
+      id: this.canvasID,
+      data: data
+    });
+  });
 }*/
 
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
-
 
 var UI = {
   oscilloscope: new Nexus.Oscilloscope('#oscilloscope', {
@@ -319,15 +324,6 @@ noiseOne.volume.rampTo(-10, 10);
 var eq = new Tone.EQ3(0, 0, 0);
 
 eq.connect(Tone.Master);
-/*
-{
-low  : 0 ,
-mid  : 0 ,
-high  : 0 ,
-lowFrequency  : 400 ,
-highFrequency  : 2500
-}
-*/
 
 vol = new Tone.Volume(-5).connect(eq);
 
@@ -653,33 +649,45 @@ function topBar(data) {
     consoleLog();
   }
   if (data == "aboutMe") {
-    modalOne.style.display = "block";
+    modalAbout.style.display = "block";
     closeGui();
   }
   if (data == "changeMode") {
-    modalTwo.style.display = "block";
+    modalMode.style.display = "block";
     closeGui();
   }
 }
 
-spanOne.onclick = function() {
-  modalOne.style.display = "none";
-  modalTwo.style.display = "none";
+spanAbout.onclick = function() {
+  modalAbout.style.display = "none";
+  modalMode.style.display = "none";
+  modalScale.style.display = "none";
   openGui();
 }
-spanTwo.onclick = function() {
-  modalOne.style.display = "none";
-  modalTwo.style.display = "none";
+spanMode.onclick = function() {
+  modalAbout.style.display = "none";
+  modalMode.style.display = "none";
+  modalScale.style.display = "none";
+  openGui();
+}
+spanScale.onclick = function() {
+  modalAbout.style.display = "none";
+  modalMode.style.display = "none";
+  modalScale.style.display = "none";
   openGui();
 }
 
 window.onclick = function(event) {
-  if (event.target == modalOne) {
-    modalOne.style.display = "none";
+  if (event.target == modalAbout) {
+    modalAbout.style.display = "none";
     openGui();
   }
-  if (event.target == modalTwo) {
-    modalTwo.style.display = "none";
+  if (event.target == modalMode) {
+    modalMode.style.display = "none";
+    openGui();
+  }
+  if (event.target == modalScale) {
+    modalScale.style.display = "none";
     openGui();
   }
 }
@@ -742,6 +750,17 @@ function autofilterWave(data) {
   });
 }
 
+//----------------------------------- Scales
+
+function scaleButtons(data) {
+  if (document.getElementById(data).style.background != "white") {
+    document.getElementById(data).style.background = "white";
+    document.getElementById(data).style.color = "black";
+  } else if (document.getElementById(data).style.background == "white") {
+    document.getElementById(data).style.background = "black";
+    document.getElementById(data).style.color = "white";
+  }
+}
 //----------------------------------- Change the Network State
 
 function changeState(v) {

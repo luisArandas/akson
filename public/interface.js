@@ -29,7 +29,7 @@ WUI_Dialog.create("master_dialog", {
   resizable: false,
   //detachable: true,
   keep_align_when_resized: false,
-  top: -500,
+  top: -100,
   left: 0
 });
 

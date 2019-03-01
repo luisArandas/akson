@@ -446,10 +446,9 @@ body.fadeIn {
 }
 
 
+/* Modals */
 
-
-
-.modal {
+.modalAbout {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -473,8 +472,7 @@ body.fadeIn {
   height: 80%;
 }
 
-
-.modalTwo {
+.modalMode {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -505,13 +503,19 @@ body.fadeIn {
 
 
 /* The Close Button */
-.closeOne {
+.closeAbout {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-.closeTwo {
+.closeMode {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.closeScale {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -545,42 +549,73 @@ body.fadeIn {
 
 
 .gruponotas2 {
-  position: absolute;
+  position: relative;
   width: 50%;
   left: 50%;
   transform: translatex(-55%);
-  top: 65px;
 }
 .gruponotas3 {
-  position: absolute;
+  position: relative;
   width: 50%;
   left: 50%;
   transform: translatex(-55%);
-  top: 95px;
 }
 .gruponotas4 {
-  position: absolute;
+  position: relative;
   width: 50%;
   left: 50%;
   transform: translatex(-55%);
-  top: 125px;
 }
 .gruponotas5 {
-  position: absolute;
+  position: relative;
   width: 50%;
   left: 50%;
   transform: translatex(-55%);
-  top: 155px;
 }
 
 .grupomaior {
-  position: absolute;
+  position: relative;
   width: 50%;
   left: 50%;
   transform: translatex(-55%);
-  top: 185px;
 }
 
 .buttonMajor {
   width: 100px;
+}
+
+.scalesButton {
+  width: 100%;
+}
+
+.scaleInfo {
+  border: 1px solid rgba(50,50,50,1);
+  background-color: rgba(0,0,0,1);
+  border-radius: 3px;
+  width: 100%;
+  height: 25px;
+  font-family: monospace;
+  font-style: normal;
+  font-size: 10px ! important;
+  text-align: center;
+  display: inline-block;
+  line-height: 25px;
+}
+
+.scaleButton {
+  font-family: monospace;
+  font-style: normal;
+  font-size: 12px ! important;
+  background-color: rgba(10,10,10,1);
+  border: 1px solid rgba(50,50,50,1);
+  width: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.scaleButton:hover {
+  background-color: #ffffff !important;
+  color: black;
 }

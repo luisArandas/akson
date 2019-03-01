@@ -14,7 +14,6 @@ $(document).ready(function() {
   if (detectmob() === true) {
     /*If he is mobile then change the scenes everytime someone changes
     Make pans
-    Midi
     Add partials to the main oscillators
     Stream audio parameters
     geolocation API and a new logger
@@ -572,10 +571,12 @@ function onDocumentMouseMove(event) {
 // ------------------------- SOCKETS -------------------------------
 
 var data;
-var novaEscala = new ScalePlaying();
+var newScale = new ScalePlaying();
+var scale = newScale.cMajorPentatonic();
+
 
 function onMouseDown(event) {
-  markovNote(); // console logs next chain note
+  //markovNote(); // console logs next chain note
   event.preventDefault();
   var data = {
     x: event.clientX,
@@ -583,10 +584,10 @@ function onMouseDown(event) {
   };
   socket.emit('mouse', data);
 
-  var escala = novaEscala.cMajorPentatonic();
-  var note = Math.floor(Math.random() * novaEscala.cMajorPentatonic().length);
+  var note = Math.floor(Math.random() * newScale.cMajorPentatonic().length);
 
-  console.log(escala[note]);
+  console.log(scale[note]);
+
   if (isSceneOne == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransform.children);
     if (intersectsClick.length > 0) {
@@ -602,11 +603,11 @@ function onMouseDown(event) {
         isBlackSceneOne = true;
       }
       Tone.context.resume().then(() => {
-        polySynth.triggerAttackRelease(escala[note], "4n");
+        polySynth.triggerAttackRelease(scale[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
         var logs = document.getElementById('logs'),
           output_node = document.createElement("div");
-        output_node.innerHTML = escala[note];
+        output_node.innerHTML = scale[note];
         logs.appendChild(output_node);
         logs.scrollTop = logs.scrollHeight;
       });
@@ -631,11 +632,11 @@ function onMouseDown(event) {
       }
 
       Tone.context.resume().then(() => {
-        polySynth.triggerAttackRelease(escala[note], "4n");
+        polySynth.triggerAttackRelease(scale[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
         var logs = document.getElementById('logs'),
           output_node = document.createElement("div");
-        output_node.innerHTML = escala[note];
+        output_node.innerHTML = scale[note];
         logs.appendChild(output_node);
         logs.scrollTop = logs.scrollHeight;
       });
@@ -686,60 +687,6 @@ function changeScene(data) {
       document.dispatchEvent(evt);
     });
   }
-}
-
-
-
-
-
-// ---------------------- LAPTOP KEYBOARD -------------------------
-
-//(Z o-) (X o+) linha do meio CDEFGABCDEF
-//link here https://github.com/kylestetz/AudioKeys
-
-var keyboard = new AudioKeys();
-
-keyboard.down(function(note) {
-  //note.keyCode, note.frequency, note.velocity, note.isActive, note.note;
-  //piano.toggleKey(note.note, true);
-});
-
-keyboard.up(function(note) {
-  //piano.toggleKey(note.note, false);
-});
-
-// --------------------------- MIDI -------------------------------
-if (navigator.requestMIDIAccess) {
-  navigator.requestMIDIAccess({
-    sysex: false
-  }).then(onMIDISuccess, onMIDIFailure);
-} else {
-  alert("No MIDI support in your browser.");
-}
-
-function onMIDISuccess(midiAccess) {
-  midi = midiAccess;
-
-  var inputs = midi.inputs.values();
-  for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
-    input.value.onmidimessage = onMIDIMessage;
-  }
-  console.log('MIDI Access Object', midiAccess);
-}
-
-function onMIDIMessage(event) {
-  data = event.data;
-  midiValOne = data[0];
-  midiValTwo = data[1];
-  midiValThree = data[2];
-
-  if (midiValOne == 176 && midiValTwo == 8) {
-    console.log(midiValThree);
-  }
-}
-
-function onMIDIFailure(e) {
-  console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
 }
 
 function detectmob() {
