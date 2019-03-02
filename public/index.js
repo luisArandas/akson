@@ -6,25 +6,13 @@ $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
-  /* Retirar isto depois da Jam
-  document.getElementById("topBar").style.display = "none";
-  WUI_Dialog.close("master_dialog");
-  WUI_Dialog.close("cockpit_dialog");
-  WUI_Dialog.close("logs_dialog");*/
   if (detectmob() === true) {
-    /*If he is mobile then change the scenes everytime someone changes
-    Make pans
-    Add partials to the main oscillators
-    Stream audio parameters
-    geolocation API and a new logger
-    Presets
-    Master fadeOut*/
     document.getElementById("topBar").style.display = "none";
     WUI_Dialog.close("master_dialog");
     WUI_Dialog.close("cockpit_dialog");
     WUI_Dialog.close("logs_dialog");
   };
-  var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (ios === true) {
     console.log("teste");
     $(".introLoadTimer").remove();
@@ -46,14 +34,6 @@ $(document).ready(function() {
   }
 });
 
-/*
-  ADD the choices, on master control and streaming widgets + stop playing
-  https://stackoverflow.com/questions/38314521/change-color-of-mesh-using-mouseover-in-three-js/38325167
-  The distance of intersection isSceneOne can be amplitude
-  https://github.com/yiwenl/Alfrid
-  https://github.com/jiahaog/nativefier -> Export as app
-  https://github.com/mdn/web-dictaphone
-*/
 // const ios; Atribute.
 
 var camera,
@@ -268,7 +248,7 @@ function init() {
 
   parentTransformQuatro = new THREE.Object3D();
   for (var i = 0; i < 40; i++) {
-    var geometry = new THREE.BoxGeometry(30, 1000, 30);
+    var geometry = new THREE.BoxGeometry(30, 2000, 30);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0xffffff,
       wireframe: true
@@ -554,10 +534,21 @@ function animate() {
   parentTransformDois.rotation.z += 0.005;
   requestAnimationFrame(animate);
   render();
+
 }
 
+
+
+// ------------------------- SOCKETS -------------------------------
 var mouseX;
 var mouseY;
+var mouseDown = 0;
+document.body.onmousedown = function() {
+  ++mouseDown;
+}
+document.body.onmouseup = function() {
+  --mouseDown;
+}
 
 function onDocumentMouseMove(event) {
   event.preventDefault();
@@ -565,11 +556,10 @@ function onDocumentMouseMove(event) {
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
   mouseX = (event.clientX - windowHalfX) * 2;
   mouseY = (event.clientY - windowHalfY) * 2;
-
+  if (mouseDown) {
+    console.log("dragging");
+  }
 }
-
-// ------------------------- SOCKETS -------------------------------
-
 var data;
 var newScale = new ScalePlaying();
 var scale = newScale.cMajorPentatonic();
@@ -705,6 +695,10 @@ function detectmob() {
 }
 
 function render() {
+  stats1.update();
+  stats2.update();
+  stats3.update();
+
   var corFundo = Math.random() * (0.15 - 0) + 0;
   // Grey glitch.
   // scene.background = new THREE.Color(corFundo, corFundo, corFundo);

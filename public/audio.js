@@ -752,6 +752,8 @@ function autofilterWave(data) {
 
 //----------------------------------- Scales
 
+var newClickScale = [];
+
 function scaleButtons(data) {
   if (document.getElementById(data).style.background != "white") {
     document.getElementById(data).style.background = "white";
@@ -759,6 +761,9 @@ function scaleButtons(data) {
   } else if (document.getElementById(data).style.background == "white") {
     document.getElementById(data).style.background = "black";
     document.getElementById(data).style.color = "white";
+  }
+  if (data) {
+    console.log(newClickScale);
   }
 }
 //----------------------------------- Change the Network State

@@ -1,0 +1,21 @@
+To dos
+
+If he is mobile then change the scenes everytime someone changes
+Make pans
+Add partials to the main oscillators
+https://github.com/colinbdclark/osc.js/
+Stream audio parameters
+geolocation API and a new logger
+Presets
+Master fadeOut
+Restart audioContext without refresh
+Clicks on reverb wet
+
+ADD the choices, on master control and streaming widgets + stop playing
+https://stackoverflow.com/questions/38314521/change-color-of-mesh-using-mouseover-in-three-js/38325167
+The distance of intersection isSceneOne can be amplitude
+https://github.com/yiwenl/Alfrid
+https://github.com/jiahaog/nativefier -> Export as app
+https://github.com/mdn/web-dictaphone
+
+check exporting

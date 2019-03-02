@@ -17,6 +17,8 @@
   <script src="https://cdn.jsdelivr.net/npm/resonance-audio/build/resonance-audio.min.js"></script>
   <script src="libraries/NexusUI.js"></script>
   <script src="libraries/webcomponents.min.js"></script>
+  <script src="libraries/rStats.css"></script>
+
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC
@@ -85,6 +87,9 @@
         <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')"><i class="fas fa-arrows-alt-h"></i></button>
       </div>
       <div class="btn-group mr-2" role="group" aria-label="Sixth group">
+        <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="learnMidi()"><i class="fas fa-chalkboard"></i></button>
+      </div>
+      <div class="btn-group mr-2" role="group" aria-label="Seventh group">
         <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('muteAudio')"><i class="fas fa-volume-mute"></i></button>
       </div>
   </div>
@@ -113,12 +118,26 @@
   <div id="modalMode" class="modalMode">
     <div class="modal-content">
       <span class="closeMode">&times;</span>
-      <div class="modal-text">
-        <button type="button" class="btn btn-dark" onClick="changeState('descenter')">Descenter</button>
-        <button type="button" class="btn btn-dark" onClick="changeState('streamed')">Streamed</button>
-        <button type="button" class="btn btn-dark" onClick="changeState('alocate')">Alocate</button>
-        <button type="button" class="btn btn-dark" onClick="changeState('monitor')">Monitor</button>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm columnState">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of Four columns
+          </div>
+        </div>
       </div>
+      <!--<button type="button" class="btn btn-dark" onClick="changeState('descenter')">Descenter</button>
+      <button type="button" class="btn btn-dark" onClick="changeState('streamed')">Streamed</button>
+      <button type="button" class="btn btn-dark" onClick="changeState('alocate')">Alocate</button>
+      <button type="button" class="btn btn-dark" onClick="changeState('monitor')">Monitor</button>-->
     </div>
   </div>
 
@@ -301,61 +320,61 @@
           <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
             <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
             <button type="button" class="btn btn-secondary buttonColor" id="c2" onclick="scaleButtons('c2')">C2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs2" onclick="scaleButtons('csharp2')">C#2</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="cs2" onclick="scaleButtons('cs2')">C#2</button>
             <button type="button" class="btn btn-secondary buttonColor" id="d2" onclick="scaleButtons('d2')">D2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds2" onclick="scaleButtons('dsharp2')">D#2</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="ds2" onclick="scaleButtons('ds2')">D#2</button>
             <button type="button" class="btn btn-secondary buttonColor" id="e2" onclick="scaleButtons('e2')">E2</button>
             <button type="button" class="btn btn-secondary buttonColor" id="f2" onclick="scaleButtons('f2')">F2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs2" onclick="scaleButtons('fsharp2')">F#2</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="fs2" onclick="scaleButtons('fs2')">F#2</button>
             <button type="button" class="btn btn-secondary buttonColor" id="g2" onclick="scaleButtons('g2')">G2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs2" onclick="scaleButtons('gsharp2')">G#2</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="gs2" onclick="scaleButtons('gs2')">G#2</button>
             <button type="button" class="btn btn-secondary buttonColor" id="a2" onclick="scaleButtons('a2')">A2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as2" onclick="scaleButtons('asharp2')">A#2</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="as2" onclick="scaleButtons('as2')">A#2</button>
             <button type="button" class="btn btn-secondary buttonColor" id="b2" onclick="scaleButtons('b2')">B2</button>
           </div>
 
           <div class="btn-group-horizontal btn-group-sm gruponotas3" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary buttonColor" id="c3" onclick="scaleButtons('c3')">C3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs3" onclick="scaleButtons('csharp3')">C#3</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
             <button type="button" class="btn btn-secondary buttonColor" id="d3" onclick="scaleButtons('d3')">D3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds3" onclick="scaleButtons('dsharp3')">D#3</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="ds3" onclick="scaleButtons('ds3')">D#3</button>
             <button type="button" class="btn btn-secondary buttonColor" id="e3" onclick="scaleButtons('e3')">E3</button>
             <button type="button" class="btn btn-secondary buttonColor" id="f3" onclick="scaleButtons('f3')">F3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs3" onclick="scaleButtons('fsharp3')">F#3</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="fs3" onclick="scaleButtons('fs3')">F#3</button>
             <button type="button" class="btn btn-secondary buttonColor" id="g3" onclick="scaleButtons('g3')">G3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs3" onclick="scaleButtons('gsharp3')">G#3</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="gs3" onclick="scaleButtons('gs3')">G#3</button>
             <button type="button" class="btn btn-secondary buttonColor" id="a3" onclick="scaleButtons('a3')">A3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as3" onclick="scaleButtons('asharp3')">A#3</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="as3" onclick="scaleButtons('as3')">A#3</button>
             <button type="button" class="btn btn-secondary buttonColor" id="b3" onclick="scaleButtons('b3')">B3</button>
           </div>
 
           <div class="btn-group-horizontal btn-group-sm gruponotas4" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary buttonColor" id="c4" onclick="scaleButtons('c4')">C4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs4" onclick="scaleButtons('csharp4')">C#4</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
             <button type="button" class="btn btn-secondary buttonColor" id="d4" onclick="scaleButtons('d4')">D4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds4" onclick="scaleButtons('dsharp4')">D#4</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="ds4" onclick="scaleButtons('ds4')">D#4</button>
             <button type="button" class="btn btn-secondary buttonColor" id="e4" onclick="scaleButtons('e4')">E4</button>
             <button type="button" class="btn btn-secondary buttonColor" id="f4" onclick="scaleButtons('f4')">F4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs4" onclick="scaleButtons('fsharp4')">F#4</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="fs4" onclick="scaleButtons('fs4')">F#4</button>
             <button type="button" class="btn btn-secondary buttonColor" id="g4" onclick="scaleButtons('g4')">G4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs4" onclick="scaleButtons('gsharp4')">G#4</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="gs4" onclick="scaleButtons('gs4')">G#4</button>
             <button type="button" class="btn btn-secondary buttonColor" id="a4" onclick="scaleButtons('a4')">A4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as4" onclick="scaleButtons('asharp4')">A#4</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="as4" onclick="scaleButtons('as4')">A#4</button>
             <button type="button" class="btn btn-secondary buttonColor" id="b4" onclick="scaleButtons('b4')">B4</button>
           </div>
 
           <div class="btn-group-horizontal btn-group-sm gruponotas5" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary buttonColor" id="c5" onclick="scaleButtons('c5')">C5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs5" onclick="scaleButtons('csharp5')">C#5</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
             <button type="button" class="btn btn-secondary buttonColor" id="d5" onclick="scaleButtons('d5')">D5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds5" onclick="scaleButtons('dsharp5')">D#5</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="ds5" onclick="scaleButtons('ds5')">D#5</button>
             <button type="button" class="btn btn-secondary buttonColor" id="e5" onclick="scaleButtons('e5')">E5</button>
             <button type="button" class="btn btn-secondary buttonColor" id="f5" onclick="scaleButtons('f5')">F5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs5" onclick="scaleButtons('fsharp5')">F#5</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="fs5" onclick="scaleButtons('fs5')">F#5</button>
             <button type="button" class="btn btn-secondary buttonColor" id="g5" onclick="scaleButtons('g5')">G5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs5" onclick="scaleButtons('gsharp5')">G#5</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="gs5" onclick="scaleButtons('gs5')">G#5</button>
             <button type="button" class="btn btn-secondary buttonColor" id="a5" onclick="scaleButtons('a5')">A5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as5" onclick="scaleButtons('asharp5')">A#5</button>
+            <button type="button" class="btn btn-secondary buttonColor" id="as5" onclick="scaleButtons('as5')">A#5</button>
             <button type="button" class="btn btn-secondary buttonColor" id="b5" onclick="scaleButtons('b5')">B5</button>
           </div>
           <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="">
@@ -365,6 +384,32 @@
 
         <!--Post process-->
         <div>
+          <div class="stats" id="stats">
+            <script src="libraries/stats.js"></script>
+            <script>
+              var v = document.getElementById('stats');
+
+              var stats1 = new Stats();
+              stats1.showPanel(0);
+              stats1.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
+              stats1.domElement.style.color = 'white';
+              v.appendChild(stats1.domElement);
+
+              var stats2 = new Stats();
+              stats2.showPanel(1);
+              stats2.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
+              stats2.domElement.style.color = 'white';
+              v.appendChild(stats2.domElement);
+
+              var stats3 = new Stats();
+              stats3.showPanel(2);
+              stats3.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
+              stats3.domElement.style.color = 'white';
+              v.appendChild(stats3.domElement);
+
+          </script>
+
+          </div>
           <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('noise1')">Noise</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('noise2')">Min_Noise</button>
@@ -378,7 +423,6 @@
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>
-      <script src='https://threejs.org/examples/js/lights/RectAreaLightUniformsLib.js'></script>
       <script src="libraries/three.min.js"></script>
       <script src="libraries/tween.min.js"></script>
       <script src="libraries/Tone9.js"></script>
@@ -387,7 +431,6 @@
       <script src="libraries/OrbitControls.js"></script>
       <script src="libraries/QuickHull.js"></script>
       <script src="libraries/ConvexGeometry.js"></script>
-      <script src="libraries/UnrealBloomPass.js"></script>
       <script src="libraries/GPUComputationRenderer.js"></script>
       <script src="libraries/Bird.js"></script>
       <script src="libraries/PixelShader.js"></script>
@@ -418,7 +461,6 @@
       <script src="libraries/DepthLimitedBlurShader.js"></script>
       <script src="libraries/UnpackDepthRGBAShader.js"></script>
       <script src="libraries/WebGL.js"></script>
-      <script src="libraries/stats.min.js"></script>
       <script src="libraries/dat.gui.min.js"></script>
       <script src="libraries/audiokeys.js"></script>
       <script src="libraries/AfterimageShader.js"></script>

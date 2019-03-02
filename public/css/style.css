@@ -504,22 +504,28 @@ body.fadeIn {
 
 /* The Close Button */
 .closeAbout {
+  position: absolute;
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  width: 20px;
 }
 .closeMode {
+  position: absolute;
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  width: 20px;
 }
 .closeScale {
+  position: absolute;
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  width: 20px;
 }
 
 .modal-text {
@@ -530,15 +536,21 @@ body.fadeIn {
   color: white;
 }
 
-.closeOne:hover,
-.closeOne:focus {
-  color: #000;
+.closeAbout:hover,
+.closeAbout:focus {
+  color: #ffffff;
   text-decoration: none;
   cursor: pointer;
 }
-.closeTwo:hover,
-.closeTwo:focus {
-  color: #000;
+.closeMode:hover,
+.closeMode:focus {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.closeScale:hover,
+.closeScale:focus {
+  color: #ffffff;
   text-decoration: none;
   cursor: pointer;
 }
@@ -614,8 +626,24 @@ body.fadeIn {
   align-items: center;
   justify-content: center;
   margin: auto;
+  height: 6%;
 }
 .scaleButton:hover {
   background-color: #ffffff !important;
   color: black;
+}
+
+.row {
+  margin: 0 auto;
+  vertical-align: middle;
+  background-color: rgba(0,0,0,1);
+  width: 80%;
+  height: 50%;
+}
+
+.col-sm {
+  display: flex;
+  border-radius: 3px;
+  border: 1px solid rgba(50,50,50,1);
+  color: white;
 }
