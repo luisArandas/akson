@@ -34,8 +34,6 @@ $(document).ready(function() {
   }
 });
 
-// const ios; Atribute.
-
 var camera,
   scene,
   light,
@@ -95,8 +93,6 @@ var isBlackSceneOne_ = false;
 var isBlackSceneFour = false;
 var light1;
 var light2;
-
-var isStreaming = false;
 
 init();
 animate();
@@ -539,7 +535,8 @@ function animate() {
 
 
 
-// ------------------------- SOCKETS -------------------------------
+// ------------------------- Sockets & Mouse -------------------------------
+
 var mouseX;
 var mouseY;
 var mouseDown = 0;
@@ -550,6 +547,10 @@ document.body.onmouseup = function() {
   --mouseDown;
 }
 
+var data;
+var newScale = new ScalePlaying();
+var scale = newScale.cMajorPentatonic();
+
 function onDocumentMouseMove(event) {
   event.preventDefault();
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -557,13 +558,10 @@ function onDocumentMouseMove(event) {
   mouseX = (event.clientX - windowHalfX) * 2;
   mouseY = (event.clientY - windowHalfY) * 2;
   if (mouseDown) {
+    var note = Math.floor(Math.random() * newScale.cMajorPentatonic().length);
     console.log("dragging");
   }
 }
-var data;
-var newScale = new ScalePlaying();
-var scale = newScale.cMajorPentatonic();
-
 
 function onMouseDown(event) {
   //markovNote(); // console logs next chain note
@@ -648,8 +646,8 @@ function clickStream(data) {
   console.log(data.x);
   console.log(data.y);
 
-  var escala = novaEscala.cMajorPentatonic();
-  var note = Math.floor(Math.random() * novaEscala.cMajorPentatonic().length);
+  var escala = newScale.cMajorPentatonic();
+  var note = Math.floor(Math.random() * newScale.cMajorPentatonic().length);
   polySynth.triggerAttackRelease(escala[note], "4n");
 
   var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];

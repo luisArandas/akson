@@ -609,6 +609,7 @@ body.fadeIn {
   font-family: monospace;
   font-style: normal;
   font-size: 10px ! important;
+  text-background-color: rgba(255,0,0,1);
   text-align: center;
   display: inline-block;
   line-height: 25px;
@@ -633,17 +634,42 @@ body.fadeIn {
   color: black;
 }
 
-.row {
-  margin: 0 auto;
-  vertical-align: middle;
-  background-color: rgba(0,0,0,1);
-  width: 80%;
-  height: 50%;
-}
-
-.col-sm {
-  display: flex;
-  border-radius: 3px;
-  border: 1px solid rgba(50,50,50,1);
+.streamButtonDiv {
+  margin: auto;
+  width: 65%;
+  height: 70%;
+  font-size: 9px;
   color: white;
 }
+
+.stateButton {
+  font-family: monospace;
+  font-style: normal;
+  font-size: 12px ! important;
+  background-color: rgba(10,10,10,1);
+  border: 1px solid rgba(50,50,50,1);
+  height: 100%;
+  width: 100%;
+}
+.stateButton:hover {
+  background-color: #ffffff !important;
+  color: black;
+}
+
+h2 {
+  vertical-align: top;
+  font-size: 12px ! important;
+  padding-bottom: 23em;
+  text-align: center;
+}
+
+.groupStream {
+    width: 24%;
+}
+
+#stateButtonOne{
+  border: 2px solid rgba(150,150,150,1);
+}
+#stateButtonTwo{}
+#stateButtonTree{}
+#stateButtonFour{}

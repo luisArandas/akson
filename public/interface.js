@@ -23,7 +23,7 @@ WUI_Dialog.create("master_dialog", {
     console.log("teste");
   },
   modal: false,
-  closable: false,
+  closable: true,
   draggable: true,
   minimizable: true,
   resizable: false,
@@ -56,7 +56,7 @@ WUI_Dialog.create("cockpit_dialog", {
     class_name: ""
   }],
   modal: false,
-  closable: false,
+  closable: true,
   draggable: true,
   minimizable: true,
   //detachable: true,
@@ -163,7 +163,7 @@ WUI_Dialog.create("logs_dialog", {
   height: "400px",
   halign: "right",
   valign: "center",
-  closable: false,
+  closable: true,
   draggable: true,
   minimizable: true,
   resizable: false,
@@ -210,4 +210,34 @@ WUI_Dialog.create("demo_integrated_dialog_6", {
     },
     class_name: ""
   }],
+});
+
+WUI_Dialog.create("monitor_dialog", {
+  title: "Monitor",
+  width: "85%",
+  height: "85%",
+  halign: "center",
+  valign: "center",
+  open: false,
+  minimized: false,
+  on_open: function() {},
+  on_close: function() {},
+  on_pre_detach: function() {},
+  on_detach: function(new_window) {
+    new_window.document.title = "Monitor";
+    bind_contextmenu();
+  },
+  on_resize: function(new_width, new_height) {},
+  on_minimize: function() {
+    console.log("teste");
+  },
+  modal: false,
+  closable: true,
+  draggable: true,
+  minimizable: true,
+  resizable: false,
+  //detachable: true,
+  keep_align_when_resized: false,
+  top: 0,
+  left: 0
 });
