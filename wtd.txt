@@ -14,7 +14,7 @@ ADD the choices, on master control and streaming widgets + stop playing
 https://stackoverflow.com/questions/38314521/change-color-of-mesh-using-mouseover-in-three-js/38325167
 The distance of intersection isSceneOne can be amplitude
 https://github.com/yiwenl/Alfrid
-https://github.com/jiahaog/nativefier -> Export as app
+https://github.com/jiahaog/nativefier -> Export as app // nativefier http://google.com --inject site.css --title-bar-style 'hiddenInset'
 https://github.com/mdn/web-dictaphone
 check exporting
 // const ios; Atribute.
