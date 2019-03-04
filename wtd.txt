@@ -2,7 +2,6 @@ To dos
 
 If he is mobile then change the scenes everytime someone changes
 Make pans
-Add partials to the main oscillators
 https://github.com/colinbdclark/osc.js/
 Stream audio parameters
 geolocation API and a new logger
