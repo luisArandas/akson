@@ -27,7 +27,7 @@ WUI_Dialog.create("master_dialog", {
   draggable: true,
   minimizable: true,
   resizable: false,
-  detachable: true,
+  //detachable: false,
   keep_align_when_resized: false,
   top: -100,
   left: 0

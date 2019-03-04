@@ -892,9 +892,7 @@ function autofilterWave(data) {
   });
 }
 
-//----------------------------------- Scales
-
-var newClickScale = [];
+//--------------------------------------------------------------------- Scales
 
 function scaleButtons(data) {
   if (document.getElementById(data).style.background != "white") {
@@ -905,6 +903,6 @@ function scaleButtons(data) {
     document.getElementById(data).style.color = "white";
   }
   if (data) {
-    console.log(newClickScale);
+    customScaleCortex(data);
   }
 }

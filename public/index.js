@@ -327,7 +327,7 @@ function init() {
   32 == SPACE
   */
 
-  var whichScene;
+  var whichScene; // Stream to the mobile phone.
 
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
@@ -392,7 +392,6 @@ function init() {
       scene.remove(parentTransform);
       scene.remove(parentTransformTres);
       scene.remove(parentTransformQuatro);
-
     }
     if (event.which == "69") {
       console.log("E");
@@ -533,8 +532,6 @@ function animate() {
 
 }
 
-
-
 // ------------------------- Sockets & Mouse -------------------------------
 
 var mouseX;
@@ -558,7 +555,6 @@ function onDocumentMouseMove(event) {
   mouseX = (event.clientX - windowHalfX) * 2;
   mouseY = (event.clientY - windowHalfY) * 2;
   if (mouseDown) {
-    var note = Math.floor(Math.random() * newScale.cMajorPentatonic().length);
     console.log("dragging");
   }
 }
@@ -572,9 +568,7 @@ function onMouseDown(event) {
   };
   socket.emit('mouse', data);
 
-  var note = Math.floor(Math.random() * newScale.cMajorPentatonic().length);
-
-  console.log(scale[note]);
+  var note = Math.floor(Math.random() * scale.length);
 
   if (isSceneOne == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransform.children);
@@ -646,9 +640,8 @@ function clickStream(data) {
   console.log(data.x);
   console.log(data.y);
 
-  var escala = newScale.cMajorPentatonic();
-  var note = Math.floor(Math.random() * newScale.cMajorPentatonic().length);
-  polySynth.triggerAttackRelease(escala[note], "4n");
+  var note = Math.floor(Math.random() * scale.length);
+  polySynth.triggerAttackRelease(scale[note], "4n");
 
   var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];
   if (isBlackSceneOne_ == false) {
@@ -775,4 +768,30 @@ function render() {
   light1.position.x = Math.sin(time * 0.7) * 30;
   light1.position.y = Math.cos(time * 0.5) * 40;
   light1.position.z = Math.cos(time * 0.3) * 30;
+}
+
+var customScale = ["c2", "d2", "e2", "g2", "a2", "c3", "d3", "e3", "g3", "a3", "c4", "d4", "e4", "g4", "a4", "c5", "d5", "e5", "g5", "a5"];
+//Array.prototype.push.apply(customScale, scale); Id's are different
+
+function customScaleCortex(data) {
+  var note = data;
+  if (customScale.includes(note) == true) {
+    for (var i = customScale.length - 1; i >= 0; i--) {
+      if (customScale[i] === note) {
+        customScale.splice(i, 1);
+      }
+    }
+  } else {
+    customScale.push(note);
+  }
+  //scale = customScale // This equals the current
+  _customScale = customScale.map(function(e) {
+    return e.toUpperCase()
+  });
+  __customScale = _customScale.map(function(e) {
+    return e.replace('S', '#');
+  });
+  scale = __customScale;
+  console.log(scale);
+  console.log("Fix this.");
 }
