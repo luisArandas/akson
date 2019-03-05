@@ -258,7 +258,7 @@ function newConnection(socket) {
   socket.on('oscTest', oscMessage);
 
   function oscMessage(data) {
-    var clientTest = new osc.Client('127.0.0.1', 3333);
+    var clientTest = new osc.Client('0.0.0.0', 3333);
     clientTest.send('/synthAttack', data, function() {})
   }
 }
