@@ -264,8 +264,7 @@ const osc = new OSC({
   plugin: new OSC.BridgePlugin(config)
 });
 
-osc.open();
-/*osc.open({
-  port: 9000 // start a WebSocket server on port 8080 default
+//osc.open();
+osc.open({
+  port: 9128 // start a WebSocket server on port 8080 default
 });
-*/
