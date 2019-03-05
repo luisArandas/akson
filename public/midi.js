@@ -128,3 +128,13 @@ function shaderButtons(v) {
   logs.appendChild(output_node);
   logs.scrollTop = logs.scrollHeight;
 }*/ // ----------------------------------------------------------------
+
+
+//osc
+var osc = new OSC();
+osc.open(); // connect by default to ws://localhost:8080
+
+document.getElementById('send').addEventListener('click', () => {
+  var message = new OSC.Message('/test/random', Math.random());
+  osc.send(message);
+});

@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 338.0, 247.0, 640.0, 480.0 ],
+		"rect" : [ -66.0, 740.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,11 +38,63 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 247.0, 128.0, 50.0, 22.0 ],
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 247.0, 91.0, 108.0, 22.0 ],
+					"style" : "",
+					"text" : "route /test/random"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 350.0, 15.0, 124.0, 35.0 ],
+					"style" : "",
+					"text" : "/test/random 0.362741"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 247.0, 64.0, 99.0, 22.0 ],
+					"style" : "",
+					"text" : "udpreceive 9129"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 336.0, 141.0, 150.0, 20.0 ],
+					"patching_rect" : [ 337.0, 323.0, 150.0, 20.0 ],
 					"style" : "",
 					"text" : "change the Attack slider"
 				}
@@ -55,9 +107,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 316.0, 211.0, 101.0, 22.0 ],
-					"style" : "",
-					"text" : "0.553"
+					"patching_rect" : [ 317.0, 393.0, 101.0, 22.0 ],
+					"style" : ""
 				}
 
 			}
@@ -68,7 +119,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 341.0, 171.0, 107.0, 22.0 ],
+					"patching_rect" : [ 342.0, 353.0, 107.0, 22.0 ],
 					"style" : "",
 					"text" : "route /synthAttack"
 				}
@@ -81,7 +132,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 115.0, 211.0, 135.0, 22.0 ],
+					"patching_rect" : [ 116.0, 393.0, 135.0, 22.0 ],
 					"style" : "",
 					"text" : "200"
 				}
@@ -94,7 +145,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 129.0, 171.0, 107.0, 22.0 ],
+					"patching_rect" : [ 130.0, 353.0, 107.0, 22.0 ],
 					"style" : "",
 					"text" : "route /oscAddress"
 				}
@@ -107,9 +158,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 105.5, 122.0, 182.0, 22.0 ],
+					"patching_rect" : [ 106.5, 304.0, 182.0, 22.0 ],
 					"style" : "",
-					"text" : "/synthAttack 0.553"
+					"text" : "/oscAddress 200"
 				}
 
 			}
@@ -120,7 +171,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 129.0, 78.0, 99.0, 22.0 ],
+					"patching_rect" : [ 130.0, 260.0, 99.0, 22.0 ],
 					"style" : "",
 					"text" : "udpreceive 3333"
 				}
@@ -156,6 +207,15 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-13", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-7", 1 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -169,6 +229,24 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-11", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-5", 0 ]
 				}
 
 			}

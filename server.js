@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const server = app.listen(process.env.PORT || 5000);
-const osc = require('node-osc');
+const OSC = require('osc-js')
+const portfinder = require('portfinder');
 
 app.use(express.static('public'))
 
@@ -258,22 +259,26 @@ function newConnection(socket) {
   socket.on('oscTest', oscMessage);
 
   function oscMessage(data) {
-    var clientTest = new osc.Client('0.0.0.0', 3333);
-    clientTest.send('/synthAttack', data, function() {})
+    console.log("forOsc");
   }
 }
 
-var client = new osc.Client('127.0.0.1', 3333);
-client.send('/oscAddress', 200, function() {
-  //client.kill();
+
+
+portfinder.getPort(function(err, port) {
+  console.log("Using " + port);
 });
 
-/*
-To receive
-var osc = require('node-osc');
 
-var oscServer = new osc.Server(3333, '0.0.0.0');
-oscServer.on("message", function (msg, rinfo) {
-      console.log("TUIO message:");
-      console.log(msg);
-});*/
+const config = {
+  udpClient: {
+    port: 9129
+  }
+}
+const osc = new OSC({
+  plugin: new OSC.BridgePlugin(config)
+});
+
+osc.open({
+  port: 8000
+}); // start a WebSocket server on port 8080
