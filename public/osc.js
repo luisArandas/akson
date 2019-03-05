@@ -13,7 +13,7 @@ document.getElementById('send').addEventListener('click', () => {
   var message = new OSC.Message('/test/random', Math.random());
   osc.send(message);
 });
-
+console.log("osc y");
 /* For post Process
 function shaderButtons(v) {
   var logs = document.getElementById('logs'),
