@@ -47,6 +47,7 @@
 </head>
 
 <body class="fade-in">
+
   <div class="introLoadTimer"></div>
 
   <div id="master_dialog">
@@ -421,7 +422,8 @@
 
           </div>
           <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
-            change scene dynamically
+            <div id="sceneMaster" class="sceneMaster"></div>
+            add controls for each scene W presets
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('noise1')">Noise</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('noise2')">Min_Noise</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('rev')">Rev</button>

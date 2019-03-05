@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const server = app.listen(process.env.PORT || 5000);
-const OSC = require('osc-js')
+//const OSC = require('osc-js')
 const portfinder = require('portfinder');
 
 app.use(express.static('public'))
@@ -266,7 +266,7 @@ function newConnection(socket) {
 portfinder.getPort(function(err, port) {
   console.log("Using " + port);
 });
-
+/*
 const config = {
   udpClient: {
     port: 9129
@@ -275,8 +275,6 @@ const config = {
 const osc = new OSC({
   plugin: new OSC.BridgePlugin(config)
 });
-osc.open();
-var ok = 'lalala'
-osc.send(new OSC.Message(ok), {
-  receiver: 'udp'
-});
+osc.open({
+  port: 8080
+});*/

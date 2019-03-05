@@ -94,6 +94,10 @@ var isBlackSceneFour = false;
 var light1;
 var light2;
 
+var ambientLight;
+var ambientLight1;
+var ambientLight2;
+
 init();
 animate();
 
@@ -158,16 +162,16 @@ function init() {
   }
   controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
   controls.dampingFactor = 0.25;
-  controls.screenSpacePanning = false;
+  controls.screenSpacePanning = true;
   controls.minDistance = 100;
-  controls.maxDistance = 500;
+  controls.maxDistance = 600;
   controls.maxPolarAngle = Math.PI / 2;
   controls.enabled = false;
 
   light = new THREE.DirectionalLight(0xd3d3d3, 1);
   light.position.set(1, 1, 1).normalize();
   scene.add(light);
-  var ambientLight = new THREE.AmbientLight(0xd3d3d3, 0.1);
+  ambientLight = new THREE.AmbientLight(0xd3d3d3, 0.1);
   scene.add(ambientLight);
 
   parentTransform = new THREE.Object3D();
@@ -238,7 +242,7 @@ function init() {
   light1 = new THREE.DirectionalLight(0x808080, 4);
   light1.position.set(1, 5, 1).normalize();
   parentTransformTres.add(light1);
-  var ambientLight1 = new THREE.AmbientLight(0x808080, 4);
+  ambientLight1 = new THREE.AmbientLight(0x808080, 4);
   parentTransformTres.add(ambientLight1);
 
 
@@ -272,7 +276,7 @@ function init() {
   light2 = new THREE.DirectionalLight(0x0c0c0c, 4);
   light2.position.set(1, 5, 1).normalize();
   parentTransformQuatro.add(light2);
-  var ambientLight2 = new THREE.AmbientLight(0x0c0c0c, 4);
+  ambientLight2 = new THREE.AmbientLight(0x0c0c0c, 4);
   parentTransformQuatro.add(ambientLight2);
 
   /* This might be important anytime soon
@@ -376,13 +380,13 @@ function init() {
       isSceneTwo = true;
       isSceneThree = false;
       isSceneFour = false;
-      controls.enabled = true;
 
       var whichScene = 87;
       socket.emit('scene', whichScene);
 
       camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 150;
+      controls.enabled = true;
 
       scene.add(parentTransformDois);
       scene.remove(parentTransform);
@@ -790,4 +794,56 @@ function customScaleCortex(data) {
   scale = __customScale;
   console.log(scale);
   console.log("Fix this.");
+}
+
+
+/* */
+var isDragging = false;
+var previousMousePosition = {
+  x: 0,
+  y: 0
+};
+$(renderer.domElement).on('mousedown', function(e) {
+    isDragging = true;
+  })
+  .on('mousemove', function(e) {
+    //console.log(e);
+    var deltaMove = {
+      x: e.offsetX - previousMousePosition.x,
+      y: e.offsetY - previousMousePosition.y
+    };
+
+    if (isDragging) {
+
+      var deltaRotationQuaternion = new THREE.Quaternion()
+        .setFromEuler(new THREE.Euler(
+          toRadians(deltaMove.y * 1),
+          toRadians(deltaMove.x * 1),
+          0,
+          'XYZ'
+        ));
+
+      parentTransformDois.quaternion.multiplyQuaternions(deltaRotationQuaternion, parentTransformDois.quaternion);
+      console.log("DeltaMove1 " + deltaMove.x);
+      console.log("DeltaMove2 " + deltaMove.y);
+    }
+
+    previousMousePosition = {
+      x: e.offsetX,
+      y: e.offsetY
+    };
+  });
+/* */
+
+$(document).on('mouseup', function(e) {
+  isDragging = false;
+});
+
+
+function toRadians(angle) {
+  return angle * (Math.PI / 180);
+}
+
+function toDegrees(angle) {
+  return angle * (180 / Math.PI);
 }
