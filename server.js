@@ -263,12 +263,9 @@ function newConnection(socket) {
   }
 }
 
-
-
 portfinder.getPort(function(err, port) {
   console.log("Using " + port);
 });
-
 
 const config = {
   udpClient: {
@@ -278,7 +275,8 @@ const config = {
 const osc = new OSC({
   plugin: new OSC.BridgePlugin(config)
 });
-
-osc.open({
-  port: 8000
-}); // start a WebSocket server on port 8080
+osc.open();
+var ok = 'lalala'
+osc.send(new OSC.Message(ok), {
+  receiver: 'udp'
+});
