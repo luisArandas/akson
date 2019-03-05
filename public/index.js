@@ -381,13 +381,9 @@ function init() {
       var whichScene = 87;
       socket.emit('scene', whichScene);
 
-      camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
-      afterimagePass.renderToScreen = false;
-      glitchPass.goWild = false;
-      if (glitchPass.renderToScreen == false) {
-        renderPostOne = true;
-        glitchPass.renderToScreen = true;
-      }
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 150;
+
       scene.add(parentTransformDois);
       scene.remove(parentTransform);
       scene.remove(parentTransformTres);

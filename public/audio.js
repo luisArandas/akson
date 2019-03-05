@@ -409,6 +409,7 @@ UI.synthAttack.on('change', function(v) {
     y: "synthAttack"
   };
   socket.emit('uiSocketSynthAttack', data);
+  socket.emit('oscTest', v);
   polySynth.set({
     "envelope": {
       "attack": v
