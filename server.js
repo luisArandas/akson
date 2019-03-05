@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var server = app.listen(process.env.PORT || 5000);
+const OSC = require('osc-js');
 
 app.use(express.static('public'))
 
@@ -254,8 +255,6 @@ function newConnection(socket) {
   }
 }
 
-const OSC = require('osc-js')
-
 const config = {
   udpClient: {
     port: 9129
@@ -263,6 +262,8 @@ const config = {
 }
 const osc = new OSC({
   plugin: new OSC.BridgePlugin(config)
-})
+});
 
-osc.open() // start a WebSocket server on port 8080
+osc.open({
+  port: 9000 // start a WebSocket server on port 8080 default*/
+});

@@ -1,8 +1,8 @@
 // check https://doc.esdoc.org/github.com/adzialocha/osc-js/
 
-const mediaSource = new MediaSource();
+/*const mediaSource = new MediaSource();
 console.log(mediaSource);
-/*https://github.com/webrtc/samples/tree/gh-pages/src/content/capture/canvas-record
+https://github.com/webrtc/samples/tree/gh-pages/src/content/capture/canvas-record
 https://github.com/imgntn/j360
 Media Source Recorder */
 
