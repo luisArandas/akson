@@ -261,6 +261,42 @@ function newConnection(socket) {
   function oscMessage(data) {
     console.log("forOsc");
   }
+
+  socket.on('noiseWaveType', noiseWaveType);
+
+  function noiseWaveType(data) {
+    socket.broadcast.emit('noiseWaveType', data);
+  }
+
+  socket.on('noiseRoloffType', noiseRoloffType);
+
+  function noiseRoloffType(data) {
+    socket.broadcast.emit('noiseRoloffType', data);
+  }
+
+  socket.on('autoFilterWaveType', autoFilterWaveType);
+
+  function autoFilterWaveType(data) {
+    socket.broadcast.emit('autoFilterWaveType', data);
+  }
+
+  socket.on('noiseOneFrequencyTimeNumber', noiseOneFrequencyTimeNumber);
+
+  function noiseOneFrequencyTimeNumber(data) {
+    socket.broadcast.emit('noiseOneFrequencyTimeNumber', data);
+  }
+
+  socket.on('synthWaveType', synthWaveType);
+
+  function synthWaveType(data) {
+    socket.broadcast.emit('synthWaveType', data);
+  }
+
+  socket.on('noisePartialCount', noisePartialCount);
+
+  function noisePartialCount(data) {
+    socket.broadcast.emit('noisePartialCount', data);
+  }
 }
 
 portfinder.getPort(function(err, port) {

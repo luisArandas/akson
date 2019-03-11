@@ -28,15 +28,14 @@ body.fadeIn {
     opacity: 1;
 }*/
 
-
 [nexus-ui] {
   border-radius: 3px;
   -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
   -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
   box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
   overflow: hidden;
+  border: 1px solid rgba(50, 50, 50, 1);
 }
-
 
 .oscilloscope {
   position: absolute;

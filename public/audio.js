@@ -856,6 +856,7 @@ function synthWave(data) {
     }
   });
   typeofOsc = data;
+  socket.emit('synthWaveType', data);
 }
 
 function noiseType(data) {
@@ -863,12 +864,14 @@ function noiseType(data) {
   if (data == 'white') {
     noiseOne.volume.value = -10;
   }
+  socket.emit('noiseWaveType', data);
 }
 
 function noiseOneFrequencyTime(data) {
   autoFilterOne.set({
     "frequency": data
   });
+  socket.emit('noiseOneFrequencyTimeNumber', data);
 }
 
 function partialCount(data) {
@@ -877,6 +880,7 @@ function partialCount(data) {
       "type": typeofOsc + data
     }
   });
+  socket.emit('noisePartialCount', data);
 }
 
 function noiseRoloff(data) {
@@ -885,12 +889,14 @@ function noiseRoloff(data) {
       "rolloff": data
     }
   });
+  socket.emit('noiseRoloffType', data);
 }
 
 function autofilterWave(data) {
   autoFilterOne.set({
     "type": data
   });
+  socket.emit('autoFilterWaveType', data);
 }
 
 //--------------------------------------------------------------------- Scales

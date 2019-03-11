@@ -1,6 +1,6 @@
 /* Midi Learn Architecture */
 var isMidiLearn = false;
-var nexusIds = ["oscilloscope", "synthvolume", "backgroundvolume", "mainvolume", "eqbass", "eqmid", "eqhigh", "lowfreq", "highfreq", "synthAttack", "synthDecay", "synthSustain", "synthRelease", "harmonicity", "modulationindex", "detune", "oscillatorModulationIndex", "oscillatorHarmonicity", "modulationEnvelopeAttack", "modulationEnvelopeDecay", "modulationEnvelopeRelease", "modulationEnvelopeSustain", "reverbRoomSize", "reverbWetValue", "reverbDampValue", "noiseOnePlaybackRate", "noiseq", "noiseoctaves", "autoFilterFrequency", "noiseMin", "noiseMax", "autoFilterWet", "autoFilterDepth", "afbasefrequency"];
+var nexusIds = ["synthvolume", "backgroundvolume", "mainvolume", "eqbass", "eqmid", "eqhigh", "lowfreq", "highfreq", "synthAttack", "synthDecay", "synthSustain", "synthRelease", "harmonicity", "modulationindex", "detune", "oscillatorModulationIndex", "oscillatorHarmonicity", "modulationEnvelopeAttack", "modulationEnvelopeDecay", "modulationEnvelopeRelease", "modulationEnvelopeSustain", "reverbRoomSize", "reverbWetValue", "reverbDampValue", "noiseOnePlaybackRate", "noiseq", "noiseoctaves", "autoFilterFrequency", "noiseMin", "noiseMax", "autoFilterWet", "autoFilterDepth", "afbasefrequency"];
 
 var midiEvent = new Array(34);
 for (var i = 0; i < midiEvent.length; ++i) {
@@ -52,6 +52,7 @@ data[2] = velocity
 144 => keys, data[1] was 12 to 72
 */
 
+
 function onMIDIFailure(e) {
   console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. " + e);
 }
@@ -82,16 +83,28 @@ function startLearning() {
 function learnMidi() {
   $('div').click(function() {
     if (isMidiLearn == true) {
-      if ($.inArray(this.id, nexusIds) != -1) {
+      if ($.inArray(this.id, nexusIds) != -1 && document.getElementById(this.id).style.border != "1px solid #00ff00") {
         document.getElementById(this.id).style.border = "1px solid #00ff00";
-        if (idsToLearn.includes(this.id) == false) {
+        if (idsToLearn.includes(this.id) === false) {
           idsToLearn.push(this.id);
         }
         console.log(idsToLearn);
-      }
+      } // check if is in array or check if click is color
     }
   });
 }
+/*
+Than remove from array
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+for( var i = 0; i < arr.length; i++){
+   if ( arr[i] === 5) {
+     arr.splice(i, 1);
+   }
+}
+*/
+
+
 
 // ---------------------- LAPTOP KEYBOARD -------------------------
 
