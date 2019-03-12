@@ -1,12 +1,20 @@
 /* Midi Learn Architecture */
+
 var isMidiLearn = false;
 var nexusIds = ["synthvolume", "backgroundvolume", "mainvolume", "eqbass", "eqmid", "eqhigh", "lowfreq", "highfreq", "synthAttack", "synthDecay", "synthSustain", "synthRelease", "harmonicity", "modulationindex", "detune", "oscillatorModulationIndex", "oscillatorHarmonicity", "modulationEnvelopeAttack", "modulationEnvelopeDecay", "modulationEnvelopeRelease", "modulationEnvelopeSustain", "reverbRoomSize", "reverbWetValue", "reverbDampValue", "noiseOnePlaybackRate", "noiseq", "noiseoctaves", "autoFilterFrequency", "noiseMin", "noiseMax", "autoFilterWet", "autoFilterDepth", "afbasefrequency"];
+
+var learnStartDiv = "";
+
+var newColors = new Array(34);
+for (var i = 0; i < newColors.length; ++i) {
+  newColors[i] = false;
+}
 
 var midiEvent = new Array(34);
 for (var i = 0; i < midiEvent.length; ++i) {
   midiEvent[i] = 0;
 }
-var idsToLearn = [];
+var idsToLearn;
 
 if (navigator.requestMIDIAccess) {
   navigator.requestMIDIAccess({
@@ -27,16 +35,19 @@ function onMIDISuccess(midiAccess) {
 
 function onMIDIMessage(event) {
   if (isMidiLearn == true) {
+
+    data = event.data;
+    midiValOne = data[0];
+    midiValTwo = data[1];
+    midiValThree = data[2];
+    console.log(data);
+
     if (idsToLearn.length > 0) {
-      console.log("we have something");
       /* reverb.roomSize.value = v;
        Check all the methods and add 4 functions here to add midi dinamically
        var idsToLearn = [];
-       console.log(idsToLearn);
-       midiValOne = data[0];
-       midiValTwo = data[1];
-       midiValThree = data[2];
-       console.log(data); */
+       console.log(idsToLearn); Was array.
+       */
     }
   }
 }
@@ -77,33 +88,32 @@ function startLearning() {
       document.getElementById(id).style.border = "1px solid rgba(50, 50, 50, 1)";
     });
   }
-  learnMidi();
 }
 
-function learnMidi() {
-  $('div').click(function() {
-    if (isMidiLearn == true) {
-      if ($.inArray(this.id, nexusIds) != -1 && document.getElementById(this.id).style.border != "1px solid #00ff00") {
-        document.getElementById(this.id).style.border = "1px solid #00ff00";
-        if (idsToLearn.includes(this.id) === false) {
-          idsToLearn.push(this.id);
-        }
-        console.log(idsToLearn);
-      } // check if is in array or check if click is color
+// DISABLE NEXUS UIS
+var green = "1px solid #00ff00";
+var violet = "1px solid #ff66ff";
+
+
+$('div').click(function() {
+  if (isMidiLearn == true) {
+    if ($.inArray(this.id, nexusIds) != -1) {
+      changeStateMidiUI(this.id);
     }
-  });
-}
-/*
-Than remove from array
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    /*if (idsToLearn.includes(this.id) === false) {
+      idsToLearn.push(this.id);
+    }*/
+  }
+});
 
-for( var i = 0; i < arr.length; i++){
-   if ( arr[i] === 5) {
-     arr.splice(i, 1);
-   }
+function changeStateMidiUI(v) {
+  if (v != learnStartDiv) {
+    nexusIds.forEach(function(id) {
+      document.getElementById(id).style.border = "1px solid #ff66ff";
+    });
+    document.getElementById(v).style.border = green;
+  }
 }
-*/
-
 
 
 // ---------------------- LAPTOP KEYBOARD -------------------------

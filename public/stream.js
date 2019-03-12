@@ -495,3 +495,6 @@ function changeState(v) {
 function streamCortex() {
   console.log("streamCortex");
 }
+
+/*Check stream Cortex
+Add alocation + Play alone*/
