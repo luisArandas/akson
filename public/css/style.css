@@ -635,8 +635,8 @@ body.fadeIn {
 
 .streamButtonDiv {
   margin: auto;
-  width: 65%;
-  height: 70%;
+  width: 80%;
+  height: 60%;
   font-size: 9px;
   color: white;
 }
@@ -650,6 +650,7 @@ body.fadeIn {
   height: 100%;
   width: 100%;
 }
+
 .stateButton:hover {
   background-color: #ffffff !important;
   color: black;
@@ -663,7 +664,7 @@ h2 {
 }
 
 .groupStream {
-    width: 24%;
+    width: 19%;
 }
 
 #stateButtonOne{

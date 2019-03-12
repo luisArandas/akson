@@ -5,16 +5,11 @@ var nexusIds = ["synthvolume", "backgroundvolume", "mainvolume", "eqbass", "eqmi
 
 var learnStartDiv = "";
 
-var newColors = new Array(34);
-for (var i = 0; i < newColors.length; ++i) {
-  newColors[i] = false;
-}
-
 var midiEvent = new Array(34);
 for (var i = 0; i < midiEvent.length; ++i) {
   midiEvent[i] = 0;
 }
-var idsToLearn;
+var idsToLearn = "";
 
 if (navigator.requestMIDIAccess) {
   navigator.requestMIDIAccess({
@@ -37,17 +32,13 @@ function onMIDIMessage(event) {
   if (isMidiLearn == true) {
 
     data = event.data;
-    midiValOne = data[0];
-    midiValTwo = data[1];
-    midiValThree = data[2];
-    console.log(data);
+    //midiValOne = data[0];
+    //midiValTwo = data[1];
+    //midiValThree = data[2];
 
-    if (idsToLearn.length > 0) {
-      /* reverb.roomSize.value = v;
-       Check all the methods and add 4 functions here to add midi dinamically
-       var idsToLearn = [];
-       console.log(idsToLearn); Was array.
-       */
+    if (idsToLearn != "" && data[0] == 176) {
+      console.log(data[2]);
+      /* Make this */
     }
   }
 }
@@ -112,6 +103,7 @@ function changeStateMidiUI(v) {
       document.getElementById(id).style.border = "1px solid #ff66ff";
     });
     document.getElementById(v).style.border = green;
+    idsToLearn = v;
   }
 }
 
