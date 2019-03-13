@@ -228,7 +228,7 @@ function init() {
   for (var i = 0; i < 90; i++) {
     var geometry = new THREE.BoxGeometry(50, 500, 50);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
-      color: 0x707070,
+      color: 0x1E1E1E,
       //wireframe: true
     }));
     object.position.x = Math.random() * 800 - 400;
@@ -239,11 +239,13 @@ function init() {
     //  object.rotation.z = Math.random() * 2 * Math.PI;*/
     parentTransformTres.add(object);
   }
-  light1 = new THREE.DirectionalLight(0x808080, 4);
+  light1 = new THREE.DirectionalLight(0x000000, 1);
   light1.position.set(1, 5, 1).normalize();
   parentTransformTres.add(light1);
-  ambientLight1 = new THREE.AmbientLight(0x808080, 4);
+  ambientLight1 = new THREE.AmbientLight(0x000000, 1);
   parentTransformTres.add(ambientLight1);
+  var directionalLight = new THREE.DirectionalLight(0x8C8C8C, 5);
+  parentTransformTres.add(directionalLight);
 
 
   parentTransformQuatro = new THREE.Object3D();
@@ -325,7 +327,6 @@ function init() {
   glitchPass.renderToScreen = false;
   afterimagePass.renderToScreen = false;
 
-
   /*
   Q_81 W_87 E_69 R_82 T_84 Y_89 U_85 I_73 O_79 P_80
   32 == SPACE
@@ -355,6 +356,7 @@ function init() {
     }
     if (event.which == "81") {
       //console.log("Q");
+      //Lines sphere array
       isSceneOne = true;
       isSceneTwo = false;
       isSceneThree = false;
@@ -376,6 +378,7 @@ function init() {
     }
     if (event.which == "87") {
       console.log("W");
+      //dots array right side
       isSceneOne = false;
       isSceneTwo = true;
       isSceneThree = false;
@@ -402,6 +405,7 @@ function init() {
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;
       glitchPass.renderToScreen = false;
+      controls.enabled = false;
 
       var whichScene = 69;
       socket.emit('scene', whichScene);
@@ -420,6 +424,7 @@ function init() {
 
       /*var whichScene = 82;
       socket.emit('scene', whichScene);*/
+      controls.enabled = false;
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       afterimagePass.renderToScreen = false;

@@ -4,7 +4,6 @@ Remove all shaders.
 Make pans
 geolocation API and a new logger
 Presets
-Master fadeOut
 Restart audioContext without refresh
 Clicks on reverb wet
 The distance of intersection isSceneOne can be amplitude
@@ -14,4 +13,8 @@ https://github.com/mdn/web-dictaphone
 check exporting
 // const ios; Atribute.
 tokens em cada GUI para controlar entradas e saídas
+
+Add to flip the phase of the oscillator
+Write more about the Descriptions
+
 check (Free, cross-platform, open-source software (Simplified BSD License))

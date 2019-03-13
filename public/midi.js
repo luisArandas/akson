@@ -9,6 +9,11 @@ var midiEvent = new Array(34);
 for (var i = 0; i < midiEvent.length; ++i) {
   midiEvent[i] = 0;
 }
+var isSynthAttack = 0;
+
+var smi = new SimpleMidiInput();
+console.log(smi);
+
 var idsToLearn = "";
 
 if (navigator.requestMIDIAccess) {
@@ -27,21 +32,70 @@ function onMIDISuccess(midiAccess) {
   }
   console.log('MIDI Access Object', midiAccess);
 }
+var a = 0;
 
 function onMIDIMessage(event) {
-  if (isMidiLearn == true) {
+  data = event.data;
+  //midiValOne = data[0];
+  //midiValTwo = data[1];
+  //midiValThree = data[2];
 
-    data = event.data;
-    //midiValOne = data[0];
-    //midiValTwo = data[1];
-    //midiValThree = data[2];
-
-    if (idsToLearn != "" && data[0] == 176) {
-      console.log(data[2]);
-      /* Make this */
-    }
+  if (data[0] == 176) {
+    a = data[1];
+    console.log(a);
   }
+  /* Trigger a to a function
+   */
 }
+
+/*
+function changeUIafterLearn(a, v, x) {
+  if (a == "isSynthAttack" && v != 0) {
+    polySynth.set({
+      "envelope": {
+        "attack": x
+      }
+    });
+    UI.synthAttack._value.update(x);
+    UI.synthAttack.render();
+  }
+
+
+
+  if (idsToLearn == "synthvolume") {}
+  if (idsToLearn == "backgroundvolume") {}
+  if (idsToLearn == "mainvolume") {}
+  if (idsToLearn == "eqbass") {}
+  if (idsToLearn == "eqmid") {}
+  if (idsToLearn == "eqhigh") {}
+  if (idsToLearn == "lowfreq") {}
+  if (idsToLearn == "highfreq") {}
+  if (idsToLearn == "synthAttack") {}
+  if (idsToLearn == "synthDecay") {}
+  if (idsToLearn == "synthSustain") {}
+  if (idsToLearn == "synthRelease") {}
+  if (idsToLearn == "harmonicity") {}
+  if (idsToLearn == "modulationindex") {}
+  if (idsToLearn == "detune") {}
+  if (idsToLearn == "oscillatorModulationIndex") {}
+  if (idsToLearn == "oscillatorHarmonicity") {}
+  if (idsToLearn == "modulationEnvelopeAttack") {}
+  if (idsToLearn == "modulationEnvelopeDecay") {}
+  if (idsToLearn == "modulationEnvelopeRelease") {}
+  if (idsToLearn == "modulationEnvelopeSustain") {}
+  if (idsToLearn == "reverbRoomSize") {}
+  if (idsToLearn == "reverbWetValue") {}
+  if (idsToLearn == "reverbDampValue") {}
+  if (idsToLearn == "noiseOnePlaybackRate") {}
+  if (idsToLearn == "noiseq") {}
+  if (idsToLearn == "noiseoctaves") {}
+  if (idsToLearn == "autoFilterFrequency") {}
+  if (idsToLearn == "noiseMin") {}
+  if (idsToLearn == "noiseMax") {}
+  if (idsToLearn == "autoFilterWet") {}
+  if (idsToLearn == "autoFilterDepth") {}
+  if (idsToLearn == "afbasefrequency") {}
+}*/
 
 /*
 data[0] = type of command that was sent
@@ -88,12 +142,10 @@ var violet = "1px solid #ff66ff";
 
 $('div').click(function() {
   if (isMidiLearn == true) {
+    mlSynthAttack.startListening();
     if ($.inArray(this.id, nexusIds) != -1) {
       changeStateMidiUI(this.id);
     }
-    /*if (idsToLearn.includes(this.id) === false) {
-      idsToLearn.push(this.id);
-    }*/
   }
 });
 
@@ -104,8 +156,63 @@ function changeStateMidiUI(v) {
     });
     document.getElementById(v).style.border = green;
     idsToLearn = v;
+
+    if (idsToLearn == "synthAttack") {
+      mlSynthAttack.bind();
+    }
   }
 }
+
+//https://github.com/kchapelier/SimpleMidiInput.js/blob/master/README-MIDILEARN.md
+
+var onMIDIStarted = function(midi) {
+  console.log('onMIDIStarted', midi);
+  smi.attach(midi);
+};
+
+var synthAttack = document.getElementById('synthAttack');
+
+var change = function(value) {
+  console.log('parameter change:', value);
+};
+
+var mlSynthAttack = smi.getMidiLearning({
+  id: synthAttack.id,
+  min: synthAttack.min,
+  max: synthAttack.max,
+  value: synthAttack.value,
+  events: {
+    bind: function() {
+      console.log('bind', arguments);
+    },
+    unbind: function() {
+      console.log('unbind', arguments);
+    },
+    listen: function() {
+      console.log('listen', arguments);
+    },
+    cancel: function() {
+      console.log('cancel', arguments);
+    },
+    change: function(id, value) {
+      console.log('change', arguments);
+      synthAttack.value = value;
+      change(value);
+    }
+  }
+});
+
+
+
+synthAttack.addEventListener('change', function() {
+  change(synthAttack.value);
+});
+
+
+
+
+
+
 
 
 // ---------------------- LAPTOP KEYBOARD -------------------------

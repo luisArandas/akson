@@ -18,6 +18,7 @@
   "homepage": "https://github.com/luisArandas/akson#readme",
   "dependencies": {
     "bootstrap-select": "^1.13.5",
+    "browserify": "^16.2.3",
     "express": "^4.16.4",
     "node-osc": "^3.0.0",
     "osc-js": "^2.0.2",

@@ -25,6 +25,10 @@ Nexus.colors.fill = "#000000";
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
 
+Number.prototype.map = function(in_min, in_max, out_min, out_max) {
+  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 var UI = {
   oscilloscope: new Nexus.Oscilloscope('#oscilloscope', {
     'size': [243, 100]
@@ -281,11 +285,7 @@ var UI = {
 
 for (var key in UI) {
   UI[key].on('change', function(value) {
-    var logs = document.getElementById('logs'),
-      output_node = document.createElement("div");
-    output_node.innerHTML = value;
-    logs.appendChild(output_node);
-    logs.scrollTop = logs.scrollHeight;
+    // Everytime an element triggers.
   });
 }
 
@@ -325,8 +325,6 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     THIS
     phase  : 0 ,
     osc.phase = 180; //flips the phase of the oscillator
-    partials  : [] ,
-    partialCount  : 0
     */
   },
   envelope: {
@@ -368,11 +366,8 @@ UI.synthvolume.on('change', function(v) {
   };
   socket.emit('uiSocketSynthVolume', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "Synth volume -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Synthesizer Volume : ", _v);
+
 });
 UI.backgroundvolume.on('change', function(v) {
   noiseOne.volume.value = v;
@@ -382,25 +377,28 @@ UI.backgroundvolume.on('change', function(v) {
   };
   socket.emit('uiSocketBackgroundVolume', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "Background volume -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Background Volume : ", _v);
+
 });
 UI.mainvolume.on('change', function(v) {
   Tone.Master.volume.value = v;
+  console.log("1 " + v);
   var data = {
     x: v,
     y: "mainVolume"
   };
   socket.emit('uiSocketMainVolume', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "Master volume -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Master Volume : ", _v);
+
+  var k = v.map(-50, 0, -1, 1);
+  console.log("2 " + k);
+  light.intensity = k;
+  //light1.intensity = k;
+  //light2.intensity = k;
+  //ambientLight1.intensity = k;
+  //ambientLight2.intensity = k;
+  //ambientLight.intensity = k;
 });
 
 UI.synthAttack.on('change', function(v) {
@@ -415,6 +413,7 @@ UI.synthAttack.on('change', function(v) {
       "attack": v
     }
   });
+  printLogsDialog("Synthesizer Attack : ", v);
 });
 UI.synthDecay.on('change', function(v) {
   var data = {
@@ -427,6 +426,7 @@ UI.synthDecay.on('change', function(v) {
       "decay": v
     }
   });
+  printLogsDialog("Synthesizer Decay : ", v);
 });
 UI.synthSustain.on('change', function(v) {
   var data = {
@@ -439,6 +439,7 @@ UI.synthSustain.on('change', function(v) {
       "sustain": v
     }
   });
+  printLogsDialog("Synthesizer Sustain : ", v);
 });
 UI.synthRelease.on('change', function(v) {
   var data = {
@@ -451,6 +452,7 @@ UI.synthRelease.on('change', function(v) {
       "release": v
     }
   });
+  printLogsDialog("Synthesizer Release : ", v);
 });
 
 UI.harmonicity.on('change', function(v) {
@@ -462,6 +464,7 @@ UI.harmonicity.on('change', function(v) {
   polySynth.set({
     "harmonicity": v
   });
+  printLogsDialog("Synthesizer Harmonicity : ", v);
 });
 UI.modulationindex.on('change', function(v) {
   var data = {
@@ -472,6 +475,7 @@ UI.modulationindex.on('change', function(v) {
   polySynth.set({
     "modulationIndex": v
   });
+  printLogsDialog("Synthesizer Modulation Index : ", v);
 });
 UI.detune.on('change', function(v) {
   var data = {
@@ -482,6 +486,7 @@ UI.detune.on('change', function(v) {
   polySynth.set({
     "detune": v
   });
+  printLogsDialog("Synthesizer Detune : ", v);
 });
 UI.oscillatorModulationIndex.on('change', function(v) {
   var data = {
@@ -494,6 +499,7 @@ UI.oscillatorModulationIndex.on('change', function(v) {
       "modulationIndex": v
     }
   });
+  printLogsDialog("Synthesizer Osc Modulation Index : ", v);
 });
 UI.oscillatorHarmonicity.on('change', function(v) {
   var data = {
@@ -506,6 +512,7 @@ UI.oscillatorHarmonicity.on('change', function(v) {
       "harmonicity": v
     }
   });
+  printLogsDialog("Synthesizer Osc Harmonicity : ", v);
 });
 
 UI.modulationEnvelopeAttack.on('change', function(v) {
@@ -519,6 +526,7 @@ UI.modulationEnvelopeAttack.on('change', function(v) {
       "attack": v
     }
   });
+  printLogsDialog("Synthesizer Modulation Envelope Attack : ", v);
 });
 UI.modulationEnvelopeDecay.on('change', function(v) {
   var data = {
@@ -531,6 +539,7 @@ UI.modulationEnvelopeDecay.on('change', function(v) {
       "decay": v
     }
   });
+  printLogsDialog("Synthesizer Modulation Envelope Decay : ", v);
 });
 UI.modulationEnvelopeSustain.on('change', function(v) {
   var data = {
@@ -543,6 +552,7 @@ UI.modulationEnvelopeSustain.on('change', function(v) {
       "sustain": v
     }
   });
+  printLogsDialog("Synthesizer Modulation Envelope Sustain : ", v);
 });
 UI.modulationEnvelopeRelease.on('change', function(v) {
   var data = {
@@ -555,6 +565,7 @@ UI.modulationEnvelopeRelease.on('change', function(v) {
       "release": v
     }
   });
+  printLogsDialog("Synthesizer Modulation Envelope Release : ", v);
 });
 
 UI.reverbRoomSize.on('change', function(v) {
@@ -564,6 +575,7 @@ UI.reverbRoomSize.on('change', function(v) {
     y: "reverbRoomSize"
   };
   socket.emit('uiSocketReverbRoomSize', data);
+  printLogsDialog("Reverb Roomsize : ", v);
 });
 UI.reverbWetValue.on('change', function(v) {
   reverb.wet.value = v;
@@ -572,6 +584,7 @@ UI.reverbWetValue.on('change', function(v) {
     y: "reverbWetValue"
   };
   socket.emit('uiSocketReverbWetValue', data);
+  printLogsDialog("Reverb Wet Value : ", v);
 });
 UI.reverbDampValue.on('change', function(v) {
   reverb.dampening.value = v;
@@ -580,6 +593,7 @@ UI.reverbDampValue.on('change', function(v) {
     y: "reverbDampValue"
   };
   socket.emit('uiSocketReverbDampValue', data);
+  printLogsDialog("Reverb Damp Value : ", v);
 });
 
 UI.noiseOnePlaybackRate.on('change', function(v) {
@@ -589,6 +603,7 @@ UI.noiseOnePlaybackRate.on('change', function(v) {
     y: "noiseOnePlaybackRate"
   };
   socket.emit('uiSocketNoiseOnePlaybackRate', data);
+  printLogsDialog("Background Playback Rate : ", v);
 });
 UI.autoFilterFrequency.on('change', function(v) {
   var data = {
@@ -599,6 +614,7 @@ UI.autoFilterFrequency.on('change', function(v) {
   autoFilterOne.set({
     "frequency": v
   });
+  printLogsDialog("Auto Filter Frequency : ", v);
 });
 UI.noiseMin.on('change', function(v) {
   noiseOne.min = v;
@@ -607,6 +623,7 @@ UI.noiseMin.on('change', function(v) {
     y: "noiseOneMin"
   };
   socket.emit('uiSocketNoiseOneMin', data);
+  printLogsDialog("Background Min Value : ", v);
 });
 UI.noiseMax.on('change', function(v) {
   noiseOne.max = v;
@@ -615,6 +632,7 @@ UI.noiseMax.on('change', function(v) {
     y: "noiseOneMax"
   };
   socket.emit('uiSocketNoiseOneMax', data);
+  printLogsDialog("Background Max Value : ", v);
 });
 UI.autoFilterWet.on('change', function(v) {
   noiseOne.wet = v;
@@ -623,6 +641,7 @@ UI.autoFilterWet.on('change', function(v) {
     y: "noiseOneWet"
   };
   socket.emit('uiSocketNoiseOneWet', data);
+  printLogsDialog("Background Wet Value : ", v);
 });
 UI.autoFilterDepth.on('change', function(v) {
   noiseOne.depth = v;
@@ -631,6 +650,7 @@ UI.autoFilterDepth.on('change', function(v) {
     y: "noiseOneDepth"
   };
   socket.emit('uiSocketNoiseOneDepth', data);
+  printLogsDialog("Background Depth Value : ", v);
 });
 
 UI.noiseq.on('change', function(v) {
@@ -644,6 +664,7 @@ UI.noiseq.on('change', function(v) {
     y: "noiseq"
   };
   socket.emit('uiSocketNoiseQ', data);
+  printLogsDialog("Background Filter Q : ", v);
 });
 
 UI.noiseoctaves.on('change', function(v) {
@@ -655,6 +676,7 @@ UI.noiseoctaves.on('change', function(v) {
     y: "noiseOctaves"
   };
   socket.emit('uiSocketNoiseOctaves', data);
+  printLogsDialog("Background Octave Range : ", v);
 });
 
 UI.afbasefrequency.on('change', function(v) {
@@ -666,6 +688,7 @@ UI.afbasefrequency.on('change', function(v) {
     y: "afBaseFrequency"
   };
   socket.emit('uiSocketAfBaseFrequency', data);
+  printLogsDialog("Auto Filter Base Frequency : ", v);
 });
 
 UI.eqbass.on('change', function(v) {
@@ -675,13 +698,9 @@ UI.eqbass.on('change', function(v) {
     y: "eqBass"
   };
   socket.emit('uiSocketEqBass', data);
-
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "EQ Low freq -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Equalizer Low Value : ", _v);
+
 });
 
 UI.eqmid.on('change', function(v) {
@@ -691,13 +710,9 @@ UI.eqmid.on('change', function(v) {
     y: "eqMid"
   };
   socket.emit('uiSocketEqMid', data);
-
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "EQ Mid freq -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Equalizer Mid Value : ", _v);
+
 });
 
 UI.eqhigh.on('change', function(v) {
@@ -707,13 +722,8 @@ UI.eqhigh.on('change', function(v) {
     y: "eqHigh"
   };
   socket.emit('uiSocketEqHigh', data);
-
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "EQ high freq -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Equalizer High Value : ", _v);
 });
 
 UI.lowfreq.on('change', function(v) {
@@ -723,13 +733,8 @@ UI.lowfreq.on('change', function(v) {
     y: "eqLowFreq"
   };
   socket.emit('uiSocketEqLowFreq', data);
-
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "Low-freq-crossover -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Equalizer Low Freq Crossover Value : ", _v);
 });
 
 UI.highfreq.on('change', function(v) {
@@ -739,13 +744,8 @@ UI.highfreq.on('change', function(v) {
     y: "eqHighFreq"
   };
   socket.emit('uiSocketEqHighFreq', data);
-
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = "High-freq-crossover -" + _v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
+  printLogsDialog("Equalizer High Freq Crossover Value : ", _v);
 });
 
 
@@ -897,6 +897,16 @@ function autofilterWave(data) {
     "type": data
   });
   socket.emit('autoFilterWaveType', data);
+}
+
+//--------------------------------------------------------------------- Print Logs
+
+function printLogsDialog(a, v) {
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = a + v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
 }
 
 //--------------------------------------------------------------------- Scales
