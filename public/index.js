@@ -6,6 +6,10 @@ $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
+  document.getElementById("topBar").style.display = "none";
+  WUI_Dialog.close("master_dialog");
+  WUI_Dialog.close("cockpit_dialog");
+  WUI_Dialog.close("logs_dialog");
   if (detectmob() === true) {
     document.getElementById("topBar").style.display = "none";
     WUI_Dialog.close("master_dialog");
@@ -63,6 +67,9 @@ var composerThree;
 var composerFour;
 var whichVisuals;
 
+var r = 450;
+
+
 /*  Currently using Pentatonic Major  */
 
 var scalePlaying;
@@ -97,6 +104,16 @@ var light2;
 var ambientLight;
 var ambientLight1;
 var ambientLight2;
+
+var vertices = new THREE.DodecahedronGeometry(50).vertices;
+
+
+/*var meshMaterial1 = createMaterial("vertex-shader", "fragment-shader-1");
+var meshMaterial2 = createMaterial("vertex-shader", "fragment-shader-2");
+var meshMaterial3 = createMaterial("vertex-shader", "fragment-shader-3");
+var meshMaterial4 = createMaterial("vertex-shader", "fragment-shader-4");
+var meshMaterial5 = createMaterial("vertex-shader", "fragment-shader-5");
+var meshMaterial6 = createMaterial("vertex-shader", "fragment-shader-6");*/
 
 init();
 animate();
@@ -174,30 +191,54 @@ function init() {
   ambientLight = new THREE.AmbientLight(0xd3d3d3, 0.1);
   scene.add(ambientLight);
 
+  /* ----------------------------------------------------------------------------------------- */
+
   parentTransform = new THREE.Object3D();
-  for (var i = 0; i < 90; i++) {
+  for (var i = 0; i < 45; i++) {
     var geometry = new THREE.BoxGeometry(10, 1500, 10);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x5f5f5f,
       morphTargets: true,
       //wireframe: true
     }));
+
     object.position.x = Math.random() * 800 - 400;
     object.position.y = Math.random() * 800 - 400;
     object.position.z = Math.random() * 800 - 400;
     object.rotation.x = Math.random() * 2 * Math.PI;
     //object.rotation.y = Math.random() * 2 * Math.PI;
     //object.rotation.z = Math.random() * 2 * Math.PI;
-
     //object.rotation.z = Math.PI / 2;
     parentTransform.add(object);
+
+  }
+  for (var i = 0; i < 45; i++) {
+    var geometry = new THREE.BoxGeometry(10, 1500, 10);
+    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
+      color: 0x5f5f5f,
+      morphTargets: true,
+      //wireframe: true
+    }));
+
+    object.position.x = Math.random() * 800 - 400;
+    object.position.y = Math.random() * 800 - 400;
+    object.position.z = Math.random() * 800 - 400;
+    object.rotation.x = Math.random() * 2 * Math.PI;
+    //object.rotation.y = Math.random() * 2 * Math.PI;
+    //object.rotation.z = Math.random() * 2 * Math.PI;
+    //object.rotation.z = Math.PI / 2;
+    parentTransform.add(object);
+
   }
   scene.add(parentTransform);
 
+
+  /* ----------------------------------------------------------------------------------------- */
+
+
   parentTransformDois = new THREE.Object3D();
-  var vertices = new THREE.DodecahedronGeometry(50).vertices;
   for (var i = 0; i < vertices.length; i++) {
-    //vertices[ i ].add( randomPoint().multiplyScalar( 2 ) ); // wiggle the points
+    vertices[i].add(randomPoint().multiplyScalar(20)); // wiggle the points
   }
   var pointsMaterial = new THREE.PointsMaterial({
     color: 0xffffff,
@@ -223,6 +264,7 @@ function init() {
   mesh.renderOrder = 1;
   parentTransformDois.add(mesh);
 
+  /* ----------------------------------------------------------------------------------------- */
 
   parentTransformTres = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
@@ -247,6 +289,7 @@ function init() {
   var directionalLight = new THREE.DirectionalLight(0x8C8C8C, 5);
   parentTransformTres.add(directionalLight);
 
+  /* ----------------------------------------------------------------------------------------- */
 
   parentTransformQuatro = new THREE.Object3D();
   for (var i = 0; i < 40; i++) {
@@ -274,6 +317,24 @@ function init() {
       //object.rotation.y = Math.random() * 2 * Math.PI;
       //object.rotation.z = Math.random() * 2 * Math.PI;*/
     parentTransformQuatro.add(object);
+  }
+  for (var i = 0; i < 45; i++) {
+    var geometry = new THREE.BoxGeometry(10, 1500, 10);
+    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
+      color: 0x5f5f5f,
+      morphTargets: true,
+      wireframe: true
+    }));
+
+    object.position.x = Math.random() * 800 - 400;
+    object.position.y = Math.random() * 800 - 400;
+    object.position.z = Math.random() * 800 - 400;
+    object.rotation.x = Math.random() * 2 * Math.PI;
+    //object.rotation.y = Math.random() * 2 * Math.PI;
+    //object.rotation.z = Math.random() * 2 * Math.PI;
+    //object.rotation.z = Math.PI / 2;
+    parentTransformQuatro.add(object);
+
   }
   light2 = new THREE.DirectionalLight(0x0c0c0c, 4);
   light2.position.set(1, 5, 1).normalize();
@@ -356,7 +417,6 @@ function init() {
     }
     if (event.which == "81") {
       //console.log("Q");
-      //Lines sphere array
       isSceneOne = true;
       isSceneTwo = false;
       isSceneThree = false;
@@ -390,6 +450,12 @@ function init() {
       camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 150;
       controls.enabled = true;
+
+
+      parentTransform.children.forEach(function(v) {
+        console.log(points);
+      });
+
 
       scene.add(parentTransformDois);
       scene.remove(parentTransform);
@@ -830,6 +896,7 @@ $(renderer.domElement).on('mousedown', function(e) {
 
       parentTransformDois.quaternion.multiplyQuaternions(deltaRotationQuaternion, parentTransformDois.quaternion);
       console.log("DeltaMove1 " + deltaMove.x);
+      /*Se for a cena dois muda algo*/
       console.log("DeltaMove2 " + deltaMove.y);
     }
 
@@ -851,4 +918,8 @@ function toRadians(angle) {
 
 function toDegrees(angle) {
   return angle * (180 / Math.PI);
+}
+
+function randomPoint() {
+  return new THREE.Vector3(THREE.Math.randFloat(-1, 1), THREE.Math.randFloat(-1, 1), THREE.Math.randFloat(-1, 1));
 }
