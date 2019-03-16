@@ -183,15 +183,13 @@ function init() {
   document.body.appendChild(renderer.domElement);
 
   var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.addEventListener('change', () => {
+  controls.addEventListener('change', (x) => {
     render();
-    orbitControls();
+    orbitControls(x);
   });
 
-  function orbitControls() {
-    if (isSceneTwo == true) {
-      autoFilterOne.frequency.value = event.clientX;
-    }
+  function orbitControls(x) {
+    console.log(x);
   }
   controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
   controls.dampingFactor = 0.25;
@@ -279,6 +277,14 @@ function init() {
   mesh.material.side = THREE.FrontSide; // front faces
   mesh.renderOrder = 1;
   parentTransformDois.add(mesh);
+
+  light5 = new THREE.DirectionalLight(0xffffff, 0);
+  light5.position.set(1, 5, 1).normalize();
+  parentTransformDois.add(light5);
+  ambientLight5 = new THREE.AmbientLight(0xffffff, 0);
+  parentTransformDois.add(ambientLight5);
+  directionalLight5 = new THREE.DirectionalLight(0xffffff, 0);
+  parentTransformDois.add(directionalLight5);
 
   /* ----------------------------------------------------------------------------------------- */
 
@@ -415,8 +421,9 @@ function init() {
   32 == SPACE
   */
 
-  var whichScene; // Stream to the mobile phone.
+  console.log(autoFilterOne.baseFrequency);
 
+  var whichScene; // Stream to the mobile phone.
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
@@ -439,6 +446,21 @@ function init() {
     }
     if (event.which == "81") {
       //console.log("Q");
+
+      /* Audio Scene */
+
+      polySynth.volume.value = 0;
+      UI.synthvolume._value.update(0);
+      UI.synthvolume.render();
+      noiseOne.volume.value = -11;
+      UI.backgroundvolume._value.update(-11);
+      UI.backgroundvolume.render();
+      autoFilterOne.set({
+        "baseFrequency": 200
+      });
+
+      /* ------------ */
+
       isSceneOne = true;
       isSceneTwo = false;
       isSceneThree = false;
@@ -457,8 +479,23 @@ function init() {
       scene.remove(parentTransformQuatro);
     }
     if (event.which == "87") {
-      console.log("W");
-      polySynth.volume.value = v;
+      //console.log("W");
+
+      /* Audio Scene */
+
+      polySynth.volume.value = -22.5;
+      UI.synthvolume._value.update(-22.5);
+      UI.synthvolume.render();
+      noiseOne.volume.value = -2;
+      UI.backgroundvolume._value.update(-2);
+      UI.backgroundvolume.render();
+      autoFilterOne.set({
+        "baseFrequency": 100
+      });
+      //32m rolof-24
+
+      /* ------------ */
+
 
       mouseDown = 0;
       isSceneOne = false;
@@ -486,12 +523,17 @@ function init() {
     }
     if (event.which == "69") {
       console.log("E");
+
+      /* Autofilter freq*/
+
+
       isSceneOne = false;
       isSceneTwo = false;
       isSceneThree = true;
       isSceneFour = false;
       //camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       controls.enabled = false;
+
 
       var whichScene = 69;
       socket.emit('scene', whichScene);
@@ -691,9 +733,7 @@ function onMouseDown(event) {
       });
     } else {}
   }
-  if (isSceneTwo == true) {
 
-  }
   if (isSceneFour == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransformQuatro.children);
     if (intersectsClick.length > 0) {
@@ -919,3 +959,30 @@ function toDegrees(angle) {
 function randomPoint() {
   return new THREE.Vector3(THREE.Math.randFloat(-1, 1), THREE.Math.randFloat(-1, 1), THREE.Math.randFloat(-1, 1));
 }
+
+$(document).mouseleave(function() {
+  mouseDown = 0;
+});
+
+console.log();
+console.log(ambientLight5);
+console.log(directionalLight5);
+
+function doStuff() {
+  //light5.intensity = 1;
+  //ambientLight5.intensity = 1;
+  //directionalLight5.intensity = 1;
+}
+setInterval(doStuff, 10000);
+
+
+var seconds = 10;
+var countdown = setInterval(function() {
+  seconds--;
+  console.log(seconds);
+  if (seconds <= 0) {
+    clearInterval(countdown);
+    seconds = 10;
+
+  }
+}, 1000);

@@ -40,14 +40,14 @@ var UI = {
     'min': -30,
     'max': 0,
     'step': 0.1,
-    'value': -15
+    'value': 0
   }),
   backgroundvolume: new Nexus.Dial('#backgroundvolume', {
     'size': [40, 40],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
-    'min': -99,
-    'max': 0,
+    'min': -40,
+    'max': 4,
     'step': 0.1,
     'value': -15
   }),
@@ -359,8 +359,7 @@ var phaser = new Tone.Phaser({
 UI.oscilloscope.connect(Tone.Master);
 
 UI.synthvolume.on('change', function(v) {
-  polySynth.volume.value = -22.5;
-  console.log("change this");
+  polySynth.volume.value = v;
   var data = {
     x: v,
     y: "synthVolume"
