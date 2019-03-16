@@ -359,7 +359,8 @@ var phaser = new Tone.Phaser({
 UI.oscilloscope.connect(Tone.Master);
 
 UI.synthvolume.on('change', function(v) {
-  polySynth.volume.value = v;
+  polySynth.volume.value = -22.5;
+  console.log("change this");
   var data = {
     x: v,
     y: "synthVolume"

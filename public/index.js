@@ -107,6 +107,22 @@ var ambientLight2;
 
 var vertices = new THREE.DodecahedronGeometry(50).vertices;
 
+var targetRotationX = 0;
+var targetRotationOnMouseDownX = 0;
+
+var targetRotationY = 0;
+var targetRotationOnMouseDownY = 0;
+
+var mouseX = 0;
+var mouseXOnMouseDown = 0;
+
+var mouseY = 0;
+var mouseYOnMouseDown = 0;
+
+var finalRotationY;
+
+var mouseDown = 0;
+
 
 /*var meshMaterial1 = createMaterial("vertex-shader", "fragment-shader-1");
 var meshMaterial2 = createMaterial("vertex-shader", "fragment-shader-2");
@@ -375,6 +391,12 @@ function init() {
   window.addEventListener('resize', onWindowResize, false);
   window.addEventListener('mousedown', onMouseDown, false);
   window.addEventListener('mouseup', onMouseUp, false);
+  window.addEventListener("focus", function(event) {
+    mouseDown = 0;
+  }, false);
+  window.addEventListener("blur", function(event) {
+
+  }, false);
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
   composerOne = new THREE.EffectComposer(renderer);
@@ -426,9 +448,7 @@ function init() {
       socket.emit('scene', whichScene);
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
-      afterimagePass.renderToScreen = false;
-      glitchPass.renderToScreen = false;
-
+      console.log("z " + camera.position.z);
       controls.enabled = false;
 
       scene.add(parentTransform);
@@ -438,7 +458,9 @@ function init() {
     }
     if (event.which == "87") {
       console.log("W");
-      //dots array right side
+      polySynth.volume.value = v;
+
+      mouseDown = 0;
       isSceneOne = false;
       isSceneTwo = true;
       isSceneThree = false;
@@ -468,9 +490,7 @@ function init() {
       isSceneTwo = false;
       isSceneThree = true;
       isSceneFour = false;
-      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
-      afterimagePass.renderToScreen = false;
-      glitchPass.renderToScreen = false;
+      //camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       controls.enabled = false;
 
       var whichScene = 69;
@@ -493,12 +513,7 @@ function init() {
       controls.enabled = false;
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
-      afterimagePass.renderToScreen = false;
-      /*  glitchPass.goWild = true;
-        if (glitchPass.renderToScreen == false) {
-          renderPostOne = true;
-          glitchPass.renderToScreen = true;
-        }*/
+
       scene.add(parentTransformQuatro);
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
@@ -589,6 +604,8 @@ function init() {
 }
 
 function onWindowResize() {
+  windowHalfX = window.innerWidth / 2;
+  windowHalfY = window.innerHeight / 2;
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -598,6 +615,7 @@ function animate() {
   parentTransformDois.rotation.y += 0.005;
   parentTransformDois.rotation.x += 0.005;
   parentTransformDois.rotation.z += 0.005;
+
   requestAnimationFrame(animate);
   render();
 
@@ -605,9 +623,11 @@ function animate() {
 
 // ------------------------- Sockets & Mouse -------------------------------
 
-var mouseX;
-var mouseY;
-var mouseDown = 0;
+
+var data;
+var newScale = new ScalePlaying();
+var scale = newScale.cMajorPentatonic();
+
 document.body.onmousedown = function() {
   ++mouseDown;
 }
@@ -615,22 +635,27 @@ document.body.onmouseup = function() {
   --mouseDown;
 }
 
-var data;
-var newScale = new ScalePlaying();
-var scale = newScale.cMajorPentatonic();
-
 function onDocumentMouseMove(event) {
   event.preventDefault();
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  mouseX = (event.clientX - windowHalfX) * 2;
-  mouseY = (event.clientY - windowHalfY) * 2;
+  mouseX = event.clientX - windowHalfX;
+  mouseY = event.clientY - windowHalfY;
   if (mouseDown) {
-    console.log("dragging");
+    targetRotationY = targetRotationOnMouseDownY + (mouseY - mouseYOnMouseDown) * 0.01;
+    targetRotationX = targetRotationOnMouseDownX + (mouseX - mouseXOnMouseDown) * 0.01;
   }
 }
 
 function onMouseDown(event) {
+
+  document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+  mouseXOnMouseDown = event.clientX - windowHalfX;
+  targetRotationOnMouseDownX = targetRotationX;
+  mouseYOnMouseDown = event.clientY - windowHalfY;
+  targetRotationOnMouseDownY = targetRotationY;
+
   //markovNote(); // console logs next chain note
   event.preventDefault();
   var data = {
@@ -648,7 +673,7 @@ function onMouseDown(event) {
         intersectsClick[0].object.material.color.set(0x181818);
       }
       if (isBlackSceneOne == true) {
-        intersectsClick[0].object.material.color.set(0xBEBEBE);
+        intersectsClick[0].object.material.color.set(0xffffff);
       }
       if (isBlackSceneOne == true) {
         isBlackSceneOne = false;
@@ -666,6 +691,9 @@ function onMouseDown(event) {
       });
     } else {}
   }
+  if (isSceneTwo == true) {
+
+  }
   if (isSceneFour == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransformQuatro.children);
     if (intersectsClick.length > 0) {
@@ -676,7 +704,7 @@ function onMouseDown(event) {
         intersectsClick[0].object.material.color.set(0x181818);
       }
       if (isBlackSceneFour == true) {
-        intersectsClick[0].object.material.color.set(0xBEBEBE);
+        intersectsClick[0].object.material.color.set(0xffffff);
       }
       if (isBlackSceneFour == true) {
         isBlackSceneFour = false;
@@ -760,9 +788,7 @@ function render() {
   stats1.update();
   stats2.update();
   stats3.update();
-
   var corFundo = Math.random() * (0.15 - 0) + 0;
-  // Grey glitch.
   // scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
   if (isSceneOne == true || isSceneFour == true) {
@@ -839,6 +865,21 @@ function render() {
   light1.position.x = Math.sin(time * 0.7) * 30;
   light1.position.y = Math.cos(time * 0.5) * 40;
   light1.position.z = Math.cos(time * 0.3) * 30;
+
+  //horizontal rotation
+  parentTransformDois.rotation.y += (targetRotationX - parentTransformDois.rotation.y) * 0.1;
+
+  //vertical rotation
+  finalRotationY = (targetRotationY - parentTransformDois.rotation.x);
+
+  if (parentTransformDois.rotation.x <= 1 && parentTransformDois.rotation.x >= -1) {
+    parentTransformDois.rotation.x += finalRotationY * 0.1;
+  }
+  if (parentTransformDois.rotation.x > 1) {
+    parentTransformDois.rotation.x = 1
+  } else if (parentTransformDois.rotation.x < -1) {
+    parentTransformDois.rotation.x = -1
+  }
 }
 
 var customScale = ["c2", "d2", "e2", "g2", "a2", "c3", "d3", "e3", "g3", "a3", "c4", "d4", "e4", "g4", "a4", "c5", "d5", "e5", "g5", "a5"];
@@ -866,51 +907,6 @@ function customScaleCortex(data) {
   console.log(scale);
   console.log("Fix this.");
 }
-
-
-/* */
-var isDragging = false;
-var previousMousePosition = {
-  x: 0,
-  y: 0
-};
-$(renderer.domElement).on('mousedown', function(e) {
-    isDragging = true;
-  })
-  .on('mousemove', function(e) {
-    //console.log(e);
-    var deltaMove = {
-      x: e.offsetX - previousMousePosition.x,
-      y: e.offsetY - previousMousePosition.y
-    };
-
-    if (isDragging) {
-
-      var deltaRotationQuaternion = new THREE.Quaternion()
-        .setFromEuler(new THREE.Euler(
-          toRadians(deltaMove.y * 1),
-          toRadians(deltaMove.x * 1),
-          0,
-          'XYZ'
-        ));
-
-      parentTransformDois.quaternion.multiplyQuaternions(deltaRotationQuaternion, parentTransformDois.quaternion);
-      console.log("DeltaMove1 " + deltaMove.x);
-      /*Se for a cena dois muda algo*/
-      console.log("DeltaMove2 " + deltaMove.y);
-    }
-
-    previousMousePosition = {
-      x: e.offsetX,
-      y: e.offsetY
-    };
-  });
-/* */
-
-$(document).on('mouseup', function(e) {
-  isDragging = false;
-});
-
 
 function toRadians(angle) {
   return angle * (Math.PI / 180);

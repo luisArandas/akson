@@ -1,6 +1,3 @@
-To dos
-
-Remove all shaders.
 testing omnitone
 Make pans
 geolocation API and a new logger
@@ -17,8 +14,6 @@ tokens em cada GUI para controlar entradas e saídas
 
 Add to flip the phase of the oscillator
 Write more about the Descriptions
- inercia
-file:///Users/luisarandas/Desktop/learning-threejs-master/chapter-07/03-basic-point-cloud.html
 
 check (Free, cross-platform, open-source software (Simplified BSD License))
 
