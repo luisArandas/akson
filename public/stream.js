@@ -3,6 +3,7 @@
 socket = io.connect(window.location.origin);
 
 var isStreaming = false;
+var isAlone = false;
 
 var values = new Array(34);
 for (var i = 0; i < values.length; ++i) {
@@ -453,7 +454,9 @@ socket.on('noisePartialCount', function(data) {
 
 function changeState(v) {
   if (v == "descenter") {
+    socket.connected = true;
     isStreaming = false;
+    isAlone = false;
     openGui();
     document.getElementById("stateButtonOne").style.border = "2px solid rgba(150,150,150,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
@@ -461,7 +464,9 @@ function changeState(v) {
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
   }
   if (v == "streamed") {
+    socket.connected = true;
     isStreaming = true;
+    isAlone = false;
     openGui();
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "2px solid rgba(150,150,150,1)";
@@ -469,7 +474,9 @@ function changeState(v) {
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
   }
   if (v == "alocate") {
+    socket.connected = true;
     isStreaming = false;
+    isAlone = false;
     openGui();
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
@@ -477,13 +484,21 @@ function changeState(v) {
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
   }
   if (v == "monitor") {
+    socket.connected = true;
     isStreaming = false;
+    isAlone = false;
     openGui();
     WUI_Dialog.open("monitor_dialog");
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonFour").style.border = "2px solid rgba(150,150,150,1)";
+  }
+  if (v == "alone") {
+    socket.connected = false;
+    isStreaming = false;
+    isAlone = true;
+    openGui();
   }
   if (v) {
     modalAbout.style.display = "none";

@@ -188,21 +188,6 @@ body.fadeIn {
     }
 }
 
-
-
-/* -------------------------------------LOADER -------------------------------------*/
-.no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
-.introLoadTimer {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url("../img/load.gif") center no-repeat #000000;
-}
-/* ---------------------------------------------------------------------------------*/
 /* HIDE THINGS ON MOBILE */
 
 @media screen and (max-width: 600px) {
@@ -673,3 +658,64 @@ h2 {
 #stateButtonTwo{}
 #stateButtonTree{}
 #stateButtonFour{}
+
+.camera2 {
+  position: absolute;
+  right: 10px;
+  top: 25px;
+}
+.camera3 {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+}
+.camera4 {
+  position: absolute;
+  right: 10px;
+  top: 95px;
+}
+
+.gruposhaders{
+  position: absolute;
+  left: auto;
+  top: 10px;
+}
+
+
+/* Progress */
+#myProgress {
+  width: 100%;
+  background-color: black;
+  border-radius: 3px;
+}
+
+#myBar {
+  width: 1%;
+  height: 100%;
+  background-color: white;
+
+}
+
+#myProgress1 {
+  position: absolute;
+  width: 80%;
+  height: 3%;
+  border: 1px solid rgba(50, 50, 50, 1);
+  top: 45%;
+  left: 10%;
+  border-radius: 3px;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+#start {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background-color: rgba(0,0,0,1);
+}

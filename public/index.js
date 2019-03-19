@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function() {
+  move();
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
@@ -37,6 +38,7 @@ $(document).ready(function() {
     //Try alert.
   }
 });
+
 
 var camera,
   scene,
@@ -109,27 +111,23 @@ var vertices = new THREE.DodecahedronGeometry(50).vertices;
 
 var targetRotationX = 0;
 var targetRotationOnMouseDownX = 0;
-
 var targetRotationY = 0;
 var targetRotationOnMouseDownY = 0;
-
 var mouseX = 0;
 var mouseXOnMouseDown = 0;
-
 var mouseY = 0;
 var mouseYOnMouseDown = 0;
-
 var finalRotationY;
-
 var mouseDown = 0;
 
-
-/*var meshMaterial1 = createMaterial("vertex-shader", "fragment-shader-1");
+/*
+var meshMaterial1 = createMaterial("vertex-shader", "fragment-shader-1");
 var meshMaterial2 = createMaterial("vertex-shader", "fragment-shader-2");
 var meshMaterial3 = createMaterial("vertex-shader", "fragment-shader-3");
 var meshMaterial4 = createMaterial("vertex-shader", "fragment-shader-4");
 var meshMaterial5 = createMaterial("vertex-shader", "fragment-shader-5");
-var meshMaterial6 = createMaterial("vertex-shader", "fragment-shader-6");*/
+var meshMaterial6 = createMaterial("vertex-shader", "fragment-shader-6");
+*/
 
 init();
 animate();
@@ -141,14 +139,14 @@ function init() {
   socket.on('scene', changeScene);
 
   socket.on('socketid', function(socketid) {
-    var logs = document.getElementById('logs'),
+    var logs = document.getElementById('monitor_dialog'),
       output_node = document.createElement("div");
     output_node.innerHTML = 'Key - ' + socketid + '<br>' + '//////////////////////////' + '<br>';
     logs.appendChild(output_node);
     logs.scrollTop = logs.scrollHeight;
   });
   socket.on('socketnumber', function(connections) {
-    var logs = document.getElementById('logs'),
+    var logs = document.getElementById('monitor_dialog'),
       output_node = document.createElement("div");
     output_node.innerHTML = "There are currently " + connections + " connections" + '<br>' + '//////////////////////////' + '<br>';
     logs.appendChild(output_node);
@@ -189,7 +187,7 @@ function init() {
   });
 
   function orbitControls(x) {
-    console.log(x);
+    //console.log(x);
   }
   controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
   controls.dampingFactor = 0.25;
@@ -303,13 +301,13 @@ function init() {
     //  object.rotation.z = Math.random() * 2 * Math.PI;*/
     parentTransformTres.add(object);
   }
-  light1 = new THREE.DirectionalLight(0x000000, 1);
-  light1.position.set(1, 5, 1).normalize();
-  parentTransformTres.add(light1);
-  ambientLight1 = new THREE.AmbientLight(0x000000, 1);
-  parentTransformTres.add(ambientLight1);
-  var directionalLight = new THREE.DirectionalLight(0x8C8C8C, 5);
-  parentTransformTres.add(directionalLight);
+  light7 = new THREE.DirectionalLight(0x000000, 1);
+  light7.position.set(1, 5, 1).normalize();
+  parentTransformTres.add(light7);
+  ambientLight7 = new THREE.AmbientLight(0x000000, 1);
+  parentTransformTres.add(ambientLight7);
+  directionalLight7 = new THREE.DirectionalLight(0x8C8C8C, 5);
+  parentTransformTres.add(directionalLight7);
 
   /* ----------------------------------------------------------------------------------------- */
 
@@ -458,6 +456,11 @@ function init() {
       autoFilterOne.set({
         "baseFrequency": 200
       });
+      autoFilterOne.set({
+        "filter": {
+          "rolloff": -12
+        }
+      });
 
       /* ------------ */
 
@@ -482,20 +485,24 @@ function init() {
       //console.log("W");
 
       /* Audio Scene */
+      //https://threejsfundamentals.org/threejs/lessons/threejs-fog.html
 
       polySynth.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
-      noiseOne.volume.value = -2;
-      UI.backgroundvolume._value.update(-2);
+      noiseOne.volume.value = 0;
+      UI.backgroundvolume._value.update(0);
       UI.backgroundvolume.render();
       autoFilterOne.set({
         "baseFrequency": 100
       });
-      //32m rolof-24
+      autoFilterOne.set({
+        "filter": {
+          "rolloff": -24
+        }
+      });
 
       /* ------------ */
-
 
       mouseDown = 0;
       isSceneOne = false;
@@ -510,22 +517,19 @@ function init() {
       camera.position.z = 150;
       controls.enabled = true;
 
-
-      parentTransform.children.forEach(function(v) {
-        console.log(points);
-      });
-
-
       scene.add(parentTransformDois);
       scene.remove(parentTransform);
       scene.remove(parentTransformTres);
       scene.remove(parentTransformQuatro);
     }
+
     if (event.which == "69") {
       console.log("E");
 
       /* Autofilter freq*/
-
+      autoFilterOne.set({
+        "frequency": "2n"
+      });
 
       isSceneOne = false;
       isSceneTwo = false;
@@ -725,7 +729,7 @@ function onMouseDown(event) {
       Tone.context.resume().then(() => {
         polySynth.triggerAttackRelease(scale[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
-        var logs = document.getElementById('logs'),
+        var logs = document.getElementById('monitor_dialog'),
           output_node = document.createElement("div");
         output_node.innerHTML = scale[note];
         logs.appendChild(output_node);
@@ -755,7 +759,7 @@ function onMouseDown(event) {
       Tone.context.resume().then(() => {
         polySynth.triggerAttackRelease(scale[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
-        var logs = document.getElementById('logs'),
+        var logs = document.getElementById('monitor_dialog'),
           output_node = document.createElement("div");
         output_node.innerHTML = scale[note];
         logs.appendChild(output_node);
@@ -964,25 +968,33 @@ $(document).mouseleave(function() {
   mouseDown = 0;
 });
 
-console.log();
-console.log(ambientLight5);
-console.log(directionalLight5);
-
 function doStuff() {
   //light5.intensity = 1;
   //ambientLight5.intensity = 1;
   //directionalLight5.intensity = 1;
+
 }
 setInterval(doStuff, 10000);
 
 
-var seconds = 10;
-var countdown = setInterval(function() {
-  seconds--;
-  console.log(seconds);
-  if (seconds <= 0) {
-    clearInterval(countdown);
-    seconds = 10;
 
+function move() {
+  var elem = document.getElementById("myBar");
+  var width = 1;
+  var id = setInterval(frame, 10);
+
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+    if (width == 100) {
+      document.getElementById("myProgress1").classList.add('hidden');
+      document.getElementById("myProgress").classList.add('hidden');
+      document.getElementById("myBar").classList.add('hidden');
+      document.getElementById("start").classList.add('hidden');
+    }
   }
-}, 1000);
+}

@@ -5,35 +5,140 @@ var sceneMaster = new Nexus.Dial('#sceneMaster', {
   'interaction': 'vertical',
   'mode': 'absolute', // "absolute" or "relative"
   'min': 0,
-  'max': 1,
+  'max': 5,
   'step': 0.001,
   'value': -15
 });
 sceneMaster.on('change', function(e) {
-  light.intensity = e;
-  light1.intensity = e;
-  light2.intensity = e;
-  ambientLight1.intensity = e;
-  ambientLight2.intensity = e;
-  ambientLight.intensity = e;
+  light.intensity = e; //todas
+  light2.intensity = e; //quatro
+  light7.intensity = e; //3
+  directionalLight5.intensity = e; //dois
+  directionalLight7.intensity = e; //3
+  ambientLight.intensity = e; //todas
+  ambientLight2.intensity = e; //quatro
+  ambientLight5.intensity = e;
+  ambientLight7.intensity = e; //3
+  light1._value.update(e);
+  light1.render();
+
 });
 
-var geometryWidth = new Nexus.Dial('#geometryWidth', {
+var light1 = new Nexus.Dial('#light1', {
   'size': [40, 40],
   'interaction': 'vertical',
   'mode': 'absolute', // "absolute" or "relative"
-  'min': 0.5,
+  'min': 0,
   'max': 5,
   'step': 0.001,
+  'value': 1
+});
+light1.on('change', function(e) {
+  light.intensity = e;
+
+});
+//camera.position.x
+
+var camera1 = new Nexus.Dial('#camera1', {
+  'size': [40, 40],
+  'interaction': 'vertical',
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': 0.35,
+  'max': 3,
+  'step': 0.0001,
   'value': 0
 });
-geometryWidth.on('change', function(e) {
+camera1.on('change', function(e) {
+  parentTransform.scale.x = e;
+  parentTransform.scale.y = e;
+  parentTransform.scale.z = e;
+  console.log(e);
+});
+
+var camera2 = new Nexus.Dial('#camera2', {
+  'size': [40, 40],
+  'interaction': 'vertical',
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': 0.8,
+  'max': 1.2,
+  'step': 0.0001,
+  'value': 0
+});
+camera2.on('change', function(e) {
+  parentTransformDois.scale.x = e;
+  parentTransformDois.scale.y = e;
+  parentTransformDois.scale.z = e;
+});
+
+var camera3 = new Nexus.Dial('#camera3', {
+  'size': [40, 40],
+  'interaction': 'vertical',
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': 0.8,
+  'max': 3,
+  'step': 0.0001,
+  'value': 0
+});
+camera3.on('change', function(e) {
+  parentTransformTres.scale.x = e;
+  parentTransformTres.scale.y = e;
+  parentTransformTres.scale.z = e;
+});
+
+var camera4 = new Nexus.Dial('#camera4', {
+  'size': [40, 40],
+  'interaction': 'vertical',
+  'mode': 'absolute', // "absolute" or "relative"
+  'min': 0.8,
+  'max': 3,
+  'step': 0.0001,
+  'value': 0
+});
+camera4.on('change', function(e) {
+  parentTransformQuatro.scale.x = e;
+  parentTransformQuatro.scale.y = e;
+  parentTransformQuatro.scale.z = e;
+});
+
+
+/*
+afterimagePass.renderToScreen = false;
+     effectSobel.renderToScreen = false;
+     pixelPass.renderToScreen = false;
+     glitchPass.goWild = false;
+     if (glitchPass.renderToScreen == false) {
+       renderPostOne = true;
+       glitchPass.renderToScreen = true;
+     }
+*/
+
+function shaderButtons(v) {
+  if (v == "noise1") {
+    renderPostOne = true;
+    glitchPass.renderToScreen = true;
+  }
+  if (v == "noise2") {
+
+  }
+  if (v == "rev") {
+
+  }
+}
+
+
+
+
+
+
+
+
+/*geometryWidth.on('change', function(e) {
   console.log(parentTransform.children);
   var v = parentTransform.children;
   v.forEach(function(a) {
     a.scale.x = e;
   });
-});
+});*/
 
 /* Visualizations http://annaxambo.me/pub/Roma_et_al_2018_A_Javascript_library.pdf */
 
