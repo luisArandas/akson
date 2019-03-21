@@ -4,12 +4,16 @@ socket = io.connect(window.location.origin);
 
 var isStreaming = false;
 var isAlone = false;
+var isAlocating = false;
 
 var values = new Array(34);
 for (var i = 0; i < values.length; ++i) {
   values[i] = 0;
 }
 socket.on('changeStream', streamCortex);
+
+var modalAlocate = document.getElementById('modalAlocate');
+
 
 socket.on('uiSocketSynthVolume', function(data) {
   if (isStreaming == true) {
@@ -457,6 +461,7 @@ function changeState(v) {
     socket.connected = true;
     isStreaming = false;
     isAlone = false;
+    isAlocating = false;
     openGui();
     document.getElementById("stateButtonOne").style.border = "2px solid rgba(150,150,150,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
@@ -467,6 +472,7 @@ function changeState(v) {
     socket.connected = true;
     isStreaming = true;
     isAlone = false;
+    isAlocating = false;
     openGui();
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "2px solid rgba(150,150,150,1)";
@@ -477,7 +483,11 @@ function changeState(v) {
     socket.connected = true;
     isStreaming = false;
     isAlone = false;
+    isAlocating = true;
+    alocateCortex();
     openGui();
+    WUI_Dialog.open("alocate_dialog");
+    console.log(WUI_Dialog.open);
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "2px solid rgba(150,150,150,1)";
@@ -485,8 +495,6 @@ function changeState(v) {
   }
   if (v == "monitor") {
     socket.connected = true;
-    isStreaming = false;
-    isAlone = false;
     openGui();
     WUI_Dialog.open("monitor_dialog");
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
@@ -498,6 +506,7 @@ function changeState(v) {
     socket.connected = false;
     isStreaming = false;
     isAlone = true;
+    isAlocating = false;
     openGui();
   }
   if (v) {
@@ -510,6 +519,22 @@ function changeState(v) {
 function streamCortex() {
   console.log("streamCortex");
 }
+
+function alocateCortex() {
+  console.log("is Alocating");
+  console.log(isAlocating);
+}
+
+socket.on('socketid', function(socketid) {
+  if (isAlocating == true) {
+    console.log("SocketID " + socketid);
+  }
+});
+socket.on('socketnumber', function(connections) {
+  if (isAlocating == true) {
+    console.log("Connections " + connections);
+  }
+});
 
 /*Check stream Cortex
 Add alocation + Play alone*/

@@ -787,8 +787,8 @@ function topBar(data) {
     consoleLog();
   }
   if (data == "recordAudio") {
-    /* Record audio here */
     consoleLog();
+    showToast('record');
   }
   if (data == "aboutMe") {
     modalAbout.style.display = "block";
@@ -921,5 +921,23 @@ function scaleButtons(data) {
   }
   if (data) {
     customScaleCortex(data);
+  }
+}
+
+function showToast(v) {
+  if (v === 'record') {
+    //http://izitoast.marcelodolza.com
+    iziToast.warning({
+      title: 'Caution',
+      close: true,
+      zindex: 99999,
+      message: 'It is recording',
+      onClosing: function(instance, toast, closedBy) {
+        console.info('Closing | closedBy: ' + closedBy);
+      },
+      onClosed: function(instance, toast, closedBy) {
+        console.info('Closed | closedBy: ' + closedBy);
+      }
+    });
   }
 }

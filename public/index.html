@@ -17,6 +17,9 @@
   <script src="libraries/webcomponents.min.js"></script>
   <script src="libraries/osc.js"></script>
 
+  <link rel="stylesheet" href="css/iziToast.css">
+  <script src="libraries/iziToast.js" type="text/javascript"></script>
+
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC
@@ -40,12 +43,13 @@
   <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/wui.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Akson Environment</title>
 </head>
 
-<body class="fade-in">
+<body>
+
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -147,14 +151,14 @@
         </div>
 
         <div class="btn-group groupStream" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark stateButton" id="stateButtonFour" onClick="changeState('monitor')">
-            <h2>Monitor</h2>
+          <button type="button" class="btn btn-dark stateButton" id="stateButtonFive" onClick="changeState('alone')">
+            <h2>Alone</h2>
           </button>
         </div>
 
         <div class="btn-group groupStream" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark stateButton" id="stateButtonFive" onClick="changeState('alone')">
-            <h2>Alone</h2>
+          <button type="button" class="btn btn-dark stateButton" id="stateButtonFour" onClick="changeState('monitor')">
+            <h2>Monitor</h2>
           </button>
         </div>
       </div>
@@ -192,9 +196,23 @@
     </div>
   </div>
 
-
   <div id="logs_dialog">
     <div id="logs" style="text-align: center; font-size: 10pt; color:white ; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
+    </div>
+  </div>
+
+  <div id="alocate_dialog">
+    <div class="alocateDiv" id="alocateDiv">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="alocateButton" onClick="">
+          <h2>teste1</h2>
+        </button>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="alocateButton" onClick="">
+          <h2>teste2</h2>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -500,6 +518,7 @@
       <script src="postpro.js" type="text/javascript"></script>
       <script src="index.js" type="text/javascript"></script>
     </div>
+
     <!-- BARRA DE BAIXO -->
 </body>
 

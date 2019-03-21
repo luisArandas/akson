@@ -126,62 +126,6 @@ body.fadeIn {
   .sidenav a {font-size: 18px;}
 }
 
-/* FADE IN */
-
-.fade-in {
-  animation: fadeIn ease 2s;
-  -webkit-animation: fadeIn ease 2s;
-  -moz-animation: fadeIn ease 2s;
-  -o-animation: fadeIn ease 2s;
-  -ms-animation: fadeIn ease 2s;
-}
-
-@keyframes fadeIn{
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
-
 @media (max-width: 992px) {
     .navbar{
       display:none;
@@ -687,13 +631,14 @@ h2 {
   width: 100%;
   background-color: black;
   border-radius: 3px;
+  display: none;
 }
 
 #myBar {
   width: 1%;
   height: 100%;
   background-color: white;
-
+  display: none;
 }
 
 #myProgress1 {
@@ -704,18 +649,46 @@ h2 {
   top: 45%;
   left: 10%;
   border-radius: 3px;
+  display: none;
 }
 
 .hidden {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 2s, opacity 2s linear;
+  transition: visibility 0s 2s, opacity 1s linear;
 }
 
 #start {
   position: fixed;
+  display: block;
+  z-index: 5000;
   width: 100%;
   height: 100%;
   border-radius: 3px;
   background-color: rgba(0,0,0,1);
+}
+
+.alocateButton{
+  background-color: rgba(0,0,0,1);
+  font-family: monospace;
+  font-style: normal;
+  font-size: 12px !important;
+  border: 1px solid rgba(50,50,50,1);
+  height: 100%;
+  width: 100%;
+  color: white !important;
+}
+
+.alocateButton:hover {
+  background-image: none !important;
+  background-color: #ffffff !important;
+  color: black !important;
+}
+
+.alocateDiv{
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  font-size: 9px;
+  color: white;
 }

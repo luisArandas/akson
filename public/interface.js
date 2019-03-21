@@ -241,3 +241,33 @@ WUI_Dialog.create("monitor_dialog", {
   top: 0,
   left: 0
 });
+
+WUI_Dialog.create("alocate_dialog", {
+  title: "Alocate System",
+  width: "35%",
+  height: "35%",
+  halign: "center",
+  valign: "center",
+  open: false,
+  minimized: false,
+  on_open: function() {},
+  on_close: function() {},
+  on_pre_detach: function() {},
+  on_detach: function(new_window) {
+    new_window.document.title = "Alocate";
+    bind_contextmenu();
+  },
+  on_resize: function(new_width, new_height) {},
+  on_minimize: function() {
+    console.log("teste");
+  },
+  modal: false,
+  closable: true,
+  draggable: true,
+  minimizable: true,
+  resizable: false,
+  //detachable: true,
+  keep_align_when_resized: false,
+  top: 0,
+  left: 0
+});

@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function() {
+  fadeIn();
   move();
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
@@ -25,9 +26,6 @@ $(document).ready(function() {
   if (window.AudioContext === null) {
     alert("AudioContext is Undefined");
   }
-  $(".introLoadTimer").fadeIn("slow", function() {
-    $(".introLoadTimer").delay(3000).fadeOut(2500);
-  });
   //console.log("volume " + Tone.Master.volume.value);
   var v = document.querySelectorAll("#c2, #d2, #e2, #g2, #a2, #c3, #d3, #e3, #g3, #a3, #c4, #d4, #e4, #g4, #a4, #c5, #d5, #e5, #g5, #a5");
   v.forEach(function(v) {
@@ -38,7 +36,6 @@ $(document).ready(function() {
     //Try alert.
   }
 });
-
 
 var camera,
   scene,
@@ -133,7 +130,6 @@ init();
 animate();
 
 function init() {
-
   socket = io.connect(window.location.origin);
   socket.on('mouse', clickStream);
   socket.on('scene', changeScene);
@@ -976,12 +972,11 @@ function doStuff() {
 }
 setInterval(doStuff, 10000);
 
-
-
 function move() {
   var elem = document.getElementById("myBar");
   var width = 1;
   var id = setInterval(frame, 10);
+
 
   function frame() {
     if (width >= 100) {
@@ -997,4 +992,10 @@ function move() {
       document.getElementById("start").classList.add('hidden');
     }
   }
+}
+
+function fadeIn() {
+  document.getElementById("myProgress1").style.display = "block";
+  document.getElementById("myProgress").style.display = "block";
+  document.getElementById("myBar").style.display = "block";
 }

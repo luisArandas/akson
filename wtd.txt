@@ -16,7 +16,7 @@ Add to flip the phase of the oscillator
 Write more about the Descriptions
 
 check (Free, cross-platform, open-source software (Simplified BSD License))
-
+print akson system is running console
 
 //THREEJS
 https://github.com/spite/polygon-shredder
