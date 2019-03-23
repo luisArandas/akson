@@ -281,6 +281,20 @@ var UI = {
     mode: 'absolute',
     value: 200
   }),
+  synthPhase: new Nexus.Slider('#synthPhase', {
+    min: 0,
+    max: 360,
+    step: 0.01,
+    mode: 'absolute',
+    value: 180
+  }),
+  synthPartials: new Nexus.Slider('#synthPartials', {
+    min: 0,
+    max: 32,
+    step: 1,
+    mode: 'absolute',
+    value: 1
+  }),
 }
 
 for (var key in UI) {
@@ -748,6 +762,45 @@ UI.highfreq.on('change', function(v) {
   printLogsDialog("Equalizer High Freq Crossover Value : ", _v);
 });
 
+UI.synthPhase.on('change', function(v) {
+  polySynth.phase = v;
+  console.log(polySynth.phase);
+  //var data = {
+  //  x: v,
+  //  y: "eqHighFreq"
+  //};
+  //socket.emit('uiSocketEqHighFreq', data);
+  //_v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
+  //printLogsDialog("Equalizer High Freq Crossover Value : ", _v);
+});
+
+UI.synthPartials.on('change', function(v) {
+  polySynth.set({
+    "oscillator": {
+      "type": typeofOsc + v
+    }
+  });
+});
+
+/*
+oscillator: {
+    type: "sine",
+    modulationType: 'sawtooth',
+    modulationIndex: 3,
+    harmonicity: 3.4
+
+    THIS
+    phase: 0,
+    osc.phase = 180; //flips the phase of the oscillator
+
+  },
+
+  This is not streaming
+poly.set({
+      "filter": {
+        "type": "highpass"
+      },
+      */
 
 
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
@@ -928,16 +981,113 @@ function showToast(v) {
   if (v === 'record') {
     //http://izitoast.marcelodolza.com
     iziToast.warning({
-      title: 'Caution',
+      title: 'Recording -',
+      backgroundColor: 'rgba(10,10,10,1)',
+      messageColor: 'white',
+      progressBarColor: 'white',
+      titleColor: 'white',
+      class: 'izi',
+      position: 'topLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
       close: true,
       zindex: 99999,
-      message: 'It is recording',
+      message: 'Click again to stop',
       onClosing: function(instance, toast, closedBy) {
         console.info('Closing | closedBy: ' + closedBy);
       },
       onClosed: function(instance, toast, closedBy) {
         console.info('Closed | closedBy: ' + closedBy);
       }
+      /*
+      id: null,
+      class: '',
+      title: '',
+      titleColor: '',
+      titleSize: '',
+      titleLineHeight: '',
+      message: '',
+      messageColor: '',
+      messageSize: '',
+      messageLineHeight: '',
+      backgroundColor: '',
+      theme: 'light', // dark
+      color: '', // blue, red, green, yellow
+      icon: '',
+      iconText: '',
+      iconColor: '',
+      iconUrl: null,
+      image: '',
+      imageWidth: 50,
+      maxWidth: null,
+      zindex: null,
+      layout: 1,
+      balloon: false,
+      close: true,
+      closeOnEscape: false,
+      closeOnClick: false,
+      displayMode: 0, // once, replace
+      position: 'bottomRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+      target: '',
+      targetFirst: true,
+      timeout: 5000,
+      rtl: false,
+      animateInside: true,
+      drag: true,
+      pauseOnHover: true,
+      resetOnHover: false,
+      progressBar: true,
+      progressBarColor: '',
+      progressBarEasing: 'linear',
+      overlay: false,
+      overlayClose: false,
+      overlayColor: 'rgba(0, 0, 0, 0.6)',
+      transitionIn: 'fadeInUp',
+      transitionOut: 'fadeOut',
+      transitionInMobile: 'fadeInUp',
+      transitionOutMobile: 'fadeOutDown',
+      buttons: {},
+      inputs: {},
+      onOpening: function () {},
+      onOpened: function () {},
+      onClosing: function () {},
+      onClosed: function () {}
+      */
     });
   }
+}
+
+
+function changeVoices() {
+  console.log("Check this.");
+}
+
+function flipPhase(a) {
+  if (a == '90') {
+    polySynth.set({
+      "oscillator": {
+        "phase": 90
+      }
+    });
+  }
+  if (a == '180') {
+    polySynth.set({
+      "oscillator": {
+        "phase": 180
+      }
+    });
+  }
+  if (a == '270') {
+    polySynth.set({
+      "oscillator": {
+        "phase": 270
+      }
+    });
+  }
+  if (a == '360') {
+    polySynth.set({
+      "oscillator": {
+        "phase": 360
+      }
+    });
+  }
+  console.log(polySynth);
 }

@@ -1,9 +1,13 @@
 /* Graphics Post Production */
 
-var sceneMaster = new Nexus.Dial('#sceneMaster', {
-  'size': [40, 40],
-  'interaction': 'vertical',
-  'mode': 'absolute', // "absolute" or "relative"
+var w = window.innerWidth;
+var h = window.innerHeight;
+var fullWidth = w * 3;
+var fullHeight = h * 2;
+
+var sceneMaster = new Nexus.Slider('#sceneMaster', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
   'min': 0,
   'max': 5,
   'step': 0.001,
@@ -11,7 +15,7 @@ var sceneMaster = new Nexus.Dial('#sceneMaster', {
 });
 sceneMaster.on('change', function(e) {
   light.intensity = e; //todas
-  light2.intensity = e; //quatro
+  /*light2.intensity = e; //quatro
   light7.intensity = e; //3
   directionalLight5.intensity = e; //dois
   directionalLight7.intensity = e; //3
@@ -20,14 +24,12 @@ sceneMaster.on('change', function(e) {
   ambientLight5.intensity = e;
   ambientLight7.intensity = e; //3
   light1._value.update(e);
-  light1.render();
-
+  light1.render();*/
 });
 
-var light1 = new Nexus.Dial('#light1', {
-  'size': [40, 40],
-  'interaction': 'vertical',
-  'mode': 'absolute', // "absolute" or "relative"
+var light1 = new Nexus.Slider('#light1', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
   'min': 0,
   'max': 5,
   'step': 0.001,
@@ -35,26 +37,353 @@ var light1 = new Nexus.Dial('#light1', {
 });
 light1.on('change', function(e) {
   light.intensity = e;
-
 });
 //camera.position.x
 
-var camera1 = new Nexus.Dial('#camera1', {
-  'size': [40, 40],
-  'interaction': 'vertical',
-  'mode': 'absolute', // "absolute" or "relative"
-  'min': 0.35,
-  'max': 3,
-  'step': 0.0001,
-  'value': 0
+
+var cameraM1 = new Nexus.Slider('#cameraM1', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': -170,
+  'max': 170,
+  'step': 0.001,
+  'value': 80
 });
-camera1.on('change', function(e) {
-  parentTransform.scale.x = e;
-  parentTransform.scale.y = e;
-  parentTransform.scale.z = e;
-  console.log(e);
+cameraM1.on('change', function(e) {
+  camera.fov = e;
+  console.log(camera.fov);
+  camera.updateProjectionMatrix();
 });
 
+var cameraM2 = new Nexus.Slider('#cameraM2', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 2,
+  'step': 0.001,
+  'value': 1
+});
+cameraM2.on('change', function(e) {
+  camera.zoom = e;
+  console.log(camera.zoom);
+  camera.updateProjectionMatrix();
+});
+
+var cameraM3 = new Nexus.Slider('#cameraM3', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 5,
+  'step': 0.0001,
+  'value': 1
+});
+cameraM3.on('change', function(e) {
+  /* See this!!! */
+  camera.aspect = e;
+  camera.updateProjectionMatrix();
+});
+
+var cameraM4 = new Nexus.Slider('#cameraM4', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 1,
+  'max': 2000,
+  'step': 0.001,
+  'value': 1
+});
+cameraM4.on('change', function(e) {
+  camera.near = e;
+  camera.updateProjectionMatrix();
+});
+
+var cameraM5 = new Nexus.Slider('#cameraM5', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 5000,
+  'step': 0.001,
+  'value': 1000
+});
+cameraM5.on('change', function(e) {
+  camera.setViewOffset(e, fullHeight, w * 1, h * 0, w, h);
+  camera.updateProjectionMatrix();
+});
+
+var cameraM6 = new Nexus.Slider('#cameraM6', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 5000,
+  'step': 0.001,
+  'value': 1000
+});
+cameraM6.on('change', function(e) {
+  camera.setViewOffset(fullWidth, e, w * 1, h * 0, w, h);
+  camera.updateProjectionMatrix();
+});
+
+var cameraM7 = new Nexus.Slider('#cameraM7', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 5,
+  'step': 0.001,
+  'value': 1
+});
+cameraM7.on('change', function(e) {
+  camera.setViewOffset(fullWidth, fullHeight, w * e, h * 0, w, h);
+  camera.updateProjectionMatrix();
+});
+
+var cameraM8 = new Nexus.Slider('#cameraM8', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 5,
+  'step': 0.001,
+  'value': 1
+});
+cameraM8.on('change', function(e) {
+  camera.setViewOffset(fullWidth, fullHeight, w * 1, h * e, w, h);
+  camera.updateProjectionMatrix();
+});
+
+var cameraM9 = new Nexus.Slider('#cameraM9', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': -5,
+  'max': 5,
+  'step': 0.001,
+  'value': 0
+});
+cameraM9.on('change', function(e) {
+  camera.setViewOffset(fullWidth, fullHeight, w * e, h * 0, fullWidth, fullHeight);
+  camera.updateProjectionMatrix();
+});
+
+var cameraM10 = new Nexus.Slider('#cameraM10', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': -5,
+  'max': 5,
+  'step': 0.001,
+  'value': 0
+});
+cameraM10.on('change', function(e) {
+  camera.setViewOffset(fullWidth, fullHeight, w * 0, h * e, fullWidth, fullHeight);
+  camera.updateProjectionMatrix();
+});
+
+
+
+function camOffsetDefault(a) {
+  if (a === 'set1') {
+    camera.setViewOffset(fullWidth, fullHeight, w * 1, h * 0, w, h);
+  }
+  if (a === 'set2') {
+    camera.setViewOffset(fullWidth, fullHeight, w * 0, h * 0, w, h);
+  }
+  if (a === 'set3') {
+    camera.setViewOffset(fullWidth, fullHeight, w * 2, h * 0, w, h);
+  }
+  if (a === 'set4') {
+    camera.setViewOffset(fullWidth, fullHeight, w * 0, h * 1, w, h);
+  }
+  if (a === 'set5') {
+    camera.setViewOffset(fullWidth, fullHeight, w * 1, h * 1, w, h);
+  }
+  if (a === 'set6') {
+    camera.setViewOffset(fullWidth, fullHeight, w * 2, h * 1, w, h);
+  }
+  if (a === 'clear') {
+    camera.clearViewOffset();
+  }
+}
+
+function camNear(a) {
+  if (a === 'kill') {
+    camera.near = 0;
+    camera.updateProjectionMatrix();
+    console.log("kill");
+  }
+  if (a === 'born') {
+    camera.near = 1;
+    camera.updateProjectionMatrix();
+    console.log("no");
+  }
+
+}
+
+//4 lights
+
+/* PostPro */
+
+var camera1_1 = new Nexus.Slider('#camera1_1', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera1_1.on('change', function(e) {
+  parentTransform.scale.x = e;
+  //parentTransform.scale.y = e;
+  //parentTransform.scale.z = e;
+});
+
+var camera1_2 = new Nexus.Slider('#camera1_2', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera1_2.on('change', function(e) {
+  parentTransform.scale.y = e;
+});
+
+var camera1_3 = new Nexus.Slider('#camera1_3', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera1_3.on('change', function(e) {
+  parentTransform.scale.z = e;
+});
+
+document.getElementById("cockpit_dialog").addEventListener("mouseenter", function() {
+  mouseDown = 0;
+});
+document.getElementById("cockpit_dialog").addEventListener("mouseout", function() {
+  mouseDown = 0;
+});
+
+var camera2_1 = new Nexus.Slider('#camera2_1', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera2_1.on('change', function(e) {
+  parentTransformDois.scale.x = e;
+  mouseDown = 0;
+});
+
+var camera2_2 = new Nexus.Slider('#camera2_2', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera2_2.on('change', function(e) {
+  parentTransformDois.scale.y = e;
+  mouseDown = 0;
+});
+
+var camera2_3 = new Nexus.Slider('#camera2_3', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera2_3.on('change', function(e) {
+  parentTransformDois.scale.z = e;
+  mouseDown = 0;
+});
+
+var camera3_1 = new Nexus.Slider('#camera3_1', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera3_1.on('change', function(e) {
+  parentTransformTres.scale.x = e;
+  mouseDown = 0;
+});
+
+var camera3_2 = new Nexus.Slider('#camera3_2', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera3_2.on('change', function(e) {
+  parentTransformTres.scale.y = e;
+  mouseDown = 0;
+});
+
+var camera3_3 = new Nexus.Slider('#camera3_3', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera3_3.on('change', function(e) {
+  parentTransformTres.scale.z = e;
+  mouseDown = 0;
+});
+
+var camera4_1 = new Nexus.Slider('#camera4_1', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera4_1.on('change', function(e) {
+  parentTransformQuatro.scale.x = e;
+  mouseDown = 0;
+});
+
+var camera4_2 = new Nexus.Slider('#camera4_2', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera4_2.on('change', function(e) {
+  parentTransformQuatro.scale.y = e;
+  mouseDown = 0;
+});
+
+var camera4_3 = new Nexus.Slider('#camera4_3', {
+  'size': [120, 20],
+  'mode': 'relative', // 'relative' or 'absolute'
+  'min': 0.35,
+  'max': 3,
+  'step': 0.00001,
+  'value': 1
+});
+camera4_3.on('change', function(e) {
+  parentTransformQuatro.scale.z = e;
+  mouseDown = 0;
+});
+
+/* Fazer 4 luzes diferentes */
+
+// change
+/*
 var camera2 = new Nexus.Dial('#camera2', {
   'size': [40, 40],
   'interaction': 'vertical',
@@ -100,6 +429,10 @@ camera4.on('change', function(e) {
   parentTransformQuatro.scale.z = e;
 });
 
+*/
+
+
+/* Shaders */
 
 /*
 afterimagePass.renderToScreen = false;

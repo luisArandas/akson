@@ -222,6 +222,7 @@
         <div>Synth</div>
         <div>Back</div>
         <div>Range</div>
+        <div>Graphics</div>
         <div>ProstPro</div>
       </div>
       <div>
@@ -238,6 +239,16 @@
             <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('8')">8m</button>
             <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('16')">16m</button>
           </div>
+          <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="changeVoices()">voices</button>
+          </div>
+          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('90')">flipPhase_90</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('180')">flipPhase_180</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('270')">flipPhase_270</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('360')">flipPhase_360</button>
+          </div>
+
           <div id="demo_integrated_dialog" style="position: relative;">
             <div style="text-align: center; font-size: 5pt;">
               synth_att
@@ -248,6 +259,10 @@
               <div id="synthSustain" class="synthSustain"></div>
               synth_rel
               <div id="synthRelease" class="synthRelease"></div>
+              oscPhase
+              <div id="synthPhase" class="synthPhase"></div>
+              partials
+              <div id="synthPartials" class="synthPartials"></div>
             </div>
           </div>
           <div id="demo_integrated_dialog_2" style="position: relative;">
@@ -420,8 +435,9 @@
           </div>
         </div>
 
-        <!--Post process-->
+        <!--Graphics-->
         <div>
+          <!-- index.js 829
           <div class="stats" id="stats">
             <script src="libraries/stats.js"></script>
             <script>
@@ -441,21 +457,68 @@
               stats3.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
               stats3.domElement.style.color = 'white';
               v.appendChild(stats3.domElement);
-          </script>
+           </script>
 
           </div>
+        -->
+          master
           <div id="sceneMaster" class="sceneMaster"></div>
           <div id="light1" class="light1"></div>
-          <div id="camera1" class="camera1"></div>
-          <div id="camera2" class="camera2"></div>
-          <div id="camera3" class="camera3"></div>
-          <div id="camera4" class="camera4"></div>
+
+          <div id="cameraM1" class="cameraM1"></div>
+          <div id="cameraM2" class="cameraM2"></div>
+          <div id="cameraM3" class="cameraM3"></div>
+          <div id="cameraM4" class="cameraM4"></div>
+          setViewOffset
+          <div id="cameraM5" class="cameraM5"></div>
+          <div id="cameraM6" class="cameraM6"></div>
+          <div id="cameraM7" class="cameraM7"></div>
+          <div id="cameraM8" class="cameraM8"></div>
+          x/y
+          <div id="cameraM9" class="cameraM9"></div>
+          <div id="cameraM10" class="cameraM10"></div>
+
+          <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camNear('kill')">kill_scene</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camNear('born')">reborn</button>
+          </div>
+
+          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set1')">offset1</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set2')">offset2</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set3')">offset3</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set4')">offset4</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set5')">offset5</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set6')">offset6</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('clear')">default</button>
+          </div>
+
+        </div>
+        <!-- PostPro -->
+        <div>
+          <div id="camera1_1" class="camera1_1"></div>
+          <div id="camera1_2" class="camera1_2"></div>
+          <div id="camera1_3" class="camera1_3"></div>
+
+          <div id="camera2_1" class="camera2_1"></div>
+          <div id="camera2_2" class="camera2_2"></div>
+          <div id="camera2_3" class="camera2_3"></div>
+
+          <div id="camera3_1" class="camera3_1"></div>
+          <div id="camera3_2" class="camera3_2"></div>
+          <div id="camera3_3" class="camera3_3"></div>
+
+          <div id="camera4_1" class="camera4_1"></div>
+          <div id="camera4_2" class="camera4_2"></div>
+          <div id="camera4_3" class="camera4_3"></div>
+
           <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
             add controls for each scene W presets
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('noise1')">Noise</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('noise2')">Min_Noise</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('rev')">Rev</button>
           </div>
+
         </div>
 
       </div>

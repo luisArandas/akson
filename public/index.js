@@ -2,6 +2,7 @@
  * @author Luis Arandas  http://luisarandas.org
  */
 
+
 $(document).ready(function() {
   fadeIn();
   move();
@@ -39,7 +40,10 @@ $(document).ready(function() {
 
 var camera,
   scene,
-  light,
+  lightOne,
+  lightTwo,
+  lightThree,
+  lightFour,
   container,
   raycaster,
   raycasterTwo,
@@ -193,9 +197,7 @@ function init() {
   controls.maxPolarAngle = Math.PI / 2;
   controls.enabled = false;
 
-  light = new THREE.DirectionalLight(0xd3d3d3, 1);
-  light.position.set(1, 1, 1).normalize();
-  scene.add(light);
+
   ambientLight = new THREE.AmbientLight(0xd3d3d3, 0.1);
   scene.add(ambientLight);
 
@@ -238,6 +240,10 @@ function init() {
     parentTransform.add(object);
 
   }
+  lightOne = new THREE.DirectionalLight(0xd3d3d3, 1);
+  lightOne.position.set(1, 1, 1).normalize();
+  parentTransform.add(lightOne);
+
   scene.add(parentTransform);
 
 
@@ -469,7 +475,6 @@ function init() {
       socket.emit('scene', whichScene);
 
       camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
-      console.log("z " + camera.position.z);
       controls.enabled = false;
 
       scene.add(parentTransform);
@@ -825,9 +830,9 @@ function detectmob() {
 }
 
 function render() {
-  stats1.update();
-  stats2.update();
-  stats3.update();
+  //stats1.update();
+  //stats2.update();
+  //stats3.update();
   var corFundo = Math.random() * (0.15 - 0) + 0;
   // scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
@@ -999,3 +1004,19 @@ function fadeIn() {
   document.getElementById("myProgress").style.display = "block";
   document.getElementById("myBar").style.display = "block";
 }
+
+console.log(polySynth);
+
+//AMSynth
+//DuoSynth
+//FMSynth
+//Mono
+//Pluck
+//Metal
+//Membrane
+/*{
+polyphony  : 4 ,
+volume  : 0 ,
+detune  : 0 ,
+voice  : Tone.Synth
+}*/

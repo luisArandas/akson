@@ -11,9 +11,8 @@ https://github.com/mdn/web-dictaphone
 check exporting
 // const ios; Atribute.
 tokens em cada GUI para controlar entradas e saídas
-
-Add to flip the phase of the oscillator
-Write more about the Descriptions
+correlate controls
+ Write more about the Descriptions
 
 check (Free, cross-platform, open-source software (Simplified BSD License))
 print akson system is running console
