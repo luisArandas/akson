@@ -19,8 +19,13 @@ var connectSoundVisuals = false;
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
-Nexus.colors.accent = "#ffffff";
+Nexus.colors.accent = "rgba(255,0,0,1)";
 Nexus.colors.fill = "#000000";
+Nexus.colors.dark = "#ff66ff";
+Nexus.colors.light = "#ff66ff";
+Nexus.colors.mediumDark = "#ff66ff";
+Nexus.colors.mediumLight = "#ff66ff";
+
 
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
@@ -106,6 +111,7 @@ var UI = {
     'value': 2500
   }),
   synthAttack: new Nexus.Slider('#synthAttack', {
+    size: [127, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,

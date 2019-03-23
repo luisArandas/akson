@@ -38,12 +38,17 @@ $(document).ready(function() {
   }
 });
 
+introJs().start();
+//https://introjs.com/docs/getting-started/start#requirements
+
+
+var lightOne;
+var lightTwo;
+var lightThree;
+var lightFour;
+
 var camera,
   scene,
-  lightOne,
-  lightTwo,
-  lightThree,
-  lightFour,
   container,
   raycaster,
   raycasterTwo,
@@ -243,7 +248,6 @@ function init() {
   lightOne = new THREE.DirectionalLight(0xd3d3d3, 1);
   lightOne.position.set(1, 1, 1).normalize();
   parentTransform.add(lightOne);
-
   scene.add(parentTransform);
 
 
@@ -278,13 +282,10 @@ function init() {
   mesh.renderOrder = 1;
   parentTransformDois.add(mesh);
 
-  light5 = new THREE.DirectionalLight(0xffffff, 0);
-  light5.position.set(1, 5, 1).normalize();
-  parentTransformDois.add(light5);
-  ambientLight5 = new THREE.AmbientLight(0xffffff, 0);
-  parentTransformDois.add(ambientLight5);
-  directionalLight5 = new THREE.DirectionalLight(0xffffff, 0);
-  parentTransformDois.add(directionalLight5);
+  lightTwo = new THREE.DirectionalLight(0xd3d3d3, 1);
+  lightTwo.position.set(1, 1, 1).normalize();
+  parentTransformDois.add(lightTwo);
+
 
   /* ----------------------------------------------------------------------------------------- */
 
@@ -310,6 +311,9 @@ function init() {
   parentTransformTres.add(ambientLight7);
   directionalLight7 = new THREE.DirectionalLight(0x8C8C8C, 5);
   parentTransformTres.add(directionalLight7);
+  lightThree = new THREE.DirectionalLight(0xd3d3d3, 1);
+  lightThree.position.set(1, 1, 1).normalize();
+  parentTransformTres.add(lightThree);
 
   /* ----------------------------------------------------------------------------------------- */
 
@@ -363,6 +367,10 @@ function init() {
   parentTransformQuatro.add(light2);
   ambientLight2 = new THREE.AmbientLight(0x0c0c0c, 4);
   parentTransformQuatro.add(ambientLight2);
+
+  lightFour = new THREE.DirectionalLight(0xd3d3d3, 1);
+  lightFour.position.set(1, 1, 1).normalize();
+  parentTransformQuatro.add(lightFour);
 
   /* This might be important anytime soon
   First scene with line buffer geometry. xCoAx maybe will need this

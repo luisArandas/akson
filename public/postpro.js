@@ -5,7 +5,7 @@ var h = window.innerHeight;
 var fullWidth = w * 3;
 var fullHeight = h * 2;
 
-var sceneMaster = new Nexus.Slider('#sceneMaster', {
+var light1 = new Nexus.Slider('#light1', {
   'size': [120, 20],
   'mode': 'relative', // "absolute" or "relative"
   'min': 0,
@@ -13,8 +13,9 @@ var sceneMaster = new Nexus.Slider('#sceneMaster', {
   'step': 0.001,
   'value': -15
 });
-sceneMaster.on('change', function(e) {
-  light.intensity = e; //todas
+light1.on('change', function(e) {
+  lightOne.intensity = e; //todas
+  console.log(lightOne);
   /*light2.intensity = e; //quatro
   light7.intensity = e; //3
   directionalLight5.intensity = e; //dois
@@ -27,7 +28,20 @@ sceneMaster.on('change', function(e) {
   light1.render();*/
 });
 
-var light1 = new Nexus.Slider('#light1', {
+var light2 = new Nexus.Slider('#light2', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 6,
+  'step': 0.001,
+  'value': 0.1
+});
+light2.on('change', function(e) {
+  lightTwo.intensity = e;
+
+});
+
+var light3 = new Nexus.Slider('#light3', {
   'size': [120, 20],
   'mode': 'relative', // "absolute" or "relative"
   'min': 0,
@@ -35,10 +49,21 @@ var light1 = new Nexus.Slider('#light1', {
   'step': 0.001,
   'value': 1
 });
-light1.on('change', function(e) {
-  light.intensity = e;
+light3.on('change', function(e) {
+  lightThree.intensity = e;
 });
-//camera.position.x
+
+var light4 = new Nexus.Slider('#light4', {
+  'size': [120, 20],
+  'mode': 'relative', // "absolute" or "relative"
+  'min': 0,
+  'max': 5,
+  'step': 0.001,
+  'value': 1
+});
+light4.on('change', function(e) {
+  lightFour.intensity = e;
+});
 
 
 var cameraM1 = new Nexus.Slider('#cameraM1', {

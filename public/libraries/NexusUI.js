@@ -2066,7 +2066,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        this.bar = svg.create("rect");
 	        this.fillbar = svg.create("rect");
-	        this.knob = svg.create("circle");
+            // This was circle
+	        this.knob = svg.create("rect");
 	
 	        this.element.appendChild(this.bar);
 	        this.element.appendChild(this.fillbar);
@@ -2106,7 +2107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = h - this.knobData.r - this.normalized * (h - this.knobData.r * 2);
 	          barOffset = "translate(" + this.thickness * -1 / 2 + ",0)";
-	          cornerRadius = w / 2;
+	          cornerRadius = w / 6;
 	        } else {
 	          this.thickness = this.height / 2;
 	          x = 0;
@@ -2116,7 +2117,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = this.normalized * (w - this.knobData.r * 2) + this.knobData.r;
 	          barOffset = "translate(0," + this.thickness * -1 / 2 + ")";
-	          cornerRadius = h / 2;
+	          cornerRadius = h / 6;
 	        }
 	
 	        this.bar.setAttribute("x", x);
@@ -2380,8 +2381,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        this.bar.setAttribute("x", this.width / 2 - this.knobSize * 1.5);
 	        this.bar.setAttribute("y", this.height / 2 - this.knobSize / 2);
-	        this.bar.setAttribute("rx", this.knobSize / 2);
-	        this.bar.setAttribute("ry", this.knobSize / 2);
+	        this.bar.setAttribute("rx", this.knobSize / 1);
+	        this.bar.setAttribute("ry", this.knobSize / 1);
 	        this.bar.setAttribute("width", this.knobSize * 3);
 	        this.bar.setAttribute("height", this.knobSize);
 	
@@ -6942,7 +6943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = h - this.normalized * h;
 	          barOffset = "translate(" + this.thickness * -1 / 2 + ",0)";
-	          cornerRadius = w / 2;
+	          cornerRadius = w / 6;
 	        } else {
 	          this.thickness = this.height / 2;
 	          x = 0;
@@ -6952,7 +6953,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = this.normalized * w;
 	          barOffset = "translate(0," + this.thickness * -1 / 2 + ")";
-	          cornerRadius = h / 2;
+	          cornerRadius = h / 6;
 	        }
 	
 	        this.bar.setAttribute("x", x);
@@ -7267,7 +7268,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = h - this.knobData.r - this.normalized * (h - this.knobData.r * 2);
 	          barOffset = "translate(" + this.thickness * -1 / 2 + ",0)";
-	          cornerRadius = w / 2;
+	          cornerRadius = w / 6;
 	        } else {
 	          this.thickness = this.height / 2;
 	          x = 0;
@@ -7277,7 +7278,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = this.normalized * (w - this.knobData.r * 2) + this.knobData.r;
 	          barOffset = "translate(0," + this.thickness * -1 / 2 + ")";
-	          cornerRadius = h / 2;
+	          cornerRadius = h / 6;
 	        }
 	
 	        this.bar.setAttribute("x", x);
