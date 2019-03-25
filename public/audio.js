@@ -20,8 +20,8 @@ var connectSoundVisuals = false;
 Nexus.context = Tone.context;
 Nexus.clock.start();
 Nexus.colors.accent = "rgba(255,0,0,1)";
-Nexus.colors.fill = "#000000";
-Nexus.colors.dark = "#ff66ff";
+Nexus.colors.fill = "rgba(15,15,15,1)";
+Nexus.colors.dark = "#ffffff";
 Nexus.colors.light = "#ff66ff";
 Nexus.colors.mediumDark = "#ff66ff";
 Nexus.colors.mediumLight = "#ff66ff";
@@ -39,7 +39,7 @@ var UI = {
     'size': [243, 100]
   }),
   synthvolume: new Nexus.Dial('#synthvolume', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical',
     'mode': 'absolute', // "absolute" or "relative"
     'min': -30,
@@ -301,7 +301,74 @@ var UI = {
     mode: 'absolute',
     value: 1
   }),
+  noisefiltergain: new Nexus.Slider('#noisefiltergain', {
+    min: -99,
+    max: 5,
+    step: 0.01,
+    mode: 'absolute',
+    value: 1
+  }),
+  vibratoFrequency: new Nexus.Slider('#vibratoFrequency', {
+    min: 0,
+    max: 15,
+    step: 0.01,
+    mode: 'absolute',
+    value: 0
+  }),
+  vibratoDepth: new Nexus.Slider('#vibratoDepth', {
+    min: 0,
+    max: 1,
+    step: 0.001,
+    mode: 'absolute',
+    value: 0.1
+  }),
+  vibratoWet: new Nexus.Slider('#vibratoWet', {
+    min: 0,
+    max: 1,
+    step: 0.001,
+    mode: 'absolute',
+    value: 0.5
+  }),
+  phaserFreq: new Nexus.Slider('#phaserFreq', {
+    min: 0,
+    max: 1,
+    step: 0.001,
+    mode: 'absolute',
+    value: 0.5
+  }),
+  phaserOct: new Nexus.Slider('#phaserOct', {
+    min: 0,
+    max: 10,
+    step: 0.001,
+    mode: 'absolute',
+    value: 3
+  }),
+  phaserWet: new Nexus.Slider('#phaserWet', {
+    min: 0,
+    max: 1,
+    step: 0.001,
+    mode: 'absolute',
+    value: 0.5
+  }),
+  phaserQ: new Nexus.Slider('#phaserQ', {
+    min: 0,
+    max: 50,
+    step: 0.001,
+    mode: 'absolute',
+    value: 10
+  }),
+  phaserBaseFreq: new Nexus.Slider('#phaserBaseFreq', {
+    min: 0,
+    max: 1000,
+    step: 0.001,
+    mode: 'absolute',
+    value: 350
+  }),
 }
+
+var number = new Nexus.Number('#number');
+number.link(UI.synthvolume);
+
 
 for (var key in UI) {
   UI[key].on('change', function(value) {
@@ -309,28 +376,36 @@ for (var key in UI) {
   });
 }
 
-var noiseOne = new Tone.Noise("pink");
 var autoFilterOne = new Tone.AutoFilter({
   "frequency": "8m",
   "min": 800,
   "max": 15000
 }).connect(Tone.Master);
-noiseOne.connect(autoFilterOne);
+
+var phaser = new Tone.Phaser({
+  "frequency": 15,
+  "octaves": 5,
+  "baseFrequency": 1000
+}).connect(autoFilterOne);
+
+var noiseOne = new Tone.Noise("pink");
+noiseOne.connect(phaser);
+
 autoFilterOne.start();
 noiseOne.volume.value = -99;
 noiseOne.start();
 noiseOne.volume.rampTo(-10, 10);
 
 var eq = new Tone.EQ3(0, 0, 0);
-
 eq.connect(Tone.Master);
 
 vol = new Tone.Volume(-5).connect(eq);
-
 compressor = new Tone.Compressor(-25, 10).connect(vol);
 
 reverb = new Tone.Freeverb(0.8).connect(compressor);
 reverb.wet.value = 0.1;
+
+vibrato = new Tone.Vibrato(0, 0).connect(reverb);
 
 polySynth = new Tone.PolySynth(6, Tone.Synth, {
   harmonicity: 10,
@@ -363,7 +438,7 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     release: 0.5
   },
 });
-polySynth.connect(reverb);
+polySynth.connect(vibrato);
 
 
 /*
@@ -413,7 +488,7 @@ UI.mainvolume.on('change', function(v) {
 
   var k = v.map(-50, 0, -1, 1);
   console.log("2 " + k);
-  light.intensity = k;
+  //light.intensity = k;
   //light1.intensity = k;
   //light2.intensity = k;
   //ambientLight1.intensity = k;
@@ -788,26 +863,41 @@ UI.synthPartials.on('change', function(v) {
   });
 });
 
-/*
-oscillator: {
-    type: "sine",
-    modulationType: 'sawtooth',
-    modulationIndex: 3,
-    harmonicity: 3.4
+UI.noisefiltergain.on('change', function(v) {
+  autoFilterOne.set({
+    "filter": {
+      "gain": v
+    }
+  });
+});
+UI.vibratoFrequency.on('change', function(v) {
+  vibrato.frequency.value = v;
+});
+UI.vibratoDepth.on('change', function(v) {
+  vibrato.depth.value = v;
+});
+UI.vibratoWet.on('change', function(v) {
+  vibrato.wet.value = v;
+});
 
-    THIS
-    phase: 0,
-    osc.phase = 180; //flips the phase of the oscillator
+UI.phaserFreq.on('change', function(v) {
+  phaser.frequency.value = v;
+});
+UI.phaserOct.on('change', function(v) {
+  phaser.octaves.value = v;
+});
+UI.phaserWet.on('change', function(v) {
+  phaser.wet.value = v;
+});
+UI.phaserQ.on('change', function(v) {
+  phaser.Q.value = v;
+});
+UI.phaserBaseFreq.on('change', function(v) {
+  phaser.baseFrequency.value = v;
+});
 
-  },
-
-  This is not streaming
-poly.set({
-      "filter": {
-        "type": "highpass"
-      },
-      */
-
+console.log(autoFilterOne);
+//autofilter filter type  The type of the filter. Types: “lowpass”, “highpass”, “bandpass”, “lowshelf”, “highshelf”, “notch”, “allpass”, or “peaking”.
 
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
 
@@ -827,14 +917,7 @@ function topBar(data) {
     }
   }
   if (data == "refresh") {
-    WUI_Dialog.close("master_dialog");
-    WUI_Dialog.close("logs_dialog");
-    WUI_Dialog.close("cockpit_dialog");
-    WUI_Dialog.open("master_dialog");
-    WUI_Dialog.open("logs_dialog");
-    WUI_Dialog.open("cockpit_dialog");
-    WUI_Dialog.close("monitor_dialog")
-    console.log("okok");
+    location.reload();
   }
   if (data == "hideGui") {
     //guiIsVisible = false;
@@ -1061,9 +1144,8 @@ function showToast(v) {
   }
 }
 
-
 function changeVoices() {
-  console.log("Check this.");
+  console.log(currentSynthesizer);
 }
 
 function flipPhase(a) {

@@ -147,7 +147,7 @@
 
     color: #ffffff;
 
-    border-bottom: dotted 1px #404040;
+    border-bottom: solid 1px #404040;
 
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -162,7 +162,7 @@
 
     color: #ffffff;
 
-    border-top: dotted 1px #404040;
+    border-top: solid 1px #404040;
 
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -289,7 +289,7 @@
 .wui-dialog-title {
     font-size: 8pt;
 
-    font-family: monospace;
+    /*font-family: monospace;*/
 
     height: 18px;
 
@@ -608,7 +608,7 @@
     color: #ffffff;
 
     font-size: 8pt;
-    font-family: monospace;
+    /*font-family: monospace;*/
 
     padding-left: 8px;
     padding-right: 8px;
@@ -769,7 +769,6 @@
     border-top-right-radius: 4px;
     pointer-events: none;
     padding-top: 4px;
-    white-space: nowrap;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -804,7 +803,6 @@
     background-color: #000000;
     background: -webkit-linear-gradient(rgba(32, 32, 32, 1.0), rgba(24, 24, 24, 1.0), rgba(24, 24, 24, 1.0)) no-repeat border-box;
     background: linear-gradient(rgba(32, 32, 32, 1.0), rgba(24, 24, 24, 1.0), rgba(24, 24, 24, 1.0)) no-repeat border-box;
-
     overflow: auto;
 }
 
@@ -812,6 +810,7 @@
     height: 100%;
     border-radius: 4px;
     color: white;
+    background-color: rgba(30,30,30,1);
 }
 
 .wui-first-tab {
@@ -820,13 +819,14 @@
 
 .wui-first-tab.wui-tab-disabled {
     margin-left: 21px;
+    background-color: rgba(30,30,30,1);
 }
 
 .wui-tab {
     display: inline-block;
-    font-size: 9pt;
-    letter-spacing: 0.12pc;
+    font-size: 8px;
     height: 100%;
+    width: 60px;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     border-top: 1px solid #4f4f4f;
@@ -834,16 +834,16 @@
     padding-left: 1px;
     text-align: center;
     line-height: 24px;
-    color: #aaaaaa;
-    background-color: #0f0f0f;
+    color: #ffffff;
+    background-color: rgba(30,30,30,1);
     /*border-bottom: 1px solid #808080;*/
     pointer-events: all;
     z-index: 1;
     line-height: 24px;
     padding-left: 8px;
     padding-right: 8px;
-    background: -webkit-linear-gradient(rgba(48, 48, 48, 1.0), rgba(32, 32, 32, 1.0), rgba(32, 32, 32, 1.0)) no-repeat border-box;
-    background: linear-gradient(rgba(48, 48, 48, 1.0), rgba(32, 32, 32, 1.0), rgba(32, 32, 32, 1.0)) no-repeat border-box;
+    /*background: -webkit-linear-gradient(rgba(48, 48, 48, 1.0), rgba(32, 32, 32, 1.0), rgba(32, 32, 32, 1.0)) no-repeat border-box;
+    background: linear-gradient(rgba(48, 48, 48, 1.0), rgba(32, 32, 32, 1.0), rgba(32, 32, 32, 1.0)) no-repeat border-box;*/
 }
 
 .wui-tab:hover {
@@ -919,7 +919,7 @@
 
     text-shadow: 1px 1px 1px #000000;
 
-    font-family: monospace;
+    /*font-family: monospace;*/
 
     z-index: 9;
 

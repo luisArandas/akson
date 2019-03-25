@@ -2,7 +2,6 @@
  * @author Luis Arandas  http://luisarandas.org
  */
 
-
 $(document).ready(function() {
   fadeIn();
   move();
@@ -38,10 +37,6 @@ $(document).ready(function() {
   }
 });
 
-introJs().start();
-//https://introjs.com/docs/getting-started/start#requirements
-
-
 var lightOne;
 var lightTwo;
 var lightThree;
@@ -76,7 +71,6 @@ var composerFour;
 var whichVisuals;
 
 var r = 450;
-
 
 /*  Currently using Pentatonic Major  */
 
@@ -125,6 +119,9 @@ var mouseY = 0;
 var mouseYOnMouseDown = 0;
 var finalRotationY;
 var mouseDown = 0;
+
+var currentSynthesizer;
+currentSynthesizer = polySynth;
 
 /*
 var meshMaterial1 = createMaterial("vertex-shader", "fragment-shader-1");
@@ -457,7 +454,7 @@ function init() {
 
       /* Audio Scene */
 
-      polySynth.volume.value = 0;
+      currentSynthesizer.volume.value = 0;
       UI.synthvolume._value.update(0);
       UI.synthvolume.render();
       noiseOne.volume.value = -11;
@@ -496,7 +493,7 @@ function init() {
       /* Audio Scene */
       //https://threejsfundamentals.org/threejs/lessons/threejs-fog.html
 
-      polySynth.volume.value = -22.5;
+      currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
       noiseOne.volume.value = 0;
@@ -736,7 +733,7 @@ function onMouseDown(event) {
         isBlackSceneOne = true;
       }
       Tone.context.resume().then(() => {
-        polySynth.triggerAttackRelease(scale[note], "4n");
+        currentSynthesizer.triggerAttackRelease(scale[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
         var logs = document.getElementById('monitor_dialog'),
           output_node = document.createElement("div");
@@ -766,7 +763,7 @@ function onMouseDown(event) {
       }
 
       Tone.context.resume().then(() => {
-        polySynth.triggerAttackRelease(scale[note], "4n");
+        currentSynthesizer.triggerAttackRelease(scale[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
         var logs = document.getElementById('monitor_dialog'),
           output_node = document.createElement("div");
@@ -793,7 +790,7 @@ function clickStream(data) {
   console.log(data.y);
 
   var note = Math.floor(Math.random() * scale.length);
-  polySynth.triggerAttackRelease(scale[note], "4n");
+  currentSynthesizer.triggerAttackRelease(scale[note], "4n");
 
   var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];
   if (isBlackSceneOne_ == false) {
@@ -978,10 +975,7 @@ $(document).mouseleave(function() {
 });
 
 function doStuff() {
-  //light5.intensity = 1;
-  //ambientLight5.intensity = 1;
-  //directionalLight5.intensity = 1;
-
+  console.log("Doing Stuff");
 }
 setInterval(doStuff, 10000);
 
@@ -998,11 +992,14 @@ function move() {
       width++;
       elem.style.width = width + '%';
     }
-    if (width == 100) {
+    if (width === 100) {
       document.getElementById("myProgress1").classList.add('hidden');
       document.getElementById("myProgress").classList.add('hidden');
       document.getElementById("myBar").classList.add('hidden');
       document.getElementById("start").classList.add('hidden');
+    }
+    if (width === 99) {
+      loadWarning();
     }
   }
 }
@@ -1011,6 +1008,24 @@ function fadeIn() {
   document.getElementById("myProgress1").style.display = "block";
   document.getElementById("myProgress").style.display = "block";
   document.getElementById("myBar").style.display = "block";
+
+}
+
+function loadWarning(v) {
+  if (detectmob() === false) {
+    iziToast.info({
+      title: '',
+      backgroundColor: 'rgba(10,10,10,1)',
+      messageColor: 'white',
+      progressBarColor: 'white',
+      titleColor: 'white',
+      class: '',
+      position: 'bottomCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+      close: true,
+      zindex: 99999,
+      message: 'Press Space Bar for GUI',
+    });
+  }
 }
 
 console.log(polySynth);

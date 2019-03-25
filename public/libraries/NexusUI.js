@@ -2067,7 +2067,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.bar = svg.create("rect");
 	        this.fillbar = svg.create("rect");
             // This was circle
-	        this.knob = svg.create("rect");
+	        this.knob = svg.create("circle");
 	
 	        this.element.appendChild(this.bar);
 	        this.element.appendChild(this.fillbar);
@@ -2097,9 +2097,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	          level: 0,
 	          r: 0
 	        };
+                   
+            //this.knob.setAttribute("r", circle.r.baseVal.value + change);
+
 	
 	        if (this.orientation === "vertical") {
-	          this.thickness = this.width / 2;
+	          this.thickness = this.width / 6;
 	          x = this.width / 2;
 	          y = 0;
 	          w = this.thickness;
@@ -2107,7 +2110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = h - this.knobData.r - this.normalized * (h - this.knobData.r * 2);
 	          barOffset = "translate(" + this.thickness * -1 / 2 + ",0)";
-	          cornerRadius = w / 6;
+	          cornerRadius = w / 10;
 	        } else {
 	          this.thickness = this.height / 2;
 	          x = 0;
@@ -2117,16 +2120,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = this.normalized * (w - this.knobData.r * 2) + this.knobData.r;
 	          barOffset = "translate(0," + this.thickness * -1 / 2 + ")";
-	          cornerRadius = h / 6;
+	          cornerRadius = h / 10;
 	        }
 	
 	        this.bar.setAttribute("x", x);
 	        this.bar.setAttribute("y", y);
 	        this.bar.setAttribute("transform", barOffset);
-	        this.bar.setAttribute("rx", cornerRadius); // corner radius
-	        this.bar.setAttribute("ry", cornerRadius);
+	        //this.bar.setAttribute("rx", cornerRadius); // corner radius
+	        //this.bar.setAttribute("ry", cornerRadius);
 	        this.bar.setAttribute("width", w);
 	        this.bar.setAttribute("height", h);
+    
 	
 	        if (this.orientation === "vertical") {
 	          this.fillbar.setAttribute("x", x);
@@ -2151,13 +2155,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knob.setAttribute("cy", y);
 	        }
 	        this.knob.setAttribute("r", this.knobData.r);
+
 	      }
 	    },
 	    colorInterface: {
 	      value: function colorInterface() {
 	        this.bar.setAttribute("fill", this.colors.fill);
 	        this.fillbar.setAttribute("fill", this.colors.accent);
-	        this.knob.setAttribute("fill", this.colors.accent);
+            this.knob.setAttribute("fill", "rgba(50,50,50,1)");//this.colors.accent);
 	      }
 	    },
 	    render: {
@@ -3358,12 +3363,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        styles += "font-size:" + this._minDimension / 2 + "px;";
 	        //  styles += 'highlight: #d18;';
 	        styles += "border: none;";
+            styles += "text-align: center;"
 	        styles += "outline: none;";
 	        styles += "padding: " + this._minDimension / 4 + "px " + this._minDimension / 4 + "px;";
 	        styles += "box-sizing: border-box;";
 	        styles += "userSelect: text;";
 	        styles += "mozUserSelect: text;";
 	        styles += "webkitUserSelect: text;";
+                   
 	        this.element.style.cssText += styles;
 	
 	        // to add eventually
@@ -5914,8 +5921,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          off: ~ ~(this._minDimension / 100) * 3 + 5 };
 	        this.knobRadius.on = this.knobRadius.off * 2;
 	
-	        this.knob.setAttribute("cx", this.width / 2);
-	        this.knob.setAttribute("cy", this.height / 2);
+	        this.knob.setAttribute("cx", this.width / 6);
+	        this.knob.setAttribute("cy", this.height / 6);
 	        this.knob.setAttribute("r", this.knobRadius.off);
 	
 	        for (var i = 0; i < this.speakers.length; i++) {
@@ -6943,7 +6950,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = h - this.normalized * h;
 	          barOffset = "translate(" + this.thickness * -1 / 2 + ",0)";
-	          cornerRadius = w / 6;
+	          cornerRadius = w / 10;
 	        } else {
 	          this.thickness = this.height / 2;
 	          x = 0;
@@ -6953,7 +6960,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = this.normalized * w;
 	          barOffset = "translate(0," + this.thickness * -1 / 2 + ")";
-	          cornerRadius = h / 6;
+	          cornerRadius = h / 10;
 	        }
 	
 	        this.bar.setAttribute("x", x);
@@ -7268,7 +7275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.knobData.r = this.thickness * 0.8;
 	          this.knobData.level = h - this.knobData.r - this.normalized * (h - this.knobData.r * 2);
 	          barOffset = "translate(" + this.thickness * -1 / 2 + ",0)";
-	          cornerRadius = w / 6;
+	          cornerRadius = w / 10;
 	        } else {
 	          this.thickness = this.height / 2;
 	          x = 0;

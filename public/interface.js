@@ -74,7 +74,7 @@ WUI_Tabs.create("tabs_instrumentos", {
 });
 
 WUI_Dialog.create("demo_integrated_dialog", {
-  title: "adsr",
+  title: "adsr - fazer um grande ",
   halign: "left",
   valign: "top",
   closable: false,
@@ -243,9 +243,9 @@ WUI_Dialog.create("monitor_dialog", {
 });
 
 WUI_Dialog.create("alocate_dialog", {
-  title: "Alocate System",
-  width: "35%",
-  height: "35%",
+  title: "Allocate System",
+  width: "380px",
+  height: "176px",
   halign: "center",
   valign: "center",
   open: false,

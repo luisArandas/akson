@@ -484,7 +484,6 @@ function changeState(v) {
     isStreaming = false;
     isAlone = false;
     isAlocating = true;
-    alocateCortex();
     openGui();
     WUI_Dialog.open("alocate_dialog");
     console.log(WUI_Dialog.open);
@@ -516,14 +515,81 @@ function changeState(v) {
   }
 }
 
-function streamCortex() {
-  console.log("streamCortex");
-}
+function streamCortex() {}
 
-function alocateCortex() {
-  console.log("is Alocating");
-  console.log(isAlocating);
+function alocateCortex(v) {
+  if (isAlocating === true) {
+    if (v === "alocateOne") {
+      if (document.getElementById("alocateOne").style.background != "white") {
+        document.getElementById("alocateOne").style.background = "white";
+        document.getElementById("alocateOne").style.color = "black";
+      } else if (document.getElementById("alocateOne").style.background == "white") {
+        document.getElementById("alocateOne").style.background = "black";
+        document.getElementById("alocateOne").style.color = "white";
+      }
+      document.getElementById("alocateTwo").style.background = "black";
+      document.getElementById("alocateThree").style.background = "black";
+      document.getElementById("alocateFour").style.background = "black";
+      document.getElementById("alocateTwo").style.color = "white";
+      document.getElementById("alocateThree").style.color = "white";
+      document.getElementById("alocateFour").style.color = "white";
+      document.getElementById("inst1").click();
+    }
+    if (v === "alocateTwo") {
+      if (document.getElementById("alocateTwo").style.background != "white") {
+        document.getElementById("alocateTwo").style.background = "white";
+        document.getElementById("alocateTwo").style.color = "black";
+      } else if (document.getElementById("alocateTwo").style.background == "white") {
+        document.getElementById("alocateTwo").style.background = "black";
+        document.getElementById("alocateTwo").style.color = "white";
+      }
+      document.getElementById("alocateOne").style.background = "black";
+      document.getElementById("alocateThree").style.background = "black";
+      document.getElementById("alocateFour").style.background = "black";
+      document.getElementById("alocateOne").style.color = "white";
+      document.getElementById("alocateThree").style.color = "white";
+      document.getElementById("alocateFour").style.color = "white";
+      document.getElementById("inst2").click();
+    }
+    if (v === "alocateThree") {
+      if (document.getElementById("alocateThree").style.background != "white") {
+        document.getElementById("alocateThree").style.background = "white";
+        document.getElementById("alocateThree").style.color = "black";
+      } else if (document.getElementById("alocateThree").style.background == "white") {
+        document.getElementById("alocateThree").style.background = "black";
+        document.getElementById("alocateThree").style.color = "white";
+      }
+      document.getElementById("alocateOne").style.background = "black";
+      document.getElementById("alocateTwo").style.background = "black";
+      document.getElementById("alocateFour").style.background = "black";
+      document.getElementById("alocateOne").style.color = "white";
+      document.getElementById("alocateTwo").style.color = "white";
+      document.getElementById("alocateFour").style.color = "white";
+      document.getElementById("inst3").click();
+    }
+    if (v === "alocateFour") {
+      if (document.getElementById("alocateFour").style.background != "white") {
+        document.getElementById("alocateFour").style.background = "white";
+        document.getElementById("alocateFour").style.color = "black";
+      } else if (document.getElementById("alocateFour").style.background == "white") {
+        document.getElementById("alocateFour").style.background = "black";
+        document.getElementById("alocateFour").style.color = "white";
+      }
+      document.getElementById("alocateOne").style.background = "black";
+      document.getElementById("alocateTwo").style.background = "black";
+      document.getElementById("alocateThree").style.background = "black";
+      document.getElementById("alocateOne").style.color = "white";
+      document.getElementById("alocateTwo").style.color = "white";
+      document.getElementById("alocateThree").style.color = "white";
+      document.getElementById("inst4").click();
+    }
+  }
 }
+/*
+if (v) {
+
+}
+*/
 
 socket.on('socketid', function(socketid) {
   if (isAlocating == true) {

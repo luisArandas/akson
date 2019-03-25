@@ -229,12 +229,12 @@ function camNear(a) {
   if (a === 'kill') {
     camera.near = 0;
     camera.updateProjectionMatrix();
-    console.log("kill");
+    Tone.Master.mute = true;
   }
   if (a === 'born') {
     camera.near = 1;
     camera.updateProjectionMatrix();
-    console.log("no");
+    Tone.Master.mute = false;
   }
 
 }
