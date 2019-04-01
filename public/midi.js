@@ -255,7 +255,7 @@ function shaderButtons(v) {
 
 var osc = new OSC();
 osc.open({
-  port: 45
+  port: 8080
 });
 
 document.getElementById('send').addEventListener('click', () => {
