@@ -732,15 +732,19 @@ function onMouseDown(event) {
       } else {
         isBlackSceneOne = true;
       }
-      Tone.context.resume().then(() => {
-        currentSynthesizer.triggerAttackRelease(scale[note], "4n");
-        //playNote("4n", scalePlaying[randomSequenceOfNotes]);
-        var logs = document.getElementById('monitor_dialog'),
-          output_node = document.createElement("div");
-        output_node.innerHTML = scale[note];
-        logs.appendChild(output_node);
-        logs.scrollTop = logs.scrollHeight;
-      });
+      if (Tone.context.state !== 'running') {
+        Tone.context.resume();
+      }
+
+      //Tone.context.resume().then(() => {
+      currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+      //playNote("4n", scalePlaying[randomSequenceOfNotes]);
+      /*var logs = document.getElementById('monitor_dialog'),
+        output_node = document.createElement("div");
+      output_node.innerHTML = scale[note];
+      logs.appendChild(output_node);
+      logs.scrollTop = logs.scrollHeight;*/
+      //});
     } else {}
   }
 
