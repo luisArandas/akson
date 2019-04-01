@@ -1,1 +1,1 @@
-Search.setIndex({docnames:["index"],envversion:53,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{index:0,modul:0,page:0,search:0},titles:["<em>Akson</em> Documentation"],titleterms:{akson:0,doc:0,document:0,structur:0}})
+Search.setIndex({docnames:["index"],envversion:53,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{index:0,modul:0,page:0,search:0},titles:["Akson Environment Documentation"],titleterms:{akson:0,doc:0,document:0,environ:0,structur:0}})

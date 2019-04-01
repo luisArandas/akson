@@ -1,10 +1,7 @@
 const express = require('express');
 const app = express();
 const server = app.listen(process.env.PORT || 5000);
-const OSC = require('osc-js')
 const portfinder = require('portfinder');
-
-app.use(express.static('public'))
 
 console.log("It's running Akson Environment on port 5000.");
 
@@ -296,19 +293,22 @@ function newConnection(socket) {
   function noisePartialCount(data) {
     socket.broadcast.emit('noisePartialCount', data);
   }
+
+  socket.on('send message', function(data) {
+    var oscNum = Math.random();
+    var oscMap = '/composition/video/effect3/opacity/values ' + oscNum;
+    client.send('/composition/video/effect3/opacity/values', oscNum);
+    console.log(oscMap);
+  });
 }
 
 portfinder.getPort(function(err, port) {
   console.log("Using " + port);
 });
 
-const config = {
-  udpClient: {
-    port: 9129
-  }
-}
-const osc = new OSC({
-  plugin: new OSC.BridgePlugin(config)
-})
-
-osc.open()
+// Configures each link to a different page.
+// e.g. localhost:3000/   will load index.html
+// e.g. localhost:3000/led    will load led.html
+//app.get('/', function(req, res) {
+//    res.sendFile(__dirname + '/public/index.html');
+//});

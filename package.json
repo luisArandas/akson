@@ -23,6 +23,7 @@
     "intro.js": "^2.9.3",
     "izitoast": "^1.4.0",
     "node-osc": "^3.0.0",
+    "osc": "^2.2.4",
     "osc-js": "^2.0.2",
     "portfinder": "^1.0.20",
     "resonance-audio": "^1.0.0",

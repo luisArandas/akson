@@ -1,4 +1,4 @@
-*Akson* Documentation
+Akson Environment Documentation
 =================================
 
 .. toctree::

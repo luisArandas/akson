@@ -251,14 +251,6 @@ function shaderButtons(v) {
   logs.scrollTop = logs.scrollHeight;
 }*/ // ----------------------------------------------------------------
 
-
-
-var osc = new OSC();
-osc.open({
-  port: 8080
-});
-
 document.getElementById('send').addEventListener('click', () => {
-  var message = new OSC.Message('/test/random', Math.random());
-  osc.send(message);
+  socket.emit('send message');
 });
