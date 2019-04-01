@@ -26,7 +26,7 @@ Nexus.colors.light = "#ff66ff";
 Nexus.colors.mediumDark = "#ff66ff";
 Nexus.colors.mediumLight = "#ff66ff";
 
-
+Tone.context.resume();
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();
 

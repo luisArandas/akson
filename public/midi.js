@@ -252,13 +252,13 @@ function shaderButtons(v) {
 }*/ // ----------------------------------------------------------------
 
 
-/*
+
 var osc = new OSC();
 osc.open({
-  port: 8080
-}); // connect by default to ws://localhost:8080
+  port: 45
+});
 
 document.getElementById('send').addEventListener('click', () => {
   var message = new OSC.Message('/test/random', Math.random());
   osc.send(message);
-});*/
+});

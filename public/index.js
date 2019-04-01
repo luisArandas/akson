@@ -135,6 +135,7 @@ var meshMaterial6 = createMaterial("vertex-shader", "fragment-shader-6");
 init();
 animate();
 
+
 function init() {
   socket = io.connect(window.location.origin);
   socket.on('mouse', clickStream);
@@ -735,9 +736,9 @@ function onMouseDown(event) {
       if (Tone.context.state !== 'running') {
         Tone.context.resume();
       }
+      currentSynthesizer.triggerAttackRelease(scale[note], "4n");
 
       //Tone.context.resume().then(() => {
-      currentSynthesizer.triggerAttackRelease(scale[note], "4n");
       //playNote("4n", scalePlaying[randomSequenceOfNotes]);
       /*var logs = document.getElementById('monitor_dialog'),
         output_node = document.createElement("div");
