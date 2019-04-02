@@ -3,6 +3,8 @@ const app = express();
 const server = app.listen(process.env.PORT || 5000);
 const portfinder = require('portfinder');
 
+app.use(express.static('public'));
+
 console.log("It's running Akson Environment on port 5000.");
 
 var socket = require('socket.io');
@@ -294,12 +296,6 @@ function newConnection(socket) {
     socket.broadcast.emit('noisePartialCount', data);
   }
 
-  socket.on('send message', function(data) {
-    var oscNum = Math.random();
-    var oscMap = '/composition/video/effect3/opacity/values ' + oscNum;
-    client.send('/composition/video/effect3/opacity/values', oscNum);
-    console.log(oscMap);
-  });
 }
 
 portfinder.getPort(function(err, port) {
