@@ -774,3 +774,11 @@ h2 {
   border: 1px solid rgba(50, 50, 50, 1);
   background-color: black !important;
 }
+
+.machineInfo {
+  color: white;
+}
+
+#glcanvas {
+  display: none;
+}

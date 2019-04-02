@@ -29,7 +29,7 @@ WUI_Dialog.create("master_dialog", {
   resizable: false,
   //detachable: false,
   keep_align_when_resized: false,
-  top: -200,
+  top: -750,
   left: 0
 });
 
@@ -63,7 +63,7 @@ WUI_Dialog.create("cockpit_dialog", {
   min_width: "title",
   min_height: 64,
   keep_align_when_resized: true,
-  top: 0,
+  top: -100,
   left: 0,
 });
 
@@ -270,4 +270,18 @@ WUI_Dialog.create("alocate_dialog", {
   keep_align_when_resized: false,
   top: 0,
   left: 0
+});
+
+WUI_Dialog.create("about_this_dialog", {
+  title: "System",
+  width: "350px",
+  height: "410px",
+  halign: "center",
+  valign: "center",
+  open: false,
+  closable: true,
+  draggable: true,
+  minimizable: true,
+  resizable: false,
+  status_bar: true
 });

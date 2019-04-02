@@ -671,13 +671,9 @@ function animate() {
 
   requestAnimationFrame(animate);
   render();
-  if (Tone.context.state !== 'running') {
-    Tone.context.resume();
-  }
 }
 
 // ------------------------- Sockets & Mouse -------------------------------
-
 
 var data;
 var newScale = new ScalePlaying();

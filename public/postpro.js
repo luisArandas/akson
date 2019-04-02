@@ -225,6 +225,32 @@ function camOffsetDefault(a) {
   }
 }
 
+/* Machine Info */
+
+var a1 = "Network effective bandwidth estimate " + navigator.connection.downlink + " MB/s" + '<br>';
+var a2 = "Max download speed " + navigator.connection.downlinkMax + " MB/s" + '<br>';
+var a3 = "Effective connection type " + navigator.connection.effectiveType + " MB/s" + '<br>';
+var a4 = "estimated effective round-trip " + navigator.connection.rtt + " rounded to the nearest multiple of 25 milliseconds" + '<br>';
+var a5 = "network connection type " + navigator.connection.type + '<br>';
+var a6 = navigator.language || navigator.userLanguage;
+var a7 = "- Device Screen Width_" + screen.width + "<br>";
+var a8 = "- Device Screen Height_" + screen.height + "<br>";
+var a9 = "- Device Screen availWidth_" + screen.availWidth + "<br>";
+var a10 = "- Device Screen availHeight_" + screen.availHeight + "<br>";
+var a11 = "- Device Screen colorDepth_" + screen.colorDepth + "<br>";
+var a12 = "- Device Screen pixelDepth_" + screen.pixelDepth + "<br>";
+var a13 = "- User Agent_" + navigator.userAgent + "<br>";
+var a14 = "- Vendor_" + navigator.vendor + "<br>";
+var a15 = "- ProductSub_" + navigator.productSub + "<br>";
+var a16 = "- Platform_" + navigator.platform + "<br>";
+var a17 = "- Navigator_Languages_" + navigator.languages + "<br>";
+
+canvas = document.getElementById("glcanvas");
+var gl = canvas.getContext("experimental-webgl");
+
+var a18 = "- GL RENDERER " + gl.getParameter(gl.RENDERER);
+var a19 = "- GL VENDOR " + gl.getParameter(gl.VENDOR);
+
 function camNear(a) {
   if (a === 'kill') {
     camera.near = 0;
@@ -237,9 +263,13 @@ function camNear(a) {
     Tone.Master.mute = false;
   }
   if (a === 'about') {
-    console.log("is about here bra");
+    document.getElementById('machineInfo').innerHTML += a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12 + a13 + a14 + a15 + a16 + a17 + a18 + a19;
+    WUI_Dialog.open("about_this_dialog");
   }
 }
+
+
+
 
 //4 lights
 
