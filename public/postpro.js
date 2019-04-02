@@ -236,7 +236,9 @@ function camNear(a) {
     camera.updateProjectionMatrix();
     Tone.Master.mute = false;
   }
-
+  if (a === 'about') {
+    console.log("is about here bra");
+  }
 }
 
 //4 lights

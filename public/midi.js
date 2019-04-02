@@ -250,7 +250,3 @@ function shaderButtons(v) {
   logs.appendChild(output_node);
   logs.scrollTop = logs.scrollHeight;
 }*/ // ----------------------------------------------------------------
-
-document.getElementById('send').addEventListener('click', () => {
-  socket.emit('send message');
-});

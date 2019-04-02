@@ -13,11 +13,5 @@ check exporting
 tokens em cada GUI para controlar entradas e saídas
 correlate controls
 about context
- Write more about the Descriptions
-
+Write more about the Descriptions
 check (Free, cross-platform, open-source software (Simplified BSD License))
-print akson system is running console
-
-//THREEJS
-https://github.com/spite/polygon-shredder
-https://github.com/luosijie/threejs-examples

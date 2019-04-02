@@ -736,7 +736,9 @@ function onMouseDown(event) {
       if (Tone.context.state !== 'running') {
         Tone.context.resume();
       }
-      currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+      StartAudioContext(Tone.context).then(function() {
+        currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+      })
 
       //Tone.context.resume().then(() => {
       //playNote("4n", scalePlaying[randomSequenceOfNotes]);
