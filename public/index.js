@@ -671,7 +671,9 @@ function animate() {
 
   requestAnimationFrame(animate);
   render();
-
+  if (Tone.context.state !== 'running') {
+    Tone.context.resume();
+  }
 }
 
 // ------------------------- Sockets & Mouse -------------------------------
@@ -733,9 +735,7 @@ function onMouseDown(event) {
       } else {
         isBlackSceneOne = true;
       }
-      if (Tone.context.state !== 'running') {
-        Tone.context.resume();
-      }
+
       StartAudioContext(Tone.context).then(function() {
         currentSynthesizer.triggerAttackRelease(scale[note], "4n");
       })
