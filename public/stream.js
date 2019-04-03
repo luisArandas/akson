@@ -491,6 +491,11 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "2px solid rgba(150,150,150,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById('inst1').style.pointerEvents = "none";
+    document.getElementById('inst2').style.pointerEvents = "none";
+    document.getElementById('inst3').style.pointerEvents = "none";
+    document.getElementById('inst4').style.pointerEvents = "none";
+    document.getElementById('inst5').style.pointerEvents = "none";
   }
   if (v == "monitor") {
     socket.connected = true;
@@ -534,6 +539,8 @@ function alocateCortex(v) {
       document.getElementById("alocateThree").style.color = "white";
       document.getElementById("alocateFour").style.color = "white";
       document.getElementById("inst1").click();
+
+
     }
     if (v === "alocateTwo") {
       if (document.getElementById("alocateTwo").style.background != "white") {
@@ -549,7 +556,9 @@ function alocateCortex(v) {
       document.getElementById("alocateOne").style.color = "white";
       document.getElementById("alocateThree").style.color = "white";
       document.getElementById("alocateFour").style.color = "white";
+
       document.getElementById("inst2").click();
+
     }
     if (v === "alocateThree") {
       if (document.getElementById("alocateThree").style.background != "white") {
@@ -565,7 +574,9 @@ function alocateCortex(v) {
       document.getElementById("alocateOne").style.color = "white";
       document.getElementById("alocateTwo").style.color = "white";
       document.getElementById("alocateFour").style.color = "white";
+
       document.getElementById("inst3").click();
+
     }
     if (v === "alocateFour") {
       if (document.getElementById("alocateFour").style.background != "white") {
@@ -581,7 +592,9 @@ function alocateCortex(v) {
       document.getElementById("alocateOne").style.color = "white";
       document.getElementById("alocateTwo").style.color = "white";
       document.getElementById("alocateThree").style.color = "white";
+
       document.getElementById("inst4").click();
+
     }
   }
 }

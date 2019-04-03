@@ -248,8 +248,18 @@ var a17 = "- Navigator_Languages_" + navigator.languages + "<br>";
 canvas = document.getElementById("glcanvas");
 var gl = canvas.getContext("experimental-webgl");
 
-var a18 = "- GL RENDERER " + gl.getParameter(gl.RENDERER);
-var a19 = "- GL VENDOR " + gl.getParameter(gl.VENDOR);
+var a18 = "- GL RENDERER " + gl.getParameter(gl.RENDERER) + '<br>';
+var a19 = "- GL VENDOR " + gl.getParameter(gl.VENDOR) + '<br>';
+var a20 = "AudioContext baseLantency: " + Tone.context.baseLantency + '<br>';
+var a21 = "AudioContext currentTime: " + Tone.context.currentTime + '<br>';
+var a22 = "AudioContext channelCount: " + Tone.context.destination.channelCount + '<br>';
+var a23 = "AudioContext channelCountMode: " + Tone.context.destination.channelCountMode + '<br>';
+var a24 = "AudioContext channelInterpretation: " + Tone.context.destination.channelInterpretation + '<br>';
+var a25 = "AudioContext Inputs: " + Tone.context.destination.numberOfInputs + '<br>';
+var a26 = "AudioContext sampleRate: " + Tone.context.sampleRate + '<br>';
+var a27 = "AudioContext State: " + Tone.context.state + '<br>';
+
+console.log(Tone.context);
 
 function camNear(a) {
   if (a === 'kill') {
@@ -263,7 +273,7 @@ function camNear(a) {
     Tone.Master.mute = false;
   }
   if (a === 'about') {
-    document.getElementById('machineInfo').innerHTML += a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12 + a13 + a14 + a15 + a16 + a17 + a18 + a19;
+    document.getElementById('machineInfo').innerHTML += a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12 + a13 + a14 + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
     WUI_Dialog.open("about_this_dialog");
   }
 }

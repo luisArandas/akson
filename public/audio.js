@@ -364,6 +364,20 @@ var UI = {
     mode: 'absolute',
     value: 350
   }),
+  jcreverbWet: new Nexus.Slider('#jcreverbWet', {
+    min: 0,
+    max: 1,
+    step: 0.001,
+    mode: 'absolute',
+    value: 0
+  }),
+  jcreverbRoomsize: new Nexus.Slider('#jcreverbRoomsize', {
+    min: 0,
+    max: 1,
+    step: 0.001,
+    mode: 'absolute',
+    value: 0
+  }),
 }
 
 var number = new Nexus.Number('#number');
@@ -382,11 +396,15 @@ var autoFilterOne = new Tone.AutoFilter({
   "max": 15000
 }).connect(Tone.Master);
 
+var jcreverb = new Tone.JCReverb(0.0).connect(autoFilterOne);
+jcreverb.wet.value = 0;
+jcreverb.roomSize.value = 0;
+
 var phaser = new Tone.Phaser({
   "frequency": 15,
   "octaves": 5,
   "baseFrequency": 1000
-}).connect(autoFilterOne);
+}).connect(jcreverb);
 
 var noiseOne = new Tone.Noise("pink");
 noiseOne.connect(phaser);
@@ -895,8 +913,14 @@ UI.phaserQ.on('change', function(v) {
 UI.phaserBaseFreq.on('change', function(v) {
   phaser.baseFrequency.value = v;
 });
+UI.jcreverbRoomsize.on('change', function(v) {
+  jcreverb.roomSize.value = v;
+});
+UI.jcreverbWet.on('change', function(v) {
+  jcreverb.wet.value = v;
+});
 
-console.log(autoFilterOne);
+//console.log(autoFilterOne);
 //autofilter filter type  The type of the filter. Types: “lowpass”, “highpass”, “bandpass”, “lowshelf”, “highshelf”, “notch”, “allpass”, or “peaking”.
 
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/

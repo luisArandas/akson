@@ -251,7 +251,14 @@ WUI_Dialog.create("alocate_dialog", {
   open: false,
   minimized: false,
   on_open: function() {},
-  on_close: function() {},
+  on_close: function() {
+    console.log("Alocate is Off");
+    document.getElementById('inst1').style.pointerEvents = "auto";
+    document.getElementById('inst2').style.pointerEvents = "auto";
+    document.getElementById('inst3').style.pointerEvents = "auto";
+    document.getElementById('inst4').style.pointerEvents = "auto";
+    document.getElementById('inst5').style.pointerEvents = "auto";
+  },
   on_pre_detach: function() {},
   on_detach: function(new_window) {
     new_window.document.title = "Alocate";
