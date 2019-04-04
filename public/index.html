@@ -49,6 +49,7 @@
 </head>
 
 <body>
+
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -56,6 +57,15 @@
       </div>
     </div>
   </div>
+
+  <div id="savesettings_dialog">
+    <div style="text-align: center; font-size: 5pt;">
+      <button id="shot">newpage</button>
+      <button id="save">save</button>
+      <button id="save3d">save3d</button>
+    </div>
+  </div>
+
 
   <div id="master_dialog">
     <div style="text-align: center; font-size: 5pt;">
@@ -93,7 +103,7 @@
         <button class="btn btn-sm btnCima" type="button" onClick="topBar('aboutMe')"><i class="fas fa-bars"></i></button>
       </div>
       <div class="btn-group mr-2" role="group" aria-label="Second group">
-        <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')"><i class="fas fa-microphone"></i></button>
+        <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')"><i class="fas fa-download"></i></button>
       </div>
       <div class="btn-group mr-2" role="group" aria-label="Third group">
         <button class="btn btn-sm btnCima" type="button" onClick="topBar('hideGui')"><i class="fas fa-eye-slash"></i></button>
@@ -144,35 +154,37 @@
       <span class="closeMode">&times;</span>
       <div class="streamButtonDiv" id="streamButtonDiv">
         <div id="networkTitle">network model</div>
-        <div class="btn-group groupStream" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark stateButton" id="stateButtonOne" onClick="changeState('descenter')">
-            <h2>descenter
-              <br><br><br><br>
-              <font size="6">This is some text!</font>descentralized mode is the default one that ok
-            </h2>
-          </button>
-        </div>
-        <div class="btn-group groupStream" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark stateButton" id="stateButtonTwo" onClick="changeState('streamed')">
-            <h2>streamed</h2>
-          </button>
-        </div>
-        <div class="btn-group groupStream" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark stateButton" id="stateButtonThree" onClick="changeState('alocate')">
-            <h2>allocate</h2>
-          </button>
-        </div>
 
         <div class="btn-group groupStream" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark stateButton" id="stateButtonFive" onClick="changeState('alone')">
-            <h2>alone</h2>
-          </button>
-        </div>
 
-        <div class="btn-group groupStream" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark stateButton" id="stateButtonFour" onClick="changeState('monitor')">
-            <h2>monitor</h2>
+          <button type="button" class="stateButton" id="stateButtonOne" onClick="changeState('descenter')">
+            descenter
           </button>
+
+          <button type="button" class="stateButton" id="stateButtonTwo" onClick="changeState('streamed')">
+            <div id="stateButtonTwoDiv">
+              streamed
+            </div>
+          </button>
+
+          <button type="button" class="stateButton" id="stateButtonThree" onClick="changeState('alocate')">
+            <div id="stateButtonThreeDiv">
+              allocate
+            </div>
+          </button>
+
+          <button type="button" class="stateButton" id="stateButtonFive" onClick="changeState('alone')">
+            <div id="stateButtonFourDiv">
+              alone
+            </div>
+          </button>
+
+          <button type="button" class="stateButton" id="stateButtonFour" onClick="changeState('monitor')">
+            <div id="stateButtonFourDiv">
+              monitor
+            </div>
+          </button>
+
         </div>
       </div>
     </div>
@@ -215,8 +227,21 @@
   </div>
 
   <div id="about_this_dialog">
-    <div id="machineInfo" class="machineInfo">
-      <canvas id="glcanvas"></canvas>
+    <div id="tabs_about">
+      <div>
+        <div class="inst1" id="inst1">Specs</div>
+        <div class="inst2" id="inst2">Networks</div>
+      </div>
+      <div>
+
+        <div id="machineInfo" class="machineInfo">
+          <canvas id="glcanvas"></canvas>
+        </div>
+        <div>
+          <div id="networkinfo" class="networkinfo">test
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -252,7 +277,6 @@
         <div class="inst2" id="inst2">Background</div>
         <div class="inst3" id="inst3">Graphics</div>
         <div class="inst4" id="inst4">Post-Prod</div>
-        <div class="inst5" id="inst5">Misc</div>
       </div>
       <div>
         <div>
@@ -421,99 +445,7 @@
             <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32t')">32t</button>
           </div>
         </div>
-        <!-- Here starts the Range -->
         <div>
-          <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
-            <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
-            <button type="button" class="btn btn-secondary buttonColor" id="c2" onclick="scaleButtons('c2')">C2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs2" onclick="scaleButtons('cs2')">C#2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="d2" onclick="scaleButtons('d2')">D2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds2" onclick="scaleButtons('ds2')">D#2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="e2" onclick="scaleButtons('e2')">E2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="f2" onclick="scaleButtons('f2')">F2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs2" onclick="scaleButtons('fs2')">F#2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="g2" onclick="scaleButtons('g2')">G2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs2" onclick="scaleButtons('gs2')">G#2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="a2" onclick="scaleButtons('a2')">A2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as2" onclick="scaleButtons('as2')">A#2</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="b2" onclick="scaleButtons('b2')">B2</button>
-          </div>
-
-          <div class="btn-group-horizontal btn-group-sm gruponotas3" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" id="c3" onclick="scaleButtons('c3')">C3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="d3" onclick="scaleButtons('d3')">D3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds3" onclick="scaleButtons('ds3')">D#3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="e3" onclick="scaleButtons('e3')">E3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="f3" onclick="scaleButtons('f3')">F3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs3" onclick="scaleButtons('fs3')">F#3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="g3" onclick="scaleButtons('g3')">G3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs3" onclick="scaleButtons('gs3')">G#3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="a3" onclick="scaleButtons('a3')">A3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as3" onclick="scaleButtons('as3')">A#3</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="b3" onclick="scaleButtons('b3')">B3</button>
-          </div>
-
-          <div class="btn-group-horizontal btn-group-sm gruponotas4" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" id="c4" onclick="scaleButtons('c4')">C4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="d4" onclick="scaleButtons('d4')">D4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds4" onclick="scaleButtons('ds4')">D#4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="e4" onclick="scaleButtons('e4')">E4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="f4" onclick="scaleButtons('f4')">F4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs4" onclick="scaleButtons('fs4')">F#4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="g4" onclick="scaleButtons('g4')">G4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs4" onclick="scaleButtons('gs4')">G#4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="a4" onclick="scaleButtons('a4')">A4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as4" onclick="scaleButtons('as4')">A#4</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="b4" onclick="scaleButtons('b4')">B4</button>
-          </div>
-
-          <div class="btn-group-horizontal btn-group-sm gruponotas5" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" id="c5" onclick="scaleButtons('c5')">C5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="d5" onclick="scaleButtons('d5')">D5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="ds5" onclick="scaleButtons('ds5')">D#5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="e5" onclick="scaleButtons('e5')">E5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="f5" onclick="scaleButtons('f5')">F5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="fs5" onclick="scaleButtons('fs5')">F#5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="g5" onclick="scaleButtons('g5')">G5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="gs5" onclick="scaleButtons('gs5')">G#5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="a5" onclick="scaleButtons('a5')">A5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="as5" onclick="scaleButtons('as5')">A#5</button>
-            <button type="button" class="btn btn-secondary buttonColor" id="b5" onclick="scaleButtons('b5')">B5</button>
-          </div>
-          <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="">
-            <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal()">Scale</button>
-          </div>
-        </div>
-
-        <!--Graphics-->
-        <div>
-          <!-- index.js 829
-          <div class="stats" id="stats">
-            <script src="libraries/stats.js"></script>
-            <script>
-              var v = document.getElementById('stats');
-              var stats1 = new Stats();
-              stats1.showPanel(0);
-              stats1.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
-              stats1.domElement.style.color = 'white';
-              v.appendChild(stats1.domElement);
-              var stats2 = new Stats();
-              stats2.showPanel(1);
-              stats2.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
-              stats2.domElement.style.color = 'white';
-              v.appendChild(stats2.domElement);
-              var stats3 = new Stats();
-              stats3.showPanel(2);
-              stats3.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
-              stats3.domElement.style.color = 'white';
-              v.appendChild(stats3.domElement);
-           </script>
-
-          </div>
-        -->
           master
           <div id="light1" class="light1"></div>
           <div id="light2" class="light2"></div>
@@ -524,28 +456,8 @@
           <div id="cameraM2" class="cameraM2"></div>
           <div id="cameraM3" class="cameraM3"></div>
           <div id="cameraM4" class="cameraM4"></div>
-          setViewOffset
-          <div id="cameraM5" class="cameraM5"></div>
-          <div id="cameraM6" class="cameraM6"></div>
-          <div id="cameraM7" class="cameraM7"></div>
-          <div id="cameraM8" class="cameraM8"></div>
-          x/y
-          <div id="cameraM9" class="cameraM9"></div>
-          <div id="cameraM10" class="cameraM10"></div>
 
-          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set1')">offset1</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set2')">offset2</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set3')">offset3</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set4')">offset4</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set5')">offset5</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set6')">offset6</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('clear')">default</button>
-          </div>
 
-        </div>
-        <!-- PostPro -->
-        <div>
           <div id="camera1_1" class="camera1_1"></div>
           <div id="camera1_2" class="camera1_2"></div>
           <div id="camera1_3" class="camera1_3"></div>
@@ -562,11 +474,129 @@
           <div id="camera4_2" class="camera4_2"></div>
           <div id="camera4_3" class="camera4_3"></div>
 
+        </div>
+
+
+        <!-- PostPro -->
+        <div>
+          <!-- Here starts the Range -->
+          <div class="divNotas">
+            <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
+              <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
+              <button type="button" class="btn btn-secondary buttonColor" id="c2" onclick="scaleButtons('c2')">C2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="cs2" onclick="scaleButtons('cs2')">C#2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="d2" onclick="scaleButtons('d2')">D2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="ds2" onclick="scaleButtons('ds2')">D#2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="e2" onclick="scaleButtons('e2')">E2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="f2" onclick="scaleButtons('f2')">F2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="fs2" onclick="scaleButtons('fs2')">F#2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="g2" onclick="scaleButtons('g2')">G2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="gs2" onclick="scaleButtons('gs2')">G#2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="a2" onclick="scaleButtons('a2')">A2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="as2" onclick="scaleButtons('as2')">A#2</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="b2" onclick="scaleButtons('b2')">B2</button>
+            </div>
+
+            <div class="btn-group-horizontal btn-group-sm gruponotas3" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" id="c3" onclick="scaleButtons('c3')">C3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="d3" onclick="scaleButtons('d3')">D3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="ds3" onclick="scaleButtons('ds3')">D#3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="e3" onclick="scaleButtons('e3')">E3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="f3" onclick="scaleButtons('f3')">F3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="fs3" onclick="scaleButtons('fs3')">F#3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="g3" onclick="scaleButtons('g3')">G3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="gs3" onclick="scaleButtons('gs3')">G#3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="a3" onclick="scaleButtons('a3')">A3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="as3" onclick="scaleButtons('as3')">A#3</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="b3" onclick="scaleButtons('b3')">B3</button>
+            </div>
+
+            <div class="btn-group-horizontal btn-group-sm gruponotas4" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" id="c4" onclick="scaleButtons('c4')">C4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="d4" onclick="scaleButtons('d4')">D4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="ds4" onclick="scaleButtons('ds4')">D#4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="e4" onclick="scaleButtons('e4')">E4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="f4" onclick="scaleButtons('f4')">F4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="fs4" onclick="scaleButtons('fs4')">F#4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="g4" onclick="scaleButtons('g4')">G4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="gs4" onclick="scaleButtons('gs4')">G#4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="a4" onclick="scaleButtons('a4')">A4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="as4" onclick="scaleButtons('as4')">A#4</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="b4" onclick="scaleButtons('b4')">B4</button>
+            </div>
+
+            <div class="btn-group-horizontal btn-group-sm gruponotas5" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" id="c5" onclick="scaleButtons('c5')">C5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="d5" onclick="scaleButtons('d5')">D5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="ds5" onclick="scaleButtons('ds5')">D#5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="e5" onclick="scaleButtons('e5')">E5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="f5" onclick="scaleButtons('f5')">F5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="fs5" onclick="scaleButtons('fs5')">F#5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="g5" onclick="scaleButtons('g5')">G5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="gs5" onclick="scaleButtons('gs5')">G#5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="a5" onclick="scaleButtons('a5')">A5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="as5" onclick="scaleButtons('as5')">A#5</button>
+              <button type="button" class="btn btn-secondary buttonColor" id="b5" onclick="scaleButtons('b5')">B5</button>
+            </div>
+            <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="">
+              <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal()">Scale</button>
+            </div>
+
+            <!--Graphics-->
+            <div>
+              <!-- index.js 829 -->
+              <div class="stats" id="stats">
+                <script src="libraries/stats.js"></script>
+                <script>
+                  var v = document.getElementById('stats');
+                  var stats1 = new Stats();
+                  stats1.showPanel(0);
+                  stats1.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
+                  stats1.domElement.style.color = 'white';
+                  v.appendChild(stats1.domElement);
+                  var stats2 = new Stats();
+                  stats2.showPanel(1);
+                  stats2.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
+                  stats2.domElement.style.color = 'white';
+                  v.appendChild(stats2.domElement);
+                  var stats3 = new Stats();
+                  stats3.showPanel(2);
+                  stats3.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
+                  stats3.domElement.style.color = 'white';
+                  v.appendChild(stats3.domElement);
+               </script>
+              </div>
+            </div>
+
+          </div>
+          setViewOffset
+          <div id="cameraM5" class="cameraM5"></div>
+          <div id="cameraM6" class="cameraM6"></div>
+          <div id="cameraM7" class="cameraM7"></div>
+          <div id="cameraM8" class="cameraM8"></div>
+          x/y
+          <div id="cameraM9" class="cameraM9"></div>
+          <div id="cameraM10" class="cameraM10"></div>
+
+
           <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
             add controls for each scene W presets
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('noise1')">Noise</button>
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('noise2')">Min_Noise</button>
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('rev')">Rev</button>
+            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('shader1')">Glitch</button>
+            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('shader2')">Noise</button>
+            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('shader3')">Reverb</button>
+          </div>
+
+          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set1')">offset1</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set2')">offset2</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set3')">offset3</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set4')">offset4</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set5')">offset5</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set6')">offset6</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('clear')">default</button>
           </div>
 
         </div>
@@ -623,6 +653,7 @@
       <script src="libraries/Tone.Editor.js" charset="utf-8"></script>
       <script src="libraries/SimpleMidiInput.js" type="text/javascript"></script>
       <script src="libraries/StartAudioContext.js" type="text/javascript"></script>
+      <script src="libraries/CubemapToEquirectangular.js"></script>
       <script src="libraries/wui.js" type="text/javascript"></script>
       <script src="audio.js" type="text/javascript"></script>
       <script src="interface.js" type="text/javascript"></script>

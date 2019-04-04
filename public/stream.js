@@ -6,12 +6,17 @@ var isStreaming = false;
 var isAlone = false;
 var isAlocating = false;
 
+/* Make this */
+var isAlocatingSynth = true;
+var isAlocatingBack = true;
+var isAlocatingGraphs = true;
+var isAlocatingPost = true;
+
 var values = new Array(34);
 for (var i = 0; i < values.length; ++i) {
   values[i] = 0;
 }
 socket.on('changeStream', streamCortex);
-
 var modalAlocate = document.getElementById('modalAlocate');
 
 
@@ -495,7 +500,6 @@ function changeState(v) {
     document.getElementById('inst2').style.pointerEvents = "none";
     document.getElementById('inst3').style.pointerEvents = "none";
     document.getElementById('inst4').style.pointerEvents = "none";
-    document.getElementById('inst5').style.pointerEvents = "none";
   }
   if (v == "monitor") {
     socket.connected = true;
@@ -539,7 +543,6 @@ function alocateCortex(v) {
       document.getElementById("alocateThree").style.color = "white";
       document.getElementById("alocateFour").style.color = "white";
       document.getElementById("inst1").click();
-
 
     }
     if (v === "alocateTwo") {

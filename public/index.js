@@ -123,6 +123,8 @@ var mouseDown = 0;
 var currentSynthesizer;
 currentSynthesizer = polySynth;
 
+var strDownloadMime = "image/octet-stream";
+
 /*
 var meshMaterial1 = createMaterial("vertex-shader", "fragment-shader-1");
 var meshMaterial2 = createMaterial("vertex-shader", "fragment-shader-2");
@@ -170,9 +172,13 @@ function init() {
   raycasterTwo.linePrecision = 3;
 
   var canvas = document.createElement('canvas');
-  var context = canvas.getContext('webgl2');
+  var context = canvas.getContext('webgl2', {
+    preserveDrawingBuffer: true
+  });
+
   renderer = new THREE.WebGLRenderer({
     canvas: canvas,
+    preserveDrawingBuffer: true,
     context: context,
     antialias: true
   });
@@ -188,6 +194,9 @@ function init() {
     render();
     orbitControls(x);
   });
+  document.getElementById("shot").addEventListener('click', takeScreenshot);
+  document.getElementById("save").addEventListener('click', saveAsImage);
+
 
   function orbitControls(x) {
     //console.log(x);
@@ -838,9 +847,9 @@ function detectmob() {
 }
 
 function render() {
-  //stats1.update();
-  //stats2.update();
-  //stats3.update();
+  stats1.update();
+  stats2.update();
+  stats3.update();
   var corFundo = Math.random() * (0.15 - 0) + 0;
   // scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
@@ -886,6 +895,8 @@ function render() {
   renderer.shadowMap.enabled = false;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.shadowMap.needsUpdate = true;
+
+  document.getElementById('save3d').addEventListener('click', save3d);
 
   if (renderPostOne == true) {
     composerOne.render();
@@ -1031,18 +1042,67 @@ function loadWarning(v) {
   }
 }
 
-console.log(polySynth);
+/*
+var str = "Hello World!";
+var result = str.italics();
+$('#stateButtonOne').hover(
+  function() {
+    var $this = $(this); // caching $(this)
+    $this.data('defaultText', $this.text());
+    $this.text("The descenter method works as the default the first time the artist opens the system. There is no master control and the synthesizer plays on every ");
+  },
+  function() {
+    var $this = $(this); // caching $(this)
+    $this.text($this.data('defaultText'));
+  }
+);
+*/
 
-//AMSynth
-//DuoSynth
-//FMSynth
-//Mono
-//Pluck
-//Metal
-//Membrane
-/*{
-polyphony  : 4 ,
-volume  : 0 ,
-detune  : 0 ,
-voice  : Tone.Synth
-}*/
+function takeScreenshot() {
+  var w = window.open('', '');
+  w.document.title = "Screenshot";
+  //w.document.body.style.backgroundColor = "red";
+  var img = new Image();
+  // Without 'preserveDrawingBuffer' set to true, we must render now
+  renderer.render(scene, camera);
+  img.src = renderer.domElement.toDataURL();
+  w.document.body.appendChild(img);
+}
+
+function saveScreenshot() {
+  renderer.domElement.toDataURL('image/png');
+}
+
+function saveAsImage() {
+  var imgData, imgNode;
+  try {
+    var strMime = "image/jpeg";
+    imgData = renderer.domElement.toDataURL(strMime);
+    saveFile(imgData.replace(strMime, strDownloadMime), "test.jpg");
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+}
+
+var saveFile = function(strData, filename) {
+  var link = document.createElement('a');
+  if (typeof link.download === 'string') {
+    document.body.appendChild(link); //Firefox requires the link to be in the body
+    link.download = filename;
+    link.href = strData;
+    link.click();
+    document.body.removeChild(link); //remove the link when done
+  } else {
+    location.replace(uri);
+  }
+}
+
+function save3d() {
+  var equiManaged = new CubemapToEquirectangular(renderer, true);
+  equiManaged.update(camera, scene);
+
+  cubeCamera.position.copy(camera.position);
+  cubeCamera.updateCubeMap(renderer, scene);
+  equi.convert(cubeCamera);
+}

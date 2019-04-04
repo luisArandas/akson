@@ -950,12 +950,12 @@ function topBar(data) {
     WUI_Dialog.close("logs_dialog");
     WUI_Dialog.close("monitor_dialog");
     document.getElementById("topBar").style.visibility = "hidden";
-    consoleLog();
+    $("body").css('cursor', 'none');
   }
   if (data == "recordAudio") {
-    consoleLog();
-    //https: //github.com/mdn/web-dictaphone
-    showToast('record');
+    WUI_Dialog.open("savesettings_dialog");
+    console.log("check record");
+    //showToast('record');
   }
   if (data == "aboutMe") {
     modalAbout.style.display = "block";

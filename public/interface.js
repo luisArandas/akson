@@ -33,6 +33,39 @@ WUI_Dialog.create("master_dialog", {
   left: 0
 });
 
+WUI_Dialog.create("savesettings_dialog", {
+  title: "Save Settings",
+  width: "300px",
+  height: "310px",
+  halign: "center",
+  valign: "center",
+  open: false,
+  minimized: false,
+  on_open: null,
+  on_close: function() {
+
+  },
+  on_pre_detach: function() {},
+  on_detach: function(new_window) {
+    new_window.document.title = "Save Settings";
+    bind_contextmenu();
+  },
+  on_resize: function(new_width, new_height) {},
+  on_minimize: function() {
+    console.log("teste");
+  },
+  modal: false,
+  closable: true,
+  draggable: true,
+  minimizable: true,
+  resizable: false,
+  //detachable: false,
+  keep_align_when_resized: false,
+  top: -750,
+  left: 0
+});
+
+
 WUI_Dialog.create("cockpit_dialog", {
   title: "Instruments", //'<div style="font-family: Monospace; font-size: 10px; color: lightgrey; position: absolute; margin-left: 8px;">---</div><span style="font-family: Monospace; font-size: 10px; color: lightgrey;">Instruments</span>',
   width: "850px",
@@ -68,6 +101,12 @@ WUI_Dialog.create("cockpit_dialog", {
 });
 
 WUI_Tabs.create("tabs_instrumentos", {
+  // function called when a tab is clicked (tab index will be passed as argument)
+  // on_tab_click: console.log("ok"),
+  // style value for the content height
+});
+
+WUI_Tabs.create("tabs_about", {
   // function called when a tab is clicked (tab index will be passed as argument)
   // on_tab_click: console.log("ok"),
   // style value for the content height

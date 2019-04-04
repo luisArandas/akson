@@ -511,17 +511,57 @@ afterimagePass.renderToScreen = false;
        glitchPass.renderToScreen = true;
      }
 */
+var currentShader = "";
 
-function shaderButtons(v) {
-  if (v == "noise1") {
-    renderPostOne = true;
-    glitchPass.renderToScreen = true;
+function shaderButtons(data) {
+
+  if (document.getElementById(data).style.background != "white") {
+    document.getElementById(data).style.background = "white";
+    document.getElementById(data).style.color = "black";
+  } else if (document.getElementById(data).style.background == "white") {
+    document.getElementById(data).style.background = "black";
+    document.getElementById(data).style.color = "white";
   }
-  if (v == "noise2") {
+  if (data == "shader1") {
+    if (renderPostOne != true) {
+      renderPostOne = true;
+      glitchPass.goWild = false;
+      glitchPass.renderToScreen = true;
+      document.getElementById("shader2").style.background = "black";
+      document.getElementById("shader2").style.color = "white";
+      document.getElementById("shader3").style.background = "black";
+      document.getElementById("shader3").style.color = "white";
+
+    } else {
+      renderPostOne = false;
+      glitchPass.renderToScreen = false;
+    }
+  }
+  if (data == "shader2") {
+    if (renderPostOne != true) {
+      renderPostOne = true;
+      glitchPass.renderToScreen = true;
+      glitchPass.goWild = true;
+      document.getElementById("shader1").style.background = "black";
+      document.getElementById("shader1").style.color = "white";
+      document.getElementById("shader3").style.background = "black";
+      document.getElementById("shader3").style.color = "white";
+    } else {
+      renderPostOne = false;
+      glitchPass.renderToScreen = false;
+      glitchPass.goWild = false;
+    }
 
   }
-  if (v == "rev") {
+  if (data == "shader3") {
+    if (renderPostThree != true) {
+      renderPostThree = true;
+      document.getElementById("shader2").style.background = "black";
+      document.getElementById("shader2").style.color = "white";
+      document.getElementById("shader3").style.background = "black";
+      document.getElementById("shader3").style.color = "white";
 
+    }
   }
 }
 
