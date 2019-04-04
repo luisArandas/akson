@@ -71,6 +71,10 @@ var composerFour;
 var whichVisuals;
 
 var r = 450;
+//https://github.com/jbaicoianu/threecap
+var capturer = new CCapture({
+  format: 'webm'
+});
 
 /*  Currently using Pentatonic Major  */
 
@@ -944,6 +948,7 @@ function render() {
   } else if (parentTransformDois.rotation.x < -1) {
     parentTransformDois.rotation.x = -1
   }
+  capturer.capture(renderer.domElement);
 }
 
 var customScale = ["c2", "d2", "e2", "g2", "a2", "c3", "d3", "e3", "g3", "a3", "c4", "d4", "e4", "g4", "a4", "c5", "d5", "e5", "g5", "a5"];
@@ -1101,8 +1106,56 @@ var saveFile = function(strData, filename) {
 function save3d() {
   var equiManaged = new CubemapToEquirectangular(renderer, true);
   equiManaged.update(camera, scene);
-
   cubeCamera.position.copy(camera.position);
   cubeCamera.updateCubeMap(renderer, scene);
   equi.convert(cubeCamera);
+}
+
+/*
+// Create a capturer that exports a WebM video
+var capturer = new CCapture( { format: 'webm' } );
+
+// Create a capturer that exports an animated GIF
+// Notices you have to specify the path to the gif.worker.js
+var capturer = new CCapture( { format: 'gif', workersPath: 'js/' } );
+
+// Create a capturer that exports PNG images in a TAR file
+var capturer = new CCapture( { format: 'png' } );
+
+// Create a capturer that exports JPEG images in a TAR file
+var capturer = new CCapture( { format: 'jpg' } );
+*/
+
+
+/*
+framerate: target framerate for the capture
+motionBlurFrames: supersampling of frames to create a motion-blurred frame (0 or 1 make no effect)
+format: webm/gif/png/jpg/ffmpegserver
+quality: quality for webm/jpg
+name: name of the files to be exported. if no name is provided, a GUID will be generated
+verbose: dumps info on the console
+display: adds a widget with capturing info (WIP)
+timeLimit: automatically stops and downloads when reaching that time (seconds). Very convenient for long captures: set it and forget it (remember autoSaveTime!)
+autoSaveTime: it will automatically download the captured data every n seconds (only available for webm/png/jpg)
+startTime: skip to that mark (seconds)
+workersPath: path to the gif worker script
+*/
+
+function saveVideo(v) {
+  if (v === '1') {
+    console.log("ok1");
+    capturer.start();
+  }
+  if (v === '2') {
+    console.log("ok2");
+    capturer.stop();
+    capturer.save();
+  }
+  if (v === '3') {
+    console.log("ok3");
+  }
+}
+
+function saveAudio(v) {
+
 }

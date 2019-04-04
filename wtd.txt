@@ -8,10 +8,7 @@ The distance of intersection isSceneOne can be amplitude
 https://github.com/yiwenl/Alfrid
 https://github.com/jiahaog/nativefier -> Export as app // nativefier http://google.com --inject site.css --title-bar-style 'hiddenInset'
 https://github.com/mdn/web-dictaphone
-check exporting
 // const ios; Atribute.
-tokens em cada GUI para controlar entradas e saídas
-correlate controls
-about context
 Write more about the Descriptions
+Export as 360 video
 check (Free, cross-platform, open-source software (Simplified BSD License))
