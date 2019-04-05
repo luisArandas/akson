@@ -1106,9 +1106,7 @@ var saveFile = function(strData, filename) {
 function save3d() {
   var equiManaged = new CubemapToEquirectangular(renderer, true);
   equiManaged.update(camera, scene);
-  cubeCamera.position.copy(camera.position);
-  cubeCamera.updateCubeMap(renderer, scene);
-  equi.convert(cubeCamera);
+
 }
 
 /*
@@ -1154,8 +1152,4 @@ function saveVideo(v) {
   if (v === '3') {
     console.log("ok3");
   }
-}
-
-function saveAudio(v) {
-
 }

@@ -823,3 +823,8 @@ h2 {
   right: 0px;
   top: 5px;
 }
+
+#shader0 {
+  background-color: white;
+  color: black;
+}

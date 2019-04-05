@@ -49,7 +49,6 @@
 </head>
 
 <body>
-
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -71,9 +70,9 @@
       <br>
       --
       <br>
-      <button id="start1" onclick="saveAudio('1')">startAudio</button>
-      <button id="start1" onclick="saveAudio('2')">startAudio</button>
-
+      <button id="startaudio1" onclick="saveAudio('start')">startAudio</button>
+      <button id="stopaudio1" onclick="saveAudio('stop')">stopAudio</button>
+      <audio controls></audio>
 
     </div>
   </div>
@@ -560,6 +559,7 @@
             <!--Graphics-->
             <div>
               <!-- index.js 829 -->
+              cortar em cima => black
               <div class="stats" id="stats">
                 <script src="libraries/stats.js"></script>
                 <script>
@@ -596,6 +596,7 @@
 
           <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
             add controls for each scene W presets
+            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader0" onclick="shaderButtons('shader0')">Default</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('shader1')">Glitch</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('shader2')">Noise</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('shader3')">Reverb</button>
