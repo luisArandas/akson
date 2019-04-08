@@ -1,14 +1,7 @@
-testing omnitone
 Make pans
 geolocation API and a new logger
 Presets
 Restart audioContext without refresh
-Clicks on reverb wet
-The distance of intersection isSceneOne can be amplitude
 https://github.com/yiwenl/Alfrid
 https://github.com/jiahaog/nativefier -> Export as app // nativefier http://google.com --inject site.css --title-bar-style 'hiddenInset'
-https://github.com/mdn/web-dictaphone
-// const ios; Atribute.
-Write more about the Descriptions
-Export as 360 video
 check (Free, cross-platform, open-source software (Simplified BSD License))

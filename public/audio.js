@@ -382,7 +382,7 @@ var UI = {
 
 var number = new Nexus.Number('#number');
 number.link(UI.synthvolume);
-
+/* Numbers here */
 
 for (var key in UI) {
   UI[key].on('change', function(value) {
@@ -458,14 +458,6 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
 });
 polySynth.connect(vibrato);
 
-
-/*
-var phaser = new Tone.Phaser({
-  "frequency": 500,
-  "octaves": 5,
-  "baseFrequency": 1000
-}).toMaster();
-*/
 
 /* ---------------------------- NEXUS ---------------------------- */
 
@@ -863,12 +855,11 @@ UI.highfreq.on('change', function(v) {
 
 UI.synthPhase.on('change', function(v) {
   polySynth.phase = v;
-  console.log(polySynth.phase);
-  //var data = {
-  //  x: v,
-  //  y: "eqHighFreq"
-  //};
-  //socket.emit('uiSocketEqHighFreq', data);
+  var data = {
+    x: v,
+    y: "synthPhase"
+  };
+  socket.emit('uiSocketSynthPhase', data);
   //_v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
   //printLogsDialog("Equalizer High Freq Crossover Value : ", _v);
 });
@@ -879,6 +870,11 @@ UI.synthPartials.on('change', function(v) {
       "type": typeofOsc + v
     }
   });
+  var data = {
+    x: v,
+    y: "synthPartials"
+  };
+  socket.emit('uiSocketSynthPartials', data);
 });
 
 UI.noisefiltergain.on('change', function(v) {
@@ -887,37 +883,101 @@ UI.noisefiltergain.on('change', function(v) {
       "gain": v
     }
   });
+  var data = {
+    x: v,
+    y: "noiseFilterGain"
+  };
+  socket.emit('uiSocketNoiseFilterGain', data);
 });
+
 UI.vibratoFrequency.on('change', function(v) {
   vibrato.frequency.value = v;
+  var data = {
+    x: v,
+    y: "vibratoFreq"
+  };
+  socket.emit('uiSocketSynthVibratoFreq', data);
 });
+
 UI.vibratoDepth.on('change', function(v) {
   vibrato.depth.value = v;
+  var data = {
+    x: v,
+    y: "vibratoDepth"
+  };
+  socket.emit('uiSocketSynthVibratoDep', data);
 });
+
 UI.vibratoWet.on('change', function(v) {
   vibrato.wet.value = v;
+  var data = {
+    x: v,
+    y: "vibratoWet"
+  };
+  socket.emit('uiSocketSynthVibratoWet', data);
 });
 
 UI.phaserFreq.on('change', function(v) {
   phaser.frequency.value = v;
+  var data = {
+    x: v,
+    y: "phaserFreq"
+  };
+  socket.emit('uiSocketNoisePhaserFreq', data);
 });
+
 UI.phaserOct.on('change', function(v) {
   phaser.octaves.value = v;
+  var data = {
+    x: v,
+    y: "phaserOct"
+  };
+  socket.emit('uiSocketNoisePhaserOct', data);
 });
+
 UI.phaserWet.on('change', function(v) {
   phaser.wet.value = v;
+  var data = {
+    x: v,
+    y: "phaserWet"
+  };
+  socket.emit('uiSocketNoisePhaserWet', data);
 });
+
 UI.phaserQ.on('change', function(v) {
   phaser.Q.value = v;
+  var data = {
+    x: v,
+    y: "phaserQ"
+  };
+  socket.emit('uiSocketNoisePhaserQ', data);
 });
+
 UI.phaserBaseFreq.on('change', function(v) {
   phaser.baseFrequency.value = v;
+  var data = {
+    x: v,
+    y: "phaserBaseFreq"
+  };
+  socket.emit('uiSocketNoisePhaserBaseFreq', data);
 });
+
 UI.jcreverbRoomsize.on('change', function(v) {
   jcreverb.roomSize.value = v;
+  var data = {
+    x: v,
+    y: "jcverbRoomSiz"
+  };
+  socket.emit('uiSocketNoiseJcverbRoom', data);
 });
+
 UI.jcreverbWet.on('change', function(v) {
   jcreverb.wet.value = v;
+  var data = {
+    x: v,
+    y: "jcverbRoomSiz"
+  };
+  socket.emit('uiSocketNoiseJcverbWet', data);
 });
 
 //console.log(autoFilterOne);
@@ -1202,7 +1262,8 @@ function flipPhase(a) {
       }
     });
   }
-  console.log(polySynth);
+  var data = a;
+  socket.emit('uiSocketFlipPhaseButton', data);
 }
 
 

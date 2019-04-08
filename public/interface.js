@@ -29,8 +29,7 @@ WUI_Dialog.create("master_dialog", {
   resizable: false,
   //detachable: false,
   keep_align_when_resized: false,
-  top: -750,
-  left: 0
+  top: -1500
 });
 
 WUI_Dialog.create("savesettings_dialog", {
@@ -41,19 +40,6 @@ WUI_Dialog.create("savesettings_dialog", {
   valign: "center",
   open: false,
   minimized: false,
-  on_open: null,
-  on_close: function() {
-
-  },
-  on_pre_detach: function() {},
-  on_detach: function(new_window) {
-    new_window.document.title = "Save Settings";
-    bind_contextmenu();
-  },
-  on_resize: function(new_width, new_height) {},
-  on_minimize: function() {
-    console.log("teste");
-  },
   modal: false,
   closable: true,
   draggable: true,
@@ -61,7 +47,7 @@ WUI_Dialog.create("savesettings_dialog", {
   resizable: false,
   //detachable: false,
   keep_align_when_resized: false,
-  top: -750,
+  top: -1350,
   left: 0
 });
 
@@ -70,34 +56,16 @@ WUI_Dialog.create("cockpit_dialog", {
   title: "Instruments", //'<div style="font-family: Monospace; font-size: 10px; color: lightgrey; position: absolute; margin-left: 8px;">---</div><span style="font-family: Monospace; font-size: 10px; color: lightgrey;">Instruments</span>',
   width: "850px",
   height: "325px",
-  halign: "center",
-  valign: "bottom",
   open: true,
   minimized: false,
   on_open: null,
   on_close: null,
-  on_pre_detach: function() {},
-  on_detach: function(new_window) {
-    new_window.document.title = "Instruments and Controls"; // replace the detached dialog title
-  },
-  on_resize: function(new_width, new_height) {},
-  header_btn: [{
-    title: "?",
-    on_click: function() {
-      console.log("BOTON");
-    },
-    class_name: ""
-  }],
-  modal: false,
   closable: true,
   draggable: true,
   minimizable: true,
-  //detachable: true,
-  min_width: "title",
-  min_height: 64,
-  keep_align_when_resized: true,
-  top: -100,
-  left: 0,
+  halign: "center",
+  valign: "bottom",
+  top: -1550
 });
 
 WUI_Tabs.create("tabs_instrumentos", {
@@ -206,7 +174,8 @@ WUI_Dialog.create("logs_dialog", {
   draggable: true,
   minimizable: true,
   resizable: false,
-  status_bar: true
+  status_bar: true,
+  top: -500
 });
 
 WUI_Dialog.create("demo_integrated_dialog_5", {
@@ -253,8 +222,8 @@ WUI_Dialog.create("demo_integrated_dialog_6", {
 
 WUI_Dialog.create("monitor_dialog", {
   title: "Monitor",
-  width: "85%",
-  height: "85%",
+  width: "600px",
+  height: "600px",
   halign: "center",
   valign: "center",
   open: false,
@@ -277,7 +246,7 @@ WUI_Dialog.create("monitor_dialog", {
   resizable: false,
   //detachable: true,
   keep_align_when_resized: false,
-  top: 0,
+  top: -350,
   left: 0
 });
 
@@ -291,12 +260,10 @@ WUI_Dialog.create("alocate_dialog", {
   minimized: false,
   on_open: function() {},
   on_close: function() {
-    console.log("Alocate is Off");
     document.getElementById('inst1').style.pointerEvents = "auto";
     document.getElementById('inst2').style.pointerEvents = "auto";
     document.getElementById('inst3').style.pointerEvents = "auto";
     document.getElementById('inst4').style.pointerEvents = "auto";
-    document.getElementById('inst5').style.pointerEvents = "auto";
   },
   on_pre_detach: function() {},
   on_detach: function(new_window) {
@@ -320,8 +287,8 @@ WUI_Dialog.create("alocate_dialog", {
 
 WUI_Dialog.create("about_this_dialog", {
   title: "System",
-  width: "350px",
-  height: "410px",
+  width: "420px",
+  height: "530px",
   halign: "center",
   valign: "center",
   open: false,

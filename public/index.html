@@ -59,6 +59,7 @@
 
   <div id="savesettings_dialog">
     <div style="text-align: center; font-size: 5pt;">
+      save on startup automatic engine
       <button id="shot">newpage</button>
       <button id="save">save</button>
       <button id="save3d">save3d</button>
@@ -240,16 +241,34 @@
   <div id="about_this_dialog">
     <div id="tabs_about">
       <div>
-        <div class="inst1" id="inst1">Specs</div>
-        <div class="inst2" id="inst2">Networks</div>
+        <div class="specs" id="specs">Specs</div>
+        <div class="nets" id="nets">Networks</div>
       </div>
       <div>
-
         <div id="machineInfo" class="machineInfo">
           <canvas id="glcanvas"></canvas>
         </div>
         <div>
-          <div id="networkinfo" class="networkinfo">test
+          <div id="networkinfo" class="networkinfo">
+            &nbsp; Network Models<br><br>
+            &nbsp; &nbsp; <i>descenter</i><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; This method is the instrument default network model when the user connects. The <i>descenter</i>
+            method lets the user have an experience that streams the synthesizer through every device being able to control all the other atributes
+            of the instrument just by himself, not allowing to have a master control but a collaborative yet singular
+            experience.
+            <br>
+            <br>
+            &nbsp; &nbsp; <i>streamed</i><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; The streamed method ...
+            <br>
+            <br>
+            &nbsp; &nbsp; <i>allocate</i><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
+            <br>
+            <br>
+            &nbsp; &nbsp; <i>alone</i><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
+            <br>
           </div>
         </div>
       </div>
@@ -600,6 +619,7 @@
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('shader1')">Glitch</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('shader2')">Noise</button>
             <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('shader3')">Reverb</button>
+            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader4" onclick="shaderButtons('shader4')">Vignette</button>
           </div>
 
           <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">

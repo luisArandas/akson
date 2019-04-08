@@ -15,17 +15,11 @@ var light1 = new Nexus.Slider('#light1', {
 });
 light1.on('change', function(e) {
   lightOne.intensity = e; //todas
-  console.log(lightOne);
-  /*light2.intensity = e; //quatro
-  light7.intensity = e; //3
-  directionalLight5.intensity = e; //dois
-  directionalLight7.intensity = e; //3
-  ambientLight.intensity = e; //todas
-  ambientLight2.intensity = e; //quatro
-  ambientLight5.intensity = e;
-  ambientLight7.intensity = e; //3
-  light1._value.update(e);
-  light1.render();*/
+  var data = {
+    x: e,
+    y: "lightOne"
+  };
+  socket.emit('uiSocketLightOne', data);
 });
 
 var light2 = new Nexus.Slider('#light2', {
@@ -38,7 +32,11 @@ var light2 = new Nexus.Slider('#light2', {
 });
 light2.on('change', function(e) {
   lightTwo.intensity = e;
-
+  var data = {
+    x: e,
+    y: "lightTwo"
+  };
+  socket.emit('uiSocketLightTwo', data);
 });
 
 var light3 = new Nexus.Slider('#light3', {
@@ -51,6 +49,11 @@ var light3 = new Nexus.Slider('#light3', {
 });
 light3.on('change', function(e) {
   lightThree.intensity = e;
+  var data = {
+    x: e,
+    y: "lightThree"
+  };
+  socket.emit('uiSocketLightThree', data);
 });
 
 var light4 = new Nexus.Slider('#light4', {
@@ -63,6 +66,11 @@ var light4 = new Nexus.Slider('#light4', {
 });
 light4.on('change', function(e) {
   lightFour.intensity = e;
+  var data = {
+    x: e,
+    y: "lightFour"
+  };
+  socket.emit('uiSocketLightFour', data);
 });
 
 
@@ -78,6 +86,11 @@ cameraM1.on('change', function(e) {
   camera.fov = e;
   console.log(camera.fov);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM1"
+  };
+  socket.emit('uiSocketCameraM1', data);
 });
 
 var cameraM2 = new Nexus.Slider('#cameraM2', {
@@ -92,6 +105,11 @@ cameraM2.on('change', function(e) {
   camera.zoom = e;
   console.log(camera.zoom);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM2"
+  };
+  socket.emit('uiSocketCameraM2', data);
 });
 
 var cameraM3 = new Nexus.Slider('#cameraM3', {
@@ -106,6 +124,11 @@ cameraM3.on('change', function(e) {
   /* See this!!! */
   camera.aspect = e;
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM3"
+  };
+  socket.emit('uiSocketCameraM3', data);
 });
 
 var cameraM4 = new Nexus.Slider('#cameraM4', {
@@ -119,6 +142,11 @@ var cameraM4 = new Nexus.Slider('#cameraM4', {
 cameraM4.on('change', function(e) {
   camera.near = e;
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM4"
+  };
+  socket.emit('uiSocketCameraM4', data);
 });
 
 var cameraM5 = new Nexus.Slider('#cameraM5', {
@@ -132,6 +160,11 @@ var cameraM5 = new Nexus.Slider('#cameraM5', {
 cameraM5.on('change', function(e) {
   camera.setViewOffset(e, fullHeight, w * 1, h * 0, w, h);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM5"
+  };
+  socket.emit('uiSocketCameraM5', data);
 });
 
 var cameraM6 = new Nexus.Slider('#cameraM6', {
@@ -145,6 +178,11 @@ var cameraM6 = new Nexus.Slider('#cameraM6', {
 cameraM6.on('change', function(e) {
   camera.setViewOffset(fullWidth, e, w * 1, h * 0, w, h);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM6"
+  };
+  socket.emit('uiSocketCameraM6', data);
 });
 
 var cameraM7 = new Nexus.Slider('#cameraM7', {
@@ -158,6 +196,11 @@ var cameraM7 = new Nexus.Slider('#cameraM7', {
 cameraM7.on('change', function(e) {
   camera.setViewOffset(fullWidth, fullHeight, w * e, h * 0, w, h);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM7"
+  };
+  socket.emit('uiSocketCameraM7', data);
 });
 
 var cameraM8 = new Nexus.Slider('#cameraM8', {
@@ -171,6 +214,11 @@ var cameraM8 = new Nexus.Slider('#cameraM8', {
 cameraM8.on('change', function(e) {
   camera.setViewOffset(fullWidth, fullHeight, w * 1, h * e, w, h);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM8"
+  };
+  socket.emit('uiSocketCameraM8', data);
 });
 
 var cameraM9 = new Nexus.Slider('#cameraM9', {
@@ -184,6 +232,11 @@ var cameraM9 = new Nexus.Slider('#cameraM9', {
 cameraM9.on('change', function(e) {
   camera.setViewOffset(fullWidth, fullHeight, w * e, h * 0, fullWidth, fullHeight);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM9"
+  };
+  socket.emit('uiSocketCameraM9', data);
 });
 
 var cameraM10 = new Nexus.Slider('#cameraM10', {
@@ -197,11 +250,22 @@ var cameraM10 = new Nexus.Slider('#cameraM10', {
 cameraM10.on('change', function(e) {
   camera.setViewOffset(fullWidth, fullHeight, w * 0, h * e, fullWidth, fullHeight);
   camera.updateProjectionMatrix();
+  var data = {
+    x: e,
+    y: "cameraM10"
+  };
+  socket.emit('uiSocketCameraM10', data);
 });
 
 
 
 function camOffsetDefault(a) {
+  var data = {
+    x: a,
+    y: "cameraM11"
+  };
+  socket.emit('uiSocketCameraM11', data);
+
   if (a === 'set1') {
     camera.setViewOffset(fullWidth, fullHeight, w * 1, h * 0, w, h);
   }
@@ -225,63 +289,72 @@ function camOffsetDefault(a) {
   }
 }
 
-/* Machine Info */
+/* Net Info */
 
-var a1 = "Network effective bandwidth estimate " + navigator.connection.downlink + " MB/s" + '<br>';
-var a2 = "Max download speed " + navigator.connection.downlinkMax + " MB/s" + '<br>';
-var a3 = "Effective connection type " + navigator.connection.effectiveType + " MB/s" + '<br>';
-var a4 = "estimated effective round-trip " + navigator.connection.rtt + " rounded to the nearest multiple of 25 milliseconds" + '<br>';
-var a5 = "network connection type " + navigator.connection.type + '<br>';
-var a6 = navigator.language || navigator.userLanguage;
-var a7 = "- Device Screen Width_" + screen.width + "<br>";
-var a8 = "- Device Screen Height_" + screen.height + "<br>";
-var a9 = "- Device Screen availWidth_" + screen.availWidth + "<br>";
-var a10 = "- Device Screen availHeight_" + screen.availHeight + "<br>";
-var a11 = "- Device Screen colorDepth_" + screen.colorDepth + "<br>";
-var a12 = "- Device Screen pixelDepth_" + screen.pixelDepth + "<br>";
-var a13 = "- User Agent_" + navigator.userAgent + "<br>";
-var a14 = "- Vendor_" + navigator.vendor + "<br>";
-var a15 = "- ProductSub_" + navigator.productSub + "<br>";
-var a16 = "- Platform_" + navigator.platform + "<br>";
-var a17 = "- Navigator_Languages_" + navigator.languages + "<br>";
+var a1 = "Effective Bandwidth Estimate: " + navigator.connection.downlink + " MB/s" + '<br>';
+var a2 = "Max Download Speed: " + navigator.connection.downlinkMax + " MB/s" + '<br>';
+var a3 = "Effective Connection Type: " + navigator.connection.effectiveType + " MB/s" + '<br>';
+var a4 = "Estimated Effective Round-Trip: " + navigator.connection.rtt + ", rounded to the nearest multiple of 25 milliseconds" + '<br>';
+var a5 = "Network Connection Type: " + navigator.connection.type + '<br>';
+var a6 = "Device Language: " + navigator.language || navigator.userLanguage;
 
+/* Audio Info */
+
+var a7 = "AudioContext BaseLantency: " + Tone.context.baseLantency + '<br>';
+var a8 = "AudioContext CurrentTime: " + Tone.context.currentTime + '<br>';
+var a9 = "AudioContext Channel Count: " + Tone.context.destination.channelCount + '<br>';
+var a10 = "AudioContext Channel CountMode: " + Tone.context.destination.channelCountMode + '<br>';
+var a11 = "AudioContext ChannelInterpretation: " + Tone.context.destination.channelInterpretation + '<br>';
+var a12 = "AudioContext Inputs: " + Tone.context.destination.numberOfInputs + '<br>';
+var a13 = "AudioContext SampleRate: " + Tone.context.sampleRate + '<br>';
+var a14 = "AudioContext State: " + Tone.context.state + '<br>';
+
+/* Graphics Info */
 canvas = document.getElementById("glcanvas");
 var gl = canvas.getContext("experimental-webgl");
 
-var a18 = "- GL RENDERER " + gl.getParameter(gl.RENDERER) + '<br>';
-var a19 = "- GL VENDOR " + gl.getParameter(gl.VENDOR) + '<br>';
-var a20 = "AudioContext baseLantency: " + Tone.context.baseLantency + '<br>';
-var a21 = "AudioContext currentTime: " + Tone.context.currentTime + '<br>';
-var a22 = "AudioContext channelCount: " + Tone.context.destination.channelCount + '<br>';
-var a23 = "AudioContext channelCountMode: " + Tone.context.destination.channelCountMode + '<br>';
-var a24 = "AudioContext channelInterpretation: " + Tone.context.destination.channelInterpretation + '<br>';
-var a25 = "AudioContext Inputs: " + Tone.context.destination.numberOfInputs + '<br>';
-var a26 = "AudioContext sampleRate: " + Tone.context.sampleRate + '<br>';
-var a27 = "AudioContext State: " + Tone.context.state + '<br>';
-
-console.log(Tone.context);
+var a15 = "Device Screen Width: " + screen.width + "<br>";
+var a16 = "Device Screen Height: " + screen.height + "<br>";
+var a17 = "Device Screen AvailWidth: " + screen.availWidth + "<br>";
+var a18 = "Device Screen AvailHeight: " + screen.availHeight + "<br>";
+var a19 = "Device Screen ColorDepth: " + screen.colorDepth + "<br>";
+var a20 = "Device Screen PixelDepth: " + screen.pixelDepth + "<br>";
+var a21 = "GL Renderer: " + gl.getParameter(gl.RENDERER) + '<br>';
+var a22 = "GL Vendor: " + gl.getParameter(gl.VENDOR) + '<br>';
+var a23 = "User Agent: " + navigator.userAgent + "<br>";
+var a24 = "Platform Vendor: " + navigator.vendor + "<br>";
+var a25 = "Platform ProductSub: " + navigator.productSub + "<br>";
+var a26 = "Platform: " + navigator.platform + "<br>";
+var a27 = "Navigator Languages: " + navigator.languages + "<br>";
 
 function camNear(a) {
   if (a === 'kill') {
     camera.near = 0;
     camera.updateProjectionMatrix();
     Tone.Master.mute = true;
+    var e = a;
+    socket.emit('uiSocketKillScene', e);
   }
   if (a === 'born') {
     camera.near = 1;
     camera.updateProjectionMatrix();
     Tone.Master.mute = false;
+    var e = a;
+    socket.emit('uiSocketBornScene', e);
   }
   if (a === 'about') {
-    document.getElementById('machineInfo').innerHTML += a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 + a11 + a12 + a13 + a14 + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
+    var netinfo = "Network Info <br>";
+    var _netinfo = netinfo.fontsize(15);
+    var audioinfo = "<br> <br>Audio Info <br>";
+    var _audioinfo = audioinfo.fontsize(15);
+    var graphicsinfo = "<br> Graphics Info <br>";
+    var _graphicsinfo = graphicsinfo.fontsize(15);
+
+    document.getElementById('machineInfo').innerHTML += netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a8 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
     WUI_Dialog.open("about_this_dialog");
   }
 }
 
-
-
-
-//4 lights
 
 /* PostPro */
 
@@ -295,8 +368,11 @@ var camera1_1 = new Nexus.Slider('#camera1_1', {
 });
 camera1_1.on('change', function(e) {
   parentTransform.scale.x = e;
-  //parentTransform.scale.y = e;
-  //parentTransform.scale.z = e;
+  var data = {
+    x: e,
+    y: "cameraScene1"
+  };
+  socket.emit('uiSocketScene1', data);
 });
 
 var camera1_2 = new Nexus.Slider('#camera1_2', {
@@ -309,6 +385,11 @@ var camera1_2 = new Nexus.Slider('#camera1_2', {
 });
 camera1_2.on('change', function(e) {
   parentTransform.scale.y = e;
+  var data = {
+    x: e,
+    y: "cameraScene2"
+  };
+  socket.emit('uiSocketScene2', data);
 });
 
 var camera1_3 = new Nexus.Slider('#camera1_3', {
@@ -321,6 +402,11 @@ var camera1_3 = new Nexus.Slider('#camera1_3', {
 });
 camera1_3.on('change', function(e) {
   parentTransform.scale.z = e;
+  var data = {
+    x: e,
+    y: "cameraScene3"
+  };
+  socket.emit('uiSocketScene3', data);
 });
 
 document.getElementById("cockpit_dialog").addEventListener("mouseenter", function() {
@@ -341,6 +427,11 @@ var camera2_1 = new Nexus.Slider('#camera2_1', {
 camera2_1.on('change', function(e) {
   parentTransformDois.scale.x = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene4"
+  };
+  socket.emit('uiSocketScene4', data);
 });
 
 var camera2_2 = new Nexus.Slider('#camera2_2', {
@@ -354,6 +445,11 @@ var camera2_2 = new Nexus.Slider('#camera2_2', {
 camera2_2.on('change', function(e) {
   parentTransformDois.scale.y = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene5"
+  };
+  socket.emit('uiSocketScene5', data);
 });
 
 var camera2_3 = new Nexus.Slider('#camera2_3', {
@@ -367,6 +463,11 @@ var camera2_3 = new Nexus.Slider('#camera2_3', {
 camera2_3.on('change', function(e) {
   parentTransformDois.scale.z = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene6"
+  };
+  socket.emit('uiSocketScene6', data);
 });
 
 var camera3_1 = new Nexus.Slider('#camera3_1', {
@@ -380,6 +481,11 @@ var camera3_1 = new Nexus.Slider('#camera3_1', {
 camera3_1.on('change', function(e) {
   parentTransformTres.scale.x = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene7"
+  };
+  socket.emit('uiSocketScene7', data);
 });
 
 var camera3_2 = new Nexus.Slider('#camera3_2', {
@@ -393,6 +499,11 @@ var camera3_2 = new Nexus.Slider('#camera3_2', {
 camera3_2.on('change', function(e) {
   parentTransformTres.scale.y = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene8"
+  };
+  socket.emit('uiSocketScene8', data);
 });
 
 var camera3_3 = new Nexus.Slider('#camera3_3', {
@@ -406,6 +517,11 @@ var camera3_3 = new Nexus.Slider('#camera3_3', {
 camera3_3.on('change', function(e) {
   parentTransformTres.scale.z = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene9"
+  };
+  socket.emit('uiSocketScene9', data);
 });
 
 var camera4_1 = new Nexus.Slider('#camera4_1', {
@@ -419,6 +535,11 @@ var camera4_1 = new Nexus.Slider('#camera4_1', {
 camera4_1.on('change', function(e) {
   parentTransformQuatro.scale.x = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene10"
+  };
+  socket.emit('uiSocketScene10', data);
 });
 
 var camera4_2 = new Nexus.Slider('#camera4_2', {
@@ -432,6 +553,11 @@ var camera4_2 = new Nexus.Slider('#camera4_2', {
 camera4_2.on('change', function(e) {
   parentTransformQuatro.scale.y = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene11"
+  };
+  socket.emit('uiSocketScene11', data);
 });
 
 var camera4_3 = new Nexus.Slider('#camera4_3', {
@@ -445,11 +571,16 @@ var camera4_3 = new Nexus.Slider('#camera4_3', {
 camera4_3.on('change', function(e) {
   parentTransformQuatro.scale.z = e;
   mouseDown = 0;
+  var data = {
+    x: e,
+    y: "cameraScene12"
+  };
+  socket.emit('uiSocketScene12', data);
 });
 
 /* Fazer 4 luzes diferentes */
 
-// change
+// If needed
 /*
 var camera2 = new Nexus.Dial('#camera2', {
   'size': [40, 40],
@@ -513,6 +644,9 @@ afterimagePass.renderToScreen = false;
 */
 
 function shaderButtons(data) {
+
+  /* TAKE THE SHADERS ON SCENE CHANGE */
+
   if (data === "shader0") {
     renderPostOne = false;
     renderPostTwo = false;
@@ -529,9 +663,11 @@ function shaderButtons(data) {
     document.getElementById("shader3").style.background = "black";
     document.getElementById("shader3").style.color = "white";
 
+
   }
 
   if (data === "shader1") {
+
     renderPostOne = true;
     renderPostTwo = false;
     renderPostThree = false;
@@ -539,6 +675,8 @@ function shaderButtons(data) {
 
     glitchPass.goWild = false;
     glitchPass.renderToScreen = true;
+    afterimagePass.renderToScreen = false;
+
     document.getElementById("shader0").style.background = "black";
     document.getElementById("shader0").style.color = "white";
     document.getElementById("shader1").style.background = "white";
@@ -547,6 +685,7 @@ function shaderButtons(data) {
     document.getElementById("shader2").style.color = "white";
     document.getElementById("shader3").style.background = "black";
     document.getElementById("shader3").style.color = "white";
+
   }
 
   if (data === "shader2") {
@@ -557,6 +696,7 @@ function shaderButtons(data) {
 
     glitchPass.goWild = true;
     glitchPass.renderToScreen = true;
+    afterimagePass.renderToScreen = false;
 
     document.getElementById("shader0").style.background = "black";
     document.getElementById("shader0").style.color = "white";
@@ -566,15 +706,39 @@ function shaderButtons(data) {
     document.getElementById("shader2").style.color = "black";
     document.getElementById("shader3").style.background = "black";
     document.getElementById("shader3").style.color = "white";
+
   }
 
   if (data === "shader3") {
-    /*renderPostThree = true;
+    renderPostOne = false;
+    renderPostTwo = true;
+    renderPostThree = false;
+    renderPostFour = false;
+
+    glitchPass.goWild = false;
+    glitchPass.renderToScreen = false;
+    afterimagePass.renderToScreen = true;
+
+    document.getElementById("shader0").style.background = "black";
+    document.getElementById("shader0").style.color = "white";
+    document.getElementById("shader1").style.background = "black";
+    document.getElementById("shader1").style.color = "white";
     document.getElementById("shader2").style.background = "black";
     document.getElementById("shader2").style.color = "white";
-    document.getElementById("shader3").style.background = "black";
-    document.getElementById("shader3").style.color = "white";
-*/
+    document.getElementById("shader3").style.background = "white";
+    document.getElementById("shader3").style.color = "black";
 
+  }
+  if (data === "shader4") {
+    /*renderPostOne = false;
+    renderPostTwo = false;
+    renderPostThree = true;
+
+    glitchPass.goWild = false;
+    glitchPass.renderToScreen = false;
+    afterimagePass.renderToScreen = false;
+    effectHBlur.renderToScreen = true;
+
+    Make a black vignette here*/
   }
 }

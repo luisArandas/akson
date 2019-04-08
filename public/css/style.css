@@ -794,7 +794,14 @@ h2 {
 .machineInfo {
   background-color: black;
   color: white;
-  font-size: 7px;
+  position: relative;
+  width: 94%;
+  height: 94%;
+  margin-top: 3%;
+  margin-left: 3%;
+  font-size: 8px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 4px;
 }
 
 .networkinfo {
@@ -808,8 +815,10 @@ h2 {
 }
 
 .divNotas {
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: auto;
+  position: absolute;
+  left: 100px;
   background-color: red;
 }
 
@@ -827,4 +836,17 @@ h2 {
 #shader0 {
   background-color: white;
   color: black;
+}
+
+#networkinfo {
+  background-color: black;
+  color: white;
+  position: relative;
+  width: 94%;
+  height: 94%;
+  margin-top: 3%;
+  margin-left: 3%;
+  font-size: 8px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 4px;
 }

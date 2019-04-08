@@ -64,6 +64,8 @@ var mouseTwo = new THREE.Vector2(),
 var glitchPass = new THREE.GlitchPass();
 var afterimagePass = new THREE.AfterimagePass();
 
+var effectHBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader);
+
 var composerOne;
 var composerTwo;
 var composerThree;
@@ -128,15 +130,6 @@ var currentSynthesizer;
 currentSynthesizer = polySynth;
 
 var strDownloadMime = "image/octet-stream";
-
-/*
-var meshMaterial1 = createMaterial("vertex-shader", "fragment-shader-1");
-var meshMaterial2 = createMaterial("vertex-shader", "fragment-shader-2");
-var meshMaterial3 = createMaterial("vertex-shader", "fragment-shader-3");
-var meshMaterial4 = createMaterial("vertex-shader", "fragment-shader-4");
-var meshMaterial5 = createMaterial("vertex-shader", "fragment-shader-5");
-var meshMaterial6 = createMaterial("vertex-shader", "fragment-shader-6");
-*/
 
 init();
 animate();
@@ -432,7 +425,13 @@ function init() {
   composerTwo.addPass(new THREE.RenderPass(scene, camera));
   composerTwo.addPass(afterimagePass);
 
+  composerThree = new THREE.EffectComposer(renderer);
+  composerThree.addPass(new THREE.RenderPass(scene, camera));
+  composerThree.addPass(effectHBlur);
+
+
   glitchPass.renderToScreen = false;
+  effectHBlur.renderToScreen = false;
   afterimagePass.renderToScreen = false;
 
   /*
@@ -483,7 +482,14 @@ function init() {
         }
       });
 
-      /* ------------ */
+      /* ------------
+      renderPostOne = false;
+      renderPostTwo = false;
+      renderPostThree = false;
+      glitchPass.goWild = false;
+      glitchPass.renderToScreen = false;
+      afterimagePass.renderToScreen = false;
+      effectHBlur.renderToScreen = false;*/
 
       isSceneOne = true;
       isSceneTwo = false;
@@ -557,7 +563,6 @@ function init() {
       isSceneFour = false;
       //camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       controls.enabled = false;
-
 
       var whichScene = 69;
       socket.emit('scene', whichScene);

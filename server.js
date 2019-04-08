@@ -58,10 +58,12 @@ function newConnection(socket) {
   socket.on('uiSocketSynthVolume', streamUi01);
   socket.on('uiSocketBackgroundVolume', streamUi02);
   socket.on('uiSocketMainVolume', streamUi03);
+
   socket.on('uiSocketSynthAttack', streamUi04);
   socket.on('uiSocketSynthDecay', streamUi05);
   socket.on('uiSocketSynthSustain', streamUi06);
   socket.on('uiSocketSynthRelease', streamUi07);
+
   socket.on('uiSocketHarmonicity', streamUi08);
   socket.on('uiSocketModulationIndex', streamUi09);
   socket.on('uiSocketDetune', streamUi10);
@@ -71,6 +73,7 @@ function newConnection(socket) {
   socket.on('uiSocketModulationEnvelopeDecay', streamUi14);
   socket.on('uiSocketModulationEnvelopeSustain', streamUi15);
   socket.on('uiSocketModulationEnvelopeRelease', streamUi16);
+
   socket.on('uiSocketReverbRoomSize', streamUi17);
   socket.on('uiSocketReverbWetValue', streamUi18);
   socket.on('uiSocketReverbDampValue', streamUi19);
@@ -88,6 +91,66 @@ function newConnection(socket) {
   socket.on('uiSocketEqHigh', streamUi31);
   socket.on('uiSocketEqLowFreq', streamUi32);
   socket.on('uiSocketEqHighFreq', streamUi33);
+
+  /* Make this one */
+  /*
+    socket.on('uiSocketSynthPhase', streamUi34);
+    socket.on('uiSocketSynthPartials', streamUi35);
+    socket.on('uiSocketNoiseFilterGain', streamUi36);
+    socket.on('uiSocketSynthVibratoFreq', streamUi37);
+    socket.on('uiSocketSynthVibratoDep', streamUi38);
+    socket.on('uiSocketSynthVibratoWet', streamUi39);
+    socket.on('uiSocketNoisePhaserFreq', streamUi40);
+    socket.on('uiSocketNoisePhaserOct', streamUi41);
+    socket.on('uiSocketNoisePhaserWet', streamUi42);
+    socket.on('uiSocketNoisePhaserQ', streamUi43);
+    socket.on('uiSocketNoisePhaserBaseFreq', streamUi44);
+    socket.on('uiSocketNoiseJcverbRoom', streamUi45);
+    socket.on('uiSocketNoiseJcverbWet', streamUi46);
+    socket.on('uiSocketFlipPhaseButton', streamUi47);
+    */
+
+  //Graphs Sokets
+
+  /*
+   socket.on('uiSocketLightOne', streamUi48);
+   socket.on('uiSocketLightTwo', streamUi49);
+   socket.on('uiSocketLightThree', streamUi50);
+   socket.on('uiSocketLightFour', streamUi51);
+   socket.on('uiSocketCameraM1', streamUi52);
+   socket.on('uiSocketCameraM2', streamUi53);
+   socket.on('uiSocketCameraM3', streamUi54);
+   socket.on('uiSocketCameraM4', streamUi55);
+   socket.on('uiSocketCameraM5', streamUi56);
+   socket.on('uiSocketCameraM6', streamUi57);
+   socket.on('uiSocketCameraM7', streamUi58);
+   socket.on('uiSocketCameraM8', streamUi59);
+   socket.on('uiSocketCameraM9', streamUi60);
+   socket.on('uiSocketCameraM10', streamUi61);
+
+   socket.on('uiSocketCameraM11', streamUi62);
+
+   socket.on('uiSocketKillScene', streamUi63);
+   socket.on('uiSocketBornScene', streamUi64);
+
+   socket.on('uiSocketScene1', streamUi65);
+   socket.on('uiSocketScene2', streamUi66);
+   socket.on('uiSocketScene3', streamUi67);
+   socket.on('uiSocketScene4', streamUi68);
+   socket.on('uiSocketScene5', streamUi69);
+   socket.on('uiSocketScene6', streamUi70);
+   socket.on('uiSocketScene7', streamUi71);
+   socket.on('uiSocketScene8', streamUi71);
+   socket.on('uiSocketScene9', streamUi71);
+   socket.on('uiSocketScene10', streamUi71);
+   socket.on('uiSocketScene11', streamUi71);
+   socket.on('uiSocketScene12', streamUi71);
+
+
+
+
+   */
+
 
   function streamUi01(data) {
     console.log(data);

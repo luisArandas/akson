@@ -64,6 +64,9 @@ socket.on('uiSocketSynthAttack', function(data) {
       });
     }
   }
+  if (isAlocating === true) {
+    console.log("mofo we are working");
+  }
 });
 socket.on('uiSocketSynthDecay', function(data) {
   if (isStreaming == true) {
@@ -491,7 +494,6 @@ function changeState(v) {
     isAlocating = true;
     openGui();
     WUI_Dialog.open("alocate_dialog");
-    console.log(WUI_Dialog.open);
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "2px solid rgba(150,150,150,1)";
@@ -559,7 +561,6 @@ function alocateCortex(v) {
       document.getElementById("alocateOne").style.color = "white";
       document.getElementById("alocateThree").style.color = "white";
       document.getElementById("alocateFour").style.color = "white";
-
       document.getElementById("inst2").click();
 
     }
@@ -577,7 +578,6 @@ function alocateCortex(v) {
       document.getElementById("alocateOne").style.color = "white";
       document.getElementById("alocateTwo").style.color = "white";
       document.getElementById("alocateFour").style.color = "white";
-
       document.getElementById("inst3").click();
 
     }
@@ -595,17 +595,12 @@ function alocateCortex(v) {
       document.getElementById("alocateOne").style.color = "white";
       document.getElementById("alocateTwo").style.color = "white";
       document.getElementById("alocateThree").style.color = "white";
-
       document.getElementById("inst4").click();
 
     }
   }
 }
-/*
-if (v) {
 
-}
-*/
 
 socket.on('socketid', function(socketid) {
   if (isAlocating == true) {

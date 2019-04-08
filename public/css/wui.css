@@ -800,9 +800,9 @@
 
 .wui-tabs-content {
     width: 100%;
-    background-color: #000000;
-    background: -webkit-linear-gradient(rgba(32, 32, 32, 1.0), rgba(24, 24, 24, 1.0), rgba(24, 24, 24, 1.0)) no-repeat border-box;
-    background: linear-gradient(rgba(32, 32, 32, 1.0), rgba(24, 24, 24, 1.0), rgba(24, 24, 24, 1.0)) no-repeat border-box;
+    background-color: rgba(20,20,20,1);
+    /*background: -webkit-linear-gradient(rgba(32, 32, 32, 1.0), rgba(24, 24, 24, 1.0), rgba(24, 24, 24, 1.0)) no-repeat border-box;
+    background: linear-gradient(rgba(32, 32, 32, 1.0), rgba(24, 24, 24, 1.0), rgba(24, 24, 24, 1.0)) no-repeat border-box;*/
     overflow: auto;
 }
 
@@ -810,7 +810,7 @@
     height: 100%;
     border-radius: 4px;
     color: white;
-    background-color: rgba(30,30,30,1);
+    background-color: rgba(20,20,20,1);
 }
 
 .wui-first-tab {
