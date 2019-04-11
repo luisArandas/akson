@@ -2,8 +2,8 @@ window.WUI_Reporting = true;
 
 WUI_Dialog.create("master_dialog", {
   title: "Master Controls",
-  width: "275px",
-  height: "290px",
+  width: "264px",
+  height: "350px",
   halign: "left",
   valign: "center",
   open: true,

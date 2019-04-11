@@ -47,38 +47,13 @@ body.fadeIn {
 
 .oscilloscope {
   position: absolute;
-  top: 165px;
-  left: 18px;
+  top: 238px;
+  left: 20px;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
-  -moz-box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
-  box-shadow: 0px 0px 0px 1px rgba(150,150,150,1);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1)
 }
-/*
-.synthvolume {
-  position: absolute;
-  right: 3%;
-  top: 20%;
-  border: auto;
-  background-color: rgba(150,150,150,1);
-}
-
-.backgroundvolume {
-  position: absolute;
-  right: 7%;
-  top: 20%;
-  border: auto;
-  background-color: rgba(150,150,150,1);
-}
-
-.mainvolume {
-  position: absolute;
-  right: 11%;
-  top: 20%;
-  border: auto;
-  background-color: rgba(150,150,150,1);
-}
-*/
 
 /*
 .oscillatorHarmonicity {
@@ -312,52 +287,6 @@ body.fadeIn {
 
 .master_dialog {
   color: white !important;
-}
-
-
-.synthvolume {
-
-}
-
-.backgroundvolume {
-  position:absolute;
-  left: 40%;
-  top: 50px;
-}
-.mainvolume{
-  position: absolute;
-  left: 60%;
-  top: 50px;
-}
-
-.eqbass {
-  position: absolute;
-  left: 20%;
-  top: 100px;
-}
-
-.eqmid {
-  position:absolute;
-  left: 40%;
-  top: 100px;
-}
-
-.eqhigh {
-  position: absolute;
-  left: 60%;
-  top: 100px;
-}
-
-.highfreq {
-  position: absolute;
-  left: 80%;
-  top: 50px;
-}
-
-.lowfreq {
-  position: absolute;
-  left: 80%;
-  top: 100px;
 }
 
 .controlos {
@@ -759,9 +688,10 @@ h2 {
   margin-top: 1px;
 }
 
-#dialBox {
-  margin-left: 5px;
-  margin-top: 5px;
+#dialBox2 {
+  position: absolute;
+  left: 20px;
+  top: 38px;
   width: 50px;
   height: 83px;
   border: 1px solid rgba(50, 50, 50, 1);
@@ -771,7 +701,114 @@ h2 {
   box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
 }
 
-#number {
+#dialBox {
+  position: absolute;
+  left: 78px;
+  top: 38px;
+  width: 50px;
+  height: 83px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+}
+#dialBox1 {
+  position: absolute;
+  left: 135px;
+  top: 38px;
+  width: 50px;
+  height: 83px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+}
+
+#dialBox3 {
+  position: absolute;
+  right: 20px;
+  top: 38px;
+  width: 50px;
+  height: 83px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+}
+#dialBox4 {
+  position: absolute;
+  left: 20px;
+  top: 125px;
+  width: 50px;
+  height: 83px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+}
+#dialBox5 {
+  position: absolute;
+  left: 78px;
+  top: 125px;
+  width: 50px;
+  height: 83px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+}
+#dialBox6 {
+  position: absolute;
+  left: 135px;
+  top: 125px;
+  width: 50px;
+  height: 83px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+}
+#dialBox7 {
+  position: absolute;
+  right: 20px;
+  top: 125px;
+  width: 50px;
+  height: 83px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+  box-shadow: 0px 0px 0px 1px rgba(100,100,100,1);
+}
+
+.buttonsmaster {
+  position: absolute;
+  top: 213px;
+  left: 10px;
+  height: 31px;
+  width: 243px;
+}
+
+.buttonsAbout {
+  width: 72px;
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+  height: 20px;
+  border: 1px solid rgba(100, 100, 100, 1);
+}
+.buttonsAbout:hover{
+  background: white;
+  color: black;
+}
+
+#number, #number1, #number2, #number3, #number4, #number5, #number6, #number7{
   margin-top: 3px;
   width: 45px;
   height: 20px;

@@ -82,10 +82,16 @@
   <div id="master_dialog">
     <div style="text-align: center; font-size: 5pt;">
 
-      <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
-        <button type="button" class="btn btn-secondary buttonColor" onClick="camNear('kill')">kill_scene</button>
-        <button type="button" class="btn btn-secondary buttonColor" onClick="camNear('born')">reborn</button>
-        <button type="button" class="btn btn-secondary buttonColor" onClick="camNear('about')">about</button>
+      <div class="btn-group-horizontal btn-group-sm buttonsmaster" role="group" aria-label="ok">
+        <button type="button" class="buttonsAbout" onClick="camNear('kill')">close</button>
+        <button type="button" class="buttonsAbout" onClick="camNear('born')">open</button>
+        <button type="button" class="buttonsAbout" onClick="camNear('about')">about</button>
+      </div>
+
+      <div id="dialBox2" style="color:rgba(255,255,255,1)">
+        Master
+        <div id="mainvolume" class="mainvolume"></div>
+        <div id="number2" class="number2"></div>
       </div>
 
       <div id="dialBox" style="color:rgba(255,255,255,1)">
@@ -94,17 +100,41 @@
         <div id="number" class="number"></div>
       </div>
 
-      <div id="backgroundvolume" class="backgroundvolume" style="background-color:rgba(50,50,50,1)"></div>
+      <div id="dialBox1" style="color:rgba(255,255,255,1)">
+        Back
+        <div id="backgroundvolume" class="backgroundvolume"></div>
+        <div id="number1" class="number1"></div>
+      </div>
 
-      <div id="mainvolume" class="mainvolume"></div>
+      <div id="dialBox3" style="color:rgba(255,255,255,1)">
+        EQ Bass
+        <div id="eqbass" class="eqbass"></div>
+        <div id="number3" class="number3"></div>
+      </div>
 
-      <div id="eqbass" class="eqbass"></div>
-      <div id="eqmid" class="eqmid"></div>
-      <div id="eqhigh" class="eqhigh"></div>
+      <div id="dialBox4" style="color:rgba(255,255,255,1)">
+        EQ Mid
+        <div id="eqmid" class="eqmid"></div>
+        <div id="number4" class="number4"></div>
+      </div>
 
-      <div id="lowfreq" class="lowfreq"></div>
-      <div id="highfreq" class="highfreq"></div>
-      <div id="mastercontrols" class="mastercontrols"></div>
+      <div id="dialBox5" style="color:rgba(255,255,255,1)">
+        EQ High
+        <div id="eqhigh" class="eqhigh"></div>
+        <div id="number5" class="number5"></div>
+      </div>
+
+      <div id="dialBox6" style="color:rgba(255,255,255,1)">
+        Low Cross
+        <div id="lowfreq" class="lowfreq"></div>
+        <div id="number6" class="number6"></div>
+      </div>
+
+      <div id="dialBox7" style="color:rgba(255,255,255,1)">
+        High Cross
+        <div id="highfreq" class="highfreq"></div>
+        <div id="number7" class="number7"></div>
+      </div>
 
       <div id="oscilloscope" class="oscilloscope"></div>
     </div>
@@ -130,7 +160,7 @@
         <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()"><i class="fas fa-chalkboard"></i></button>
       </div>
       <div class="btn-group mr-2" role="group" aria-label="Seventh group">
-        <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('muteAudio')"><i class="fas fa-volume-mute"></i></button>
+        <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('coherent')"><i class="fas fa-random"></i></button>
       </div>
   </div>
 

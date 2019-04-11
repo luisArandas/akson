@@ -19,7 +19,7 @@ var connectSoundVisuals = false;
 
 Nexus.context = Tone.context;
 Nexus.clock.start();
-Nexus.colors.accent = "rgba(255,0,0,1)";
+Nexus.colors.accent = "rgba(255,255,255,1)";
 Nexus.colors.fill = "rgba(15,15,15,1)";
 Nexus.colors.dark = "#ffffff";
 Nexus.colors.light = "#ff66ff";
@@ -36,7 +36,7 @@ Number.prototype.map = function(in_min, in_max, out_min, out_max) {
 
 var UI = {
   oscilloscope: new Nexus.Oscilloscope('#oscilloscope', {
-    'size': [243, 100]
+    'size': [222, 96]
   }),
   synthvolume: new Nexus.Dial('#synthvolume', {
     'size': [45, 45],
@@ -48,7 +48,7 @@ var UI = {
     'value': 0
   }),
   backgroundvolume: new Nexus.Dial('#backgroundvolume', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -40,
@@ -57,7 +57,7 @@ var UI = {
     'value': -15
   }),
   mainvolume: new Nexus.Dial('#mainvolume', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -66,7 +66,7 @@ var UI = {
     'value': -12
   }),
   eqbass: new Nexus.Dial('#eqbass', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -75,7 +75,7 @@ var UI = {
     'value': -12
   }),
   eqmid: new Nexus.Dial('#eqmid', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -84,7 +84,7 @@ var UI = {
     'value': -10
   }),
   eqhigh: new Nexus.Dial('#eqhigh', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -93,7 +93,7 @@ var UI = {
     'value': 0
   }),
   lowfreq: new Nexus.Dial('#lowfreq', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': 20,
@@ -102,7 +102,7 @@ var UI = {
     'value': 400
   }),
   highfreq: new Nexus.Dial('#highfreq', {
-    'size': [40, 40],
+    'size': [45, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': 20,
@@ -382,7 +382,22 @@ var UI = {
 
 var number = new Nexus.Number('#number');
 number.link(UI.synthvolume);
-/* Numbers here */
+var number1 = new Nexus.Number('#number1');
+number1.link(UI.backgroundvolume);
+var number2 = new Nexus.Number('#number2');
+number2.link(UI.mainvolume);
+var number3 = new Nexus.Number('#number3');
+number3.link(UI.eqbass);
+var number4 = new Nexus.Number('#number4');
+number4.link(UI.eqmid);
+var number5 = new Nexus.Number('#number5');
+number5.link(UI.eqhigh);
+var number6 = new Nexus.Number('#number6');
+number6.link(UI.lowfreq);
+var number7 = new Nexus.Number('#number7');
+number7.link(UI.highfreq);
+
+
 
 for (var key in UI) {
   UI[key].on('change', function(value) {
