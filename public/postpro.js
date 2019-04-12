@@ -7,7 +7,7 @@ var fullHeight = h * 2;
 
 var light1 = new Nexus.Slider('#light1', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute', // "absolute" or "relative"
   'min': 0,
   'max': 5,
   'step': 0.001,
@@ -24,7 +24,7 @@ light1.on('change', function(e) {
 
 var light2 = new Nexus.Slider('#light2', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute', // "absolute" or "relative"
   'min': 0,
   'max': 6,
   'step': 0.001,
@@ -41,7 +41,7 @@ light2.on('change', function(e) {
 
 var light3 = new Nexus.Slider('#light3', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 5,
   'step': 0.001,
@@ -58,7 +58,7 @@ light3.on('change', function(e) {
 
 var light4 = new Nexus.Slider('#light4', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 5,
   'step': 0.001,
@@ -73,10 +73,9 @@ light4.on('change', function(e) {
   socket.emit('uiSocketLightFour', data);
 });
 
-
 var cameraM1 = new Nexus.Slider('#cameraM1', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': -170,
   'max': 170,
   'step': 0.001,
@@ -95,7 +94,7 @@ cameraM1.on('change', function(e) {
 
 var cameraM2 = new Nexus.Slider('#cameraM2', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 2,
   'step': 0.001,
@@ -114,7 +113,7 @@ cameraM2.on('change', function(e) {
 
 var cameraM3 = new Nexus.Slider('#cameraM3', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 5,
   'step': 0.0001,
@@ -133,7 +132,7 @@ cameraM3.on('change', function(e) {
 
 var cameraM4 = new Nexus.Slider('#cameraM4', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 1,
   'max': 2000,
   'step': 0.001,
@@ -151,7 +150,7 @@ cameraM4.on('change', function(e) {
 
 var cameraM5 = new Nexus.Slider('#cameraM5', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 5000,
   'step': 0.001,
@@ -169,7 +168,7 @@ cameraM5.on('change', function(e) {
 
 var cameraM6 = new Nexus.Slider('#cameraM6', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 5000,
   'step': 0.001,
@@ -187,7 +186,7 @@ cameraM6.on('change', function(e) {
 
 var cameraM7 = new Nexus.Slider('#cameraM7', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 5,
   'step': 0.001,
@@ -205,7 +204,7 @@ cameraM7.on('change', function(e) {
 
 var cameraM8 = new Nexus.Slider('#cameraM8', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': 0,
   'max': 5,
   'step': 0.001,
@@ -223,7 +222,7 @@ cameraM8.on('change', function(e) {
 
 var cameraM9 = new Nexus.Slider('#cameraM9', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': -5,
   'max': 5,
   'step': 0.001,
@@ -241,7 +240,7 @@ cameraM9.on('change', function(e) {
 
 var cameraM10 = new Nexus.Slider('#cameraM10', {
   'size': [120, 20],
-  'mode': 'relative', // "absolute" or "relative"
+  'mode': 'absolute',
   'min': -5,
   'max': 5,
   'step': 0.001,
@@ -360,7 +359,7 @@ function camNear(a) {
 
 var camera1_1 = new Nexus.Slider('#camera1_1', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -377,7 +376,7 @@ camera1_1.on('change', function(e) {
 
 var camera1_2 = new Nexus.Slider('#camera1_2', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -394,7 +393,7 @@ camera1_2.on('change', function(e) {
 
 var camera1_3 = new Nexus.Slider('#camera1_3', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -418,7 +417,7 @@ document.getElementById("cockpit_dialog").addEventListener("mouseout", function(
 
 var camera2_1 = new Nexus.Slider('#camera2_1', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -436,7 +435,7 @@ camera2_1.on('change', function(e) {
 
 var camera2_2 = new Nexus.Slider('#camera2_2', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -454,7 +453,7 @@ camera2_2.on('change', function(e) {
 
 var camera2_3 = new Nexus.Slider('#camera2_3', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -472,7 +471,7 @@ camera2_3.on('change', function(e) {
 
 var camera3_1 = new Nexus.Slider('#camera3_1', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -490,7 +489,7 @@ camera3_1.on('change', function(e) {
 
 var camera3_2 = new Nexus.Slider('#camera3_2', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -508,7 +507,7 @@ camera3_2.on('change', function(e) {
 
 var camera3_3 = new Nexus.Slider('#camera3_3', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -526,7 +525,7 @@ camera3_3.on('change', function(e) {
 
 var camera4_1 = new Nexus.Slider('#camera4_1', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -544,7 +543,7 @@ camera4_1.on('change', function(e) {
 
 var camera4_2 = new Nexus.Slider('#camera4_2', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,
@@ -562,7 +561,7 @@ camera4_2.on('change', function(e) {
 
 var camera4_3 = new Nexus.Slider('#camera4_3', {
   'size': [120, 20],
-  'mode': 'relative', // 'relative' or 'absolute'
+  'mode': 'absolute',
   'min': 0.35,
   'max': 3,
   'step': 0.00001,

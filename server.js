@@ -92,65 +92,55 @@ function newConnection(socket) {
   socket.on('uiSocketEqLowFreq', streamUi32);
   socket.on('uiSocketEqHighFreq', streamUi33);
 
-  /* Make this one */
-  /*
-    socket.on('uiSocketSynthPhase', streamUi34);
-    socket.on('uiSocketSynthPartials', streamUi35);
-    socket.on('uiSocketNoiseFilterGain', streamUi36);
-    socket.on('uiSocketSynthVibratoFreq', streamUi37);
-    socket.on('uiSocketSynthVibratoDep', streamUi38);
-    socket.on('uiSocketSynthVibratoWet', streamUi39);
-    socket.on('uiSocketNoisePhaserFreq', streamUi40);
-    socket.on('uiSocketNoisePhaserOct', streamUi41);
-    socket.on('uiSocketNoisePhaserWet', streamUi42);
-    socket.on('uiSocketNoisePhaserQ', streamUi43);
-    socket.on('uiSocketNoisePhaserBaseFreq', streamUi44);
-    socket.on('uiSocketNoiseJcverbRoom', streamUi45);
-    socket.on('uiSocketNoiseJcverbWet', streamUi46);
-    socket.on('uiSocketFlipPhaseButton', streamUi47);
-    */
+  socket.on('uiSocketSynthPhase', streamUi34);
+  socket.on('uiSocketSynthPartials', streamUi35);
+
+  socket.on('uiSocketNoiseFilterGain', streamUi36);
+  socket.on('uiSocketSynthVibratoFreq', streamUi37);
+  socket.on('uiSocketSynthVibratoDep', streamUi38);
+  socket.on('uiSocketSynthVibratoWet', streamUi39);
+  socket.on('uiSocketNoisePhaserFreq', streamUi40);
+  socket.on('uiSocketNoisePhaserOct', streamUi41);
+  socket.on('uiSocketNoisePhaserWet', streamUi42);
+  socket.on('uiSocketNoisePhaserQ', streamUi43);
+  socket.on('uiSocketNoisePhaserBaseFreq', streamUi44);
+  socket.on('uiSocketNoiseJcverbRoom', streamUi45);
+  socket.on('uiSocketNoiseJcverbWet', streamUi46);
+  socket.on('uiSocketFlipPhaseButton', streamUi47);
 
   //Graphs Sokets
 
-  /*
-   socket.on('uiSocketLightOne', streamUi48);
-   socket.on('uiSocketLightTwo', streamUi49);
-   socket.on('uiSocketLightThree', streamUi50);
-   socket.on('uiSocketLightFour', streamUi51);
-   socket.on('uiSocketCameraM1', streamUi52);
-   socket.on('uiSocketCameraM2', streamUi53);
-   socket.on('uiSocketCameraM3', streamUi54);
-   socket.on('uiSocketCameraM4', streamUi55);
-   socket.on('uiSocketCameraM5', streamUi56);
-   socket.on('uiSocketCameraM6', streamUi57);
-   socket.on('uiSocketCameraM7', streamUi58);
-   socket.on('uiSocketCameraM8', streamUi59);
-   socket.on('uiSocketCameraM9', streamUi60);
-   socket.on('uiSocketCameraM10', streamUi61);
+  socket.on('uiSocketLightOne', streamUi48);
+  socket.on('uiSocketLightTwo', streamUi49);
+  socket.on('uiSocketLightThree', streamUi50);
+  socket.on('uiSocketLightFour', streamUi51);
+  socket.on('uiSocketCameraM1', streamUi52);
+  socket.on('uiSocketCameraM2', streamUi53);
+  socket.on('uiSocketCameraM3', streamUi54);
+  socket.on('uiSocketCameraM4', streamUi55);
+  socket.on('uiSocketCameraM5', streamUi56);
+  socket.on('uiSocketCameraM6', streamUi57);
+  socket.on('uiSocketCameraM7', streamUi58);
+  socket.on('uiSocketCameraM8', streamUi59);
+  socket.on('uiSocketCameraM9', streamUi60);
+  socket.on('uiSocketCameraM10', streamUi61);
+  socket.on('uiSocketCameraM11', streamUi62);
 
-   socket.on('uiSocketCameraM11', streamUi62);
+  socket.on('uiSocketKillScene', streamUi63);
+  socket.on('uiSocketBornScene', streamUi64);
 
-   socket.on('uiSocketKillScene', streamUi63);
-   socket.on('uiSocketBornScene', streamUi64);
-
-   socket.on('uiSocketScene1', streamUi65);
-   socket.on('uiSocketScene2', streamUi66);
-   socket.on('uiSocketScene3', streamUi67);
-   socket.on('uiSocketScene4', streamUi68);
-   socket.on('uiSocketScene5', streamUi69);
-   socket.on('uiSocketScene6', streamUi70);
-   socket.on('uiSocketScene7', streamUi71);
-   socket.on('uiSocketScene8', streamUi71);
-   socket.on('uiSocketScene9', streamUi71);
-   socket.on('uiSocketScene10', streamUi71);
-   socket.on('uiSocketScene11', streamUi71);
-   socket.on('uiSocketScene12', streamUi71);
-
-
-
-
-   */
-
+  socket.on('uiSocketScene1', streamUi65);
+  socket.on('uiSocketScene2', streamUi66);
+  socket.on('uiSocketScene3', streamUi67);
+  socket.on('uiSocketScene4', streamUi68);
+  socket.on('uiSocketScene5', streamUi69);
+  socket.on('uiSocketScene6', streamUi70);
+  socket.on('uiSocketScene7', streamUi71);
+  socket.on('uiSocketScene8', streamUi72);
+  socket.on('uiSocketScene9', streamUi73);
+  socket.on('uiSocketScene10', streamUi74);
+  socket.on('uiSocketScene11', streamUi75);
+  socket.on('uiSocketScene12', streamUi76);
 
   function streamUi01(data) {
     console.log(data);
@@ -316,6 +306,224 @@ function newConnection(socket) {
     console.log(data);
     socket.broadcast.emit('uiSocketEqHighFreq', data);
   }
+
+  /* Here */
+
+  function streamUi34(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketSynthPhase', data);
+  }
+
+  function streamUi35(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketSynthPartials', data);
+  }
+
+  function streamUi36(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoiseFilterGain', data);
+  }
+
+  function streamUi37(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketSynthVibratoFreq', data);
+  }
+
+  function streamUi38(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketSynthVibratoDep', data);
+  }
+
+  function streamUi39(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketSynthVibratoWet', data);
+  }
+
+  function streamUi40(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoisePhaserFreq', data);
+  }
+
+  function streamUi41(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoisePhaserOct', data);
+  }
+
+  function streamUi42(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoisePhaserWet', data);
+  }
+
+  function streamUi43(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoisePhaserQ', data);
+  }
+
+  function streamUi44(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoisePhaserBaseFreq', data);
+  }
+
+  function streamUi45(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoiseJcverbRoom', data);
+  }
+
+  function streamUi46(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketNoiseJcverbWet', data);
+  }
+
+  function streamUi47(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketFlipPhaseButton', data);
+  }
+
+  function streamUi48(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketLightOne', data);
+  }
+
+  function streamUi49(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketLightTwo', data);
+  }
+
+  function streamUi50(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketLightThree', data);
+  }
+
+  function streamUi51(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketLightFour', data);
+  }
+
+  function streamUi52(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM1', data);
+  }
+
+  function streamUi53(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM2', data);
+  }
+
+  function streamUi54(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM3', data);
+  }
+
+  function streamUi55(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM4', data);
+  }
+
+  function streamUi56(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM5', data);
+  }
+
+  function streamUi57(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM6', data);
+  }
+
+  function streamUi58(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM7', data);
+  }
+
+  function streamUi59(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM8', data);
+  }
+
+  function streamUi60(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM9', data);
+  }
+
+  function streamUi61(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM10', data);
+  }
+
+  function streamUi62(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketCameraM11', data);
+  }
+
+  function streamUi63(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketKillScene', data);
+  }
+
+  function streamUi64(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketBornScene', data);
+  }
+
+  function streamUi65(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene1', data);
+  }
+
+  function streamUi66(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene2', data);
+  }
+
+  function streamUi67(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene3', data);
+  }
+
+  function streamUi68(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene4', data);
+  }
+
+  function streamUi69(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene5', data);
+  }
+
+  function streamUi70(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene6', data);
+  }
+
+  function streamUi71(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene7', data);
+  }
+
+  function streamUi72(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene8', data);
+  }
+
+  function streamUi73(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene9', data);
+  }
+
+  function streamUi74(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene10', data);
+  }
+
+  function streamUi75(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene11', data);
+  }
+
+  function streamUi76(data) {
+    console.log(data);
+    socket.broadcast.emit('uiSocketScene12', data);
+  }
+
 
   socket.on('oscTest', oscMessage);
 

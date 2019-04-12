@@ -107,27 +107,27 @@
       </div>
 
       <div id="dialBox3" style="color:rgba(255,255,255,1)">
-        EQ Bass
-        <div id="eqbass" class="eqbass"></div>
-        <div id="number3" class="number3"></div>
+        Low Cross
+        <div id="lowfreq" class="lowfreq"></div>
+        <div id="number6" class="number6"></div>
       </div>
 
       <div id="dialBox4" style="color:rgba(255,255,255,1)">
-        EQ Mid
-        <div id="eqmid" class="eqmid"></div>
-        <div id="number4" class="number4"></div>
-      </div>
-
-      <div id="dialBox5" style="color:rgba(255,255,255,1)">
         EQ High
         <div id="eqhigh" class="eqhigh"></div>
         <div id="number5" class="number5"></div>
       </div>
 
+      <div id="dialBox5" style="color:rgba(255,255,255,1)">
+        EQ Mid
+        <div id="eqmid" class="eqmid"></div>
+        <div id="number4" class="number4"></div>
+      </div>
+
       <div id="dialBox6" style="color:rgba(255,255,255,1)">
-        Low Cross
-        <div id="lowfreq" class="lowfreq"></div>
-        <div id="number6" class="number6"></div>
+        EQ Bass
+        <div id="eqbass" class="eqbass"></div>
+        <div id="number3" class="number3"></div>
       </div>
 
       <div id="dialBox7" style="color:rgba(255,255,255,1)">
@@ -166,7 +166,8 @@
 
   <div id="monitor_dialog">
     <div style="text-align: center; font-size: 5pt;">
-      <button id="send">osc_working</button>
+      <div id="monitordiv" class="monitordiv">See this
+      </div>
     </div>
   </div>
 
@@ -280,7 +281,7 @@
         </div>
         <div>
           <div id="networkinfo" class="networkinfo">
-            &nbsp; Network Models<br><br>
+            &nbsp; Interaction Methods in the Network<br><br>
             &nbsp; &nbsp; <i>descenter</i><br>
             &nbsp; &nbsp; &nbsp; &nbsp; This method is the instrument default network model when the user connects. The <i>descenter</i>
             method lets the user have an experience that streams the synthesizer through every device being able to control all the other atributes

@@ -39,7 +39,7 @@ var UI = {
     'size': [222, 96]
   }),
   synthvolume: new Nexus.Dial('#synthvolume', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical',
     'mode': 'absolute', // "absolute" or "relative"
     'min': -30,
@@ -48,7 +48,7 @@ var UI = {
     'value': 0
   }),
   backgroundvolume: new Nexus.Dial('#backgroundvolume', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -40,
@@ -57,7 +57,7 @@ var UI = {
     'value': -15
   }),
   mainvolume: new Nexus.Dial('#mainvolume', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -66,7 +66,7 @@ var UI = {
     'value': -12
   }),
   eqbass: new Nexus.Dial('#eqbass', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -75,7 +75,7 @@ var UI = {
     'value': -12
   }),
   eqmid: new Nexus.Dial('#eqmid', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -84,7 +84,7 @@ var UI = {
     'value': -10
   }),
   eqhigh: new Nexus.Dial('#eqhigh', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': -50,
@@ -93,7 +93,7 @@ var UI = {
     'value': 0
   }),
   lowfreq: new Nexus.Dial('#lowfreq', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': 20,
@@ -102,7 +102,7 @@ var UI = {
     'value': 400
   }),
   highfreq: new Nexus.Dial('#highfreq', {
-    'size': [45, 45],
+    'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
     'min': 20,
@@ -380,21 +380,37 @@ var UI = {
   }),
 }
 
-var number = new Nexus.Number('#number');
+var number = new Nexus.Number('#number', {
+  'size': [46, 18],
+});
 number.link(UI.synthvolume);
-var number1 = new Nexus.Number('#number1');
+var number1 = new Nexus.Number('#number1', {
+  'size': [46, 18],
+});
 number1.link(UI.backgroundvolume);
-var number2 = new Nexus.Number('#number2');
+var number2 = new Nexus.Number('#number2', {
+  'size': [46, 18],
+});
 number2.link(UI.mainvolume);
-var number3 = new Nexus.Number('#number3');
+var number3 = new Nexus.Number('#number3', {
+  'size': [46, 18],
+});
 number3.link(UI.eqbass);
-var number4 = new Nexus.Number('#number4');
+var number4 = new Nexus.Number('#number4', {
+  'size': [46, 18],
+});
 number4.link(UI.eqmid);
-var number5 = new Nexus.Number('#number5');
+var number5 = new Nexus.Number('#number5', {
+  'size': [46, 18],
+});
 number5.link(UI.eqhigh);
-var number6 = new Nexus.Number('#number6');
+var number6 = new Nexus.Number('#number6', {
+  'size': [46, 18],
+});
 number6.link(UI.lowfreq);
-var number7 = new Nexus.Number('#number7');
+var number7 = new Nexus.Number('#number7', {
+  'size': [46, 18],
+});
 number7.link(UI.highfreq);
 
 
@@ -990,7 +1006,7 @@ UI.jcreverbWet.on('change', function(v) {
   jcreverb.wet.value = v;
   var data = {
     x: v,
-    y: "jcverbRoomSiz"
+    y: "jcverbWet"
   };
   socket.emit('uiSocketNoiseJcverbWet', data);
 });

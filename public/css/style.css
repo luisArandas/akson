@@ -632,6 +632,10 @@ h2 {
   color: black !important;
 }
 
+#alocateOne {
+  background-color: white;
+  color: black;
+}
 .alocateDiv{
   margin: auto;
   width: 90%;
@@ -790,7 +794,7 @@ h2 {
 .buttonsmaster {
   position: absolute;
   top: 213px;
-  left: 10px;
+  left: 9px;
   height: 31px;
   width: 243px;
 }
@@ -875,7 +879,7 @@ h2 {
   color: black;
 }
 
-#networkinfo {
+#networkinfo, #monitordiv {
   background-color: black;
   color: white;
   position: relative;
@@ -886,4 +890,15 @@ h2 {
   font-size: 8px;
   border: 1px solid rgba(50, 50, 50, 1);
   border-radius: 4px;
+}
+
+.mainvolume, .synthvolume, .backgroundvolume, .lowfreq, .highfreq, .eqmid, .eqhigh, .eqbass {
+  position: absolute;
+  left: 1px;
+}
+
+.number, .number1, .number2, .number3, .number4, .number5, .number6, .number7 {
+  position: absolute;
+  left: 1px;
+  top: 58px;
 }
