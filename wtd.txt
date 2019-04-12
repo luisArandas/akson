@@ -1,5 +1,3 @@
-Make pans
-geolocation API and a new logger
 Presets
 Restart audioContext without refresh
 https://github.com/yiwenl/Alfrid

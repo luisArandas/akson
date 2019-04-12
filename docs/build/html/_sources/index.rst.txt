@@ -11,12 +11,17 @@ will be covered here and how to access them.
 
 .. toctree::
 
+   about.rst
    build.rst
+   audio.rst
+   graphics.rst
+   networks.rst
+   devices.rst 
 
 Useful Links
 ------------
 
-* `Akson Environment <https://akson.com>`_
+* `Akson Environment <https://akson.xyz>`_
 * `Akson Code <https://www.github.com/luisArandas/akson>`_
 * `Author Website <https://www.luisarandas.org>`_
 

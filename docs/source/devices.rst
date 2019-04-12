@@ -1,15 +1,13 @@
-Build
+Devices
 ============
 
-Instructions
--------------------------------
-https://help.github.com/en/articles/fork-a-repo
-
-Dependencies
+#1
 -------------------------------
 
+#2
+-------------------------------
 
-Fork and Contribute
+#3
 -------------------------------
 
 The documentation is continually being improved. The release of version 3.1 includes many new tutorials, man
