@@ -26,11 +26,10 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Audio" href="audio.html" />
-    <link rel="prev" title="About" href="about.html" /> 
+    <link rel="prev" title="[Akson] Software Documentation" href="index.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,7 +79,6 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Build</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#instructions">Instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
@@ -157,8 +155,44 @@
             
   <div class="section" id="build">
 <h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
+<p>The Akson underlying code is currently hosted on GitHub on a public repository that allows many types of action. | With the potentialities of the open-source world,
+and the command line interfaces everyone can clone, fork and mess with the Akson code. HEre are some instructions to be able to do that.</p>
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p>Instructions to build the system in MacOS</p>
+<ul class="simple">
+<li>Open the terminal</li>
+<li>Change the current working directory to the location where you want the cloned directory to be made. | In MacOS the commands will be ls to see what there is in your directory and cd new_directory to change folder. Most probably the terminal will open the user in :~ username$.</li>
+<li>You will also need to have git installed. When the terminal is opened type:</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ git --version
+$ cd Desktop
+$ git clone https://github.com/luisArandas/akson
+</pre></div>
+</div>
+<p>After that if you don’t have git installed a window will prompt to install</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cloning</span> <span class="n">into</span> <span class="s1">&#39;akson&#39;</span><span class="o">...</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Enumerating</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Counting</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">110</span><span class="o">/</span><span class="mi">110</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Compressing</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">69</span><span class="o">/</span><span class="mi">69</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">remote</span><span class="p">:</span> <span class="n">Total</span> <span class="mi">6001</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">65</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">81</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">41</span><span class="p">),</span> <span class="n">pack</span><span class="o">-</span><span class="n">reused</span> <span class="mi">5891</span>
+<span class="n">Receiving</span> <span class="n">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">6001</span><span class="o">/</span><span class="mi">6001</span><span class="p">),</span> <span class="mf">21.03</span> <span class="n">MiB</span> <span class="o">|</span> <span class="mf">5.71</span> <span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="n">Resolving</span> <span class="n">deltas</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">1583</span><span class="o">/</span><span class="mi">1583</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd akson
+$ npm install
+</pre></div>
+</div>
+<div>Some <b>stuff</b> <pre></div><p>Install xpress, nodejs, socketio and all other things =&gt; npm</p>
+<p><a class="reference external" href="https://help.github.com/en/articles/fork-a-repo">https://help.github.com/en/articles/fork-a-repo</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+    <span class="n">interesting</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="hll">    <span class="k">print</span> <span class="s1">&#39;This line is highlighted.&#39;</span>
+</span>    <span class="k">print</span> <span class="s1">&#39;This one is not...&#39;</span>
+<span class="hll">    <span class="k">print</span> <span class="s1">&#39;...but this one is.&#39;</span>
+</span></pre></div>
+</div>
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
@@ -180,7 +214,7 @@
         <a href="audio.html" class="btn btn-neutral float-right" title="Audio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="about.html" class="btn btn-neutral" title="About" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="[Akson] Software Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

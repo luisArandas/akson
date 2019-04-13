@@ -843,12 +843,14 @@ h2 {
   font-size: 8px;
   border: 1px solid rgba(50, 50, 50, 1);
   border-radius: 4px;
+  padding: 10px;
 }
 
 .networkinfo {
   background-color: black;
   color: white;
   font-size: 8px;
+  padding: 10px;
 }
 
 #glcanvas {

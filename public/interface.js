@@ -29,7 +29,8 @@ WUI_Dialog.create("master_dialog", {
   resizable: false,
   //detachable: false,
   keep_align_when_resized: false,
-  top: -1500
+  top: -1850,
+  left: 20
 });
 
 WUI_Dialog.create("savesettings_dialog", {
@@ -47,7 +48,7 @@ WUI_Dialog.create("savesettings_dialog", {
   resizable: false,
   //detachable: false,
   keep_align_when_resized: false,
-  top: -1350,
+  top: -1550,
   left: 0
 });
 
@@ -65,7 +66,7 @@ WUI_Dialog.create("cockpit_dialog", {
   minimizable: true,
   halign: "center",
   valign: "bottom",
-  top: -1550
+  top: -2300
 });
 
 WUI_Tabs.create("tabs_instrumentos", {
@@ -175,7 +176,7 @@ WUI_Dialog.create("logs_dialog", {
   minimizable: true,
   resizable: false,
   status_bar: true,
-  top: -500
+  top: -700
 });
 
 WUI_Dialog.create("demo_integrated_dialog_5", {

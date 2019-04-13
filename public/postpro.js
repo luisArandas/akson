@@ -300,7 +300,6 @@ var a6 = "Device Language: " + navigator.language || navigator.userLanguage;
 /* Audio Info */
 
 var a7 = "AudioContext BaseLantency: " + Tone.context.baseLantency + '<br>';
-var a8 = "AudioContext CurrentTime: " + Tone.context.currentTime + '<br>';
 var a9 = "AudioContext Channel Count: " + Tone.context.destination.channelCount + '<br>';
 var a10 = "AudioContext Channel CountMode: " + Tone.context.destination.channelCountMode + '<br>';
 var a11 = "AudioContext ChannelInterpretation: " + Tone.context.destination.channelInterpretation + '<br>';
@@ -349,11 +348,10 @@ function camNear(a) {
     var graphicsinfo = "<br> Graphics Info <br>";
     var _graphicsinfo = graphicsinfo.fontsize(15);
 
-    document.getElementById('machineInfo').innerHTML += netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a8 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
+    document.getElementById('machineInfo').innerHTML += _netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
     WUI_Dialog.open("about_this_dialog");
   }
 }
-
 
 /* PostPro */
 

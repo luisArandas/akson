@@ -11,7 +11,6 @@ will be covered here and how to access them.
 
 .. toctree::
 
-   about.rst
    build.rst
    audio.rst
    graphics.rst
