@@ -5,7 +5,7 @@
   /* Sidebar header (and topbar for mobile) */
   .wy-side-nav-search,
   .wy-nav-top {
-    background: #000000;
+    background: rgba(50, 50, 50, 1);
   }
 
   /* Sidebar */
@@ -60,6 +60,23 @@
 
   hr {
     display: none;
+  }
+
+  .wy-nav-content-wrap {
+    border-right: 33px solid black;
+  }
+
+  .highlight {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 6px;
+  }
+
+  .code,
+  .highlight-default,
+  .pre,
+  .notranslate {
+    overflow: hidden;
+    word-wrap: break-word;
   }
 </style>
 {% endblock %}

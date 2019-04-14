@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Graphics &mdash; Akson  documentation</title>
+  <title>3. Graphics &mdash; Akson  documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Networks" href="networks.html" />
-    <link rel="prev" title="Audio" href="audio.html" /> 
+    <link rel="next" title="4. Networks" href="networks.html" />
+    <link rel="prev" title="2. Audio" href="audio.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -48,9 +48,12 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Akson
+            <a href="index.html">
           
 
+          
+            
+            <img src="_static/512px.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -79,16 +82,39 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build</a></li>
-<li class="toctree-l1"><a class="reference internal" href="audio.html">Audio</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Graphics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">#1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">#2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">#3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build.html">Build</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build.html#instructions">Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="build.html#macos">MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build.html#windows">Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build.html#linux">Linux</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="networks.html">Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="devices.html">Devices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="audio.html">2. Audio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="audio.html#id1">2.1. #1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio.html#id2">2.2. #2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio.html#id3">2.3. #3</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Graphics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">3.1. #1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.2. #2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.3. #3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networks.html">4. Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="networks.html#id1">4.1. #1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networks.html#id2">4.2. #2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networks.html#id3">4.3. #3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices.html">5. Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devices.html#id1">5.1. #1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devices.html#id2">5.2. #2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devices.html#id3">5.3. #3</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -134,7 +160,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Graphics</li>
+      <li>3. Graphics</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,10 +201,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="networks.html" class="btn btn-neutral float-right" title="Networks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="networks.html" class="btn btn-neutral float-right" title="4. Networks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="audio.html" class="btn btn-neutral" title="Audio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="audio.html" class="btn btn-neutral" title="2. Audio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -235,7 +261,7 @@
   /* Sidebar header (and topbar for mobile) */
   .wy-side-nav-search,
   .wy-nav-top {
-    background: #000000;
+    background: rgba(50, 50, 50, 1);
   }
 
   /* Sidebar */
@@ -290,6 +316,23 @@
 
   hr {
     display: none;
+  }
+
+  .wy-nav-content-wrap {
+    border-right: 33px solid black;
+  }
+
+  .highlight {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 6px;
+  }
+
+  .code,
+  .highlight-default,
+  .pre,
+  .notranslate {
+    overflow: hidden;
+    word-wrap: break-word;
   }
 </style>
 

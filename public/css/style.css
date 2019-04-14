@@ -420,38 +420,20 @@ body.fadeIn {
 
 
 /*        Scales        */
-
-
-.gruponotas2 {
-  position: relative;
-  width: 50%;
-  left: 50%;
-  transform: translatex(-55%);
-}
-.gruponotas3 {
-  position: relative;
-  width: 50%;
-  left: 50%;
-  transform: translatex(-55%);
-}
-.gruponotas4 {
-  position: relative;
-  width: 50%;
-  left: 50%;
-  transform: translatex(-55%);
-}
-.gruponotas5 {
-  position: relative;
-  width: 50%;
-  left: 50%;
-  transform: translatex(-55%);
+.divNotas {
+  width: 450px;
+  height: auto;
+  position: absolute;
+  left: 150px;
+  background-color: red;
 }
 
-.grupomaior {
-  position: relative;
-  width: 50%;
-  left: 50%;
-  transform: translatex(-55%);
+.gruponotas2, .gruponotas3, .gruponotas4, .gruponotas5, .grupomaior {
+  width: 450px;
+}
+
+.grupocleanscale {
+  width: 225px;
 }
 
 .buttonMajor {
@@ -857,13 +839,7 @@ h2 {
   display: none;
 }
 
-.divNotas {
-  width: 80%;
-  height: auto;
-  position: absolute;
-  left: 100px;
-  background-color: red;
-}
+
 
 .netimg {
   width: 10%;

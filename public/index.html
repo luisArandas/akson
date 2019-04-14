@@ -49,7 +49,7 @@
 </head>
 
 <body>
-  post-production now finish and templates
+  post-production now finish and templates, if it is iphone remove ALL gui
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -57,554 +57,558 @@
       </div>
     </div>
   </div>
-
-  <div id="savesettings_dialog">
-    <div style="text-align: center; font-size: 5pt;">
-      save on startup automatic engine
-      <button id="shot">newpage</button>
-      <button id="save">save</button>
-      <button id="save3d">save3d</button>
-      <br>
-      --
-      <br>
-      <button id="start1" onclick="saveVideo('1')">startVideo</button>
-      <button id="stop1" onclick="saveVideo('2')">stopVideo</button>
-      <br>
-      --
-      <br>
-      <button id="startaudio1" onclick="saveAudio('start')">startAudio</button>
-      <button id="stopaudio1" onclick="saveAudio('stop')">stopAudio</button>
-      <audio controls></audio>
-
-    </div>
-  </div>
-
-
-  <div id="master_dialog">
-    <div style="text-align: center; font-size: 5pt;">
-
-      <div class="btn-group-horizontal btn-group-sm buttonsmaster" role="group" aria-label="ok">
-        <button type="button" class="buttonsAbout" onClick="camNear('kill')">close</button>
-        <button type="button" class="buttonsAbout" onClick="camNear('born')">open</button>
-        <button type="button" class="buttonsAbout" onClick="camNear('about')">about</button>
-      </div>
-
-      <div id="dialBox2" style="color:rgba(255,255,255,1)">
-        Master
-        <div id="mainvolume" class="mainvolume"></div>
-        <div id="number2" class="number2"></div>
-      </div>
-
-      <div id="dialBox" style="color:rgba(255,255,255,1)">
-        Synth
-        <div id="synthvolume" class="synthvolume"></div>
-        <div id="number" class="number"></div>
-      </div>
-
-      <div id="dialBox1" style="color:rgba(255,255,255,1)">
-        Back
-        <div id="backgroundvolume" class="backgroundvolume"></div>
-        <div id="number1" class="number1"></div>
-      </div>
-
-      <div id="dialBox3" style="color:rgba(255,255,255,1)">
-        Low Cross
-        <div id="lowfreq" class="lowfreq"></div>
-        <div id="number6" class="number6"></div>
-      </div>
-
-      <div id="dialBox4" style="color:rgba(255,255,255,1)">
-        EQ High
-        <div id="eqhigh" class="eqhigh"></div>
-        <div id="number5" class="number5"></div>
-      </div>
-
-      <div id="dialBox5" style="color:rgba(255,255,255,1)">
-        EQ Mid
-        <div id="eqmid" class="eqmid"></div>
-        <div id="number4" class="number4"></div>
-      </div>
-
-      <div id="dialBox6" style="color:rgba(255,255,255,1)">
-        EQ Bass
-        <div id="eqbass" class="eqbass"></div>
-        <div id="number3" class="number3"></div>
-      </div>
-
-      <div id="dialBox7" style="color:rgba(255,255,255,1)">
-        High Cross
-        <div id="highfreq" class="highfreq"></div>
-        <div id="number7" class="number7"></div>
-      </div>
-
-      <div id="oscilloscope" class="oscilloscope"></div>
-    </div>
-  </div>
-  <div class="topBar" id="topBar">
-    <nav class="navbar navbar-expand-sm navbar-dark">
-      <div class="btn-group mr-2" role="group" aria-label="First group">
-        <button class="btn btn-sm btnCima" type="button" onClick="topBar('aboutMe')"><i class="fas fa-bars"></i></button>
-      </div>
-      <div class="btn-group mr-2" role="group" aria-label="Second group">
-        <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')"><i class="fas fa-download"></i></button>
-      </div>
-      <div class="btn-group mr-2" role="group" aria-label="Third group">
-        <button class="btn btn-sm btnCima" type="button" onClick="topBar('hideGui')"><i class="fas fa-eye-slash"></i></button>
-      </div>
-      <div class="btn-group mr-2" role="group" aria-label="Forth group">
-        <button class="btn btn-sm btnCima" type="button" onClick="topBar('refresh')"><i class="fas fa-sync-alt"></i></button>
-      </div>
-      <div class="btn-group mr-2" role="group" aria-label="Fifth group">
-        <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')"><i class="fas fa-arrows-alt-h"></i></button>
-      </div>
-      <div class="btn-group mr-2" role="group" aria-label="Sixth group">
-        <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()"><i class="fas fa-chalkboard"></i></button>
-      </div>
-      <div class="btn-group mr-2" role="group" aria-label="Seventh group">
-        <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('coherent')"><i class="fas fa-random"></i></button>
-      </div>
-  </div>
-
-  <div id="monitor_dialog">
-    <div style="text-align: center; font-size: 5pt;">
-      <div id="monitordiv" class="monitordiv">See this
-      </div>
-    </div>
-  </div>
-
-
-  <div id="modalAbout" class="modalAbout">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="closeAbout">&times;</span>
-      <div class="modal-text">
-        synopsis.<br>
-        Akson is the name of a networked audio-visual system that allows large-scale playback and collaboration between artists.
-        This environment was developed to fulfil the needs of a research in interactive networked musical systems and complex
-        data visualizations done in the context of the <a href="http://www.bragamediaarts.com/pt/" style=color:rgba(250,250,250,1)>Braga
-          Media Arts</a> group. Akson was initially conceived of as an exploration
-        into what could be built by leveraging global internet infrastructure as well as musical and visual playback across
-        multiple devices. This system was done thinking about its use in live performance and is able to interact with the devices of the public.
+  <div id="remove" class="remove">
+    <div id="savesettings_dialog">
+      <div style="text-align: center; font-size: 5pt;">
+        save on startup automatic engine
+        <button id="shot">newpage</button>
+        <button id="save">save</button>
+        <button id="save3d">save3d</button>
         <br>
+        --
         <br>
-        keywords.<br>
-        Computer Music, New Media Art, Networked Art, Digital Interaction, Interfacing Art
+        <button id="start1" onclick="saveVideo('1')">startVideo</button>
+        <button id="stop1" onclick="saveVideo('2')">stopVideo</button>
+        <br>
+        --
+        <br>
+        <button id="startaudio1" onclick="saveAudio('start')">startAudio</button>
+        <button id="stopaudio1" onclick="saveAudio('stop')">stopAudio</button>
+        <audio controls></audio>
+
       </div>
     </div>
-  </div>
 
-  <div id="modalMode" class="modalMode">
-    <div class="modal-content">
-      <span class="closeMode">&times;</span>
-      <div class="streamButtonDiv" id="streamButtonDiv">
-        <div id="networkTitle">network model</div>
 
-        <div class="btn-group groupStream" role="group" aria-label="Basic example">
+    <div id="master_dialog">
+      <div style="text-align: center; font-size: 5pt;">
 
-          <button type="button" class="stateButton" id="stateButtonOne" onClick="changeState('descenter')">
-            descenter
-          </button>
+        <div class="btn-group-horizontal btn-group-sm buttonsmaster" role="group" aria-label="ok">
+          <button type="button" class="buttonsAbout" onClick="camNear('kill')">close</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('born')">open</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('about')">about</button>
+        </div>
 
-          <button type="button" class="stateButton" id="stateButtonTwo" onClick="changeState('streamed')">
-            <div id="stateButtonTwoDiv">
-              streamed
-            </div>
-          </button>
+        <div id="dialBox2" style="color:rgba(255,255,255,1)">
+          Master
+          <div id="mainvolume" class="mainvolume"></div>
+          <div id="number2" class="number2"></div>
+        </div>
 
-          <button type="button" class="stateButton" id="stateButtonThree" onClick="changeState('alocate')">
-            <div id="stateButtonThreeDiv">
-              allocate
-            </div>
-          </button>
+        <div id="dialBox" style="color:rgba(255,255,255,1)">
+          Synth
+          <div id="synthvolume" class="synthvolume"></div>
+          <div id="number" class="number"></div>
+        </div>
 
-          <button type="button" class="stateButton" id="stateButtonFive" onClick="changeState('alone')">
-            <div id="stateButtonFourDiv">
-              alone
-            </div>
-          </button>
+        <div id="dialBox1" style="color:rgba(255,255,255,1)">
+          Back
+          <div id="backgroundvolume" class="backgroundvolume"></div>
+          <div id="number1" class="number1"></div>
+        </div>
 
-          <button type="button" class="stateButton" id="stateButtonFour" onClick="changeState('monitor')">
-            <div id="stateButtonFourDiv">
-              monitor
-            </div>
-          </button>
+        <div id="dialBox3" style="color:rgba(255,255,255,1)">
+          Low Cross
+          <div id="lowfreq" class="lowfreq"></div>
+          <div id="number6" class="number6"></div>
+        </div>
 
+        <div id="dialBox4" style="color:rgba(255,255,255,1)">
+          EQ High
+          <div id="eqhigh" class="eqhigh"></div>
+          <div id="number5" class="number5"></div>
+        </div>
+
+        <div id="dialBox5" style="color:rgba(255,255,255,1)">
+          EQ Mid
+          <div id="eqmid" class="eqmid"></div>
+          <div id="number4" class="number4"></div>
+        </div>
+
+        <div id="dialBox6" style="color:rgba(255,255,255,1)">
+          EQ Bass
+          <div id="eqbass" class="eqbass"></div>
+          <div id="number3" class="number3"></div>
+        </div>
+
+        <div id="dialBox7" style="color:rgba(255,255,255,1)">
+          High Cross
+          <div id="highfreq" class="highfreq"></div>
+          <div id="number7" class="number7"></div>
+        </div>
+
+        <div id="oscilloscope" class="oscilloscope"></div>
+      </div>
+    </div>
+    <div class="topBar" id="topBar">
+      <nav class="navbar navbar-expand-sm navbar-dark">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('aboutMe')"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Second group">
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')"><i class="fas fa-download"></i></button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Third group">
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('hideGui')"><i class="fas fa-eye-slash"></i></button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Forth group">
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('refresh')"><i class="fas fa-sync-alt"></i></button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Fifth group">
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')"><i class="fas fa-arrows-alt-h"></i></button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Sixth group">
+          <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()"><i class="fas fa-chalkboard"></i></button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Seventh group">
+          <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('coherent')"><i class="fas fa-random"></i></button>
+        </div>
+    </div>
+
+    <div id="monitor_dialog">
+      <div style="text-align: center; font-size: 5pt;">
+        <div id="monitordiv" class="monitordiv">See this
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="modalScale" class="modalScale">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="closeScale">&times;</span>
-      <div class="modal-text">
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('pentatonicMajor')">Pentatonic Major</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('pentatonicMinor')">Pentatonic Minor</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('major')">Major</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('minor')">Minor</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('harmonicMinor')">Harmonic Minor</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('melodicMinor')">Melodic Minor</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('ionian')">Ionian</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('locrian')">Locrian</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('adonai')">Adonai Malakh</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('hirajoshi')">Hirajoshi Japan</button>
-        <br>
-        <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('hungarian')">Hungarian Major</button>
-        <br>
+
+    <div id="modalAbout" class="modalAbout">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="closeAbout">&times;</span>
+        <div class="modal-text">
+          synopsis.<br>
+          Akson is the name of a networked audio-visual system that allows large-scale playback and collaboration between artists.
+          This environment was developed to fulfil the needs of a research in interactive networked musical systems and complex
+          data visualizations done in the context of the <a href="http://www.bragamediaarts.com/pt/" style=color:rgba(250,250,250,1)>Braga
+            Media Arts</a> group. Akson was initially conceived of as an exploration
+          into what could be built by leveraging global internet infrastructure as well as musical and visual playback across
+          multiple devices. This system was done thinking about its use in live performance and is able to interact with the devices of the public.
+          <br>
+          <br>
+          keywords.<br>
+          Computer Music, New Media Art, Networked Art, Digital Interaction, Interfacing Art
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="logs_dialog">
-    <div id="logs" style="text-align: center; font-size: 10pt; color:white ; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
-    </div>
-  </div>
+    <div id="modalMode" class="modalMode">
+      <div class="modal-content">
+        <span class="closeMode">&times;</span>
+        <div class="streamButtonDiv" id="streamButtonDiv">
+          <div id="networkTitle">network model</div>
 
-  <div id="about_this_dialog">
-    <div id="tabs_about">
-      <div>
-        <div class="specs" id="specs">Specs</div>
-        <div class="nets" id="nets">Networks</div>
+          <div class="btn-group groupStream" role="group" aria-label="Basic example">
+
+            <button type="button" class="stateButton" id="stateButtonOne" onClick="changeState('descenter')">
+              descenter
+            </button>
+
+            <button type="button" class="stateButton" id="stateButtonTwo" onClick="changeState('streamed')">
+              <div id="stateButtonTwoDiv">
+                streamed
+              </div>
+            </button>
+
+            <button type="button" class="stateButton" id="stateButtonThree" onClick="changeState('alocate')">
+              <div id="stateButtonThreeDiv">
+                allocate
+              </div>
+            </button>
+
+            <button type="button" class="stateButton" id="stateButtonFive" onClick="changeState('alone')">
+              <div id="stateButtonFourDiv">
+                alone
+              </div>
+            </button>
+
+            <button type="button" class="stateButton" id="stateButtonFour" onClick="changeState('monitor')">
+              <div id="stateButtonFourDiv">
+                monitor
+              </div>
+            </button>
+
+          </div>
+        </div>
       </div>
-      <div>
-        <div id="machineInfo" class="machineInfo">
-          <canvas id="glcanvas"></canvas>
+    </div>
+
+    <div id="modalScale" class="modalScale">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="closeScale">&times;</span>
+        <div class="modal-text">
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('pentatonicMajor')">Pentatonic Major</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('pentatonicMinor')">Pentatonic Minor</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('major')">Major</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('minor')">Minor</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('harmonicMinor')">Harmonic Minor</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('melodicMinor')">Melodic Minor</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('ionian')">Ionian</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('locrian')">Locrian</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('adonai')">Adonai Malakh</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('hirajoshi')">Hirajoshi Japan</button>
+          <br>
+          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('hungarian')">Hungarian Major</button>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div id="logs_dialog">
+      <div id="logs" style="text-align: center; font-size: 10pt; color:white ; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
+      </div>
+    </div>
+
+    <div id="about_this_dialog">
+      <div id="tabs_about">
+        <div>
+          <div class="specs" id="specs">Specs</div>
+          <div class="nets" id="nets">Networks</div>
         </div>
         <div>
-          <div id="networkinfo" class="networkinfo">
-            &nbsp; Interaction Methods in the Network<br><br>
-            &nbsp; &nbsp; <i>descenter</i><br>
-            &nbsp; &nbsp; &nbsp; &nbsp; This method is the instrument default network model when the user connects. The <i>descenter</i>
-            method lets the user have an experience that streams the synthesizer through every device being able to control all the other atributes
-            of the instrument just by himself, not allowing to have a master control but a collaborative yet singular
-            experience.
-            <br>
-            <br>
-            &nbsp; &nbsp; <i>streamed</i><br>
-            &nbsp; &nbsp; &nbsp; &nbsp; The streamed method ...
-            <br>
-            <br>
-            &nbsp; &nbsp; <i>allocate</i><br>
-            &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
-            <br>
-            <br>
-            &nbsp; &nbsp; <i>alone</i><br>
-            &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
-            <br>
+          <div id="machineInfo" class="machineInfo">
+            <canvas id="glcanvas"></canvas>
+          </div>
+          <div>
+            <div id="networkinfo" class="networkinfo">
+              &nbsp; Interaction Methods in the Network<br><br>
+              &nbsp; &nbsp; <i>descenter</i><br>
+              &nbsp; &nbsp; &nbsp; &nbsp; This method is the instrument default network model when the user connects. The <i>descenter</i>
+              method lets the user have an experience that streams the synthesizer through every device being able to control all the other atributes
+              of the instrument just by himself, not allowing to have a master control but a collaborative yet singular
+              experience.
+              <br>
+              <br>
+              &nbsp; &nbsp; <i>streamed</i><br>
+              &nbsp; &nbsp; &nbsp; &nbsp; The streamed method ...
+              <br>
+              <br>
+              &nbsp; &nbsp; <i>allocate</i><br>
+              &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
+              <br>
+              <br>
+              &nbsp; &nbsp; <i>alone</i><br>
+              &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
+              <br>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="alocate_dialog">
-    <div class="alocateDiv" id="alocateDiv">
-      <div class="btn-group alocateGroup alocateLeft" role="group" aria-label="Basic example">
-        <button type="button" class="alocateButton" id="alocateOne" onClick="alocateCortex('alocateOne')">
-          Synthesizer
-        </button>
-      </div>
-      <div class="btn-group alocateGroup" role="group" aria-label="Basic example">
-        <button type="button" class="alocateButton" id="alocateTwo" onClick="alocateCortex('alocateTwo')">
-          Background
-        </button>
-      </div>
-      <div class="btn-group alocateGroup" role="group" aria-label="Basic example">
-        <button type="button" class="alocateButton" id="alocateThree" onClick="alocateCortex('alocateThree')">
-          Graphics
-        </button>
-      </div>
-      <div class="btn-group alocateGroup" role="group" aria-label="Basic example">
-        <button type="button" class="alocateButton" id="alocateFour" onClick="alocateCortex('alocateFour')">
-          Post-Production
-        </button>
+    <div id="alocate_dialog">
+      <div class="alocateDiv" id="alocateDiv">
+        <div class="btn-group alocateGroup alocateLeft" role="group" aria-label="Basic example">
+          <button type="button" class="alocateButton" id="alocateOne" onClick="alocateCortex('alocateOne')">
+            Synthesizer
+          </button>
+        </div>
+        <div class="btn-group alocateGroup" role="group" aria-label="Basic example">
+          <button type="button" class="alocateButton" id="alocateTwo" onClick="alocateCortex('alocateTwo')">
+            Background
+          </button>
+        </div>
+        <div class="btn-group alocateGroup" role="group" aria-label="Basic example">
+          <button type="button" class="alocateButton" id="alocateThree" onClick="alocateCortex('alocateThree')">
+            Graphics
+          </button>
+        </div>
+        <div class="btn-group alocateGroup" role="group" aria-label="Basic example">
+          <button type="button" class="alocateButton" id="alocateFour" onClick="alocateCortex('alocateFour')">
+            Post-Production
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="cockpit_dialog">
-    <div id="tabs_instrumentos">
-      <div>
-        <div class="inst1" id="inst1">Synthesizer</div>
-        <div class="inst2" id="inst2">Background</div>
-        <div class="inst3" id="inst3">Graphics</div>
-        <div class="inst4" id="inst4">Post-Prod</div>
-      </div>
-      <div>
+    <div id="cockpit_dialog">
+      <div id="tabs_instrumentos">
         <div>
-          <!-- First one -->
-          <!--<div id="backgroundCockpit">yes</div>-->
-          <!--  -->
-          <div class="btn-group-horizontal btn-group-sm buttonsone" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sine')">Sine</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('square')">Square</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sawtooth')">Saw</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('triangle')">Triangle</button>
-          </div>
-          <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('2')">2m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('4')">4m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('8')">8m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('16')">16m</button>
-          </div>
-          <!--<div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
+          <div class="inst1" id="inst1">Synthesizer</div>
+          <div class="inst2" id="inst2">Background</div>
+          <div class="inst3" id="inst3">Graphics</div>
+          <div class="inst4" id="inst4">Post-Prod</div>
+        </div>
+        <div>
+          <div>
+            <!-- First one -->
+            <!--<div id="backgroundCockpit">yes</div>-->
+            <!--  -->
+            <div class="btn-group-horizontal btn-group-sm buttonsone" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sine')">Sine</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('square')">Square</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sawtooth')">Saw</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('triangle')">Triangle</button>
+            </div>
+            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('2')">2m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('4')">4m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('8')">8m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('16')">16m</button>
+            </div>
+            <!--<div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary buttonColor" onClick="changeVoices()">voices</button>
           </div>-->
-          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('90')">flipPhase_90</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('180')">flipPhase_180</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('270')">flipPhase_270</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('360')">flipPhase_360</button>
-          </div>
+            <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('90')">flipPhase_90</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('180')">flipPhase_180</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('270')">flipPhase_270</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('360')">flipPhase_360</button>
+            </div>
 
-          <div id="demo_integrated_dialog" style="position: relative;">
-            <div style="text-align: center; font-size: 5pt;">
-              <br>
-              <div id="sliderBox">
-                Synth Attack nr
-                <div id="synthAttack" class="synthAttack"></div>
+            <div id="demo_integrated_dialog" style="position: relative;">
+              <div style="text-align: center; font-size: 5pt;">
+                <br>
+                <div id="sliderBox">
+                  Synth Attack nr
+                  <div id="synthAttack" class="synthAttack"></div>
+                </div>
+                <br>synth_dec
+                <div id="synthDecay" class="synthDecay"></div>
+                synth_sus
+                <div id="synthSustain" class="synthSustain"></div>
+                synth_rel
+                <div id="synthRelease" class="synthRelease"></div>
+                oscPhase
+                <div id="synthPhase" class="synthPhase"></div>
+                partials
+                <div id="synthPartials" class="synthPartials"></div>
               </div>
-              <br>synth_dec
-              <div id="synthDecay" class="synthDecay"></div>
-              synth_sus
-              <div id="synthSustain" class="synthSustain"></div>
-              synth_rel
-              <div id="synthRelease" class="synthRelease"></div>
-              oscPhase
-              <div id="synthPhase" class="synthPhase"></div>
-              partials
-              <div id="synthPartials" class="synthPartials"></div>
             </div>
-          </div>
-          <div id="demo_integrated_dialog_2" style="position: relative;">
-            <div style="text-align: center; font-size: 5pt;">
-              harmonicity
-              <div id="harmonicity" class="harmonicity"></div>
-              m_modulationIndex
-              <div id="modulationindex" class="modulationindex"></div>
-              detune
-              <div id="detune" class="detune"></div>
-              osc_modIndex
-              <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
-              osc_harmonicity
-              <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
+            <div id="demo_integrated_dialog_2" style="position: relative;">
+              <div style="text-align: center; font-size: 5pt;">
+                harmonicity
+                <div id="harmonicity" class="harmonicity"></div>
+                m_modulationIndex
+                <div id="modulationindex" class="modulationindex"></div>
+                detune
+                <div id="detune" class="detune"></div>
+                osc_modIndex
+                <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
+                osc_harmonicity
+                <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
+              </div>
             </div>
-          </div>
-          <div id="demo_integrated_dialog_3" style="position: relative;">
-            <div style="text-align: center; font-size: 5pt;">
-              mod_envelope_att
-              <div id="modulationEnvelopeAttack" class="modulationEnvelopeAttack"></div>
-              mod_envelope_dec
-              <div id="modulationEnvelopeDecay" class="modulationEnvelopeDecay"></div>
-              mod_envelope_sus
-              <div id="modulationEnvelopeSustain" class="modulationEnvelopeSustain"></div>
-              mod_envelope_rel
-              <div id="modulationEnvelopeRelease" class="modulationEnvelopeRelease"></div>
+            <div id="demo_integrated_dialog_3" style="position: relative;">
+              <div style="text-align: center; font-size: 5pt;">
+                mod_envelope_att
+                <div id="modulationEnvelopeAttack" class="modulationEnvelopeAttack"></div>
+                mod_envelope_dec
+                <div id="modulationEnvelopeDecay" class="modulationEnvelopeDecay"></div>
+                mod_envelope_sus
+                <div id="modulationEnvelopeSustain" class="modulationEnvelopeSustain"></div>
+                mod_envelope_rel
+                <div id="modulationEnvelopeRelease" class="modulationEnvelopeRelease"></div>
+              </div>
             </div>
-          </div>
-          <div id="demo_integrated_dialog_4" style="position: relative;">
-            <div style="text-align: center; font-size: 5pt;">
-              rev_RoomSize
-              <div id="reverbRoomSize" class="reverbRoomSize"></div>
-              rev_Wet
-              <div id="reverbWetValue" class="reverbWetValue"></div>
-              rev_Damp
-              <div id="reverbDampValue" class="reverbDampValue"></div>
-              Vibrato, maxDel, freq, depth, wet
-              <div id="vibratoMaxDelay" class="reverbDampValue"></div>
-              <div id="vibratoFrequency" class="reverbDampValue"></div>
-              <div id="vibratoDepth" class="reverbDampValue"></div>
-              <div id="vibratoWet" class="reverbDampValue"></div>
+            <div id="demo_integrated_dialog_4" style="position: relative;">
+              <div style="text-align: center; font-size: 5pt;">
+                rev_RoomSize
+                <div id="reverbRoomSize" class="reverbRoomSize"></div>
+                rev_Wet
+                <div id="reverbWetValue" class="reverbWetValue"></div>
+                rev_Damp
+                <div id="reverbDampValue" class="reverbDampValue"></div>
+                Vibrato, maxDel, freq, depth, wet
+                <div id="vibratoMaxDelay" class="reverbDampValue"></div>
+                <div id="vibratoFrequency" class="reverbDampValue"></div>
+                <div id="vibratoDepth" class="reverbDampValue"></div>
+                <div id="vibratoWet" class="reverbDampValue"></div>
 
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div id="phaserFreq" class="phaserFreq"></div>
-          <div id="phaserOct" class="phaserOct"></div>
-          <div id="phaserWet" class="phaserWet"></div>
-          <div id="phaserQ" class="phaserQ"></div>
-          <div id="phaserBaseFreq" class="phaserBaseFreq"></div>
-          <div id="jcreverbWet" class="jcreverbWet"></div>
-          <div id="jcreverbRoomsize" class="jcreverbRoomsize"></div>
+          <div>
+            <div id="phaserFreq" class="phaserFreq"></div>
+            <div id="phaserOct" class="phaserOct"></div>
+            <div id="phaserWet" class="phaserWet"></div>
+            <div id="phaserQ" class="phaserQ"></div>
+            <div id="phaserBaseFreq" class="phaserBaseFreq"></div>
+            <div id="jcreverbWet" class="jcreverbWet"></div>
+            <div id="jcreverbRoomsize" class="jcreverbRoomsize"></div>
 
 
 
-          <div id="demo_integrated_dialog_5" style="position: relative;">
-            <div style="text-align: center; font-size: 5pt;">
-              noise_playbackrate
-              <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
-              noise_min
-              <div id="noiseMin" class="noiseMin"></div>
-              noise_max
-              <div id="noiseMax" class="noiseMax"></div>
-              af_baseFrequency
-              <div id="afbasefrequency" class="afbasefrequency"></div>
-              noisefiltergain
-              <div id="noisefiltergain" class="noisefiltergain"></div>
+            <div id="demo_integrated_dialog_5" style="position: relative;">
+              <div style="text-align: center; font-size: 5pt;">
+                noise_playbackrate
+                <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
+                noise_min
+                <div id="noiseMin" class="noiseMin"></div>
+                noise_max
+                <div id="noiseMax" class="noiseMax"></div>
+                af_baseFrequency
+                <div id="afbasefrequency" class="afbasefrequency"></div>
+                noisefiltergain
+                <div id="noisefiltergain" class="noisefiltergain"></div>
 
+              </div>
             </div>
-          </div>
-          <div id="demo_integrated_dialog_6" style="position: relative;">
-            <div style="text-align: center; font-size: 5pt;">
-              autofilter_Q
-              <div id="noiseq" class="noiseq"></div>
-              <!--autofilter_Rolloff
+            <div id="demo_integrated_dialog_6" style="position: relative;">
+              <div style="text-align: center; font-size: 5pt;">
+                autofilter_Q
+                <div id="noiseq" class="noiseq"></div>
+                <!--autofilter_Rolloff
               <div id="noiserol" class="noiserol"></div>-->
-              autofilter_octaves
-              <div id="noiseoctaves" class="noiseoctaves"></div>
-              autofilter_freq
-              <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
-              autofilter_wet
-              <div id="autoFilterWet" class="autoFilterWet"></div>
-              autofilter_depth
-              <div id="autoFilterDepth" class="autoFilterDepth"></div>
-            </div>
-          </div>
-
-          <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('white')">White</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('brown')">Brown</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('pink')">Pink</button>
-          </div>
-          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-12')">rollof_-12</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-24')">rollof_-24</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-48')">rollof_-48</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-96')">rollof_-96</button>
-          </div>
-          <div class="btn-group-horizontal btn-group-sm buttonsfive" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sine')">AF_Sine</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('square')">AF_Square</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sawtooth')">AF_Saw</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('triangle')">AF_Triangle</button>
-          </div>
-          <div class="btn-group-horizontal btn-group-sm buttonssix" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2m')">2m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4m')">4m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8m')">8m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16m')">16m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32m')">32m</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2n')">2n</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4n')">4n</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8n')">8n</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16n')">16n</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32n')">32n</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2t')">2t</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4t')">4t</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8t')">8t</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16t')">16t</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32t')">32t</button>
-          </div>
-        </div>
-        <div>
-          master
-          <div id="light1" class="light1"></div>
-          <div id="light2" class="light2"></div>
-          <div id="light3" class="light3"></div>
-          <div id="light4" class="light4"></div>
-
-          <div id="cameraM1" class="cameraM1"></div>
-          <div id="cameraM2" class="cameraM2"></div>
-          <div id="cameraM3" class="cameraM3"></div>
-          <div id="cameraM4" class="cameraM4"></div>
-
-
-          <div id="camera1_1" class="camera1_1"></div>
-          <div id="camera1_2" class="camera1_2"></div>
-          <div id="camera1_3" class="camera1_3"></div>
-
-          <div id="camera2_1" class="camera2_1"></div>
-          <div id="camera2_2" class="camera2_2"></div>
-          <div id="camera2_3" class="camera2_3"></div>
-
-          <div id="camera3_1" class="camera3_1"></div>
-          <div id="camera3_2" class="camera3_2"></div>
-          <div id="camera3_3" class="camera3_3"></div>
-
-          <div id="camera4_1" class="camera4_1"></div>
-          <div id="camera4_2" class="camera4_2"></div>
-          <div id="camera4_3" class="camera4_3"></div>
-
-        </div>
-
-
-        <!-- PostPro -->
-        <div>
-          <!-- Here starts the Range -->
-          <div class="divNotas">
-            <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
-              <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
-              <button type="button" class="btn btn-secondary buttonColor" id="c2" onclick="scaleButtons('c2')">C2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="cs2" onclick="scaleButtons('cs2')">C#2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="d2" onclick="scaleButtons('d2')">D2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="ds2" onclick="scaleButtons('ds2')">D#2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="e2" onclick="scaleButtons('e2')">E2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="f2" onclick="scaleButtons('f2')">F2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="fs2" onclick="scaleButtons('fs2')">F#2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="g2" onclick="scaleButtons('g2')">G2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="gs2" onclick="scaleButtons('gs2')">G#2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="a2" onclick="scaleButtons('a2')">A2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="as2" onclick="scaleButtons('as2')">A#2</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="b2" onclick="scaleButtons('b2')">B2</button>
+                autofilter_octaves
+                <div id="noiseoctaves" class="noiseoctaves"></div>
+                autofilter_freq
+                <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
+                autofilter_wet
+                <div id="autoFilterWet" class="autoFilterWet"></div>
+                autofilter_depth
+                <div id="autoFilterDepth" class="autoFilterDepth"></div>
+              </div>
             </div>
 
-            <div class="btn-group-horizontal btn-group-sm gruponotas3" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" id="c3" onclick="scaleButtons('c3')">C3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="d3" onclick="scaleButtons('d3')">D3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="ds3" onclick="scaleButtons('ds3')">D#3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="e3" onclick="scaleButtons('e3')">E3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="f3" onclick="scaleButtons('f3')">F3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="fs3" onclick="scaleButtons('fs3')">F#3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="g3" onclick="scaleButtons('g3')">G3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="gs3" onclick="scaleButtons('gs3')">G#3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="a3" onclick="scaleButtons('a3')">A3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="as3" onclick="scaleButtons('as3')">A#3</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="b3" onclick="scaleButtons('b3')">B3</button>
+            <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('white')">White</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('brown')">Brown</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('pink')">Pink</button>
             </div>
+            <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-12')">rollof_-12</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-24')">rollof_-24</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-48')">rollof_-48</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-96')">rollof_-96</button>
+            </div>
+            <div class="btn-group-horizontal btn-group-sm buttonsfive" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sine')">AF_Sine</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('square')">AF_Square</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sawtooth')">AF_Saw</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('triangle')">AF_Triangle</button>
+            </div>
+            <div class="btn-group-horizontal btn-group-sm buttonssix" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2m')">2m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4m')">4m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8m')">8m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16m')">16m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32m')">32m</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2n')">2n</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4n')">4n</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8n')">8n</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16n')">16n</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32n')">32n</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2t')">2t</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4t')">4t</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8t')">8t</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16t')">16t</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32t')">32t</button>
+            </div>
+          </div>
+          <div>
+            master
+            <div id="light1" class="light1"></div>
+            <div id="light2" class="light2"></div>
+            <div id="light3" class="light3"></div>
+            <div id="light4" class="light4"></div>
 
-            <div class="btn-group-horizontal btn-group-sm gruponotas4" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" id="c4" onclick="scaleButtons('c4')">C4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="d4" onclick="scaleButtons('d4')">D4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="ds4" onclick="scaleButtons('ds4')">D#4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="e4" onclick="scaleButtons('e4')">E4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="f4" onclick="scaleButtons('f4')">F4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="fs4" onclick="scaleButtons('fs4')">F#4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="g4" onclick="scaleButtons('g4')">G4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="gs4" onclick="scaleButtons('gs4')">G#4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="a4" onclick="scaleButtons('a4')">A4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="as4" onclick="scaleButtons('as4')">A#4</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="b4" onclick="scaleButtons('b4')">B4</button>
-            </div>
+            <div id="cameraM1" class="cameraM1"></div>
+            <div id="cameraM2" class="cameraM2"></div>
+            <div id="cameraM3" class="cameraM3"></div>
+            <div id="cameraM4" class="cameraM4"></div>
 
-            <div class="btn-group-horizontal btn-group-sm gruponotas5" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" id="c5" onclick="scaleButtons('c5')">C5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="d5" onclick="scaleButtons('d5')">D5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="ds5" onclick="scaleButtons('ds5')">D#5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="e5" onclick="scaleButtons('e5')">E5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="f5" onclick="scaleButtons('f5')">F5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="fs5" onclick="scaleButtons('fs5')">F#5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="g5" onclick="scaleButtons('g5')">G5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="gs5" onclick="scaleButtons('gs5')">G#5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="a5" onclick="scaleButtons('a5')">A5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="as5" onclick="scaleButtons('as5')">A#5</button>
-              <button type="button" class="btn btn-secondary buttonColor" id="b5" onclick="scaleButtons('b5')">B5</button>
-            </div>
-            <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="">
-              <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal()">Scale</button>
+
+            <div id="camera1_1" class="camera1_1"></div>
+            <div id="camera1_2" class="camera1_2"></div>
+            <div id="camera1_3" class="camera1_3"></div>
+
+            <div id="camera2_1" class="camera2_1"></div>
+            <div id="camera2_2" class="camera2_2"></div>
+            <div id="camera2_3" class="camera2_3"></div>
+
+            <div id="camera3_1" class="camera3_1"></div>
+            <div id="camera3_2" class="camera3_2"></div>
+            <div id="camera3_3" class="camera3_3"></div>
+
+            <div id="camera4_1" class="camera4_1"></div>
+            <div id="camera4_2" class="camera4_2"></div>
+            <div id="camera4_3" class="camera4_3"></div>
+
+          </div>
+
+
+          <!-- PostPro -->
+          <div>
+            <!-- Here starts the Range -->
+            <div class="divNotas">
+              <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
+                <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
+                <button type="button" class="btn btn-secondary buttonColor" id="c2" onclick="scaleButtons('c2')">C2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="cs2" onclick="scaleButtons('cs2')">C#2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="d2" onclick="scaleButtons('d2')">D2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="ds2" onclick="scaleButtons('ds2')">D#2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="e2" onclick="scaleButtons('e2')">E2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="f2" onclick="scaleButtons('f2')">F2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="fs2" onclick="scaleButtons('fs2')">F#2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="g2" onclick="scaleButtons('g2')">G2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="gs2" onclick="scaleButtons('gs2')">G#2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="a2" onclick="scaleButtons('a2')">A2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="as2" onclick="scaleButtons('as2')">A#2</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="b2" onclick="scaleButtons('b2')">B2</button>
+              </div>
+
+              <div class="btn-group-horizontal btn-group-sm gruponotas3" role="group" aria-label="ok">
+                <button type="button" class="btn btn-secondary buttonColor" id="c3" onclick="scaleButtons('c3')">C3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="d3" onclick="scaleButtons('d3')">D3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="ds3" onclick="scaleButtons('ds3')">D#3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="e3" onclick="scaleButtons('e3')">E3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="f3" onclick="scaleButtons('f3')">F3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="fs3" onclick="scaleButtons('fs3')">F#3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="g3" onclick="scaleButtons('g3')">G3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="gs3" onclick="scaleButtons('gs3')">G#3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="a3" onclick="scaleButtons('a3')">A3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="as3" onclick="scaleButtons('as3')">A#3</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="b3" onclick="scaleButtons('b3')">B3</button>
+              </div>
+
+              <div class="btn-group-horizontal btn-group-sm gruponotas4" role="group" aria-label="ok">
+                <button type="button" class="btn btn-secondary buttonColor" id="c4" onclick="scaleButtons('c4')">C4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="d4" onclick="scaleButtons('d4')">D4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="ds4" onclick="scaleButtons('ds4')">D#4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="e4" onclick="scaleButtons('e4')">E4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="f4" onclick="scaleButtons('f4')">F4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="fs4" onclick="scaleButtons('fs4')">F#4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="g4" onclick="scaleButtons('g4')">G4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="gs4" onclick="scaleButtons('gs4')">G#4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="a4" onclick="scaleButtons('a4')">A4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="as4" onclick="scaleButtons('as4')">A#4</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="b4" onclick="scaleButtons('b4')">B4</button>
+              </div>
+
+              <div class="btn-group-horizontal btn-group-sm gruponotas5" role="group" aria-label="ok">
+                <button type="button" class="btn btn-secondary buttonColor" id="c5" onclick="scaleButtons('c5')">C5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="d5" onclick="scaleButtons('d5')">D5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="ds5" onclick="scaleButtons('ds5')">D#5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="e5" onclick="scaleButtons('e5')">E5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="f5" onclick="scaleButtons('f5')">F5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="fs5" onclick="scaleButtons('fs5')">F#5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="g5" onclick="scaleButtons('g5')">G5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="gs5" onclick="scaleButtons('gs5')">G#5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="a5" onclick="scaleButtons('a5')">A5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="as5" onclick="scaleButtons('as5')">A#5</button>
+                <button type="button" class="btn btn-secondary buttonColor" id="b5" onclick="scaleButtons('b5')">B5</button>
+              </div>
+              <div class="btn-group-horizontal btn-group-sm grupocleanscale" role="group" aria-label="">
+                <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal('clean')">Clean</button>
+              </div>
+              <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="">
+                <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal('scale')">Scale</button>
+              </div>
             </div>
 
             <!--Graphics-->
@@ -632,43 +636,42 @@
                   v.appendChild(stats3.domElement);
                </script>
               </div>
+
+            </div>
+            setViewOffset
+            <div id="cameraM5" class="cameraM5"></div>
+            <div id="cameraM6" class="cameraM6"></div>
+            <div id="cameraM7" class="cameraM7"></div>
+            <div id="cameraM8" class="cameraM8"></div>
+            x/y
+            <div id="cameraM9" class="cameraM9"></div>
+            <div id="cameraM10" class="cameraM10"></div>
+
+
+            <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
+              add controls for each scene W presets
+              <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader0" onclick="shaderButtons('shader0')">Default</button>
+              <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('shader1')">Glitch</button>
+              <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('shader2')">Noise</button>
+              <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('shader3')">Reverb</button>
+              <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader4" onclick="shaderButtons('shader4')">Vignette</button>
+            </div>
+
+            <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
+              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set1')">offset1</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set2')">offset2</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set3')">offset3</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set4')">offset4</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set5')">offset5</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set6')">offset6</button>
+              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('clear')">default</button>
             </div>
 
           </div>
-          setViewOffset
-          <div id="cameraM5" class="cameraM5"></div>
-          <div id="cameraM6" class="cameraM6"></div>
-          <div id="cameraM7" class="cameraM7"></div>
-          <div id="cameraM8" class="cameraM8"></div>
-          x/y
-          <div id="cameraM9" class="cameraM9"></div>
-          <div id="cameraM10" class="cameraM10"></div>
-
-
-          <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
-            add controls for each scene W presets
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader0" onclick="shaderButtons('shader0')">Default</button>
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('shader1')">Glitch</button>
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('shader2')">Noise</button>
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderButtons('shader3')">Reverb</button>
-            <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader4" onclick="shaderButtons('shader4')">Vignette</button>
-          </div>
-
-          <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set1')">offset1</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set2')">offset2</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set3')">offset3</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set4')">offset4</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set5')">offset5</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set6')">offset6</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('clear')">default</button>
-          </div>
 
         </div>
-
       </div>
     </div>
-
 
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>

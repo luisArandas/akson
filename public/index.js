@@ -20,8 +20,11 @@ $(document).ready(function() {
   };
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (ios === true) {
-    console.log("teste");
-    $(".introLoadTimer").remove();
+    WUI_Dialog.close("master_dialog");
+    WUI_Dialog.close("cockpit_dialog");
+    WUI_Dialog.close("logs_dialog");
+    var element = document.getElementById("remove");
+    element.parentNode.removeChild(element);
   }
   if (window.AudioContext === null) {
     alert("AudioContext is Undefined");
@@ -78,10 +81,6 @@ var capturer = new CCapture({
   format: 'webm'
 });
 
-/*  Currently using Pentatonic Major  */
-
-var scalePlaying;
-
 var isSceneOne = true;
 var isSceneTwo = false;
 var isSceneThree = false;
@@ -133,6 +132,7 @@ var strDownloadMime = "image/octet-stream";
 
 init();
 animate();
+
 
 
 function init() {
@@ -956,11 +956,32 @@ function render() {
   capturer.capture(renderer.domElement);
 }
 
-var customScale = ["c2", "d2", "e2", "g2", "a2", "c3", "d3", "e3", "g3", "a3", "c4", "d4", "e4", "g4", "a4", "c5", "d5", "e5", "g5", "a5"];
+//var customScale = ["c2", "d2", "e2", "g2", "a2", "c3", "d3", "e3", "g3", "a3", "c4", "d4", "e4", "g4", "a4", "c5", "d5", "e5", "g5", "a5"];
+var customScale;
+customScale = scale;
 //Array.prototype.push.apply(customScale, scale); Id's are different
+var _customScale;
+var __customScale;
 
 function customScaleCortex(data) {
-  var note = data;
+
+  if (data) {
+    var e = data.toUpperCase();
+    var a = e.replace('S', '#');
+
+    if (scale.includes(a) === true) {
+      for (var i = scale.length - 1; i >= 0; i--) {
+        if (scale[i] === a) {
+          scale.splice(i, 1);
+        }
+      }
+    } else {
+      scale.push(a);
+    }
+    console.log(scale);
+  }
+  //customScale = scale;
+  /*var note = data;
   if (customScale.includes(note) == true) {
     for (var i = customScale.length - 1; i >= 0; i--) {
       if (customScale[i] === note) {
@@ -969,8 +990,10 @@ function customScaleCortex(data) {
     }
   } else {
     customScale.push(note);
-  }
-  //scale = customScale // This equals the current
+  }*/
+
+  /*
+  //scale = customScale
   _customScale = customScale.map(function(e) {
     return e.toUpperCase()
   });
@@ -978,8 +1001,7 @@ function customScaleCortex(data) {
     return e.replace('S', '#');
   });
   scale = __customScale;
-  console.log(scale);
-  console.log("Fix this.");
+  console.log("CustomScale: " + __customScale);*/
 }
 
 function toRadians(angle) {
