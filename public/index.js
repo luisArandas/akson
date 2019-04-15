@@ -81,6 +81,9 @@ var capturer = new CCapture({
   format: 'webm'
 });
 
+var camera2;
+var scene2;
+
 var isSceneOne = true;
 var isSceneTwo = false;
 var isSceneThree = false;
@@ -101,6 +104,8 @@ var renderPostFour = false;
 
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
 
 var isBlackSceneOne = false;
 var isBlackSceneOne_ = false;
@@ -111,6 +116,9 @@ var light2;
 var ambientLight;
 var ambientLight1;
 var ambientLight2;
+
+var planek;
+var plane2k;
 
 var vertices = new THREE.DodecahedronGeometry(50).vertices;
 
@@ -157,12 +165,22 @@ function init() {
 
   container = document.createElement('div');
   document.body.appendChild(container);
+
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
   //camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
   camera.position.z = 1000;
+
+  camera2 = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+  camera2.position.z = 1000;
+
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
   scene.add(camera);
+
+  scene2 = new THREE.Scene();
+  scene2.add(camera2);
+
+
   raycaster = new THREE.Raycaster();
   raycaster.linePrecision = 3;
   raycasterTwo = new THREE.Raycaster();
@@ -499,7 +517,6 @@ function init() {
       var whichScene = 81;
       socket.emit('scene', whichScene);
 
-      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
       controls.enabled = false;
 
       scene.add(parentTransform);
@@ -511,7 +528,6 @@ function init() {
       //console.log("W");
 
       /* Audio Scene */
-      //https://threejsfundamentals.org/threejs/lessons/threejs-fog.html
 
       currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
@@ -539,7 +555,6 @@ function init() {
       var whichScene = 87;
       socket.emit('scene', whichScene);
 
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 150;
       controls.enabled = true;
 
@@ -561,7 +576,7 @@ function init() {
       isSceneTwo = false;
       isSceneThree = true;
       isSceneFour = false;
-      //camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
+
       controls.enabled = false;
 
       var whichScene = 69;
@@ -582,8 +597,6 @@ function init() {
       /*var whichScene = 82;
       socket.emit('scene', whichScene);*/
       controls.enabled = false;
-
-      camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
 
       scene.add(parentTransformQuatro);
       scene.remove(parentTransform);
@@ -672,6 +685,22 @@ function init() {
       WUI_Dialog.close("cockpit_dialog");
     }
   });
+
+  var geometryk = new THREE.PlaneGeometry((windowWidth * 10), 450, 3);
+  var materialk = new THREE.MeshBasicMaterial({
+    color: 0x000000,
+  });
+  planek = new THREE.Mesh(geometryk, materialk);
+
+  var geometry2k = new THREE.PlaneGeometry((windowHeight * 10), 450, 3);
+  var material2k = new THREE.MeshBasicMaterial({
+    color: 0x000000,
+  });
+  plane2k = new THREE.Mesh(geometry2k, material2k);
+
+  planek.position.set(0, -670, 0);
+  plane2k.position.set(0, 670, 0);
+
 }
 
 function onWindowResize() {
@@ -855,13 +884,19 @@ function detectmob() {
   }
 }
 
+
+
+
 function render() {
+
   stats1.update();
   stats2.update();
   stats3.update();
+
   var corFundo = Math.random() * (0.15 - 0) + 0;
   // scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
+
   if (isSceneOne == true || isSceneFour == true) {
     camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
     camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
@@ -899,11 +934,16 @@ function render() {
     INTERSECTEDTWO = null;
   }
 
+  renderer.clear();
   renderer.render(scene, camera);
+  renderer.clearDepth();
+  renderer.render(scene2, camera2);
+
   renderer.autoClear = false;
   renderer.shadowMap.enabled = false;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.shadowMap.needsUpdate = true;
+
 
   document.getElementById('save3d').addEventListener('click', save3d);
 

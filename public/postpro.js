@@ -640,17 +640,21 @@ afterimagePass.renderToScreen = false;
      }
 */
 
-function shaderButtons(data) {
 
-  /* TAKE THE SHADERS ON SCENE CHANGE */
+function shaderButtons(data) {
 
   if (data === "shader0") {
     renderPostOne = false;
     renderPostTwo = false;
     renderPostThree = false;
     renderPostFour = false;
+
+    scene2.remove(planek);
+    scene2.remove(plane2k);
+
     glitchPass.goWild = false;
     glitchPass.renderToScreen = false;
+
     document.getElementById("shader0").style.background = "white";
     document.getElementById("shader0").style.color = "black";
     document.getElementById("shader1").style.background = "black";
@@ -659,7 +663,8 @@ function shaderButtons(data) {
     document.getElementById("shader2").style.color = "white";
     document.getElementById("shader3").style.background = "black";
     document.getElementById("shader3").style.color = "white";
-
+    document.getElementById("shader4").style.background = "black";
+    document.getElementById("shader4").style.color = "white";
 
   }
 
@@ -669,6 +674,9 @@ function shaderButtons(data) {
     renderPostTwo = false;
     renderPostThree = false;
     renderPostFour = false;
+
+    scene2.remove(planek);
+    scene2.remove(plane2k);
 
     glitchPass.goWild = false;
     glitchPass.renderToScreen = true;
@@ -682,6 +690,8 @@ function shaderButtons(data) {
     document.getElementById("shader2").style.color = "white";
     document.getElementById("shader3").style.background = "black";
     document.getElementById("shader3").style.color = "white";
+    document.getElementById("shader4").style.background = "black";
+    document.getElementById("shader4").style.color = "white";
 
   }
 
@@ -690,6 +700,9 @@ function shaderButtons(data) {
     renderPostTwo = false;
     renderPostThree = false;
     renderPostFour = false;
+
+    scene2.remove(planek);
+    scene2.remove(plane2k);
 
     glitchPass.goWild = true;
     glitchPass.renderToScreen = true;
@@ -703,6 +716,8 @@ function shaderButtons(data) {
     document.getElementById("shader2").style.color = "black";
     document.getElementById("shader3").style.background = "black";
     document.getElementById("shader3").style.color = "white";
+    document.getElementById("shader4").style.background = "black";
+    document.getElementById("shader4").style.color = "white";
 
   }
 
@@ -711,6 +726,9 @@ function shaderButtons(data) {
     renderPostTwo = true;
     renderPostThree = false;
     renderPostFour = false;
+
+    scene2.remove(planek);
+    scene2.remove(plane2k);
 
     glitchPass.goWild = false;
     glitchPass.renderToScreen = false;
@@ -724,18 +742,33 @@ function shaderButtons(data) {
     document.getElementById("shader2").style.color = "white";
     document.getElementById("shader3").style.background = "white";
     document.getElementById("shader3").style.color = "black";
+    document.getElementById("shader4").style.background = "black";
+    document.getElementById("shader4").style.color = "white";
 
   }
   if (data === "shader4") {
-    /*renderPostOne = false;
+
+    renderPostOne = false;
     renderPostTwo = false;
-    renderPostThree = true;
+    renderPostThree = false;
+    renderPostFour = false;
 
     glitchPass.goWild = false;
     glitchPass.renderToScreen = false;
-    afterimagePass.renderToScreen = false;
-    effectHBlur.renderToScreen = true;
+    afterimagePass.renderToScreen = true;
 
-    Make a black vignette here*/
+    document.getElementById("shader0").style.background = "black";
+    document.getElementById("shader0").style.color = "white";
+    document.getElementById("shader1").style.background = "black";
+    document.getElementById("shader1").style.color = "white";
+    document.getElementById("shader2").style.background = "black";
+    document.getElementById("shader2").style.color = "white";
+    document.getElementById("shader3").style.background = "black";
+    document.getElementById("shader3").style.color = "white";
+    document.getElementById("shader4").style.background = "white";
+    document.getElementById("shader4").style.color = "black";
+
+    scene2.add(planek);
+    scene2.add(plane2k);
   }
 }
