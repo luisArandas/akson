@@ -297,5 +297,6 @@ WUI_Dialog.create("about_this_dialog", {
   draggable: true,
   minimizable: true,
   resizable: false,
-  status_bar: true
+  status_bar: true,
+  top: 350
 });

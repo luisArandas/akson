@@ -652,7 +652,7 @@ h2 {
   top: 10px;
 }
 
-#sliderBox {
+#sliderBox1 {
   width: 128px;
   height: 35px;
   border: 1px solid rgba(50, 50, 50, 1);
@@ -879,4 +879,46 @@ h2 {
   position: absolute;
   left: 1px;
   top: 58px;
+}
+
+.saveDivs {
+  background-color: black;
+  color: white;
+  position: relative;
+  width: 94%;
+  height: 68px;
+  margin-top: 3%;
+  margin-left: 3%;
+  font-size: 8px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.saveDiv3 {
+  background-color: black;
+  color: white;
+  position: relative;
+  width: 94%;
+  height: 100px;
+  margin-top: 3%;
+  margin-left: 3%;
+  font-size: 8px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.aboutText {
+  text-align: center;
+  margin: 6px;
+}
+
+audio {
+  width: 250px;
+  height: 35px;
+  margin-top: 5px;
+  background-color: red !important;
+  border-radius: 3px;
+  border: 1px solid rgba(50, 50, 50, 1);
 }

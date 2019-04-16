@@ -550,6 +550,9 @@ UI.synthAttack.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Attack : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('ok1').innerHTML = 'Synth Attack: ' + _v;
+
 });
 UI.synthDecay.on('change', function(v) {
   var data = {

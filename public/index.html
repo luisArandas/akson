@@ -60,21 +60,26 @@
   <div id="remove" class="remove">
     <div id="savesettings_dialog">
       <div style="text-align: center; font-size: 5pt;">
-        save on startup automatic engine
-        <button id="shot">newpage</button>
-        <button id="save">save</button>
-        <button id="save3d">save3d</button>
-        <br>
-        --
-        <br>
-        <button id="start1" onclick="saveVideo('1')">startVideo</button>
-        <button id="stop1" onclick="saveVideo('2')">stopVideo</button>
-        <br>
-        --
-        <br>
-        <button id="startaudio1" onclick="saveAudio('start')">startAudio</button>
-        <button id="stopaudio1" onclick="saveAudio('stop')">stopAudio</button>
-        <audio controls></audio>
+
+        <div class="saveDivs">
+          <div class="aboutText">Save Frame</div>
+          <button id="shot" class="buttonsAbout">New Page</button>
+          <button id="save" class="buttonsAbout">Save to Disk</button>
+          <button id="save3d" class="buttonsAbout">Save 360</button>
+        </div>
+
+        <div class="saveDivs">
+          <div class="aboutText">Save Video</div>
+          <button id="start1" class="buttonsAbout" onclick="saveVideo('1')">Start Video</button>
+          <button id="stop1" class="buttonsAbout" onclick="saveVideo('2')">Stop Video</button>
+        </div>
+
+        <div class="saveDiv3">
+          <div class="aboutText">Save Audio</div>
+          <button id="startaudio1" class="buttonsAbout" onclick="saveAudio('start')"> Start Audio</button>
+          <button id="stopaudio1" class="buttonsAbout" onclick="saveAudio('stop')">Stop Audio</button>
+          <audio controls loop download></audio>
+        </div>
 
       </div>
     </div>
@@ -84,9 +89,9 @@
       <div style="text-align: center; font-size: 5pt;">
 
         <div class="btn-group-horizontal btn-group-sm buttonsmaster" role="group" aria-label="ok">
-          <button type="button" class="buttonsAbout" onClick="camNear('kill')">close</button>
-          <button type="button" class="buttonsAbout" onClick="camNear('born')">open</button>
-          <button type="button" class="buttonsAbout" onClick="camNear('about')">about</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('kill')" title="Close Scene">close</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('born')" title="Open Scene">open</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('about')" title="About the Device">about</button>
         </div>
 
         <div id="dialBox2" style="color:rgba(255,255,255,1)">
@@ -143,25 +148,25 @@
     <div class="topBar" id="topBar">
       <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="btn-group mr-2" role="group" aria-label="First group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('aboutMe')"><i class="fas fa-bars"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('aboutMe')" title="About Akson"><i class="fas fa-bars"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Second group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')"><i class="fas fa-download"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')" title="Record Media"><i class="fas fa-download"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Third group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('hideGui')"><i class="fas fa-eye-slash"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('hideGui')" title="Hide GUI"><i class="fas fa-eye-slash"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Forth group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('refresh')"><i class="fas fa-sync-alt"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('refresh')" title="Refresh"><i class="fas fa-sync-alt"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Fifth group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')"><i class="fas fa-arrows-alt-h"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')" title="Interaction Mode"><i class="fas fa-arrows-alt-h"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Sixth group">
-          <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()"><i class="fas fa-chalkboard"></i></button>
+          <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()" title="MIDI"><i class="fas fa-chalkboard"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Seventh group">
-          <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('coherent')"><i class="fas fa-random"></i></button>
+          <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('coherent')" title="Correlate AV Controls"><i class="fas fa-random"></i></button>
         </div>
     </div>
 
@@ -282,7 +287,7 @@
           </div>
           <div>
             <div id="networkinfo" class="networkinfo">
-              &nbsp; Interaction Methods in the Network<br><br>
+              &nbsp; Interaction Methods in the Akson Network<br><br>
               &nbsp; &nbsp; <i>descenter</i><br>
               &nbsp; &nbsp; &nbsp; &nbsp; This method is the instrument default network model when the user connects. The <i>descenter</i>
               method lets the user have an experience that streams the synthesizer through every device being able to control all the other atributes
@@ -291,15 +296,20 @@
               <br>
               <br>
               &nbsp; &nbsp; <i>streamed</i><br>
-              &nbsp; &nbsp; &nbsp; &nbsp; The streamed method ...
+              &nbsp; &nbsp; &nbsp; &nbsp; The <i>streamed</i> method is an interaction state that allows everyone to be a master. Every tiny change in the
+              interface will stream to every user that also shares this state. Everybody does everything so it is possible to create large-scale streaming
+              musical and visual structures.
               <br>
               <br>
               &nbsp; &nbsp; <i>allocate</i><br>
-              &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
+              &nbsp; &nbsp; &nbsp; &nbsp; The <i>alocatte</i> mode relies on the choice of the user on what to control. This method splits the instrument in four
+              parts, where the other users are automatically allocated on what the current user didn't choose. So the system is divided as roles and the artists can
+              behave as a coherent group
               <br>
               <br>
               &nbsp; &nbsp; <i>alone</i><br>
-              &nbsp; &nbsp; &nbsp; &nbsp; The alocatte method ...
+              &nbsp; &nbsp; &nbsp; &nbsp; The <i>alone</i> mode allows the user to don't have collaboration if he desires to play alone by himself.
+              It ends and re-establishes the connections so there are no collaboration for the ammount of time the user is in here.
               <br>
             </div>
           </div>
@@ -370,8 +380,8 @@
             <div id="demo_integrated_dialog" style="position: relative;">
               <div style="text-align: center; font-size: 5pt;">
                 <br>
-                <div id="sliderBox">
-                  Synth Attack nr
+                <div id="sliderBox1">
+                  <div id="ok1">Synth Attack:</div>
                   <div id="synthAttack" class="synthAttack"></div>
                 </div>
                 <br>synth_dec
