@@ -116,21 +116,21 @@ var UI = {
     max: 0.8,
     step: 0.001,
     mode: 'absolute',
-    value: 0.01
+    value: 0.4
   }),
   synthDecay: new Nexus.Slider('#synthDecay', {
     min: 0,
     max: 1,
     step: 0.01,
     mode: 'absolute',
-    value: 0.1
+    value: 0.4
   }),
   synthSustain: new Nexus.Slider('#synthSustain', {
     min: 0,
     max: 1,
     step: 0.01,
     mode: 'absolute',
-    value: 0.2
+    value: 0.3
   }),
   synthRelease: new Nexus.Slider('#synthRelease', {
     min: 0,
@@ -238,8 +238,8 @@ var UI = {
     value: 1
   }),
   noiseoctaves: new Nexus.Slider("#noiseoctaves", {
-    min: -10,
-    max: 10,
+    min: -2.5,
+    max: 8,
     step: 0.01,
     mode: 'absolute',
     value: 2.6
@@ -472,9 +472,9 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     */
   },
   envelope: {
-    attack: 0.01,
-    decay: 0.1,
-    sustain: 0.2,
+    attack: 0.4,
+    decay: 0.4,
+    sustain: 0.4,
     release: 4,
   },
   modulation: {
@@ -518,6 +518,9 @@ UI.backgroundvolume.on('change', function(v) {
 });
 UI.mainvolume.on('change', function(v) {
   Tone.Master.volume.value = v;
+
+
+
   console.log("1 " + v);
   var data = {
     x: v,
@@ -527,14 +530,11 @@ UI.mainvolume.on('change', function(v) {
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
   printLogsDialog("Master Volume : ", _v);
 
-  var k = v.map(-50, 0, -1, 1);
-  console.log("2 " + k);
-  //light.intensity = k;
-  //light1.intensity = k;
-  //light2.intensity = k;
-  //ambientLight1.intensity = k;
-  //ambientLight2.intensity = k;
-  //ambientLight.intensity = k;
+  __v = v.map(-50, 0, 0, 5);
+  lightOne.intensity = __v;
+  lightTwo.intensity = __v;
+  lightThree.intensity = __v;
+  lightFour.intensity = __v;
 });
 
 UI.synthAttack.on('change', function(v) {
@@ -931,6 +931,7 @@ UI.vibratoFrequency.on('change', function(v) {
     y: "vibratoFreq"
   };
   socket.emit('uiSocketSynthVibratoFreq', data);
+  printLogsDialog("Vibrato Frequency : ", v);
 });
 
 UI.vibratoDepth.on('change', function(v) {
@@ -940,6 +941,7 @@ UI.vibratoDepth.on('change', function(v) {
     y: "vibratoDepth"
   };
   socket.emit('uiSocketSynthVibratoDep', data);
+  printLogsDialog("Vibrato Depth : ", v);
 });
 
 UI.vibratoWet.on('change', function(v) {
@@ -949,6 +951,7 @@ UI.vibratoWet.on('change', function(v) {
     y: "vibratoWet"
   };
   socket.emit('uiSocketSynthVibratoWet', data);
+  printLogsDialog("Vibrato Wet : ", v);
 });
 
 UI.phaserFreq.on('change', function(v) {
@@ -958,6 +961,8 @@ UI.phaserFreq.on('change', function(v) {
     y: "phaserFreq"
   };
   socket.emit('uiSocketNoisePhaserFreq', data);
+  printLogsDialog("Phaser Frequency : ", v);
+
 });
 
 UI.phaserOct.on('change', function(v) {
@@ -967,6 +972,7 @@ UI.phaserOct.on('change', function(v) {
     y: "phaserOct"
   };
   socket.emit('uiSocketNoisePhaserOct', data);
+  printLogsDialog("Phaser Octaves : ", v);
 });
 
 UI.phaserWet.on('change', function(v) {
@@ -976,6 +982,7 @@ UI.phaserWet.on('change', function(v) {
     y: "phaserWet"
   };
   socket.emit('uiSocketNoisePhaserWet', data);
+  printLogsDialog("Phaser Wet : ", v);
 });
 
 UI.phaserQ.on('change', function(v) {
@@ -985,6 +992,7 @@ UI.phaserQ.on('change', function(v) {
     y: "phaserQ"
   };
   socket.emit('uiSocketNoisePhaserQ', data);
+  printLogsDialog("Phaser Q : ", v);
 });
 
 UI.phaserBaseFreq.on('change', function(v) {
@@ -994,6 +1002,7 @@ UI.phaserBaseFreq.on('change', function(v) {
     y: "phaserBaseFreq"
   };
   socket.emit('uiSocketNoisePhaserBaseFreq', data);
+  printLogsDialog("Phaser BaseFreq : ", v);
 });
 
 UI.jcreverbRoomsize.on('change', function(v) {
@@ -1003,6 +1012,7 @@ UI.jcreverbRoomsize.on('change', function(v) {
     y: "jcverbRoomSiz"
   };
   socket.emit('uiSocketNoiseJcverbRoom', data);
+  printLogsDialog("JC_Reverb RoomSize : ", v);
 });
 
 UI.jcreverbWet.on('change', function(v) {
@@ -1012,6 +1022,8 @@ UI.jcreverbWet.on('change', function(v) {
     y: "jcverbWet"
   };
   socket.emit('uiSocketNoiseJcverbWet', data);
+  printLogsDialog("JC_Reverb Wet : ", v);
+
 });
 
 //console.log(autoFilterOne);
@@ -1036,15 +1048,6 @@ function topBar(data) {
   }
   if (data == "refresh") {
     location.reload();
-  }
-  if (data == "hideGui") {
-    //guiIsVisible = false;
-    WUI_Dialog.close("master_dialog");
-    WUI_Dialog.close("cockpit_dialog");
-    WUI_Dialog.close("logs_dialog");
-    WUI_Dialog.close("monitor_dialog");
-    document.getElementById("topBar").style.visibility = "hidden";
-    $("body").css('cursor', 'none');
   }
   if (data == "recordAudio") {
     WUI_Dialog.open("savesettings_dialog");
@@ -1326,4 +1329,59 @@ recorder.onstop = evt => {
     type: 'audio/ogg; codecs=opus'
   });
   audio.src = URL.createObjectURL(blob);
+}
+
+function postPresets(v){
+  if (v === "1"){
+    console.log("1");
+  }
+  if (v === "2"){
+    console.log("2");
+  }
+  if (v === "3"){
+    console.log("3");
+  }
+  if (v === "4"){
+    console.log("4");
+  }
+  if (v === "5"){
+    console.log("5");
+  }
+}
+
+var sceneValue = 0;
+
+function incrementValue() {
+
+  sceneValue++;
+
+  if (sceneValue === 0){
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 81,
+      'which': 81
+    });
+    document.dispatchEvent(evt);
+  }
+  if (sceneValue === 1){
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 87,
+      'which': 87
+    });
+    document.dispatchEvent(evt);
+  }
+  if (sceneValue === 2){
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 69,
+      'which': 69
+    });
+    document.dispatchEvent(evt);
+  }
+  if (sceneValue === 3){
+    var evt = new KeyboardEvent('keydown', {
+      'keyCode': 82,
+      'which': 82
+    });
+    document.dispatchEvent(evt);
+    sceneValue = -1;
+  }
 }

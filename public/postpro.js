@@ -772,3 +772,33 @@ function shaderButtons(data) {
     scene2.add(plane2k);
   }
 }
+
+/* This might be important anytime soon
+First scene with line buffer geometry. xCoAx maybe will need this
+
+  var lineGeometry = new THREE.BufferGeometry();
+  var points = [];
+  var point = new THREE.Vector3();
+  var direction = new THREE.Vector3();
+  for (var i = 0; i < 150; i++) {
+    direction.x = 0;
+    direction.y = 0;
+    direction.z = 5;
+    point.add(direction);
+    points.push(point.x, point.y, point.z);
+  }
+  lineGeometry.addAttribute('position', new THREE.Float32BufferAttribute(points, 3));
+  var material = new THREE.LineBasicMaterial({
+    color: 0xffffff
+  });
+  for (var i = 0; i < 150; i++) {
+    var object;
+    object = new THREE.Line(lineGeometry, material);
+    object.position.x = 1;
+    object.position.y = 1; //Math.floor(Math.random() * 6) + 1;
+    object.position.z = Math.random() * 400 - 200;
+    object.rotation.x = 1;
+    object.rotation.y = Math.random() * 2 * Math.PI;
+    object.rotation.z = Math.random() * 2 * Math.PI;
+    parentTransformSete.add(object);
+  }*/

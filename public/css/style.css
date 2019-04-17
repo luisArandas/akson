@@ -424,7 +424,7 @@ body.fadeIn {
   width: 450px;
   height: auto;
   position: absolute;
-  left: 150px;
+  left: 300px;
   background-color: red;
 }
 
@@ -547,8 +547,8 @@ h2 {
 
 .gruposhaders{
   position: absolute;
-  left: auto;
-  top: 10px;
+  left: 50px;
+  top: 0px;
 }
 
 
@@ -919,7 +919,7 @@ audio {
   height: 35px;
   margin-top: 5px;
   background-color: rgba(200,200,200,1);
-  border-radius: 3px
+  border-radius: 3px;
 }
 audio::-webkit-media-controls-panel{
   background-color: rgba(200,200,200,1);
@@ -978,4 +978,13 @@ audio::-webkit-media-controls-return-to-realtime-button{
 
 audio::-webkit-media-controls-toggle-closed-captions-button{
 
+}
+
+.presetsDiv {
+  background-color: rgba(10,10,10,1);
+  border-radius: 3px;
+  border: 1px solid rgba(50, 50, 50, 1);
+  width: 250px;
+  height: 50px;
+  text-align: center;
 }

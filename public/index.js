@@ -68,6 +68,7 @@ var glitchPass = new THREE.GlitchPass();
 var afterimagePass = new THREE.AfterimagePass();
 
 var effectHBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader);
+var whichScene; // Stream to the mobile phone.
 
 var composerOne;
 var composerTwo;
@@ -110,12 +111,6 @@ var windowHeight = window.innerHeight;
 var isBlackSceneOne = false;
 var isBlackSceneOne_ = false;
 var isBlackSceneFour = false;
-var light1;
-var light2;
-
-var ambientLight;
-var ambientLight1;
-var ambientLight2;
 
 var planek;
 var plane2k;
@@ -167,7 +162,6 @@ function init() {
   document.body.appendChild(container);
 
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
-  //camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
   camera.position.z = 1000;
 
   camera2 = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
@@ -224,50 +218,25 @@ function init() {
   controls.maxPolarAngle = Math.PI / 2;
   controls.enabled = false;
 
-
-  ambientLight = new THREE.AmbientLight(0xd3d3d3, 0.1);
-  scene.add(ambientLight);
-
   /* ----------------------------------------------------------------------------------------- */
 
   parentTransform = new THREE.Object3D();
-  for (var i = 0; i < 45; i++) {
+  for (var i = 0; i < 90; i++) {
     var geometry = new THREE.BoxGeometry(10, 1500, 10);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x5f5f5f,
-      morphTargets: true,
-      //wireframe: true
     }));
 
     object.position.x = Math.random() * 800 - 400;
     object.position.y = Math.random() * 800 - 400;
     object.position.z = Math.random() * 800 - 400;
     object.rotation.x = Math.random() * 2 * Math.PI;
-    //object.rotation.y = Math.random() * 2 * Math.PI;
-    //object.rotation.z = Math.random() * 2 * Math.PI;
-    //object.rotation.z = Math.PI / 2;
+
     parentTransform.add(object);
 
   }
-  for (var i = 0; i < 45; i++) {
-    var geometry = new THREE.BoxGeometry(10, 1500, 10);
-    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
-      color: 0x5f5f5f,
-      morphTargets: true,
-      //wireframe: true
-    }));
 
-    object.position.x = Math.random() * 800 - 400;
-    object.position.y = Math.random() * 800 - 400;
-    object.position.z = Math.random() * 800 - 400;
-    object.rotation.x = Math.random() * 2 * Math.PI;
-    //object.rotation.y = Math.random() * 2 * Math.PI;
-    //object.rotation.z = Math.random() * 2 * Math.PI;
-    //object.rotation.z = Math.PI / 2;
-    parentTransform.add(object);
-
-  }
-  lightOne = new THREE.DirectionalLight(0xd3d3d3, 1);
+  lightOne = new THREE.DirectionalLight(0xd3d3d3, 1.1);
   lightOne.position.set(1, 1, 1).normalize();
   parentTransform.add(lightOne);
   scene.add(parentTransform);
@@ -312,7 +281,7 @@ function init() {
   /* ----------------------------------------------------------------------------------------- */
 
   parentTransformTres = new THREE.Object3D();
-  for (var i = 0; i < 90; i++) {
+  for (var i = 0; i < 50; i++) {
     var geometry = new THREE.BoxGeometry(50, 500, 50);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x1E1E1E,
@@ -324,14 +293,7 @@ function init() {
     object.rotation.x = Math.random() * 2 * Math.PI;
     parentTransformTres.add(object);
   }
-  light7 = new THREE.DirectionalLight(0x000000, 1);
-  light7.position.set(1, 5, 1).normalize();
-  parentTransformTres.add(light7);
-  ambientLight7 = new THREE.AmbientLight(0x000000, 1);
-  parentTransformTres.add(ambientLight7);
-  directionalLight7 = new THREE.DirectionalLight(0x8C8C8C, 5);
-  parentTransformTres.add(directionalLight7);
-  lightThree = new THREE.DirectionalLight(0xd3d3d3, 1);
+  lightThree = new THREE.DirectionalLight(0xd3d3d3, 2);
   lightThree.position.set(1, 1, 1).normalize();
   parentTransformTres.add(lightThree);
 
@@ -363,51 +325,14 @@ function init() {
     object.position.y = Math.random() * 800 - 400;
     object.position.z = Math.random() * 800 - 400;
     object.rotation.x = Math.random() * 2 * Math.PI;
-    //object.rotation.y = Math.random() * 2 * Math.PI;
-    //object.rotation.z = Math.random() * 2 * Math.PI;
-    //object.rotation.z = Math.PI / 2;
+
     parentTransformQuatro.add(object);
 
   }
-  light2 = new THREE.DirectionalLight(0x0c0c0c, 4);
-  light2.position.set(1, 5, 1).normalize();
-  parentTransformQuatro.add(light2);
-  ambientLight2 = new THREE.AmbientLight(0x0c0c0c, 4);
-  parentTransformQuatro.add(ambientLight2);
 
-  lightFour = new THREE.DirectionalLight(0xd3d3d3, 1);
+  lightFour = new THREE.DirectionalLight(0xd3d3d3, 2);
   lightFour.position.set(1, 1, 1).normalize();
   parentTransformQuatro.add(lightFour);
-
-  /* This might be important anytime soon
-  First scene with line buffer geometry. xCoAx maybe will need this
-
-    var lineGeometry = new THREE.BufferGeometry();
-    var points = [];
-    var point = new THREE.Vector3();
-    var direction = new THREE.Vector3();
-    for (var i = 0; i < 150; i++) {
-      direction.x = 0;
-      direction.y = 0;
-      direction.z = 5;
-      point.add(direction);
-      points.push(point.x, point.y, point.z);
-    }
-    lineGeometry.addAttribute('position', new THREE.Float32BufferAttribute(points, 3));
-    var material = new THREE.LineBasicMaterial({
-      color: 0xffffff
-    });
-    for (var i = 0; i < 150; i++) {
-      var object;
-      object = new THREE.Line(lineGeometry, material);
-      object.position.x = 1;
-      object.position.y = 1; //Math.floor(Math.random() * 6) + 1;
-      object.position.z = Math.random() * 400 - 200;
-      object.rotation.x = 1;
-      object.rotation.y = Math.random() * 2 * Math.PI;
-      object.rotation.z = Math.random() * 2 * Math.PI;
-      parentTransformSete.add(object);
-    }*/
 
   window.addEventListener('resize', onWindowResize, false);
   window.addEventListener('mousedown', onMouseDown, false);
@@ -416,8 +341,8 @@ function init() {
     mouseDown = 0;
   }, false);
   window.addEventListener("blur", function(event) {
-
   }, false);
+
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
   composerOne = new THREE.EffectComposer(renderer);
@@ -432,7 +357,6 @@ function init() {
   composerThree.addPass(new THREE.RenderPass(scene, camera));
   composerThree.addPass(effectHBlur);
 
-
   glitchPass.renderToScreen = false;
   effectHBlur.renderToScreen = false;
   afterimagePass.renderToScreen = false;
@@ -444,7 +368,6 @@ function init() {
 
   console.log(autoFilterOne.baseFrequency);
 
-  var whichScene; // Stream to the mobile phone.
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
       if (sideBar == false) {
@@ -473,8 +396,8 @@ function init() {
       currentSynthesizer.volume.value = 0;
       UI.synthvolume._value.update(0);
       UI.synthvolume.render();
-      noiseOne.volume.value = -11;
-      UI.backgroundvolume._value.update(-11);
+      noiseOne.volume.value = -10;
+      UI.backgroundvolume._value.update(-10);
       UI.backgroundvolume.render();
       autoFilterOne.set({
         "baseFrequency": 200
@@ -484,15 +407,20 @@ function init() {
           "rolloff": -12
         }
       });
+      autoFilterOne.set({
+        "frequency": "8m"
+      });
+      UI.noiseOnePlaybackRate._value.update(1);
+      UI.noiseOnePlaybackRate.render();
+      noiseOne.playbackRate = 1;
 
-      /* ------------
-      renderPostOne = false;
-      renderPostTwo = false;
-      renderPostThree = false;
-      glitchPass.goWild = false;
-      glitchPass.renderToScreen = false;
-      afterimagePass.renderToScreen = false;
-      effectHBlur.renderToScreen = false;*/
+      UI.vibratoFrequency._value.update(0);
+      UI.vibratoFrequency.render();
+      vibrato.frequency.value = 0;
+
+      UI.vibratoDepth._value.update(0);
+      UI.vibratoDepth.render();
+      vibrato.depth.value = 0;
 
       isSceneOne = true;
       isSceneTwo = false;
@@ -521,15 +449,33 @@ function init() {
       UI.backgroundvolume._value.update(0);
       UI.backgroundvolume.render();
       autoFilterOne.set({
-        "baseFrequency": 100
+        "baseFrequency": 150
       });
       autoFilterOne.set({
         "filter": {
           "rolloff": -24
         }
       });
+      autoFilterOne.set({
+        "frequency": "4m"
+      });
+      UI.noiseOnePlaybackRate._value.update(1);
+      UI.noiseOnePlaybackRate.render();
+      noiseOne.playbackRate = 1;
+
+      UI.vibratoFrequency._value.update(0);
+      UI.vibratoFrequency.render();
+      vibrato.frequency.value = 0;
+
+      UI.vibratoDepth._value.update(0);
+      UI.vibratoDepth.render();
+      vibrato.depth.value = 0;
 
       /* ------------ */
+
+      camera.position.x = 54;
+      camera.position.y = 54;
+      camera.position.z = 150;
 
       mouseDown = 0;
       isSceneOne = false;
@@ -540,7 +486,6 @@ function init() {
       var whichScene = 87;
       socket.emit('scene', whichScene);
 
-      camera.position.z = 150;
       controls.enabled = true;
 
       scene.add(parentTransformDois);
@@ -552,10 +497,51 @@ function init() {
     if (event.which == "69") {
       console.log("E");
 
-      /* Autofilter freq*/
+      currentSynthesizer.volume.value = -22.5;
+      UI.synthvolume._value.update(-22.5);
+      UI.synthvolume.render();
+      noiseOne.volume.value = 0;
+      UI.backgroundvolume._value.update(0);
+      UI.backgroundvolume.render();
+      autoFilterOne.set({
+        "baseFrequency": 150
+      });
+      autoFilterOne.set({
+        "filter": {
+          "rolloff": -96
+        }
+      });
       autoFilterOne.set({
         "frequency": "2n"
       });
+      UI.noiseOnePlaybackRate._value.update(1);
+      UI.noiseOnePlaybackRate.render();
+      noiseOne.playbackRate = 1;
+
+      UI.vibratoFrequency._value.update(0);
+      UI.vibratoFrequency.render();
+      vibrato.frequency.value = 0;
+
+      UI.vibratoDepth._value.update(0);
+      UI.vibratoDepth.render();
+      vibrato.depth.value = 0;
+
+
+      /*currentSynthesizer.volume.value = -22.5;
+      UI.synthvolume._value.update(-22.5);
+      UI.synthvolume.render();
+      noiseOne.volume.value = 0;
+      UI.backgroundvolume._value.update(0);
+      UI.backgroundvolume.render();
+      autoFilterOne.set({
+        "baseFrequency": 150
+      });
+      autoFilterOne.set({
+        "filter": {
+          "rolloff": -24
+        }
+      });*/
+
 
       isSceneOne = false;
       isSceneTwo = false;
@@ -572,8 +558,23 @@ function init() {
       scene.remove(parentTransformDois);
       scene.remove(parentTransformQuatro);
     }
+
     if (event.which == "82") {
       console.log("R")
+
+      UI.noiseOnePlaybackRate._value.update(15);
+      UI.noiseOnePlaybackRate.render();
+      noiseOne.playbackRate = 15;
+
+      UI.vibratoFrequency._value.update(2.5);
+      UI.vibratoFrequency.render();
+      vibrato.frequency.value = 2.5;
+
+      UI.vibratoDepth._value.update(0.2);
+      UI.vibratoDepth.render();
+      vibrato.depth.value = 0.2;
+
+
       isSceneOne = false;
       isSceneTwo = false;
       isSceneThree = false;
@@ -587,87 +588,6 @@ function init() {
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
       scene.remove(parentTransformTres);
-    }
-
-    if (event.which == "84") {} //T
-    if (event.which == "89") {} //Y
-    if (event.which == "85") {} //U
-    if (event.which == "73") {} //I
-    if (event.which == "79") {} //O
-    if (event.which == "80") {} //P
-
-    /*
-    SEGUNDA
-    A_65 S_83 D_68 F_70 G_71 H_72 J_74 K_75 L_76 Ç_186
-    */
-    if (event.which == "65") {
-      // AQUI METER UM TIMER E POR NO E
-      console.log("A");
-      afterimagePass.renderToScreen = false;
-      glitchPass.goWild = true;
-      if (glitchPass.renderToScreen == false) {
-        renderPostOne = true;
-        glitchPass.renderToScreen = true;
-      } else if (glitchPass.renderToScreen == true) {
-        renderPostOne = false;
-        glitchPass.renderToScreen = false;
-      }
-      console.log(glitchVarOne);
-    }
-    if (event.which == "83") {
-      console.log("S");
-      afterimagePass.renderToScreen = false;
-      glitchPass.goWild = false;
-      if (glitchPass.renderToScreen == false) {
-        renderPostOne = true;
-        glitchPass.renderToScreen = true;
-      } else if (glitchPass.renderToScreen == true) {
-        renderPostOne = false;
-        glitchPass.renderToScreen = false;
-      }
-    }
-    if (event.which == "68") {
-      console.log("D");
-      glitchPass.renderToScreen = false;
-      if (afterimagePass.renderToScreen == false) {
-        renderPostTwo = true;
-        afterimagePass.renderToScreen = true;
-      } else if (afterimagePass.renderToScreen == true) {
-        renderPostTwo = true;
-        afterimagePass.renderToScreen = false;
-      }
-    }
-    if (event.which == "70") {
-      console.log("F");
-      glitchPass.renderToScreen = false;
-      afterimagePass.renderToScreen = false;
-    }
-    if (event.which == "71") {
-      console.log("G");
-      glitchPass.renderToScreen = false;
-      afterimagePass.renderToScreen = false;
-    }
-    if (event.which == "72") {
-      console.log("H");
-    }
-    if (event.which == "74") {
-      console.log("J");
-    }
-    if (event.which == "75") {
-      console.log("K");
-    }
-    if (event.which == "76") {
-      console.log("L");
-    }
-    if (event.which == "186") {
-      console.log("Ç");
-      WUI_Dialog.open("master_dialog");
-      WUI_Dialog.open("cockpit_dialog");
-    }
-    if (event.which == "222") {
-      console.log("~");
-      WUI_Dialog.close("master_dialog");
-      WUI_Dialog.close("cockpit_dialog");
     }
   });
 
@@ -928,16 +848,16 @@ function render() {
 
   document.getElementById('save3d').addEventListener('click', save3d);
 
-  if (renderPostOne == true) {
+  if (renderPostOne === true) {
     composerOne.render();
   }
-  if (renderPostTwo == true) {
+  if (renderPostTwo === true) {
     composerTwo.render();
   }
-  if (renderPostThree == true) {
+  if (renderPostThree === true) {
     composerThree.render();
   }
-  if (renderPostFour == true) {
+  if (renderPostFour === true) {
     composerFour.render();
   }
 
@@ -956,9 +876,6 @@ function render() {
     parentTransformTres.rotation.y = ry;
     parentTransformTres.rotation.z = rz;
   }
-  light1.position.x = Math.sin(time * 0.7) * 30;
-  light1.position.y = Math.cos(time * 0.5) * 40;
-  light1.position.z = Math.cos(time * 0.3) * 30;
 
   //horizontal rotation
   parentTransformDois.rotation.y += (targetRotationX - parentTransformDois.rotation.y) * 0.1;

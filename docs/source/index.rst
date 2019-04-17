@@ -10,12 +10,12 @@ This documentation will allow the user to understand better how to use the softw
 will be covered here and how to access them.
 
 .. toctree::
-   
+
    build.rst
+   interface.rst
    audio.rst
    graphics.rst
    networks.rst
-   devices.rst
 
 
 
