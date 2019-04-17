@@ -322,8 +322,6 @@ function init() {
     object.position.y = Math.random() * 800 - 400;
     object.position.z = Math.random() * 800 - 400;
     object.rotation.x = Math.random() * 2 * Math.PI;
-    //  object.rotation.y = Math.random() * 2 * Math.PI;
-    //  object.rotation.z = Math.random() * 2 * Math.PI;*/
     parentTransformTres.add(object);
   }
   light7 = new THREE.DirectionalLight(0x000000, 1);
@@ -350,20 +348,7 @@ function init() {
     object.position.y = Math.random() * 800 - 400;
     object.position.z = Math.random() * 800 - 400;
     object.rotation.x = Math.random() * 2 * Math.PI;
-    //  object.rotation.y = Math.random() * 2 * Math.PI;
-    //  object.rotation.z = Math.random() * 2 * Math.PI;*/
 
-
-    /*  var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
-        color: 0x5f5f5f,
-        //wireframe: true
-      }));
-      object.position.x = Math.random() * 800 - 400;
-      object.position.y = Math.random() * 800 - 400;
-      object.position.z = Math.random() * 800 - 400;
-      object.rotation.x = Math.random() * 2 * Math.PI;
-      //object.rotation.y = Math.random() * 2 * Math.PI;
-      //object.rotation.z = Math.random() * 2 * Math.PI;*/
     parentTransformQuatro.add(object);
   }
   for (var i = 0; i < 45; i++) {
@@ -594,8 +579,8 @@ function init() {
       isSceneThree = false;
       isSceneFour = true;
 
-      /*var whichScene = 82;
-      socket.emit('scene', whichScene);*/
+      var whichScene = 82;
+      socket.emit('scene', whichScene);
       controls.enabled = false;
 
       scene.add(parentTransformQuatro);
@@ -893,8 +878,6 @@ function render() {
   stats2.update();
   stats3.update();
 
-  var corFundo = Math.random() * (0.15 - 0) + 0;
-  // scene.background = new THREE.Color(corFundo, corFundo, corFundo);
   theta += 0.2;
 
   if (isSceneOne == true || isSceneFour == true) {
@@ -928,8 +911,6 @@ function render() {
       INTERSECTEDTWO.material.emissive.setHex(0x000000);
     }
   } else {
-    //if (INTERSECTEDTWO) INTERSECTEDTWO.material.wireframe == false;
-    //if (INTERSECTEDTWO) INTERSECTEDTWO.material.emissive.setHex(INTERSECTEDTWO.currentHex);
     if (INTERSECTEDTWO)(INTERSECTEDTWO.material.wireframe = true);
     INTERSECTEDTWO = null;
   }
@@ -1020,28 +1001,6 @@ function customScaleCortex(data) {
     }
     console.log(scale);
   }
-  //customScale = scale;
-  /*var note = data;
-  if (customScale.includes(note) == true) {
-    for (var i = customScale.length - 1; i >= 0; i--) {
-      if (customScale[i] === note) {
-        customScale.splice(i, 1);
-      }
-    }
-  } else {
-    customScale.push(note);
-  }*/
-
-  /*
-  //scale = customScale
-  _customScale = customScale.map(function(e) {
-    return e.toUpperCase()
-  });
-  __customScale = _customScale.map(function(e) {
-    return e.replace('S', '#');
-  });
-  scale = __customScale;
-  console.log("CustomScale: " + __customScale);*/
 }
 
 function toRadians(angle) {
@@ -1066,10 +1025,10 @@ function doStuff() {
 setInterval(doStuff, 10000);
 
 function move() {
+
   var elem = document.getElementById("myBar");
   var width = 1;
   var id = setInterval(frame, 10);
-
 
   function frame() {
     if (width >= 100) {
@@ -1114,22 +1073,6 @@ function loadWarning(v) {
   }
 }
 
-/*
-var str = "Hello World!";
-var result = str.italics();
-$('#stateButtonOne').hover(
-  function() {
-    var $this = $(this); // caching $(this)
-    $this.data('defaultText', $this.text());
-    $this.text("The descenter method works as the default the first time the artist opens the system. There is no master control and the synthesizer plays on every ");
-  },
-  function() {
-    var $this = $(this); // caching $(this)
-    $this.text($this.data('defaultText'));
-  }
-);
-*/
-
 function takeScreenshot() {
   var w = window.open('', '');
   w.document.title = "Screenshot";
@@ -1150,7 +1093,7 @@ function saveAsImage() {
   try {
     var strMime = "image/jpeg";
     imgData = renderer.domElement.toDataURL(strMime);
-    saveFile(imgData.replace(strMime, strDownloadMime), "test.jpg");
+    saveFile(imgData.replace(strMime, strDownloadMime), "akson.jpg");
   } catch (e) {
     console.log(e);
     return;
@@ -1175,37 +1118,6 @@ function save3d() {
   equiManaged.update(camera, scene);
 
 }
-
-/*
-// Create a capturer that exports a WebM video
-var capturer = new CCapture( { format: 'webm' } );
-
-// Create a capturer that exports an animated GIF
-// Notices you have to specify the path to the gif.worker.js
-var capturer = new CCapture( { format: 'gif', workersPath: 'js/' } );
-
-// Create a capturer that exports PNG images in a TAR file
-var capturer = new CCapture( { format: 'png' } );
-
-// Create a capturer that exports JPEG images in a TAR file
-var capturer = new CCapture( { format: 'jpg' } );
-*/
-
-
-/*
-framerate: target framerate for the capture
-motionBlurFrames: supersampling of frames to create a motion-blurred frame (0 or 1 make no effect)
-format: webm/gif/png/jpg/ffmpegserver
-quality: quality for webm/jpg
-name: name of the files to be exported. if no name is provided, a GUID will be generated
-verbose: dumps info on the console
-display: adds a widget with capturing info (WIP)
-timeLimit: automatically stops and downloads when reaching that time (seconds). Very convenient for long captures: set it and forget it (remember autoSaveTime!)
-autoSaveTime: it will automatically download the captured data every n seconds (only available for webm/png/jpg)
-startTime: skip to that mark (seconds)
-workersPath: path to the gif worker script
-*/
-
 function saveVideo(v) {
   if (v === '1') {
     console.log("ok1");

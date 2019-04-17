@@ -918,7 +918,64 @@ audio {
   width: 250px;
   height: 35px;
   margin-top: 5px;
-  background-color: red !important;
-  border-radius: 3px;
-  border: 1px solid rgba(50, 50, 50, 1);
+  background-color: rgba(200,200,200,1);
+  border-radius: 3px
+}
+audio::-webkit-media-controls-panel{
+  background-color: rgba(200,200,200,1);
+}
+
+audio::-webkit-media-controls-mute-button{
+}
+
+audio::-webkit-media-controls-play-button{
+
+}
+
+audio::-webkit-media-controls-timeline-container{
+
+}
+
+audio::-webkit-media-controls-current-time-display{
+
+}
+
+audio::-webkit-media-controls-time-remaining-display{
+
+}
+
+audio::-webkit-media-controls-timeline{
+
+}
+
+audio::-webkit-media-controls-volume-slider-container{
+
+}
+
+audio::-webkit-media-controls-volume-slider{
+
+}
+
+audio::-webkit-media-controls-seek-back-button{
+
+}
+
+audio::-webkit-media-controls-seek-forward-button{
+
+}
+
+audio::-webkit-media-controls-fullscreen-button{
+
+}
+
+audio::-webkit-media-controls-rewind-button{
+
+}
+
+audio::-webkit-media-controls-return-to-realtime-button{
+
+}
+
+audio::-webkit-media-controls-toggle-closed-captions-button{
+
 }
