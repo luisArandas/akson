@@ -574,7 +574,6 @@ function init() {
       UI.vibratoDepth.render();
       vibrato.depth.value = 0.2;
 
-
       isSceneOne = false;
       isSceneTwo = false;
       isSceneThree = false;
