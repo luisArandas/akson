@@ -1,4 +1,4 @@
-Interaction Methods
+Interaction
 ===============================
 
 #1

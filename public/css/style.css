@@ -918,11 +918,9 @@ audio {
   width: 250px;
   height: 35px;
   margin-top: 5px;
-  background-color: rgba(200,200,200,1);
   border-radius: 3px;
 }
 audio::-webkit-media-controls-panel{
-  background-color: rgba(200,200,200,1);
 }
 
 audio::-webkit-media-controls-mute-button{

@@ -970,6 +970,7 @@ function changeState(v) {
     isAlone = false;
     isAlocating = true;
     openGui();
+    $('#alocateOne').trigger('click');
     WUI_Dialog.open("alocate_dialog");
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";

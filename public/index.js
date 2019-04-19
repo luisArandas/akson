@@ -8,6 +8,14 @@ $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
+  /*var is_opera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+  var is_Edge = navigator.userAgent.indexOf("Edge") > -1;
+  var is_chrome = !!window.chrome && !is_opera && !is_Edge;
+  var is_explorer= typeof document !== 'undefined' && !!document.documentMode && !is_Edge;
+  var is_firefox = typeof window.InstallTrigger !== 'undefined';
+  var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (is_safari) alert('Safari');*/
+
   document.getElementById("topBar").style.display = "none";
   WUI_Dialog.close("master_dialog");
   WUI_Dialog.close("cockpit_dialog");
@@ -61,8 +69,6 @@ var theta = 0;
 var sideBar = false;
 var mouse = new THREE.Vector2(),
   INTERSECTED;
-var mouseTwo = new THREE.Vector2(),
-  INTERSECTEDTWO;
 
 var glitchPass = new THREE.GlitchPass();
 var afterimagePass = new THREE.AfterimagePass();
@@ -189,7 +195,6 @@ function init() {
     canvas: canvas,
     preserveDrawingBuffer: true,
     context: context,
-    antialias: true
   });
 
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -300,8 +305,8 @@ function init() {
   /* ----------------------------------------------------------------------------------------- */
 
   parentTransformQuatro = new THREE.Object3D();
-  for (var i = 0; i < 40; i++) {
-    var geometry = new THREE.BoxGeometry(30, 2000, 30);
+  for (var i = 0; i < 45; i++) {
+    var geometry = new THREE.BoxGeometry(30, 1500, 30);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0xffffff,
       wireframe: true
@@ -317,7 +322,6 @@ function init() {
     var geometry = new THREE.BoxGeometry(10, 1500, 10);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x5f5f5f,
-      morphTargets: true,
       wireframe: true
     }));
 
@@ -327,7 +331,6 @@ function init() {
     object.rotation.x = Math.random() * 2 * Math.PI;
 
     parentTransformQuatro.add(object);
-
   }
 
   lightFour = new THREE.DirectionalLight(0xd3d3d3, 2);
@@ -361,12 +364,6 @@ function init() {
   effectHBlur.renderToScreen = false;
   afterimagePass.renderToScreen = false;
 
-  /*
-  Q_81 W_87 E_69 R_82 T_84 Y_89 U_85 I_73 O_79 P_80
-  32 == SPACE
-  */
-
-  console.log(autoFilterOne.baseFrequency);
 
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
@@ -588,6 +585,40 @@ function init() {
       scene.remove(parentTransformDois);
       scene.remove(parentTransformTres);
     }
+    if (event.which == "72") {
+      //stateButtonThree
+      $('#stateButtonOne').trigger('click');
+    }
+    if (event.which == "74") {
+      $('#stateButtonTwo').trigger('click');
+    }
+    if (event.which == "75") {
+      $('#stateButtonThree').trigger('click');
+    }
+    if (event.which == "76") {
+      $('#stateButtonFour').trigger('click');
+    }
+    if (event.which == "186") {
+      $('#stateButtonFive').trigger('click');
+    }
+
+    /* Shaders */
+
+    if (event.which == "67") {
+      $('#shader0').trigger('click');
+    }
+    if (event.which == "86") {
+      $('#shader1').trigger('click');
+    }
+    if (event.which == "66") {
+      $('#shader2').trigger('click');
+    }
+    if (event.which == "78") {
+      $('#shader3').trigger('click');
+    }
+    if (event.which == "77") {
+      $('#shader4').trigger('click');
+    }
   });
 
   var geometryk = new THREE.PlaneGeometry((windowWidth * 10), 450, 3);
@@ -604,6 +635,9 @@ function init() {
 
   planek.position.set(0, -670, 0);
   plane2k.position.set(0, 670, 0);
+
+  /* Init ends here */
+
 
 }
 
@@ -743,8 +777,10 @@ function clickStream(data) {
   console.log(data.x);
   console.log(data.y);
 
-  var note = Math.floor(Math.random() * scale.length);
-  currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+  if (isAlocatingSynth != true){
+    var note = Math.floor(Math.random() * scale.length);
+    currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+  }
 
   var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];
   if (isBlackSceneOne_ == false) {
@@ -801,37 +837,41 @@ function render() {
 
   if (isSceneOne == true || isSceneFour == true) {
     camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
-    camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta)); //check sin and cos
+    camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta));
     camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
   }
   camera.lookAt(scene.position);
   camera.updateMatrixWorld();
 
   raycaster.setFromCamera(mouse, camera);
-  var intersectsOne = raycaster.intersectObjects(parentTransform.children);
-  if (intersectsOne.length > 0) {
-    if (INTERSECTED != intersectsOne[0].object) {
+
+  if (isSceneOne === true){
+    var intersects = raycaster.intersectObjects(parentTransform.children);
+    if (intersects.length > 0) {
+      if (INTERSECTED != intersects[0].object) {
+        if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+        INTERSECTED = intersects[0].object;
+        INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+        INTERSECTED.material.emissive.setHex(0xffffff);
+      }
+    } else {
       if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-      INTERSECTED = intersectsOne[0].object;
-      INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-      INTERSECTED.material.emissive.setHex(0xffffff);
+      INTERSECTED = null;
     }
-  } else {
-    if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-    INTERSECTED = null;
   }
-  var intersectsTwo = raycaster.intersectObjects(parentTransformQuatro.children);
-  if (intersectsTwo.length > 0) {
-    if (INTERSECTEDTWO != intersectsTwo[0].object) {
-      if (INTERSECTEDTWO) INTERSECTEDTWO.material.emissive.setHex(INTERSECTEDTWO.currentHex);
-      INTERSECTEDTWO = intersectsTwo[0].object;
-      INTERSECTEDTWO.currentHex = INTERSECTEDTWO.material.emissive.getHex(); //take this out
-      INTERSECTEDTWO.material.wireframe = false;
-      INTERSECTEDTWO.material.emissive.setHex(0x000000);
+
+  if (isSceneFour === true){
+    var intersects = raycaster.intersectObjects(parentTransformQuatro.children);
+    if (intersects.length > 0) {
+      if (INTERSECTED != intersects[0].object) {
+        if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+        INTERSECTED = intersects[0].object;
+        INTERSECTED.material.wireframe = false;
+      }
+    } else {
+      if (INTERSECTED) INTERSECTED.material.wireframe = true;
+      INTERSECTED = null;
     }
-  } else {
-    if (INTERSECTEDTWO)(INTERSECTEDTWO.material.wireframe = true);
-    INTERSECTEDTWO = null;
   }
 
   renderer.clear();
@@ -840,10 +880,6 @@ function render() {
   renderer.render(scene2, camera2);
 
   renderer.autoClear = false;
-  renderer.shadowMap.enabled = false;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.shadowMap.needsUpdate = true;
-
 
   document.getElementById('save3d').addEventListener('click', save3d);
 
