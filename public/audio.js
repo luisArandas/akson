@@ -111,7 +111,7 @@ var UI = {
     'value': 2500
   }),
   synthAttack: new Nexus.Slider('#synthAttack', {
-    size: [127, 20],
+    size: [191, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,
@@ -119,6 +119,7 @@ var UI = {
     value: 0.4
   }),
   synthDecay: new Nexus.Slider('#synthDecay', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.01,
@@ -126,6 +127,7 @@ var UI = {
     value: 0.4
   }),
   synthSustain: new Nexus.Slider('#synthSustain', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.01,
@@ -133,6 +135,7 @@ var UI = {
     value: 0.3
   }),
   synthRelease: new Nexus.Slider('#synthRelease', {
+    size: [191, 20],
     min: 0,
     max: 10,
     step: 0.1,
@@ -140,6 +143,7 @@ var UI = {
     value: 4
   }),
   harmonicity: new Nexus.Slider('#harmonicity', {
+    size: [191, 20],
     min: 0,
     max: 50,
     step: 0.1,
@@ -147,6 +151,7 @@ var UI = {
     value: 10
   }),
   modulationindex: new Nexus.Slider('#modulationindex', {
+    size: [191, 20],
     min: 0,
     max: 50,
     step: 0.1,
@@ -154,6 +159,7 @@ var UI = {
     value: 10
   }),
   detune: new Nexus.Slider('#detune', {
+    size: [191, 20],
     min: 0,
     max: 5000,
     step: 0.1,
@@ -161,6 +167,7 @@ var UI = {
     value: 0
   }),
   oscillatorModulationIndex: new Nexus.Slider('#oscillatorModulationIndex', {
+    size: [191, 20],
     min: 0,
     max: 10,
     step: 0.01,
@@ -168,6 +175,7 @@ var UI = {
     value: 3
   }),
   oscillatorHarmonicity: new Nexus.Slider('#oscillatorHarmonicity', {
+    size: [191, 20],
     min: 0,
     max: 10,
     step: 0.01,
@@ -175,6 +183,7 @@ var UI = {
     value: 3.4
   }),
   modulationEnvelopeAttack: new Nexus.Slider('#modulationEnvelopeAttack', {
+    size: [191, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,
@@ -182,6 +191,7 @@ var UI = {
     value: 0.5
   }),
   modulationEnvelopeDecay: new Nexus.Slider('#modulationEnvelopeDecay', {
+    size: [191, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,
@@ -189,6 +199,7 @@ var UI = {
     value: 0
   }),
   modulationEnvelopeSustain: new Nexus.Slider('#modulationEnvelopeSustain', {
+    size: [191, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,
@@ -196,6 +207,7 @@ var UI = {
     value: 0.8
   }),
   modulationEnvelopeRelease: new Nexus.Slider('#modulationEnvelopeRelease', {
+    size: [191, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,
@@ -203,6 +215,7 @@ var UI = {
     value: 0.5
   }),
   reverbRoomSize: new Nexus.Slider('#reverbRoomSize', {
+    size: [191, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,
@@ -210,6 +223,7 @@ var UI = {
     value: 0.8
   }),
   reverbWetValue: new Nexus.Slider('#reverbWetValue', {
+    size: [191, 20],
     min: 0.01,
     max: 0.8,
     step: 0.001,
@@ -217,6 +231,7 @@ var UI = {
     value: 0.1
   }),
   reverbDampValue: new Nexus.Slider('#reverbDampValue', {
+    size: [191, 20],
     min: 2000,
     max: 4000,
     step: 0.1,
@@ -224,6 +239,7 @@ var UI = {
     value: 3000
   }),
   noiseOnePlaybackRate: new Nexus.Slider('#noiseOnePlaybackRate', {
+    size: [191, 20],
     min: 0.5,
     max: 35,
     step: 0.01,
@@ -231,6 +247,7 @@ var UI = {
     value: 1
   }),
   noiseq: new Nexus.Slider("#noiseq", {
+    size: [191, 20],
     min: 0,
     max: 10,
     step: 0.01,
@@ -238,6 +255,7 @@ var UI = {
     value: 1
   }),
   noiseoctaves: new Nexus.Slider("#noiseoctaves", {
+    size: [191, 20],
     min: -2.5,
     max: 8,
     step: 0.01,
@@ -246,6 +264,7 @@ var UI = {
   }),
 
   autoFilterFrequency: new Nexus.Slider('#autoFilterFrequency', {
+    size: [191, 20],
     min: 500,
     max: 5000,
     step: 0.1,
@@ -253,13 +272,15 @@ var UI = {
     value: 500
   }),
   noiseMin: new Nexus.Slider('#noiseMin', {
+    size: [191, 20],
     min: 100,
     max: 1000,
     step: 0.1,
     mode: 'absolute',
-    value: 3000
+    value: 4000
   }),
   noiseMax: new Nexus.Slider('#noiseMax', {
+    size: [191, 20],
     min: 1000,
     max: 15000,
     step: 0.1,
@@ -267,6 +288,7 @@ var UI = {
     value: 3000
   }),
   autoFilterWet: new Nexus.Slider('#autoFilterWet', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.01,
@@ -274,6 +296,7 @@ var UI = {
     value: 0.5
   }),
   autoFilterDepth: new Nexus.Slider('#autoFilterDepth', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.01,
@@ -281,6 +304,7 @@ var UI = {
     value: 1
   }),
   afbasefrequency: new Nexus.Slider('#afbasefrequency', {
+    size: [191, 20],
     min: 100,
     max: 1000,
     step: 0.01,
@@ -288,20 +312,23 @@ var UI = {
     value: 200
   }),
   synthPhase: new Nexus.Slider('#synthPhase', {
+    size: [191, 20],
     min: 0,
     max: 360,
-    step: 0.01,
+    step: 1,
     mode: 'absolute',
     value: 180
   }),
   synthPartials: new Nexus.Slider('#synthPartials', {
+    size: [191, 20],
     min: 0,
     max: 32,
     step: 1,
     mode: 'absolute',
-    value: 1
+    value: 2
   }),
   noisefiltergain: new Nexus.Slider('#noisefiltergain', {
+    size: [191, 20],
     min: -99,
     max: 5,
     step: 0.01,
@@ -309,6 +336,7 @@ var UI = {
     value: 1
   }),
   vibratoFrequency: new Nexus.Slider('#vibratoFrequency', {
+    size: [191, 20],
     min: 0,
     max: 15,
     step: 0.01,
@@ -316,6 +344,7 @@ var UI = {
     value: 0
   }),
   vibratoDepth: new Nexus.Slider('#vibratoDepth', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.001,
@@ -323,6 +352,7 @@ var UI = {
     value: 0.1
   }),
   vibratoWet: new Nexus.Slider('#vibratoWet', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.001,
@@ -330,6 +360,7 @@ var UI = {
     value: 0.5
   }),
   phaserFreq: new Nexus.Slider('#phaserFreq', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.001,
@@ -337,6 +368,7 @@ var UI = {
     value: 0.5
   }),
   phaserOct: new Nexus.Slider('#phaserOct', {
+    size: [191, 20],
     min: 0,
     max: 10,
     step: 0.001,
@@ -344,6 +376,7 @@ var UI = {
     value: 3
   }),
   phaserWet: new Nexus.Slider('#phaserWet', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.001,
@@ -351,6 +384,7 @@ var UI = {
     value: 0.5
   }),
   phaserQ: new Nexus.Slider('#phaserQ', {
+    size: [191, 20],
     min: 0,
     max: 50,
     step: 0.001,
@@ -358,6 +392,7 @@ var UI = {
     value: 10
   }),
   phaserBaseFreq: new Nexus.Slider('#phaserBaseFreq', {
+    size: [191, 20],
     min: 0,
     max: 1000,
     step: 0.001,
@@ -365,6 +400,7 @@ var UI = {
     value: 350
   }),
   jcreverbWet: new Nexus.Slider('#jcreverbWet', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.001,
@@ -372,6 +408,7 @@ var UI = {
     value: 0
   }),
   jcreverbRoomsize: new Nexus.Slider('#jcreverbRoomsize', {
+    size: [191, 20],
     min: 0,
     max: 1,
     step: 0.001,
@@ -412,8 +449,6 @@ var number7 = new Nexus.Number('#number7', {
   'size': [46, 18],
 });
 number7.link(UI.highfreq);
-
-
 
 for (var key in UI) {
   UI[key].on('change', function(value) {
@@ -551,7 +586,7 @@ UI.synthAttack.on('change', function(v) {
   });
   printLogsDialog("Synthesizer Attack : ", v);
   var _v = v.toFixed(3);
-  document.getElementById('ok1').innerHTML = 'Synth Attack: ' + _v;
+  document.getElementById('n1').innerHTML = _v;
 
 });
 UI.synthDecay.on('change', function(v) {
@@ -566,6 +601,9 @@ UI.synthDecay.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Decay : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n2').innerHTML = _v;
+
 });
 UI.synthSustain.on('change', function(v) {
   var data = {
@@ -579,6 +617,8 @@ UI.synthSustain.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Sustain : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n3').innerHTML = _v;
 });
 UI.synthRelease.on('change', function(v) {
   var data = {
@@ -592,6 +632,8 @@ UI.synthRelease.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Release : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n4').innerHTML = _v;
 });
 
 UI.harmonicity.on('change', function(v) {
@@ -604,6 +646,8 @@ UI.harmonicity.on('change', function(v) {
     "harmonicity": v
   });
   printLogsDialog("Synthesizer Harmonicity : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n7').innerHTML = _v;
 });
 UI.modulationindex.on('change', function(v) {
   var data = {
@@ -615,6 +659,8 @@ UI.modulationindex.on('change', function(v) {
     "modulationIndex": v
   });
   printLogsDialog("Synthesizer Modulation Index : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n9').innerHTML = _v;
 });
 UI.detune.on('change', function(v) {
   var data = {
@@ -626,6 +672,8 @@ UI.detune.on('change', function(v) {
     "detune": v
   });
   printLogsDialog("Synthesizer Detune : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n8').innerHTML = _v;
 });
 UI.oscillatorModulationIndex.on('change', function(v) {
   var data = {
@@ -639,6 +687,8 @@ UI.oscillatorModulationIndex.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Osc Modulation Index : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n10').innerHTML = _v;
 });
 UI.oscillatorHarmonicity.on('change', function(v) {
   var data = {
@@ -652,6 +702,8 @@ UI.oscillatorHarmonicity.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Osc Harmonicity : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n11').innerHTML = _v;
 });
 
 UI.modulationEnvelopeAttack.on('change', function(v) {
@@ -666,6 +718,8 @@ UI.modulationEnvelopeAttack.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Modulation Envelope Attack : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n12').innerHTML = _v;
 });
 UI.modulationEnvelopeDecay.on('change', function(v) {
   var data = {
@@ -679,6 +733,8 @@ UI.modulationEnvelopeDecay.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Modulation Envelope Decay : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n13').innerHTML = _v;
 });
 UI.modulationEnvelopeSustain.on('change', function(v) {
   var data = {
@@ -692,6 +748,8 @@ UI.modulationEnvelopeSustain.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Modulation Envelope Sustain : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n14').innerHTML = _v;
 });
 UI.modulationEnvelopeRelease.on('change', function(v) {
   var data = {
@@ -705,6 +763,8 @@ UI.modulationEnvelopeRelease.on('change', function(v) {
     }
   });
   printLogsDialog("Synthesizer Modulation Envelope Release : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n15').innerHTML = _v;
 });
 
 UI.reverbRoomSize.on('change', function(v) {
@@ -715,6 +775,8 @@ UI.reverbRoomSize.on('change', function(v) {
   };
   socket.emit('uiSocketReverbRoomSize', data);
   printLogsDialog("Reverb Roomsize : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n16').innerHTML = _v;
 });
 UI.reverbWetValue.on('change', function(v) {
   reverb.wet.value = v;
@@ -724,6 +786,8 @@ UI.reverbWetValue.on('change', function(v) {
   };
   socket.emit('uiSocketReverbWetValue', data);
   printLogsDialog("Reverb Wet Value : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n17').innerHTML = _v;
 });
 UI.reverbDampValue.on('change', function(v) {
   reverb.dampening.value = v;
@@ -733,6 +797,8 @@ UI.reverbDampValue.on('change', function(v) {
   };
   socket.emit('uiSocketReverbDampValue', data);
   printLogsDialog("Reverb Damp Value : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n18').innerHTML = _v;
 });
 
 UI.noiseOnePlaybackRate.on('change', function(v) {
@@ -743,6 +809,8 @@ UI.noiseOnePlaybackRate.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseOnePlaybackRate', data);
   printLogsDialog("Background Playback Rate : ", v);
+  var _v = v.toFixed(2);
+  document.getElementById('n29').innerHTML = _v;
 });
 UI.autoFilterFrequency.on('change', function(v) {
   var data = {
@@ -754,6 +822,8 @@ UI.autoFilterFrequency.on('change', function(v) {
     "frequency": v
   });
   printLogsDialog("Auto Filter Frequency : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n23').innerHTML = _v;
 });
 UI.noiseMin.on('change', function(v) {
   noiseOne.min = v;
@@ -763,6 +833,8 @@ UI.noiseMin.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseOneMin', data);
   printLogsDialog("Background Min Value : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n30').innerHTML = _v;
 });
 UI.noiseMax.on('change', function(v) {
   noiseOne.max = v;
@@ -772,6 +844,8 @@ UI.noiseMax.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseOneMax', data);
   printLogsDialog("Background Max Value : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n31').innerHTML = _v;
 });
 UI.autoFilterWet.on('change', function(v) {
   noiseOne.wet = v;
@@ -781,6 +855,8 @@ UI.autoFilterWet.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseOneWet', data);
   printLogsDialog("Background Wet Value : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n27').innerHTML = _v;
 });
 UI.autoFilterDepth.on('change', function(v) {
   noiseOne.depth = v;
@@ -790,6 +866,8 @@ UI.autoFilterDepth.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseOneDepth', data);
   printLogsDialog("Background Depth Value : ", v);
+  var _v = v.toFixed(2);
+  document.getElementById('n28').innerHTML = _v;
 });
 
 UI.noiseq.on('change', function(v) {
@@ -804,6 +882,8 @@ UI.noiseq.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseQ', data);
   printLogsDialog("Background Filter Q : ", v);
+  var _v = v.toFixed(2);
+  document.getElementById('n26').innerHTML = _v;
 });
 
 UI.noiseoctaves.on('change', function(v) {
@@ -816,6 +896,8 @@ UI.noiseoctaves.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseOctaves', data);
   printLogsDialog("Background Octave Range : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n25').innerHTML = _v;
 });
 
 UI.afbasefrequency.on('change', function(v) {
@@ -828,6 +910,8 @@ UI.afbasefrequency.on('change', function(v) {
   };
   socket.emit('uiSocketAfBaseFrequency', data);
   printLogsDialog("Auto Filter Base Frequency : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n24').innerHTML = _v;
 });
 
 UI.eqbass.on('change', function(v) {
@@ -896,6 +980,8 @@ UI.synthPhase.on('change', function(v) {
   socket.emit('uiSocketSynthPhase', data);
   //_v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
   //printLogsDialog("Equalizer High Freq Crossover Value : ", _v);
+  var _v = v.toFixed(3);
+  document.getElementById('n5').innerHTML = v;
 });
 
 UI.synthPartials.on('change', function(v) {
@@ -909,6 +995,7 @@ UI.synthPartials.on('change', function(v) {
     y: "synthPartials"
   };
   socket.emit('uiSocketSynthPartials', data);
+  document.getElementById('n6').innerHTML = v;
 });
 
 UI.noisefiltergain.on('change', function(v) {
@@ -922,6 +1009,8 @@ UI.noisefiltergain.on('change', function(v) {
     y: "noiseFilterGain"
   };
   socket.emit('uiSocketNoiseFilterGain', data);
+  var _v = v.toFixed(2);
+  document.getElementById('n32').innerHTML = _v;
 });
 
 UI.vibratoFrequency.on('change', function(v) {
@@ -932,6 +1021,8 @@ UI.vibratoFrequency.on('change', function(v) {
   };
   socket.emit('uiSocketSynthVibratoFreq', data);
   printLogsDialog("Vibrato Frequency : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n20').innerHTML = _v;
 });
 
 UI.vibratoDepth.on('change', function(v) {
@@ -942,6 +1033,8 @@ UI.vibratoDepth.on('change', function(v) {
   };
   socket.emit('uiSocketSynthVibratoDep', data);
   printLogsDialog("Vibrato Depth : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n21').innerHTML = _v;
 });
 
 UI.vibratoWet.on('change', function(v) {
@@ -952,6 +1045,8 @@ UI.vibratoWet.on('change', function(v) {
   };
   socket.emit('uiSocketSynthVibratoWet', data);
   printLogsDialog("Vibrato Wet : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n22').innerHTML = _v;
 });
 
 UI.phaserFreq.on('change', function(v) {
@@ -962,7 +1057,8 @@ UI.phaserFreq.on('change', function(v) {
   };
   socket.emit('uiSocketNoisePhaserFreq', data);
   printLogsDialog("Phaser Frequency : ", v);
-
+  var _v = v.toFixed(3);
+  document.getElementById('n35').innerHTML = _v;
 });
 
 UI.phaserOct.on('change', function(v) {
@@ -973,6 +1069,8 @@ UI.phaserOct.on('change', function(v) {
   };
   socket.emit('uiSocketNoisePhaserOct', data);
   printLogsDialog("Phaser Octaves : ", v);
+  var _v = v.toFixed(2);
+  document.getElementById('n38').innerHTML = _v;
 });
 
 UI.phaserWet.on('change', function(v) {
@@ -983,6 +1081,8 @@ UI.phaserWet.on('change', function(v) {
   };
   socket.emit('uiSocketNoisePhaserWet', data);
   printLogsDialog("Phaser Wet : ", v);
+  var _v = v.toFixed(3);
+  document.getElementById('n36').innerHTML = _v;
 });
 
 UI.phaserQ.on('change', function(v) {
@@ -993,6 +1093,8 @@ UI.phaserQ.on('change', function(v) {
   };
   socket.emit('uiSocketNoisePhaserQ', data);
   printLogsDialog("Phaser Q : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n37').innerHTML = _v;
 });
 
 UI.phaserBaseFreq.on('change', function(v) {
@@ -1003,6 +1105,8 @@ UI.phaserBaseFreq.on('change', function(v) {
   };
   socket.emit('uiSocketNoisePhaserBaseFreq', data);
   printLogsDialog("Phaser BaseFreq : ", v);
+  var _v = v.toFixed(0);
+  document.getElementById('n39').innerHTML = _v;
 });
 
 UI.jcreverbRoomsize.on('change', function(v) {
@@ -1013,6 +1117,8 @@ UI.jcreverbRoomsize.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseJcverbRoom', data);
   printLogsDialog("JC_Reverb RoomSize : ", v);
+  var _v = v.toFixed(2);
+  document.getElementById('n34').innerHTML = _v;
 });
 
 UI.jcreverbWet.on('change', function(v) {
@@ -1023,7 +1129,8 @@ UI.jcreverbWet.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseJcverbWet', data);
   printLogsDialog("JC_Reverb Wet : ", v);
-
+  var _v = v.toFixed(2);
+  document.getElementById('n33').innerHTML = _v;
 });
 
 //console.log(autoFilterOne);

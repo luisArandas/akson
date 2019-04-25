@@ -6,7 +6,7 @@ var fullWidth = w * 3;
 var fullHeight = h * 2;
 
 var light1 = new Nexus.Slider('#light1', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute', // "absolute" or "relative"
   'min': 0,
   'max': 5,
@@ -20,10 +20,12 @@ light1.on('change', function(e) {
     y: "lightOne"
   };
   socket.emit('uiSocketLightOne', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n40').innerHTML = _v;
 });
 
 var light2 = new Nexus.Slider('#light2', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute', // "absolute" or "relative"
   'min': 0,
   'max': 6,
@@ -37,10 +39,12 @@ light2.on('change', function(e) {
     y: "lightTwo"
   };
   socket.emit('uiSocketLightTwo', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n41').innerHTML = _v;
 });
 
 var light3 = new Nexus.Slider('#light3', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 5,
@@ -54,10 +58,12 @@ light3.on('change', function(e) {
     y: "lightThree"
   };
   socket.emit('uiSocketLightThree', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n42').innerHTML = _v;
 });
 
 var light4 = new Nexus.Slider('#light4', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 5,
@@ -71,10 +77,12 @@ light4.on('change', function(e) {
     y: "lightFour"
   };
   socket.emit('uiSocketLightFour', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n43').innerHTML = _v;
 });
 
 var cameraM1 = new Nexus.Slider('#cameraM1', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': -170,
   'max': 170,
@@ -90,10 +98,12 @@ cameraM1.on('change', function(e) {
     y: "cameraM1"
   };
   socket.emit('uiSocketCameraM1', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n46').innerHTML = _v;
 });
 
 var cameraM2 = new Nexus.Slider('#cameraM2', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 2,
@@ -109,10 +119,12 @@ cameraM2.on('change', function(e) {
     y: "cameraM2"
   };
   socket.emit('uiSocketCameraM2', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n45').innerHTML = _v;
 });
 
 var cameraM3 = new Nexus.Slider('#cameraM3', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 5,
@@ -128,10 +140,12 @@ cameraM3.on('change', function(e) {
     y: "cameraM3"
   };
   socket.emit('uiSocketCameraM3', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n44').innerHTML = _v;
 });
 
 var cameraM4 = new Nexus.Slider('#cameraM4', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 1,
   'max': 2000,
@@ -146,14 +160,16 @@ cameraM4.on('change', function(e) {
     y: "cameraM4"
   };
   socket.emit('uiSocketCameraM4', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n47').innerHTML = _v;
 });
 
 var cameraM5 = new Nexus.Slider('#cameraM5', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 5000,
-  'step': 0.001,
+  'step': 1,
   'value': 1000
 });
 cameraM5.on('change', function(e) {
@@ -164,14 +180,16 @@ cameraM5.on('change', function(e) {
     y: "cameraM5"
   };
   socket.emit('uiSocketCameraM5', data);
+  var _v = e.toFixed(0);
+  document.getElementById('n60').innerHTML = _v;
 });
 
 var cameraM6 = new Nexus.Slider('#cameraM6', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 5000,
-  'step': 0.001,
+  'step': 1,
   'value': 1000
 });
 cameraM6.on('change', function(e) {
@@ -182,10 +200,12 @@ cameraM6.on('change', function(e) {
     y: "cameraM6"
   };
   socket.emit('uiSocketCameraM6', data);
+  var _v = e.toFixed(0);
+  document.getElementById('n61').innerHTML = _v;
 });
 
 var cameraM7 = new Nexus.Slider('#cameraM7', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 5,
@@ -200,10 +220,12 @@ cameraM7.on('change', function(e) {
     y: "cameraM7"
   };
   socket.emit('uiSocketCameraM7', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n62').innerHTML = _v;
 });
 
 var cameraM8 = new Nexus.Slider('#cameraM8', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0,
   'max': 5,
@@ -218,10 +240,12 @@ cameraM8.on('change', function(e) {
     y: "cameraM8"
   };
   socket.emit('uiSocketCameraM8', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n63').innerHTML = _v;
 });
 
 var cameraM9 = new Nexus.Slider('#cameraM9', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': -5,
   'max': 5,
@@ -236,10 +260,12 @@ cameraM9.on('change', function(e) {
     y: "cameraM9"
   };
   socket.emit('uiSocketCameraM9', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n64').innerHTML = _v;
 });
 
 var cameraM10 = new Nexus.Slider('#cameraM10', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': -5,
   'max': 5,
@@ -356,7 +382,7 @@ function camNear(a) {
 /* PostPro */
 
 var camera1_1 = new Nexus.Slider('#camera1_1', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -370,10 +396,12 @@ camera1_1.on('change', function(e) {
     y: "cameraScene1"
   };
   socket.emit('uiSocketScene1', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n48').innerHTML = _v;
 });
 
 var camera1_2 = new Nexus.Slider('#camera1_2', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -387,10 +415,12 @@ camera1_2.on('change', function(e) {
     y: "cameraScene2"
   };
   socket.emit('uiSocketScene2', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n49').innerHTML = _v;
 });
 
 var camera1_3 = new Nexus.Slider('#camera1_3', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -404,6 +434,8 @@ camera1_3.on('change', function(e) {
     y: "cameraScene3"
   };
   socket.emit('uiSocketScene3', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n50').innerHTML = _v;
 });
 
 document.getElementById("cockpit_dialog").addEventListener("mouseenter", function() {
@@ -414,7 +446,7 @@ document.getElementById("cockpit_dialog").addEventListener("mouseout", function(
 });
 
 var camera2_1 = new Nexus.Slider('#camera2_1', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -429,10 +461,12 @@ camera2_1.on('change', function(e) {
     y: "cameraScene4"
   };
   socket.emit('uiSocketScene4', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n51').innerHTML = _v;
 });
 
 var camera2_2 = new Nexus.Slider('#camera2_2', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -447,10 +481,12 @@ camera2_2.on('change', function(e) {
     y: "cameraScene5"
   };
   socket.emit('uiSocketScene5', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n52').innerHTML = _v;
 });
 
 var camera2_3 = new Nexus.Slider('#camera2_3', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -465,10 +501,12 @@ camera2_3.on('change', function(e) {
     y: "cameraScene6"
   };
   socket.emit('uiSocketScene6', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n53').innerHTML = _v;
 });
 
 var camera3_1 = new Nexus.Slider('#camera3_1', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -483,10 +521,12 @@ camera3_1.on('change', function(e) {
     y: "cameraScene7"
   };
   socket.emit('uiSocketScene7', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n54').innerHTML = _v;
 });
 
 var camera3_2 = new Nexus.Slider('#camera3_2', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -501,10 +541,12 @@ camera3_2.on('change', function(e) {
     y: "cameraScene8"
   };
   socket.emit('uiSocketScene8', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n55').innerHTML = _v;
 });
 
 var camera3_3 = new Nexus.Slider('#camera3_3', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -519,10 +561,12 @@ camera3_3.on('change', function(e) {
     y: "cameraScene9"
   };
   socket.emit('uiSocketScene9', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n56').innerHTML = _v;
 });
 
 var camera4_1 = new Nexus.Slider('#camera4_1', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -537,10 +581,12 @@ camera4_1.on('change', function(e) {
     y: "cameraScene10"
   };
   socket.emit('uiSocketScene10', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n57').innerHTML = _v;
 });
 
 var camera4_2 = new Nexus.Slider('#camera4_2', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -555,10 +601,12 @@ camera4_2.on('change', function(e) {
     y: "cameraScene11"
   };
   socket.emit('uiSocketScene11', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n58').innerHTML = _v;
 });
 
 var camera4_3 = new Nexus.Slider('#camera4_3', {
-  'size': [120, 20],
+  'size': [191, 20],
   'mode': 'absolute',
   'min': 0.35,
   'max': 3,
@@ -573,6 +621,8 @@ camera4_3.on('change', function(e) {
     y: "cameraScene12"
   };
   socket.emit('uiSocketScene12', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n59').innerHTML = _v;
 });
 
 /* Fazer 4 luzes diferentes */

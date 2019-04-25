@@ -8,13 +8,10 @@ $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
-  /*var is_opera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-  var is_Edge = navigator.userAgent.indexOf("Edge") > -1;
-  var is_chrome = !!window.chrome && !is_opera && !is_Edge;
-  var is_explorer= typeof document !== 'undefined' && !!document.documentMode && !is_Edge;
-  var is_firefox = typeof window.InstallTrigger !== 'undefined';
-  var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  if (is_safari) alert('Safari');*/
+  console.log("windowResize");
+  console.log("i get white strips and check render, index.js 7no25, let the mouse stay on gui");
+  var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  console.log(isChrome);
 
   document.getElementById("topBar").style.display = "none";
   WUI_Dialog.close("master_dialog");
@@ -37,7 +34,6 @@ $(document).ready(function() {
   if (window.AudioContext === null) {
     alert("AudioContext is Undefined");
   }
-  //console.log("volume " + Tone.Master.volume.value);
   var v = document.querySelectorAll("#c2, #d2, #e2, #g2, #a2, #c3, #d3, #e3, #g3, #a3, #c4, #d4, #e4, #g4, #a4, #c5, #d5, #e5, #g5, #a5");
   v.forEach(function(v) {
     v.style.background = "white";
@@ -215,7 +211,7 @@ function init() {
   function orbitControls(x) {
     //console.log(x);
   }
-  controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+  controls.enableDamping = true;
   controls.dampingFactor = 0.25;
   controls.screenSpacePanning = true;
   controls.minDistance = 100;
@@ -346,7 +342,7 @@ function init() {
   window.addEventListener("blur", function(event) {
   }, false);
 
-  document.addEventListener('mousemove', onDocumentMouseMove, false);
+  //document.addEventListener('mousemove', onDocumentMouseMove, false);
 
   composerOne = new THREE.EffectComposer(renderer);
   composerOne.addPass(new THREE.RenderPass(scene, camera));
@@ -407,6 +403,10 @@ function init() {
       autoFilterOne.set({
         "frequency": "8m"
       });
+      autoFilterOne.set({
+        "octaves": 2.6
+      });
+      noiseOne.playbackRate = 1;
       UI.noiseOnePlaybackRate._value.update(1);
       UI.noiseOnePlaybackRate.render();
       noiseOne.playbackRate = 1;
@@ -456,6 +456,10 @@ function init() {
       autoFilterOne.set({
         "frequency": "4m"
       });
+      autoFilterOne.set({
+        "octaves": 2.6
+      });
+      noiseOne.playbackRate = 1;
       UI.noiseOnePlaybackRate._value.update(1);
       UI.noiseOnePlaybackRate.render();
       noiseOne.playbackRate = 1;
@@ -559,6 +563,13 @@ function init() {
     if (event.which == "82") {
       console.log("R")
 
+      currentSynthesizer.volume.value = 0;
+      UI.synthvolume._value.update(0);
+      UI.synthvolume.render();
+      noiseOne.volume.value = -10;
+      UI.backgroundvolume._value.update(-10);
+      UI.backgroundvolume.render();
+
       UI.noiseOnePlaybackRate._value.update(15);
       UI.noiseOnePlaybackRate.render();
       noiseOne.playbackRate = 15;
@@ -570,6 +581,12 @@ function init() {
       UI.vibratoDepth._value.update(0.2);
       UI.vibratoDepth.render();
       vibrato.depth.value = 0.2;
+
+      autoFilterOne.set({
+        "octaves": 2.6
+      });
+
+      noiseOne.playbackRate = 1;
 
       isSceneOne = false;
       isSceneTwo = false;
@@ -588,38 +605,49 @@ function init() {
     if (event.which == "72") {
       //stateButtonThree
       $('#stateButtonOne').trigger('click');
+      console.log("descenter Method");
     }
     if (event.which == "74") {
       $('#stateButtonTwo').trigger('click');
+      console.log("streamed Method");
     }
     if (event.which == "75") {
       $('#stateButtonThree').trigger('click');
+      console.log("allocate Method");
     }
     if (event.which == "76") {
       $('#stateButtonFour').trigger('click');
+      console.log("alone Method");
     }
     if (event.which == "186") {
       $('#stateButtonFive').trigger('click');
+      console.log("monitorDialog");
     }
 
     /* Shaders */
 
     if (event.which == "67") {
       $('#shader0').trigger('click');
+      console.log("shader_none");
     }
     if (event.which == "86") {
       $('#shader1').trigger('click');
+      console.log("shader_1");
     }
     if (event.which == "66") {
       $('#shader2').trigger('click');
+      console.log("shader_2");
     }
     if (event.which == "78") {
       $('#shader3').trigger('click');
+      console.log("shader_3");
     }
     if (event.which == "77") {
       $('#shader4').trigger('click');
+      console.log("shader_4");
     }
   });
+
 
   var geometryk = new THREE.PlaneGeometry((windowWidth * 10), 450, 3);
   var materialk = new THREE.MeshBasicMaterial({
@@ -635,9 +663,6 @@ function init() {
 
   planek.position.set(0, -670, 0);
   plane2k.position.set(0, 670, 0);
-
-  /* Init ends here */
-
 
 }
 
@@ -656,6 +681,12 @@ function animate() {
 
   requestAnimationFrame(animate);
   render();
+  renderer.clear();
+  renderer.render(scene, camera);
+  renderer.clearDepth();
+  renderer.render(scene2, camera2);
+
+  renderer.autoClear = false;
 }
 
 // ------------------------- Sockets & Mouse -------------------------------
@@ -680,6 +711,11 @@ function onDocumentMouseMove(event) {
   if (mouseDown) {
     targetRotationY = targetRotationOnMouseDownY + (mouseY - mouseYOnMouseDown) * 0.01;
     targetRotationX = targetRotationOnMouseDownX + (mouseX - mouseXOnMouseDown) * 0.01;
+  }
+  if (isSceneThree === true){
+    _mouseX = mouseX.map(0, window.innerWidth, 5, 15);
+    _mouseY = mouseY.map(0, window.innerHeight, 5, 35);
+    noiseOne.playbackRate = _mouseX + 10;
   }
 }
 
@@ -765,6 +801,31 @@ function onMouseDown(event) {
 
 function onMouseUp(event) {
   event.preventDefault();
+  if (isSceneTwo === true){
+    var yes = Math.floor(Math.random() * 1) + 1;
+    parentTransformDois.rotation.y += (yes - parentTransformDois.rotation.y) * 0.001;
+    yes = (yes - parentTransformDois.rotation.x);
+
+    var i = [
+    '4m',
+    '8m',
+    '16m',
+    '32m',
+    '2n',
+    '4n',
+    '8n',
+    '16n',
+    '32n',
+    '2t',
+    '4t',
+    '8t',
+    '16t',
+    '32t',
+    ];
+    var randomVel = Math.floor(Math.random()*i.length);
+    var randomElement = i[randomVel]
+    noiseOneFrequencyTime(randomElement);
+  }
 }
 
 function onWindowResize() {}
@@ -825,8 +886,6 @@ function detectmob() {
 }
 
 
-
-
 function render() {
 
   stats1.update();
@@ -861,11 +920,11 @@ function render() {
   }
 
   if (isSceneFour === true){
-    var intersects = raycaster.intersectObjects(parentTransformQuatro.children);
-    if (intersects.length > 0) {
-      if (INTERSECTED != intersects[0].object) {
+    var intersects1 = raycaster.intersectObjects(parentTransformQuatro.children);
+    if (intersects1.length > 0) {
+      if (INTERSECTED != intersects1[0].object) {
         if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-        INTERSECTED = intersects[0].object;
+        INTERSECTED = intersects1[0].object;
         INTERSECTED.material.wireframe = false;
       }
     } else {
@@ -873,13 +932,6 @@ function render() {
       INTERSECTED = null;
     }
   }
-
-  renderer.clear();
-  renderer.render(scene, camera);
-  renderer.clearDepth();
-  renderer.render(scene2, camera2);
-
-  renderer.autoClear = false;
 
   document.getElementById('save3d').addEventListener('click', save3d);
 
@@ -896,7 +948,7 @@ function render() {
     composerFour.render();
   }
 
-  if (isSceneThree == true) {
+  if (isSceneThree === true) {
     var time = Date.now() * 0.001;
     var rx = Math.sin(time * 0.7) * 0.5,
       ry = Math.sin(time * 0.3) * 0.5,
@@ -904,7 +956,9 @@ function render() {
     camera.position.x += (mouseX - camera.position.x) * 0.05;
     camera.position.y += (-mouseY - camera.position.y) * 0.05;
 
-    /* Here change the scenes */
+    autoFilterOne.set({
+      "octaves": rx + 1
+    });
 
     camera.lookAt(scene.position);
     parentTransformTres.rotation.x = rx;
@@ -912,10 +966,7 @@ function render() {
     parentTransformTres.rotation.z = rz;
   }
 
-  //horizontal rotation
   parentTransformDois.rotation.y += (targetRotationX - parentTransformDois.rotation.y) * 0.1;
-
-  //vertical rotation
   finalRotationY = (targetRotationY - parentTransformDois.rotation.x);
 
   if (parentTransformDois.rotation.x <= 1 && parentTransformDois.rotation.x >= -1) {
@@ -926,13 +977,12 @@ function render() {
   } else if (parentTransformDois.rotation.x < -1) {
     parentTransformDois.rotation.x = -1
   }
+
   capturer.capture(renderer.domElement);
 }
 
-//var customScale = ["c2", "d2", "e2", "g2", "a2", "c3", "d3", "e3", "g3", "a3", "c4", "d4", "e4", "g4", "a4", "c5", "d5", "e5", "g5", "a5"];
 var customScale;
 customScale = scale;
-//Array.prototype.push.apply(customScale, scale); Id's are different
 var _customScale;
 var __customScale;
 

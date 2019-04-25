@@ -29,7 +29,7 @@ WUI_Dialog.create("master_dialog", {
   resizable: false,
   //detachable: false,
   keep_align_when_resized: false,
-  top: -1850,
+  top: -1650,
   left: 20
 });
 
@@ -55,8 +55,8 @@ WUI_Dialog.create("savesettings_dialog", {
 
 WUI_Dialog.create("cockpit_dialog", {
   title: "Instruments", //'<div style="font-family: Monospace; font-size: 10px; color: lightgrey; position: absolute; margin-left: 8px;">---</div><span style="font-family: Monospace; font-size: 10px; color: lightgrey;">Instruments</span>',
-  width: "850px",
-  height: "325px",
+  width: "853px",
+  height: "330px",
   open: true,
   minimized: false,
   on_open: null,
@@ -81,89 +81,7 @@ WUI_Tabs.create("tabs_about", {
   // style value for the content height
 });
 
-WUI_Dialog.create("demo_integrated_dialog", {
-  title: "adsr - fazer um grande ",
-  halign: "left",
-  valign: "top",
-  closable: false,
-  draggable: true,
-  //minimizable: true,
-  status_bar: false,
-  width: "195px",
-  height: "210px",
-  top: 3,
-  left: -325,
-  header_btn: [{
-    title: "?",
-    on_click: function() {
-      console.log("BOTON");
-    },
-    class_name: ""
-  }],
-});
 
-WUI_Dialog.create("demo_integrated_dialog_2", {
-  title: "methods",
-  halign: "left",
-  valign: "top",
-  closable: false,
-  draggable: true,
-  //minimizable: true,
-  status_bar: false,
-  width: "195px",
-  height: "195px",
-  top: -192,
-  left: -125,
-  header_btn: [{
-    title: "?",
-    on_click: function() {
-      console.log("BOTON");
-    },
-    class_name: ""
-  }],
-});
-
-WUI_Dialog.create("demo_integrated_dialog_3", {
-  title: "mod_adsr",
-  halign: "left",
-  valign: "top",
-  closable: false,
-  draggable: true,
-  //minimizable: true,
-  status_bar: false,
-  width: "195px",
-  height: "195px",
-  top: -387,
-  left: 75,
-  header_btn: [{
-    title: "?",
-    on_click: function() {
-      console.log("BOTON");
-    },
-    class_name: ""
-  }],
-});
-
-WUI_Dialog.create("demo_integrated_dialog_4", {
-  title: "reverb",
-  halign: "left",
-  valign: "top",
-  closable: false,
-  draggable: true,
-  //minimizable: true,
-  status_bar: false,
-  width: "195px",
-  height: "195px",
-  top: -582,
-  left: 280,
-  header_btn: [{
-    title: "?",
-    on_click: function() {
-      console.log("BOTON");
-    },
-    class_name: ""
-  }],
-});
 
 WUI_Dialog.create("logs_dialog", {
   title: "Logs",
@@ -177,48 +95,6 @@ WUI_Dialog.create("logs_dialog", {
   resizable: false,
   status_bar: true,
   top: -700
-});
-
-WUI_Dialog.create("demo_integrated_dialog_5", {
-  title: "background",
-  halign: "left",
-  valign: "top",
-  closable: false,
-  draggable: true,
-  //minimizable: true,
-  status_bar: false,
-  width: "195px",
-  height: "210px",
-  top: 3,
-  left: -325,
-  header_btn: [{
-    title: "?",
-    on_click: function() {
-      console.log("BOTON");
-    },
-    class_name: ""
-  }],
-});
-
-WUI_Dialog.create("demo_integrated_dialog_6", {
-  title: "autoFilter",
-  halign: "left",
-  valign: "top",
-  closable: false,
-  draggable: true,
-  //minimizable: true,
-  status_bar: false,
-  width: "195px",
-  height: "210px",
-  top: -192,
-  left: -125,
-  header_btn: [{
-    title: "?",
-    on_click: function() {
-      console.log("BOTON");
-    },
-    class_name: ""
-  }],
 });
 
 WUI_Dialog.create("monitor_dialog", {

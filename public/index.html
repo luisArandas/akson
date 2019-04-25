@@ -49,7 +49,6 @@
 </head>
 
 <body>
-  map networks on the keyboard
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -353,205 +352,424 @@
         <div>
           <div>
             <!-- First one -->
-            <!--<div id="backgroundCockpit">yes</div>-->
-            <!--  -->
-            <div class="btn-group-horizontal btn-group-sm buttonsone" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sine')">Sine</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('square')">Square</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sawtooth')">Saw</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('triangle')">Triangle</button>
-            </div>
-            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('2')">2m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('4')">4m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('8')">8m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="partialCount('16')">16m</button>
-            </div>
-            <!--<div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="changeVoices()">voices</button>
-          </div>-->
-            <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('90')">flipPhase_90</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('180')">flipPhase_180</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('270')">flipPhase_270</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="flipPhase('360')">flipPhase_360</button>
-            </div>
+            <div id="backgroundCockpit">
 
-            <div id="demo_integrated_dialog" style="position: relative;">
-              <div style="text-align: center; font-size: 5pt;">
-                <br>
-                <div id="sliderBox1">
-                  <div id="ok1">Synth Attack:</div>
-                  <div id="synthAttack" class="synthAttack"></div>
-                </div>
-                <br>synth_dec
+            <div id="ui1">
+              <div id="sliderBox1">
+                <div id="ok1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Attack:</div>
+                <div id="n1">0.400</div>
+                <div id="synthAttack" class="synthAttack"></div>
+              </div>
+              <div id="sliderBox2">
+                <div id="ok2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Decay:</div>
+                <div id="n2">0.400</div>
                 <div id="synthDecay" class="synthDecay"></div>
-                synth_sus
+              </div>
+              <div id="sliderBox3">
+                <div id="ok3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Sustain:</div>
+                <div id="n3">0.300</div>
                 <div id="synthSustain" class="synthSustain"></div>
-                synth_rel
+              </div>
+              <div id="sliderBox4">
+                <div id="ok4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Release:</div>
+                <div id="n4">4.000</div>
                 <div id="synthRelease" class="synthRelease"></div>
-                oscPhase
+              </div>
+            </div>
+            <div id="ui2">
+              <div id="sliderBox5">
+                <div id="ok5">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Phase:</div>
+                <div id="n5">180</div>
                 <div id="synthPhase" class="synthPhase"></div>
-                partials
+              </div>
+              <div id="sliderBox6">
+                <div id="ok6">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Partials:</div>
+                <div id="n6">2</div>
                 <div id="synthPartials" class="synthPartials"></div>
               </div>
             </div>
-            <div id="demo_integrated_dialog_2" style="position: relative;">
-              <div style="text-align: center; font-size: 5pt;">
-                harmonicity
+            <div id="ui3">
+              <div id="sliderBox7">
+                <div id="ok7">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Synth Harmonicity:</div>
+                <div id="n7">10</div>
                 <div id="harmonicity" class="harmonicity"></div>
-                m_modulationIndex
-                <div id="modulationindex" class="modulationindex"></div>
-                detune
+              </div>
+              <div id="sliderBox8">
+                <div id="ok8">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Detune:</div>
+                <div id="n8">0</div>
                 <div id="detune" class="detune"></div>
-                osc_modIndex
+              </div>
+              <div id="sliderBox9">
+                <div id="ok9">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Modulation:</div>
+                <div id="n9">10</div>
+                <div id="modulationindex" class="modulationindex"></div>
+              </div>
+              <div id="sliderBox10">
+                <div id="ok10">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Osc Modulation:</div>
+                <div id="n10">3</div>
                 <div id="oscillatorModulationIndex" class="oscillatorModulationIndex"></div>
-                osc_harmonicity
+              </div>
+              <div id="sliderBox11">
+                <div id="ok11">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Osc Harmonicity:</div>
+                <div id="n11">3.4</div>
                 <div id="oscillatorHarmonicity" class="oscillatorHarmonicity"></div>
               </div>
             </div>
-            <div id="demo_integrated_dialog_3" style="position: relative;">
-              <div style="text-align: center; font-size: 5pt;">
-                mod_envelope_att
+            <div id="ui4">
+              <div id="sliderBox12">
+                <div id="ok12">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Modulation Attack:</div>
+                <div id="n12">0.500</div>
                 <div id="modulationEnvelopeAttack" class="modulationEnvelopeAttack"></div>
-                mod_envelope_dec
+              </div>
+              <div id="sliderBox13">
+                <div id="ok13">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Modulation Decay:</div>
+                <div id="n13">0.000</div>
                 <div id="modulationEnvelopeDecay" class="modulationEnvelopeDecay"></div>
-                mod_envelope_sus
+              </div>
+              <div id="sliderBox14">
+                <div id="ok14">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Modulation Sustain:</div>
+                <div id="n14">0.800</div>
                 <div id="modulationEnvelopeSustain" class="modulationEnvelopeSustain"></div>
-                mod_envelope_rel
+              </div>
+              <div id="sliderBox15">
+                <div id="ok15">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Modulation Release:</div>
+                <div id="n15">0.800</div>
                 <div id="modulationEnvelopeRelease" class="modulationEnvelopeRelease"></div>
               </div>
             </div>
-            <div id="demo_integrated_dialog_4" style="position: relative;">
-              <div style="text-align: center; font-size: 5pt;">
-                rev_RoomSize
+            <div id="ui5">
+              <div id="sliderBox16">
+                <div id="ok16">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb Room:</div>
+                <div id="n16">0.800</div>
                 <div id="reverbRoomSize" class="reverbRoomSize"></div>
-                rev_Wet
+              </div>
+              <div id="sliderBox17">
+                <div id="ok17">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Reverb Wet:</div>
+                <div id="n17">0.100</div>
                 <div id="reverbWetValue" class="reverbWetValue"></div>
-                rev_Damp
+              </div>
+              <div id="sliderBox18">
+                <div id="ok18">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb Damp:</div>
+                <div id="n18">3000</div>
                 <div id="reverbDampValue" class="reverbDampValue"></div>
-                Vibrato, maxDel, freq, depth, wet
-                <div id="vibratoMaxDelay" class="reverbDampValue"></div>
-                <div id="vibratoFrequency" class="reverbDampValue"></div>
-                <div id="vibratoDepth" class="reverbDampValue"></div>
-                <div id="vibratoWet" class="reverbDampValue"></div>
-
+              </div>
+              <div id="sliderBox19" class="sliderBox19">
+                <div id="ok20">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vibrato Freq:</div>
+                <div id="n20">0</div>
+                <div id="vibratoFrequency" class="vibratoFrequency"></div>
+              </div>
+              <div id="sliderBox20" class="sliderBox20">
+                <div id="ok21">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vibrato Depth:</div>
+                <div id="n21">0.100</div>
+                <div id="vibratoDepth" class="vibratoDepth"></div>
+              </div>
+              <div id="sliderBox21" class="sliderBox21">
+                <div id="ok22">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vibrato Wet:</div>
+                <div id="n22">0.500</div>
+                <div id="vibratoWet" class="vibratoWet"></div>
               </div>
             </div>
-          </div>
-          <div>
-            <div id="phaserFreq" class="phaserFreq"></div>
-            <div id="phaserOct" class="phaserOct"></div>
-            <div id="phaserWet" class="phaserWet"></div>
-            <div id="phaserQ" class="phaserQ"></div>
-            <div id="phaserBaseFreq" class="phaserBaseFreq"></div>
-            <div id="jcreverbWet" class="jcreverbWet"></div>
-            <div id="jcreverbRoomsize" class="jcreverbRoomsize"></div>
-
-
-
-            <div id="demo_integrated_dialog_5" style="position: relative;">
-              <div style="text-align: center; font-size: 5pt;">
-                noise_playbackrate
-                <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
-                noise_min
-                <div id="noiseMin" class="noiseMin"></div>
-                noise_max
-                <div id="noiseMax" class="noiseMax"></div>
-                af_baseFrequency
-                <div id="afbasefrequency" class="afbasefrequency"></div>
-                noisefiltergain
-                <div id="noisefiltergain" class="noisefiltergain"></div>
-
+            <div id="ui6">
+              Wave Type
+              <div class="btn-group-horizontal btn-group-sm buttonsone" role="group" aria-label="ok">
+                <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sine')">Sine</button>
+                <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('square')">Square</button>
+                <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('sawtooth')">Saw</button>
+                <button type="button" class="btn btn-secondary buttonColor" onClick="synthWave('triangle')">Triangle</button>
               </div>
             </div>
-            <div id="demo_integrated_dialog_6" style="position: relative;">
-              <div style="text-align: center; font-size: 5pt;">
-                autofilter_Q
-                <div id="noiseq" class="noiseq"></div>
-                <!--autofilter_Rolloff
-              <div id="noiserol" class="noiserol"></div>-->
-                autofilter_octaves
-                <div id="noiseoctaves" class="noiseoctaves"></div>
-                autofilter_freq
-                <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
-                autofilter_wet
-                <div id="autoFilterWet" class="autoFilterWet"></div>
-                autofilter_depth
-                <div id="autoFilterDepth" class="autoFilterDepth"></div>
+            <div id="ui7">
+              Harmonics
+              <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+                <button type="button" class="btn btn-secondary buttonColor l" onClick="partialCount('2')">2m</button>
+                <button type="button" class="btn btn-secondary buttonColor l" onClick="partialCount('4')">4m</button>
+                <button type="button" class="btn btn-secondary buttonColor l" onClick="partialCount('8')">8m</button>
+                <button type="button" class="btn btn-secondary buttonColor l" onClick="partialCount('16')">16m</button>
               </div>
             </div>
-
-            <div class="btn-group-horizontal btn-group-sm buttonsthree" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('white')">White</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('brown')">Brown</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('pink')">Pink</button>
-            </div>
+            <div id="ui8">
+              Flip Phase
             <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-12')">rollof_-12</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-24')">rollof_-24</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-48')">rollof_-48</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-96')">rollof_-96</button>
-            </div>
-            <div class="btn-group-horizontal btn-group-sm buttonsfive" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sine')">AF_Sine</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('square')">AF_Square</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sawtooth')">AF_Saw</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('triangle')">AF_Triangle</button>
-            </div>
-            <div class="btn-group-horizontal btn-group-sm buttonssix" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2m')">2m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4m')">4m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8m')">8m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16m')">16m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32m')">32m</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2n')">2n</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4n')">4n</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8n')">8n</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16n')">16n</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32n')">32n</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('2t')">2t</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('4t')">4t</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('8t')">8t</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('16t')">16t</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="noiseOneFrequencyTime('32t')">32t</button>
+              <button type="button" class="btn btn-secondary buttonColor i" onClick="flipPhase('90')">90</button>
+              <button type="button" class="btn btn-secondary buttonColor i" onClick="flipPhase('180')">180</button>
+              <button type="button" class="btn btn-secondary buttonColor i" onClick="flipPhase('270')">270</button>
+              <button type="button" class="btn btn-secondary buttonColor i" onClick="flipPhase('360')">360</button>
             </div>
           </div>
+
+
+
+
+              </div>
+          </div>
+
+          <!-- Segundo -->
+        <div id="backgroundCockpit2">
+          <div id="ui9">
+            <div id="sliderBox22" class="sliderBox22">
+              <div id="ok23">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Freq:</div>
+              <div id="n23">500</div>
+              <div id="autoFilterFrequency" class="autoFilterFrequency"></div>
+            </div>
+            <div id="sliderBox23" class="sliderBox23">
+              <div id="ok24">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter BaseFreq:</div>
+              <div id="n24">200</div>
+              <div id="afbasefrequency" class="afbasefrequency"></div>
+            </div>
+            <div id="sliderBox24" class="sliderBox24">
+              <div id="ok25">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Octaves:</div>
+              <div id="n25">2.6</div>
+              <div id="noiseoctaves" class="noiseoctaves"></div>
+            </div>
+            <div id="sliderBox25" class="sliderBox25">
+              <div id="ok26">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Q:</div>
+              <div id="n26">1.00</div>
+              <div id="noiseq" class="noiseq"></div>
+            </div>
+            <div id="sliderBox26" class="sliderBox26">
+              <div id="ok27">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Wet:</div>
+              <div id="n27">0.500</div>
+              <div id="autoFilterWet" class="autoFilterWet"></div>
+            </div>
+            <div id="sliderBox27" class="sliderBox27">
+              <div id="ok28">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Depth:</div>
+              <div id="n28">1.00</div>
+              <div id="autoFilterDepth" class="autoFilterDepth"></div>
+            </div>
+          </div>
+          <div id="ui10">
+            <div id="sliderBox28" class="sliderBox28">
+              <div id="ok29">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Playback Rate:</div>
+              <div id="n29">1.00</div>
+              <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
+            </div>
+            <div id="sliderBox29" class="sliderBox29">
+              <div id="ok30">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Min:</div>
+              <div id="n30">3000</div>
+              <div id="noiseMin" class="noiseMin"></div>
+            </div>
+            <div id="sliderBox30" class="sliderBox30">
+              <div id="ok31">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Max:</div>
+              <div id="n31">4000</div>
+              <div id="noiseMax" class="noiseMax"></div>
+            </div>
+            <div id="sliderBox31" class="sliderBox31">
+              <div id="ok32">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Filter Gain:</div>
+              <div id="n32">1.00</div>
+              <div id="noisefiltergain" class="noisefiltergain"></div>
+            </div>
+          </div>
+          <div id="ui11">
+            <div id="sliderBox32" class="sliderBox32">
+              <div id="ok33">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb Wet:</div>
+              <div id="n33">0</div>
+              <div id="jcreverbWet" class="jcreverbWet"></div>
+            </div>
+            <div id="sliderBox33" class="sliderBox33">
+              <div id="ok34">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb RoomSize:</div>
+              <div id="n34">0</div>
+              <div id="jcreverbRoomsize" class="jcreverbRoomsize"></div>
+            </div>
+          </div>
+          <div id="ui12">
+            <div id="sliderBox34" class="sliderBox34">
+              <div id="ok35">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Frequency:</div>
+              <div id="n35">0.500</div>
+              <div id="phaserFreq" class="phaserFreq"></div>
+            </div>
+            <div id="sliderBox35" class="sliderBox35">
+              <div id="ok36">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Wet:</div>
+              <div id="n36">0.500</div>
+              <div id="phaserWet" class="phaserWet"></div>
+            </div>
+            <div id="sliderBox36" class="sliderBox36">
+              <div id="ok37">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Q:</div>
+              <div id="n37">10</div>
+              <div id="phaserQ" class="phaserQ"></div>
+            </div>
+            <div id="sliderBox37" class="sliderBox37">
+              <div id="ok38">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Octave:</div>
+              <div id="n38">3.0</div>
+              <div id="phaserOct" class="phaserOct"></div>
+            </div>
+            <div id="sliderBox38" class="sliderBox38">
+              <div id="ok39">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Base Frequency:</div>
+              <div id="n39">350</div>
+              <div id="phaserBaseFreq" class="phaserBaseFreq"></div>
+            </div>
+          </div>
+          <div id="ui13">
+            Noise Wave Type
+            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('white')">White</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('brown')">Brown</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('pink')">Pink</button>
+          </div>
+          </div>
+          <div id="ui14">
+            AutoFilter Rolloff
+            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-12')">-12</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-24')">-24</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-48')">-48</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseRoloff('-96')">-96</button>
+          </div>
+          </div>
+          <div id="ui15">
+            AutoFilter Wave
+            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sine')">Sine</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('square')">Square</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('sawtooth')">Saw</button>
+            <button type="button" class="btn btn-secondary buttonColor" onClick="autofilterWave('triangle')">Triangle</button>
+          </div>
+          </div>
+          <div id="ui16">
+            Noise Frequency Time
+            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2m')">2m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4m')">4m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('8m')">8m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('16m')">16m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('32m')">32m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2n')">2n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4n')">4n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('8n')">8n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('16n')">16n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('32n')">32n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2t')">2t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4t')">4t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('8t')">8t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('16t')">16t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('32t')">32t</button>
+          </div>
+          </div>
+
+        </div>
           <div>
-            master
-            <div id="light1" class="light1"></div>
-            <div id="light2" class="light2"></div>
-            <div id="light3" class="light3"></div>
-            <div id="light4" class="light4"></div>
+            <div id="backgroundCockpit3">
 
-            <div id="cameraM1" class="cameraM1"></div>
-            <div id="cameraM2" class="cameraM2"></div>
-            <div id="cameraM3" class="cameraM3"></div>
-            <div id="cameraM4" class="cameraM4"></div>
+            <div id="ui17">
+            <div id="sliderBox39" class="sliderBox39">
+              <div id="ok40">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene One:</div>
+              <div id="n40">18</div>
+              <div id="light1" class="light1"></div>
+            </div>
+            <div id="sliderBox40" class="sliderBox40">
+              <div id="ok41">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene Two:</div>
+              <div id="n41">19</div>
+              <div id="light2" class="light2"></div>
+            </div>
+            <div id="sliderBox41" class="sliderBox41">
+              <div id="ok42">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene Three:</div>
+              <div id="n42">20</div>
+              <div id="light3" class="light3"></div>
+            </div>
+            <div id="sliderBox42" class="sliderBox42">
+              <div id="ok43">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene Four:</div>
+              <div id="n43">21</div>
+              <div id="light4" class="light4"></div>
+            </div>
+          </div>
 
+          <div id="ui18">
 
-            <div id="camera1_1" class="camera1_1"></div>
-            <div id="camera1_2" class="camera1_2"></div>
-            <div id="camera1_3" class="camera1_3"></div>
+            <div id="sliderBox43" class="sliderBox43">
+              <div id="ok44">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera Aspect:</div>
+              <div id="n44">22</div>
+              <div id="cameraM3" class="cameraM3"></div>
+            </div>
+            <div id="sliderBox44" class="sliderBox44">
+              <div id="ok45">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera Zoom:</div>
+              <div id="n45">23</div>
+              <div id="cameraM2" class="cameraM2"></div>
+            </div>
+            <div id="sliderBox45" class="sliderBox45">
+              <div id="ok46">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera FOV:</div>
+              <div id="n46">23</div>
+              <div id="cameraM1" class="cameraM1"></div>
+            </div>
+            <div id="sliderBox46" class="sliderBox46">
+              <div id="ok47">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera Near:</div>
+              <div id="n47">23</div>
+              <div id="cameraM4" class="cameraM4"></div>
+            </div>
+          </div>
+          <div id="ui19">
+            <div id="sliderBox47" class="sliderBox47">
+              <div id="ok48">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene One X:</div>
+              <div id="n48">22</div>
+              <div id="camera1_1" class="camera1_1"></div>
+            </div>
+            <div id="sliderBox48" class="sliderBox48">
+              <div id="ok49">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene One Y:</div>
+              <div id="n49">23</div>
+              <div id="camera1_2" class="camera1_2"></div>
+            </div>
+            <div id="sliderBox49" class="sliderBox49">
+              <div id="ok50">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene One Z:</div>
+              <div id="n50">23</div>
+              <div id="camera1_3" class="camera1_3"></div>
+            </div>
 
-            <div id="camera2_1" class="camera2_1"></div>
-            <div id="camera2_2" class="camera2_2"></div>
-            <div id="camera2_3" class="camera2_3"></div>
+            <div id="sliderBox50" class="sliderBox50">
+              <div id="ok51">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Two X:</div>
+              <div id="n51">22</div>
+              <div id="camera2_1" class="camera2_1"></div>
+            </div>
+            <div id="sliderBox51" class="sliderBox51">
+              <div id="ok52">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Two Y:</div>
+              <div id="n52">23</div>
+              <div id="camera2_2" class="camera2_2"></div>
+            </div>
+            <div id="sliderBox52" class="sliderBox52">
+              <div id="ok53">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Two Z:</div>
+              <div id="n53">23</div>
+              <div id="camera2_3" class="camera2_3"></div>
+            </div>
+          </div>
+          <div id="ui20">
+            <div id="sliderBox53" class="sliderBox53">
+              <div id="ok54">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Three X:</div>
+              <div id="n54">22</div>
+              <div id="camera3_1" class="camera3_1"></div>
+            </div>
+            <div id="sliderBox54" class="sliderBox54">
+              <div id="ok55">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Three Y:</div>
+              <div id="n55">23</div>
+              <div id="camera3_2" class="camera3_2"></div>
+            </div>
+            <div id="sliderBox55" class="sliderBox55">
+              <div id="ok56">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Three Z:</div>
+              <div id="n56">23</div>
+              <div id="camera3_3" class="camera3_3"></div>
+            </div>
 
-            <div id="camera3_1" class="camera3_1"></div>
-            <div id="camera3_2" class="camera3_2"></div>
-            <div id="camera3_3" class="camera3_3"></div>
-
-            <div id="camera4_1" class="camera4_1"></div>
-            <div id="camera4_2" class="camera4_2"></div>
-            <div id="camera4_3" class="camera4_3"></div>
+            <div id="sliderBox56" class="sliderBox56">
+              <div id="ok57">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Four X:</div>
+              <div id="n57">22</div>
+              <div id="camera4_1" class="camera4_1"></div>
+            </div>
+            <div id="sliderBox57" class="sliderBox57">
+              <div id="ok58">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Four Y:</div>
+              <div id="n58">23</div>
+              <div id="camera4_2" class="camera4_2"></div>
+            </div>
+            <div id="sliderBox58" class="sliderBox58">
+              <div id="ok59">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Four Z:</div>
+              <div id="n59">23</div>
+              <div id="camera4_3" class="camera4_3"></div>
+            </div>
+          </div>
 
           </div>
+        </div>
 
 
           <!-- PostPro -->
           <div>
-            <!-- Here starts the Range -->
+            <div id="backgroundCockpit4">
+
             <div class="divNotas">
               <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
                 <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
@@ -621,10 +839,7 @@
               </div>
             </div>
 
-            <!--Graphics-->
             <div>
-              <!-- index.js 829 -->
-              cortar em cima => black
               <div class="stats" id="stats">
                 <script src="libraries/stats.js"></script>
                 <script>
@@ -648,17 +863,42 @@
               </div>
 
             </div>
-            setViewOffset
-            <div id="cameraM5" class="cameraM5"></div>
-            <div id="cameraM6" class="cameraM6"></div>
-            <div id="cameraM7" class="cameraM7"></div>
-            <div id="cameraM8" class="cameraM8"></div>
-            x/y
-            <div id="cameraM9" class="cameraM9"></div>
-            <div id="cameraM10" class="cameraM10"></div>
+         <div id="ui21">
 
-            <div class="btn-group-horizontal btn-group-sm gruposhaders" role="group" aria-label="ok">
-              add controls for each scene W presets
+            <div id="sliderBox59" class="sliderBox59">
+              <div id="ok60">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set View OffSet X1:</div>
+              <div id="n60">1</div>
+              <div id="cameraM5" class="cameraM5"></div>
+            </div>
+            <div id="sliderBox60" class="sliderBox60">
+              <div id="ok61">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set View OffSet X2:</div>
+              <div id="n61">2</div>
+              <div id="cameraM6" class="cameraM6"></div>
+            </div>
+            <div id="sliderBox61" class="sliderBox61">
+              <div id="ok62">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set View OffSet X3:</div>
+              <div id="n62">3</div>
+              <div id="cameraM7" class="cameraM7"></div>
+            </div>
+            <div id="sliderBox62" class="sliderBox62">
+              <div id="ok63">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set View OffSet X4:</div>
+              <div id="n63">3</div>
+              <div id="cameraM8" class="cameraM8"></div>
+            </div>
+            <div id="sliderBox63" class="sliderBox63">
+              <div id="ok64">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set View OffSet X5:</div>
+              <div id="n64">3</div>
+              <div id="cameraM9" class="cameraM9"></div>
+            </div>
+            <div id="sliderBox64" class="sliderBox64">
+              <div id="ok65">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set View OffSet X6:</div>
+              <div id="n65">3</div>
+              <div id="cameraM10" class="cameraM10"></div>
+            </div>
+          </div>
+
+            <div class="shadersDiv" id="shadersdiv">
+              Shaders <br>
               <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader0" onclick="shaderButtons('shader0')">Default</button>
               <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader1" onclick="shaderButtons('shader1')">Glitch</button>
               <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader2" onclick="shaderButtons('shader2')">Noise</button>
@@ -677,7 +917,7 @@
 
               </div>
             </div>
-
+<!--
             <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
               <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set1')">offset1</button>
               <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set2')">offset2</button>
@@ -687,7 +927,8 @@
               <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set6')">offset6</button>
               <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('clear')">default</button>
             </div>
-
+          -->
+          </div>
           </div>
 
         </div>

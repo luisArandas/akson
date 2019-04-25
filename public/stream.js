@@ -952,6 +952,8 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
+
   }
   if (v == "streamed") {
     socket.connected = true;
@@ -963,6 +965,7 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "2px solid rgba(150,150,150,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
   }
   if (v == "alocate") {
     socket.connected = true;
@@ -976,6 +979,7 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "2px solid rgba(150,150,150,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById('inst1').style.pointerEvents = "none";
     document.getElementById('inst2').style.pointerEvents = "none";
     document.getElementById('inst3').style.pointerEvents = "none";
@@ -988,7 +992,8 @@ function changeState(v) {
     document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
-    document.getElementById("stateButtonFour").style.border = "2px solid rgba(150,150,150,1)";
+    document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById("stateButtonFive").style.border = "2px solid rgba(150,150,150,1)";
   }
   if (v == "alone") {
     socket.connected = false;
@@ -996,6 +1001,11 @@ function changeState(v) {
     isAlone = true;
     isAlocating = false;
     openGui();
+    document.getElementById("stateButtonOne").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
+    document.getElementById("stateButtonFour").style.border = "2px solid rgba(150,150,150,1)";
+    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
   }
   if (v) {
     modalAbout.style.display = "none";
