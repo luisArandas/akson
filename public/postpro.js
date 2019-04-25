@@ -692,7 +692,6 @@ afterimagePass.renderToScreen = false;
 
 
 function shaderButtons(data) {
-
   if (data === "shader0") {
     renderPostOne = false;
     renderPostTwo = false;
@@ -719,12 +718,13 @@ function shaderButtons(data) {
   }
 
   if (data === "shader1") {
+    console.log("ok");
 
     renderPostOne = true;
     renderPostTwo = false;
     renderPostThree = false;
     renderPostFour = false;
-
+    console.log(renderPostOne);
     scene2.remove(planek);
     scene2.remove(plane2k);
 

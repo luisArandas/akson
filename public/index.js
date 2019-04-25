@@ -12,7 +12,7 @@ $(document).ready(function() {
   console.log("i get white strips and check render, index.js 7no25, let the mouse stay on gui");
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
   console.log(isChrome);
-
+  doStuff();
   document.getElementById("topBar").style.display = "none";
   WUI_Dialog.close("master_dialog");
   WUI_Dialog.close("cockpit_dialog");
@@ -48,7 +48,7 @@ var lightOne;
 var lightTwo;
 var lightThree;
 var lightFour;
-
+var nrSeconds = 0;
 var camera,
   scene,
   container,
@@ -342,7 +342,7 @@ function init() {
   window.addEventListener("blur", function(event) {
   }, false);
 
-  //document.addEventListener('mousemove', onDocumentMouseMove, false);
+  document.addEventListener('mousemove', onDocumentMouseMove, false);
 
   composerOne = new THREE.EffectComposer(renderer);
   composerOne.addPass(new THREE.RenderPass(scene, camera));
@@ -681,12 +681,6 @@ function animate() {
 
   requestAnimationFrame(animate);
   render();
-  renderer.clear();
-  renderer.render(scene, camera);
-  renderer.clearDepth();
-  renderer.render(scene2, camera2);
-
-  renderer.autoClear = false;
 }
 
 // ------------------------- Sockets & Mouse -------------------------------
@@ -932,19 +926,25 @@ function render() {
       INTERSECTED = null;
     }
   }
+  renderer.clear();
+  renderer.render(scene, camera);
+  renderer.clearDepth();
+  renderer.render(scene2, camera2);
+
+  renderer.autoClear = false;
 
   document.getElementById('save3d').addEventListener('click', save3d);
 
-  if (renderPostOne === true) {
+  if (renderPostOne == true) {
     composerOne.render();
   }
-  if (renderPostTwo === true) {
+  if (renderPostTwo == true) {
     composerTwo.render();
   }
-  if (renderPostThree === true) {
+  if (renderPostThree == true) {
     composerThree.render();
   }
-  if (renderPostFour === true) {
+  if (renderPostFour == true) {
     composerFour.render();
   }
 
@@ -1022,9 +1022,13 @@ $(document).mouseleave(function() {
 });
 
 function doStuff() {
-  console.log("Doing Stuff");
+  nrSeconds++;
+  console.log(nrSeconds);
+  if (nrSeconds === 10)
+  topBar('refresh');
 }
-setInterval(doStuff, 10000);
+setInterval(doStuff, 600000);
+//50000 is 50 seconds, not 5 minutes. 5 minutes would be 5 * 60 * 1000 = 300000
 
 function move() {
 
