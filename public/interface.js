@@ -66,7 +66,7 @@ WUI_Dialog.create("cockpit_dialog", {
   minimizable: true,
   halign: "center",
   valign: "bottom",
-  top: -2300
+  top: -2800
 });
 
 WUI_Tabs.create("tabs_instrumentos", {

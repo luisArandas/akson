@@ -1050,7 +1050,7 @@ function move() {
       document.getElementById("start").classList.add('hidden');
     }
     if (width === 99) {
-      loadWarning();
+      //loadWarning();
     }
   }
 }
