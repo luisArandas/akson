@@ -6,7 +6,7 @@ socket.on("*", function(data) {
   console.log("* " + data);
 });
 
-var isStreaming = false;
+var isStreaming = true;
 var isAlone = false;
 var isAlocating = false;
 
