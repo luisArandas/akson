@@ -9,6 +9,8 @@ about its use in live performance and is able to interact in various ways in del
 This documentation will allow the user to understand better how to use the software, build it and if needed edit it easily. All of the features
 will be covered here and how to access them.
 
+.. image:: images/main.png
+
 .. toctree::
 
    build.rst

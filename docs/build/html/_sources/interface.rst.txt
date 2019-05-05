@@ -1,13 +1,61 @@
 Interface
-============
+=====================
 
-#1
+To have complete control of the instrument, there is the possibility to open a graphical interface that has a series of controls.
+These enable an advanced level of usage on Akson.
+
+.. image:: images/interface1.gif
+
+There are three dialogs that appear when the user opens the interface for the first time. The master controller. The main instrument controller,
+and a panel that prints all the names of the methods modified by the graphical interface. In conjunction with the dialogs there is also a bar at the top
+of the window with buttons.
+
+
+Master Controller
 -------------------------------
 
-#2
+The master controller has effect on the main out of the browser sound system. Connected to the AudioDestinationNode, it provides useful conveniences
+such as the ability to set the volume and mute the entire application. There is also the possibility to click on the 'about' button. This brings up
+a window with information about the system where Akson is running, and explains the various models of interaction in the network.
+
+.. image:: images/interface2.png
+
+The master dialog consists of 8 dials, 3 buttons and an oscilloscope. The dials have linked to each other number boxes and also print in the logs panel.
+The dial with the Master name controls the volume of the complete instrument, the Synth controls the volume of the lead Synthesizer and the Back controls the
+noise background. The remaining 5 dials are equalizers in the master, one for High, Low, Mid and two crossovers a High and a Low.
+
+
+Instrument Controller
 -------------------------------
 
-#3
+The instrument controller is the most extensive panel in the graphical interface and it has many of the methods and attributes that the user can change
+in the instrument. it is divided into four parts, one for each bit of Akson. Synthesizer, Background, Graphics and Post-Prod. These allow different
+interactions in the system.
+
+.. image:: images/interface3.png
+
+The Synthesizer interface has 21 independent sliders and 12 buttons that control both the Synth and the built-in processing effects such as Reverb and Vibrato.
+The Background interface has 17 independent sliders and 26 buttons to control both the Noise generator and an AutoFilter. The Graphics interface has 20 sliders
+that control both the Camera, Lights and some Geometry properties. The Post-Prod interface has 6 sliders to change camera Offset, 5 Preset buttons, 5 buttons of
+Shaders, 3 panels for WebGL performance view and the main interface to change notes to the Synthesizer to play.
+
+
+Logs Dialog
 -------------------------------
 
-The documentation is continually being improved. The release of version 3.1 includes many new tutorials, man
+The Logs dialog shows when something in the interface has been changed
+
+.. image:: images/interface4.gif
+
+Top Button Bar
+-------------------------------
+
+The Top Button Bar has this that and that
+
+.. image:: images/interface5.png
+
+
+Keyboard
+-------------------------------
+
+Meter aqui as shortcuts

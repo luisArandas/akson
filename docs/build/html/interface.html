@@ -87,14 +87,17 @@
 <li class="toctree-l3"><a class="reference internal" href="build.html#macos">MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build.html#windows">Windows</a></li>
 <li class="toctree-l3"><a class="reference internal" href="build.html#linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build.html#file-architecture">File Architecture</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">#1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">#2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">#3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#master-controller">Master Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instrument-controller">Instrument Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logs-dialog">Logs Dialog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#top-button-bar">Top Button Bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keyboard">Keyboard</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="audio.html">Audio</a><ul>
@@ -182,15 +185,46 @@
             
   <div class="section" id="interface">
 <h1>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>#1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>To have complete control of the instrument, there is the possibility to open a graphical interface that has a series of controls.
+These enable an advanced level of usage on Akson.</p>
+<img alt="_images/interface1.gif" src="_images/interface1.gif" />
+<p>There are three dialogs that appear when the user opens the interface for the first time. The master controller. The main instrument controller,
+and a panel that prints all the names of the methods modified by the graphical interface. In conjunction with the dialogs there is also a bar at the top
+of the window with buttons.</p>
+<div class="section" id="master-controller">
+<h2>Master Controller<a class="headerlink" href="#master-controller" title="Permalink to this headline">¶</a></h2>
+<p>The master controller has effect on the main out of the browser sound system. Connected to the AudioDestinationNode, it provides useful conveniences
+such as the ability to set the volume and mute the entire application. There is also the possibility to click on the ‘about’ button. This brings up
+a window with information about the system where Akson is running, and explains the various models of interaction in the network.</p>
+<img alt="_images/interface2.png" src="_images/interface2.png" />
+<p>The master dialog consists of 8 dials, 3 buttons and an oscilloscope. The dials have linked to each other number boxes and also print in the logs panel.
+The dial with the Master name controls the volume of the complete instrument, the Synth controls the volume of the lead Synthesizer and the Back controls the
+noise background. The remaining 5 dials are equalizers in the master, one for High, Low, Mid and two crossovers a High and a Low.</p>
 </div>
-<div class="section" id="id2">
-<h2>#2<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="instrument-controller">
+<h2>Instrument Controller<a class="headerlink" href="#instrument-controller" title="Permalink to this headline">¶</a></h2>
+<p>The instrument controller is the most extensive panel in the graphical interface and it has many of the methods and attributes that the user can change
+in the instrument. it is divided into four parts, one for each bit of Akson. Synthesizer, Background, Graphics and Post-Prod. These allow different
+interactions in the system.</p>
+<img alt="_images/interface3.png" src="_images/interface3.png" />
+<p>The Synthesizer interface has 21 independent sliders and 12 buttons that control both the Synth and the built-in processing effects such as Reverb and Vibrato.
+The Background interface has 17 independent sliders and 26 buttons to control both the Noise generator and an AutoFilter. The Graphics interface has 20 sliders
+that control both the Camera, Lights and some Geometry properties. The Post-Prod interface has 6 sliders to change camera Offset, 5 Preset buttons, 5 buttons of
+Shaders, 3 panels for WebGL performance view and the main interface to change notes to the Synthesizer to play.</p>
 </div>
-<div class="section" id="id3">
-<h2>#3<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>The documentation is continually being improved. The release of version 3.1 includes many new tutorials, man</p>
+<div class="section" id="logs-dialog">
+<h2>Logs Dialog<a class="headerlink" href="#logs-dialog" title="Permalink to this headline">¶</a></h2>
+<p>The Logs dialog shows when something in the interface has been changed</p>
+<img alt="_images/interface4.gif" src="_images/interface4.gif" />
+</div>
+<div class="section" id="top-button-bar">
+<h2>Top Button Bar<a class="headerlink" href="#top-button-bar" title="Permalink to this headline">¶</a></h2>
+<p>The Top Button Bar has this that and that</p>
+<img alt="_images/interface5.png" src="_images/interface5.png" />
+</div>
+<div class="section" id="keyboard">
+<h2>Keyboard<a class="headerlink" href="#keyboard" title="Permalink to this headline">¶</a></h2>
+<p>Meter aqui as shortcuts</p>
 </div>
 </div>
 
@@ -335,6 +369,10 @@
     overflow: hidden;
     word-wrap: break-word;
   }
+  img {
+    border-radius: 7px;
+  }
+
 </style>
 
 

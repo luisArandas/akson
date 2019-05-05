@@ -125,4 +125,10 @@ On Linux there are multiple package managers to get node instead of downloading 
     $ pkg_add node
 
 
+
+File Architecture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+File trees
+
 The documentation is continually being improved. The release of version 1
