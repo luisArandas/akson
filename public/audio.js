@@ -553,10 +553,6 @@ UI.backgroundvolume.on('change', function(v) {
 });
 UI.mainvolume.on('change', function(v) {
   Tone.Master.volume.value = v;
-
-
-
-  console.log("1 " + v);
   var data = {
     x: v,
     y: "mainVolume"
@@ -565,11 +561,11 @@ UI.mainvolume.on('change', function(v) {
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
   printLogsDialog("Master Volume : ", _v);
 
-  __v = v.map(-50, 0, 0, 5);
+  /*__v = v.map(-50, 0, 0, 5);
   lightOne.intensity = __v;
   lightTwo.intensity = __v;
   lightThree.intensity = __v;
-  lightFour.intensity = __v;
+  lightFour.intensity = __v;*/
 });
 
 UI.synthAttack.on('change', function(v) {
@@ -1217,6 +1213,7 @@ function closeGui() {
   WUI_Dialog.close("cockpit_dialog");
   WUI_Dialog.close("logs_dialog");
   WUI_Dialog.close("monitor_dialog");
+  WUI_Dialog.close("about_this_dialog");
   document.getElementById("topBar").style.visibility = "hidden";
 }
 
@@ -1440,19 +1437,42 @@ recorder.onstop = evt => {
 
 function postPresets(v){
   if (v === "1"){
-    console.log("1");
+    vibrato.frequency.value = 3.4;
+    vibrato.depth.value = 0.2;
+    polySynth.volume.value = -3;
+    polySynth.set({
+      "envelope": {
+        "attack": 0.8,
+        "decay": 1,
+        "sustain": 1,
+        "release": 10
+      }
+    });
+    $("#harmonic").click();
   }
   if (v === "2"){
-    console.log("2");
+    vibrato.frequency.value = 3.4;
+    vibrato.depth.value = 0.2;
+    polySynth.volume.value = -30;
+    autoFilterOne.set({
+      "frequency": 4700
+    });
+    $("#melodic").click();
   }
   if (v === "3"){
-    console.log("3");
+    lightOne.intensity = 5;
+    lightTwo.intensity = 5;
+    lightThree.intensity = 5;
+    lightFour.intensity = 5;
+    $("#hungarian").click();
   }
   if (v === "4"){
-    console.log("4");
+    camera.fov = 152;
+    $("#melodic").click();
   }
   if (v === "5"){
-    console.log("5");
+    $("#shader4").click();
+    $("#hirajoshi").click();
   }
 }
 

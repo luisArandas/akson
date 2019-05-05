@@ -42,6 +42,10 @@ $(document).ready(function() {
   if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
     //Try alert.
   }
+  /* This works
+  var elem = document.querySelector('#cockpit_dialog');
+  elem.style.position = 'absolute';
+  elem.style.bottom = '0px';*/
 });
 
 var lightOne;

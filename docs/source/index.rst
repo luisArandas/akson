@@ -1,5 +1,5 @@
 [Akson] Software Documentation
-=================================
+====================================
 
 This is the official documentation of the Akson software, a collaborative audiovisual system using new media technologies.
 Akson was developed to fulfil the needs of a research in interactive networked musical systems and complex data visualizations

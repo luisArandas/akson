@@ -161,12 +161,12 @@
         <div class="btn-group mr-2" role="group" aria-label="Fifth group">
           <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')" title="Interaction Mode"><i class="fas fa-arrows-alt-h"></i></button>
         </div>
-        <div class="btn-group mr-2" role="group" aria-label="Sixth group">
+        <!--<div class="btn-group mr-2" role="group" aria-label="Sixth group">
           <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()" title="MIDI"><i class="fas fa-chalkboard"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Seventh group">
           <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('coherent')" title="Correlate AV Controls"><i class="fas fa-random"></i></button>
-        </div>
+        </div>-->
     </div>
 
     <div id="monitor_dialog">
@@ -251,19 +251,19 @@
           <br>
           <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('minor')">Minor</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('harmonicMinor')">Harmonic Minor</button>
+          <button type="button" class="btn btn-dark scaleButton" id="harmonic" onClick="changeScale('harmonicMinor')">Harmonic Minor</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('melodicMinor')">Melodic Minor</button>
+          <button type="button" class="btn btn-dark scaleButton" id="melodic" onClick="changeScale('melodicMinor')">Melodic Minor</button>
           <br>
           <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('ionian')">Ionian</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('locrian')">Locrian</button>
+          <button type="button" class="btn btn-dark scaleButton" id="locrian" onClick="changeScale('locrian')">Locrian</button>
           <br>
           <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('adonai')">Adonai Malakh</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('hirajoshi')">Hirajoshi Japan</button>
+          <button type="button" class="btn btn-dark scaleButton" id="hirajoshi" onClick="changeScale('hirajoshi')">Hirajoshi Japan</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('hungarian')">Hungarian Major</button>
+          <button type="button" class="btn btn-dark scaleButton" id="hungarian" onClick="changeScale('hungarian')">Hungarian Major</button>
           <br>
         </div>
       </div>
@@ -288,27 +288,26 @@
             <div id="networkinfo" class="networkinfo">
               &nbsp; Interaction Methods in the Akson Network<br><br>
               &nbsp; &nbsp; <i>descenter</i><br>
-              &nbsp; &nbsp; &nbsp; &nbsp; This method is the instrument default network model when the user connects. The <i>descenter</i>
-              method lets the user have an experience that streams the synthesizer through every device being able to control all the other atributes
-              of the instrument just by himself, not allowing to have a master control but a collaborative yet singular
-              experience.
+              &nbsp; &nbsp; &nbsp; &nbsp; This is the instrument default interaction model when the user connects. The <i>descenter</i>
+              method lets the user stream the synthesizer through every device being able to control all the other atributes
+              of the instrument just by himself. This method is based on <i>The Improvisation Model</i>, paradigm of the <i>Jazz Combo</i> (Winkler, 1998. p.25)
               <br>
               <br>
               &nbsp; &nbsp; <i>streamed</i><br>
-              &nbsp; &nbsp; &nbsp; &nbsp; The <i>streamed</i> method is an interaction state that allows everyone to be a master. Every tiny change in the
-              interface will stream to every user that also shares this state. Everybody does everything so it is possible to create large-scale streaming
-              musical and visual structures.
+              &nbsp; &nbsp; &nbsp; &nbsp; The <i>streamed</i> interaction state allows everyone to be a master. Every tiny change in the
+              interface will stream to every user that also shares this state, and it is possible to create large-scale AV structures. This method is based
+              on <i>The Conductor Model</i>, paradigm of the <i>Symphony Orchestra</i> (Winkler, 1998. p.23)
               <br>
               <br>
               &nbsp; &nbsp; <i>allocate</i><br>
-              &nbsp; &nbsp; &nbsp; &nbsp; The <i>alocatte</i> mode relies on the choice of the user on what to control. This method splits the instrument in four
-              parts, where the other users are automatically allocated on what the current user didn't choose. So the system is divided as roles and the artists can
-              behave as a coherent group
+              &nbsp; &nbsp; &nbsp; &nbsp; The <i>allocate</i> mode relies on the choice of the user on what to control. This method splits the instrument in four
+              parts, where the other users are automatically allocated on what the current user didn't choose. The system is divided until cancelled. This method
+              is based on <i>The Chamber Music Model</i>, paradigm of the <i>String Quartet</i> (Winkler, 1998. p.25)
               <br>
               <br>
               &nbsp; &nbsp; <i>alone</i><br>
-              &nbsp; &nbsp; &nbsp; &nbsp; The <i>alone</i> mode allows the user to don't have collaboration if he desires to play alone by himself.
-              It ends and re-establishes the connections so there are no collaboration for the ammount of time the user is in here.
+              &nbsp; &nbsp; &nbsp; &nbsp; The <i>alone</i> mode allows the user to stop external collaboration.
+              It ends and re-establishes the connections with other users, starting in the last method of interaction.
               <br>
             </div>
           </div>
@@ -773,63 +772,63 @@
             <div class="divNotas">
               <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
                 <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
-                <button type="button" class="btn btn-secondary buttonColor" id="c2" onclick="scaleButtons('c2')">C2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="cs2" onclick="scaleButtons('cs2')">C#2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="d2" onclick="scaleButtons('d2')">D2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="ds2" onclick="scaleButtons('ds2')">D#2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="e2" onclick="scaleButtons('e2')">E2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="f2" onclick="scaleButtons('f2')">F2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="fs2" onclick="scaleButtons('fs2')">F#2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="g2" onclick="scaleButtons('g2')">G2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="gs2" onclick="scaleButtons('gs2')">G#2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="a2" onclick="scaleButtons('a2')">A2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="as2" onclick="scaleButtons('as2')">A#2</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="b2" onclick="scaleButtons('b2')">B2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="c2" onclick="scaleButtons('c2')">C2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="cs2" onclick="scaleButtons('cs2')">C#2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="d2" onclick="scaleButtons('d2')">D2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="ds2" onclick="scaleButtons('ds2')">D#2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="e2" onclick="scaleButtons('e2')">E2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="f2" onclick="scaleButtons('f2')">F2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="fs2" onclick="scaleButtons('fs2')">F#2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="g2" onclick="scaleButtons('g2')">G2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="gs2" onclick="scaleButtons('gs2')">G#2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="a2" onclick="scaleButtons('a2')">A2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="as2" onclick="scaleButtons('as2')">A#2</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="b2" onclick="scaleButtons('b2')">B2</button>
               </div>
 
               <div class="btn-group-horizontal btn-group-sm gruponotas3" role="group" aria-label="ok">
-                <button type="button" class="btn btn-secondary buttonColor" id="c3" onclick="scaleButtons('c3')">C3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="d3" onclick="scaleButtons('d3')">D3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="ds3" onclick="scaleButtons('ds3')">D#3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="e3" onclick="scaleButtons('e3')">E3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="f3" onclick="scaleButtons('f3')">F3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="fs3" onclick="scaleButtons('fs3')">F#3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="g3" onclick="scaleButtons('g3')">G3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="gs3" onclick="scaleButtons('gs3')">G#3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="a3" onclick="scaleButtons('a3')">A3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="as3" onclick="scaleButtons('as3')">A#3</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="b3" onclick="scaleButtons('b3')">B3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="c3" onclick="scaleButtons('c3')">C3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="d3" onclick="scaleButtons('d3')">D3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="ds3" onclick="scaleButtons('ds3')">D#3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="e3" onclick="scaleButtons('e3')">E3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="f3" onclick="scaleButtons('f3')">F3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="fs3" onclick="scaleButtons('fs3')">F#3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="g3" onclick="scaleButtons('g3')">G3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="gs3" onclick="scaleButtons('gs3')">G#3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="a3" onclick="scaleButtons('a3')">A3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="as3" onclick="scaleButtons('as3')">A#3</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="b3" onclick="scaleButtons('b3')">B3</button>
               </div>
 
               <div class="btn-group-horizontal btn-group-sm gruponotas4" role="group" aria-label="ok">
-                <button type="button" class="btn btn-secondary buttonColor" id="c4" onclick="scaleButtons('c4')">C4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="d4" onclick="scaleButtons('d4')">D4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="ds4" onclick="scaleButtons('ds4')">D#4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="e4" onclick="scaleButtons('e4')">E4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="f4" onclick="scaleButtons('f4')">F4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="fs4" onclick="scaleButtons('fs4')">F#4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="g4" onclick="scaleButtons('g4')">G4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="gs4" onclick="scaleButtons('gs4')">G#4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="a4" onclick="scaleButtons('a4')">A4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="as4" onclick="scaleButtons('as4')">A#4</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="b4" onclick="scaleButtons('b4')">B4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="c4" onclick="scaleButtons('c4')">C4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="d4" onclick="scaleButtons('d4')">D4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="ds4" onclick="scaleButtons('ds4')">D#4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="e4" onclick="scaleButtons('e4')">E4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="f4" onclick="scaleButtons('f4')">F4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="fs4" onclick="scaleButtons('fs4')">F#4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="g4" onclick="scaleButtons('g4')">G4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="gs4" onclick="scaleButtons('gs4')">G#4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="a4" onclick="scaleButtons('a4')">A4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="as4" onclick="scaleButtons('as4')">A#4</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="b4" onclick="scaleButtons('b4')">B4</button>
               </div>
 
               <div class="btn-group-horizontal btn-group-sm gruponotas5" role="group" aria-label="ok">
-                <button type="button" class="btn btn-secondary buttonColor" id="c5" onclick="scaleButtons('c5')">C5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="d5" onclick="scaleButtons('d5')">D5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="ds5" onclick="scaleButtons('ds5')">D#5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="e5" onclick="scaleButtons('e5')">E5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="f5" onclick="scaleButtons('f5')">F5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="fs5" onclick="scaleButtons('fs5')">F#5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="g5" onclick="scaleButtons('g5')">G5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="gs5" onclick="scaleButtons('gs5')">G#5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="a5" onclick="scaleButtons('a5')">A5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="as5" onclick="scaleButtons('as5')">A#5</button>
-                <button type="button" class="btn btn-secondary buttonColor" id="b5" onclick="scaleButtons('b5')">B5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="c5" onclick="scaleButtons('c5')">C5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="d5" onclick="scaleButtons('d5')">D5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="ds5" onclick="scaleButtons('ds5')">D#5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="e5" onclick="scaleButtons('e5')">E5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="f5" onclick="scaleButtons('f5')">F5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="fs5" onclick="scaleButtons('fs5')">F#5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="g5" onclick="scaleButtons('g5')">G5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="gs5" onclick="scaleButtons('gs5')">G#5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="a5" onclick="scaleButtons('a5')">A5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="as5" onclick="scaleButtons('as5')">A#5</button>
+                <button type="button" class="btn btn-secondary buttonColor p" id="b5" onclick="scaleButtons('b5')">B5</button>
               </div>
               <div class="btn-group-horizontal btn-group-sm grupocleanscale" role="group" aria-label="">
                 <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal('clean')">Clean</button>
@@ -848,6 +847,7 @@
                   stats1.showPanel(0);
                   stats1.domElement.style.cssText = 'position:relative;top:0px;left:0px;';
                   stats1.domElement.style.color = 'white';
+                  stats1.domElement.style.width = '1000px';
                   v.appendChild(stats1.domElement);
                   var stats2 = new Stats();
                   stats2.showPanel(1);

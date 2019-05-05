@@ -53,6 +53,7 @@ WUI_Dialog.create("savesettings_dialog", {
 });
 
 
+
 WUI_Dialog.create("cockpit_dialog", {
   title: "Instruments", //'<div style="font-family: Monospace; font-size: 10px; color: lightgrey; position: absolute; margin-left: 8px;">---</div><span style="font-family: Monospace; font-size: 10px; color: lightgrey;">Instruments</span>',
   width: "853px",

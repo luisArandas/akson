@@ -401,7 +401,7 @@ body.fadeIn {
 
 /*        Scales        */
 .divNotas {
-  width: 450px;
+  width: 513px;
   height: auto;
   position: absolute;
   border: 1px solid rgba(50,50,50,1);
@@ -411,12 +411,15 @@ body.fadeIn {
   right: 10px;
 }
 
-.gruponotas2, .gruponotas3, .gruponotas4, .gruponotas5, .grupomaior {
-  width: 450px;
+.gruponotas2, .gruponotas3, .gruponotas4, .gruponotas5 {
+  width: 508px;
+}
+.grupomaior {
+  width: 507px;
 }
 
 .grupocleanscale {
-  width: 225px;
+  width: 100%;
 }
 
 .buttonMajor {
@@ -426,12 +429,14 @@ body.fadeIn {
 .scalesButton {
   width: 100%;
 }
-
+.p {
+  width: 40px;
+}
 .scaleInfo {
   border: 1px solid rgba(50,50,50,1);
   background-color: rgba(0,0,0,1);
   border-radius: 3px;
-  width: 100%;
+  width: 507px;
   height: 25px;
   text-background-color: rgba(255,0,0,1);
   text-align: center;
@@ -440,9 +445,7 @@ body.fadeIn {
 }
 
 .scaleButton {
-  font-family: monospace;
-  font-style: normal;
-  font-size: 12px ! important;
+  font-size: 8px ! important;
   background-color: rgba(10,10,10,1);
   border: 1px solid rgba(50,50,50,1);
   width: 50%;
@@ -898,7 +901,6 @@ h2 {
   text-align: center;
 }*/
 
-
 #backgroundCockpit, #backgroundCockpit2 {
   display: inline-block;
   background-color: rgba(0,0,0,1);
@@ -1088,6 +1090,7 @@ h2 {
   border: 1px solid rgba(50, 50, 50, 1);
   border-radius: 4px;
   padding: 10px;
+  text-align: center;
 }
 
 .networkinfo {
@@ -1095,6 +1098,8 @@ h2 {
   color: white;
   font-size: 8px;
   padding: 10px;
+  text-align: center;
+  padding-top: 65px;
 }
 
 #glcanvas {
@@ -1249,8 +1254,10 @@ audio::-webkit-media-controls-toggle-closed-captions-button{
   text-align: center;
   position: absolute;
   left: 220px;
-  bottom: 4px;
+  bottom: 5px;
+  padding: 5px;
 }
+
 .shadersDiv {
   background-color: rgba(10,10,10,1);
   border-radius: 3px;

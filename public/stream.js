@@ -15,7 +15,9 @@ var h = window.innerHeight;
 var fullWidth = w * 3;
 var fullHeight = h * 2;
 
+
 /* Make this */
+
 var isAlocatingSynth = false;
 var isAlocatingBack = false;
 var isAlocatingGraphs = false;

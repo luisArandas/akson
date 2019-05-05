@@ -528,7 +528,7 @@ function newConnection(socket) {
   socket.on('oscTest', oscMessage);
 
   function oscMessage(data) {
-    console.log("forOsc");
+    console.log("Getting OSC Here");
   }
 
   socket.on('noiseWaveType', noiseWaveType);

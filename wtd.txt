@@ -3,4 +3,4 @@ Restart audioContext without refresh
 https://github.com/yiwenl/Alfrid
 https://github.com/jiahaog/nativefier -> Export as app // nativefier http://google.com --inject site.css --title-bar-style 'hiddenInset'
 check (Free, cross-platform, open-source software (Simplified BSD License))
-stream da quarta cena
+https://github.com/nexe/nexe
