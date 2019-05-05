@@ -944,6 +944,7 @@ socket.on('uiSocketScene12', function(data) {
 
 
 function changeState(v) {
+  modalMode.style.display = "none";
   if (v == "descenter") {
     socket.connected = true;
     isStreaming = false;
@@ -1021,6 +1022,7 @@ function streamCortex() {}
 function alocateCortex(v) {
   if (isAlocating === true) {
     if (v === "alocateOne") {
+      modalMode.style.display = "none";
       if (document.getElementById("alocateOne").style.background != "white") {
         document.getElementById("alocateOne").style.background = "white";
         document.getElementById("alocateOne").style.color = "black";
@@ -1042,6 +1044,7 @@ function alocateCortex(v) {
 
     }
     if (v === "alocateTwo") {
+      modalMode.style.display = "none";
       if (document.getElementById("alocateTwo").style.background != "white") {
         document.getElementById("alocateTwo").style.background = "white";
         document.getElementById("alocateTwo").style.color = "black";
@@ -1062,6 +1065,7 @@ function alocateCortex(v) {
       isAlocatingPost = false;
     }
     if (v === "alocateThree") {
+      modalMode.style.display = "none";
       if (document.getElementById("alocateThree").style.background != "white") {
         document.getElementById("alocateThree").style.background = "white";
         document.getElementById("alocateThree").style.color = "black";
@@ -1082,6 +1086,7 @@ function alocateCortex(v) {
       isAlocatingPost = false;
     }
     if (v === "alocateFour") {
+      modalMode.style.display = "none";
       if (document.getElementById("alocateFour").style.background != "white") {
         document.getElementById("alocateFour").style.background = "white";
         document.getElementById("alocateFour").style.color = "black";
@@ -1120,7 +1125,7 @@ socket.on('socketnumber', function(connections) {
 Add alocation + Play alone*/
 
 function printMonitorDialog(a, v) {
-  var logs = document.getElementById('monitordiv'),
+  var logs = document.getElementById('logs'),
     output_node = document.createElement("div");
   output_node.innerHTML = a + v;
   logs.appendChild(output_node);

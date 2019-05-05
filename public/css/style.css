@@ -467,6 +467,7 @@ body.fadeIn {
   height: 60%;
   font-size: 9px;
   color: white;
+  padding-left: 2%;
 }
 
 .stateButton {
@@ -474,8 +475,6 @@ body.fadeIn {
   font-size: 9px ! important;
   background-color: rgba(10,10,10,1);
   border: 1px solid rgba(50,50,50,1);
-  height: 100%;
-  width: 50%;
   color: white;
 }
 
@@ -498,19 +497,28 @@ h2 {
 
 
 
-#stateButtonOneDiv {
-  width: auto;
-  height: auto;
-  overflow-x: auto !important;
+#stateButtonOne {
+  width: 24%;
+  height: 100%;
+  border-radius: 3px;
+  left: 10%;
 }
-#stateButtonOneDiv .comment { display: none; }
-#stateButtonOneDiv:hover .replies { display: none; }
-#stateButtonOneDiv:hover .comment { display: inline; }
 
-
-#stateButtonTwo{}
-#stateButtonTree{}
-#stateButtonFour{}
+#stateButtonTwo {
+  width: 24%;
+  height: 100%;
+  border-radius: 3px;
+}
+#stateButtonThree {
+  width: 24%;
+  height: 100%;
+  border-radius: 3px;
+}
+#stateButtonFour {
+  width: 24%;
+  height: 100%;
+  border-radius: 3px;
+}
 
 .camera2 {
   position: absolute;
@@ -581,7 +589,7 @@ h2 {
   font-size: 8px;
   background-color: rgba(0,0,0,1);
   border: 1px solid rgba(50,50,50,1);
-  height: 90%;
+  height: 130px;
   width: 80px;
   border-radius: 4px;
   border: 1px solid rgba(50,50,50,1) !important;

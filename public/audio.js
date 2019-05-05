@@ -1214,6 +1214,7 @@ function closeGui() {
   WUI_Dialog.close("logs_dialog");
   WUI_Dialog.close("monitor_dialog");
   WUI_Dialog.close("about_this_dialog");
+  WUI_Dialog.close("alocate_dialog");
   document.getElementById("topBar").style.visibility = "hidden";
 }
 

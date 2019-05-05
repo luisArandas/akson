@@ -32,20 +32,83 @@ function onMIDISuccess(midiAccess) {
   }
   console.log('MIDI Access Object', midiAccess);
 }
-var a = 0;
 
 function onMIDIMessage(event) {
   data = event.data;
-  //midiValOne = data[0];
-  //midiValTwo = data[1];
-  //midiValThree = data[2];
-
-  if (data[0] == 176) {
-    a = data[1];
-    console.log(a);
+  midiValOne = data[0];
+  midiValTwo = data[1];
+  midiValThree = data[2];
+  console.log(data);
+  // Attack
+  if (data[0] == 176 && data[1] == 8) {
+    a = data[2];
+    _a = a.map(0,127,0,0.8);
+    UI.synthAttack._value.update(_a);
+    UI.synthAttack.render();
+    polySynth.set({
+      "envelope": {
+        "attack": _a
+      }
+    });
+    printLogsDialog("Synthesizer Attack : ", _a);
   }
-  /* Trigger a to a function
-   */
+  // Decay
+  if (data[0] == 176 && data[1] == 9) {
+    a = data[2];
+    _a = a.map(0,127,0,1);
+    UI.synthDecay._value.update(_a);
+    UI.synthDecay.render();
+    polySynth.set({
+      "envelope": {
+        "decay": _a
+      }
+    });
+    printLogsDialog("Synthesizer Decay : ", _a);
+  }
+  if (data[0] == 176 && data[1] == 10) {
+    a = data[2];
+    _a = a.map(0,127,0,1);
+    UI.synthSustain._value.update(_a);
+    UI.synthSustain.render();
+    polySynth.set({
+      "envelope": {
+        "sustain": _a
+      }
+    });
+    printLogsDialog("Synthesizer Sustain : ", _a);
+  }
+  if (data[0] == 176 && data[1] == 12) {
+    a = data[2];
+    _a = a.map(0,127,0,10);
+    UI.synthRelease._value.update(_a);
+    UI.synthRelease.render();
+    polySynth.set({
+      "envelope": {
+        "release": _a
+      }
+    });
+    printLogsDialog("Synthesizer Release : ", _a);
+  }
+  if (data[0] == 176 && data[1] == 13) {
+    a = data[2];
+    _a = a.map(0,127,0,15);
+    UI.vibratoFrequency._value.update(_a);
+    UI.vibratoFrequency.render();
+    vibrato.frequency.value = _a;
+    printLogsDialog("Vibrato Frequenct : ", _a);
+  }
+
+  // Vibrato Freq
+  // Vibrato Depth
+  // Vibrato Wet
+  // Detune
+  // AF Freq
+  // AF BaseFreq
+  // AF Octaves
+  // AF Q
+  // Noise PBR
+  // Camera FOV
+  // Luzes
 }
 
 /*
