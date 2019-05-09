@@ -3,7 +3,7 @@ Audio
 
 The Akson audio system relies on top of the powerful and versatile system called Web Audio API. This framework involves handling audio operations inside an audio context and has been designed to allow modular routing. This way of linking various attributes together allows dynamic changes over time which are one of the most important characteristics of Akson. It allows sources and audio nodes to be controlled in a way that can be related with graphics or interaction methods.
 
-Synthesizer && GUI
+Synthesizer &&& GUI
 Background
 Behaviours
 Methods
