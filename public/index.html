@@ -49,7 +49,7 @@
 </head>
 
 <body>
-  acabar so os logs do stream e midi AND ITS DONE - triggar cockpit insts com teclado
+  <!-- acabar so os logs do stream e midi AND ITS DONE - triggar cockpit insts com teclado -->
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -68,12 +68,6 @@
           <button id="save3d" class="buttonsAbout">Save 360</button>
         </div>
 
-        <div class="saveDivs">
-          <div class="aboutText">Save Video</div>
-          <button id="start1" class="buttonsAbout" onclick="saveVideo('1')">Start Video</button>
-          <button id="stop1" class="buttonsAbout" onclick="saveVideo('2')">Stop Video</button>
-        </div>
-
         <div class="saveDiv3">
           <div class="aboutText">Save Audio</div>
           <button id="startaudio1" class="buttonsAbout" onclick="saveAudio('start')"> Start Audio</button>
@@ -89,9 +83,9 @@
       <div style="text-align: center; font-size: 5pt;">
 
         <div class="btn-group-horizontal btn-group-sm buttonsmaster" role="group" aria-label="ok">
-          <button type="button" class="buttonsAbout" onClick="camNear('kill')" title="Close Scene">close</button>
-          <button type="button" class="buttonsAbout" onClick="camNear('born')" title="Open Scene">open</button>
-          <button type="button" class="buttonsAbout" onClick="camNear('about')" title="About the Device">about</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('kill')" id="close1" title="Close Scene">close</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('born')" id="open1" title="Open Scene">open</button>
+          <button type="button" class="buttonsAbout" onClick="camNear('about')" id="about1" title="About the Device">about</button>
         </div>
 
         <div id="dialBox2" style="color:rgba(255,255,255,1)">
@@ -148,19 +142,19 @@
     <div class="topBar" id="topBar">
       <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="btn-group mr-2" role="group" aria-label="First group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('aboutMe')" title="About Akson"><i class="fas fa-bars"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('aboutMe')" id="top1" title="About Akson"><i class="fas fa-bars"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Second group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')" title="Record Media"><i class="fas fa-download"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('recordAudio')" id="top2" title="Record Media"><i class="fas fa-download"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Third group">
-          <button class="btn btn-sm btnCima" type="button" onClick="incrementValue()" title="Next Scene"><i class="fas fa-angle-right"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="incrementValue()" id="top3" title="Next Scene"><i class="fas fa-angle-right"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Forth group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('refresh')" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('refresh')" id="top4" title="Refresh"><i class="fas fa-sync-alt"></i></button>
         </div>
         <div class="btn-group mr-2" role="group" aria-label="Fifth group">
-          <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')" title="Interaction Mode"><i class="fas fa-arrows-alt-h"></i></button>
+          <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')" id="top5" title="Interaction Mode"><i class="fas fa-arrows-alt-h"></i></button>
         </div>
         <!--<div class="btn-group mr-2" role="group" aria-label="Sixth group">
           <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()" title="MIDI"><i class="fas fa-chalkboard"></i></button>
@@ -233,23 +227,23 @@
       <div class="modal-content">
         <span class="closeScale">&times;</span>
         <div class="modal-text">
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('pentatonicMajor')">Pentatonic Major</button>
+          <button type="button" class="btn btn-dark scaleButton" id="penta1" onClick="changeScale('pentatonicMajor')">Pentatonic Major</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('pentatonicMinor')">Pentatonic Minor</button>
+          <button type="button" class="btn btn-dark scaleButton" id="penta2" onClick="changeScale('pentatonicMinor')">Pentatonic Minor</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('major')">Major</button>
+          <button type="button" class="btn btn-dark scaleButton" id="major1" onClick="changeScale('major')">Major</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('minor')">Minor</button>
+          <button type="button" class="btn btn-dark scaleButton" id="major2" onClick="changeScale('minor')">Minor</button>
           <br>
           <button type="button" class="btn btn-dark scaleButton" id="harmonic" onClick="changeScale('harmonicMinor')">Harmonic Minor</button>
           <br>
           <button type="button" class="btn btn-dark scaleButton" id="melodic" onClick="changeScale('melodicMinor')">Melodic Minor</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('ionian')">Ionian</button>
+          <button type="button" class="btn btn-dark scaleButton" id="ionian" onClick="changeScale('ionian')">Ionian</button>
           <br>
           <button type="button" class="btn btn-dark scaleButton" id="locrian" onClick="changeScale('locrian')">Locrian</button>
           <br>
-          <button type="button" class="btn btn-dark scaleButton" onClick="changeScale('adonai')">Adonai Malakh</button>
+          <button type="button" class="btn btn-dark scaleButton" id="adonai" onClick="changeScale('adonai')">Adonai Malakh</button>
           <br>
           <button type="button" class="btn btn-dark scaleButton" id="hirajoshi" onClick="changeScale('hirajoshi')">Hirajoshi Japan</button>
           <br>
@@ -821,7 +815,7 @@
                 <button type="button" class="btn btn-secondary buttonColor p" id="b5" onclick="scaleButtons('b5')">B5</button>
               </div>
               <div class="btn-group-horizontal btn-group-sm grupocleanscale" role="group" aria-label="">
-                <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal('clean')">Clean</button>
+                <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton1" onclick="scaleModal('clean')">Clean</button>
               </div>
               <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="">
                 <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal('scale')">Scale</button>

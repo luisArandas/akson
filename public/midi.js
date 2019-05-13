@@ -11,8 +11,8 @@ for (var i = 0; i < midiEvent.length; ++i) {
 }
 var isSynthAttack = 0;
 
-var smi = new SimpleMidiInput();
-console.log(smi);
+//var smi = new SimpleMidiInput();
+//console.log(smi);
 
 var idsToLearn = "";
 
@@ -230,7 +230,7 @@ function changeStateMidiUI(v) {
 
 var onMIDIStarted = function(midi) {
   console.log('onMIDIStarted', midi);
-  smi.attach(midi);
+  //smi.attach(midi);
 };
 
 var synthAttack = document.getElementById('synthAttack');
@@ -239,7 +239,7 @@ var change = function(value) {
   console.log('parameter change:', value);
 };
 
-var mlSynthAttack = smi.getMidiLearning({
+/*var mlSynthAttack = smi.getMidiLearning({
   id: synthAttack.id,
   min: synthAttack.min,
   max: synthAttack.max,
@@ -263,7 +263,7 @@ var mlSynthAttack = smi.getMidiLearning({
       change(value);
     }
   }
-});
+});*/
 
 
 

@@ -183,19 +183,14 @@ function init() {
 
   raycaster = new THREE.Raycaster();
   raycaster.linePrecision = 3;
-  raycasterTwo = new THREE.Raycaster();
-  raycasterTwo.linePrecision = 3;
-
-  var canvas = document.createElement('canvas');
-  var context = canvas.getContext('webgl2', {
-    preserveDrawingBuffer: true
-  });
 
   renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    preserveDrawingBuffer: true,
-    context: context,
+    preserveDrawingBuffer: false,
   });
+  console.log(renderer.info);
+
+  //renderer.depth = false;
+  renderer.logarithmicDepthBuffer = true;
 
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -227,7 +222,7 @@ function init() {
 
   parentTransform = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
-    var geometry = new THREE.BoxGeometry(10, 1500, 10);
+    var geometry = new THREE.BoxBufferGeometry(10, 1500, 10);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x5f5f5f,
     }));
@@ -252,7 +247,7 @@ function init() {
 
   parentTransformDois = new THREE.Object3D();
   for (var i = 0; i < vertices.length; i++) {
-    vertices[i].add(randomPoint().multiplyScalar(20)); // wiggle the points
+    vertices[i].add(randomPoint().multiplyScalar(20));
   }
   var pointsMaterial = new THREE.PointsMaterial({
     color: 0xffffff,
@@ -270,11 +265,11 @@ function init() {
   });
   var meshGeometry = new THREE.ConvexBufferGeometry(vertices);
   var mesh = new THREE.Mesh(meshGeometry, meshMaterial);
-  mesh.material.side = THREE.BackSide; // back faces
+  mesh.material.side = THREE.BackSide;
   mesh.renderOrder = 0;
   parentTransformDois.add(mesh);
   var mesh = new THREE.Mesh(meshGeometry, meshMaterial.clone());
-  mesh.material.side = THREE.FrontSide; // front faces
+  mesh.material.side = THREE.FrontSide;
   mesh.renderOrder = 1;
   parentTransformDois.add(mesh);
 
@@ -287,7 +282,7 @@ function init() {
 
   parentTransformTres = new THREE.Object3D();
   for (var i = 0; i < 50; i++) {
-    var geometry = new THREE.BoxGeometry(50, 500, 50);
+    var geometry = new THREE.BoxBufferGeometry(50, 500, 50);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x1E1E1E,
       //wireframe: true
@@ -305,8 +300,8 @@ function init() {
   /* ----------------------------------------------------------------------------------------- */
 
   parentTransformQuatro = new THREE.Object3D();
-  for (var i = 0; i < 45; i++) {
-    var geometry = new THREE.BoxGeometry(30, 1500, 30);
+  for (var i = 0; i < 90; i++) {
+    var geometry = new THREE.BoxBufferGeometry(30, 1500, 30);
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0xffffff,
       wireframe: true
@@ -318,24 +313,16 @@ function init() {
 
     parentTransformQuatro.add(object);
   }
-  for (var i = 0; i < 45; i++) {
-    var geometry = new THREE.BoxGeometry(10, 1500, 10);
-    var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
-      color: 0x5f5f5f,
-      wireframe: true
-    }));
 
-    object.position.x = Math.random() * 800 - 400;
-    object.position.y = Math.random() * 800 - 400;
-    object.position.z = Math.random() * 800 - 400;
-    object.rotation.x = Math.random() * 2 * Math.PI;
-
-    parentTransformQuatro.add(object);
-  }
 
   lightFour = new THREE.DirectionalLight(0xd3d3d3, 2);
   lightFour.position.set(1, 1, 1).normalize();
   parentTransformQuatro.add(lightFour);
+
+  parentTransform.frustumCulled = false;
+  parentTransformDois.frustumCulled = false;
+  parentTransformTres.frustumCulled = false;
+  parentTransformQuatro.frustumCulled = false;
 
   window.addEventListener('resize', onWindowResize, false);
   window.addEventListener('mousedown', onMouseDown, false);
@@ -606,6 +593,7 @@ function init() {
       scene.remove(parentTransformDois);
       scene.remove(parentTransformTres);
     }
+
     if (event.which == "72") {
       //stateButtonThree
       $('#stateButtonOne').trigger('click');
@@ -622,10 +610,6 @@ function init() {
     if (event.which == "76") {
       $('#stateButtonFour').trigger('click');
       console.log("alone Method");
-    }
-    if (event.which == "186") {
-      $('#stateButtonFive').trigger('click');
-      console.log("monitorDialog");
     }
 
     /* Shaders */
@@ -650,6 +634,109 @@ function init() {
       $('#shader4').trigger('click');
       console.log("shader_4");
     }
+
+    /* Presets */
+
+    if (event.which == "65") {
+      $('#preset1').trigger('click');
+      console.log("#preset1");
+    }
+    if (event.which == "83") {
+      $('#preset2').trigger('click');
+      console.log("#preset2");
+    }
+    if (event.which == "68") {
+      $('#preset3').trigger('click');
+      console.log("#preset3");
+    }
+    if (event.which == "70") {
+      $('#preset4').trigger('click');
+      console.log("#preset4");
+    }
+    if (event.which == "71") {
+      $('#preset5').trigger('click');
+      console.log("#preset5");
+    }
+
+    /* TopBar */
+
+    if (event.which == "89") {
+      $('#top1').trigger('click');
+      console.log("#barra1");
+    }
+    if (event.which == "85") {
+      $('#top2').trigger('click');
+      console.log("#barra2");
+    }
+    if (event.which == "73") {
+      $('#top3').trigger('click');
+      console.log("#barra3");
+    }
+    if (event.which == "79") {
+      $('#top4').trigger('click');
+      console.log("#barra4");
+    }
+    if (event.which == "80") {
+      $('#top5').trigger('click');
+      console.log("#barra5");
+    }
+
+    /* OpenClose */
+
+    if (event.which == "90") {
+      $('#close1').trigger('click');
+      console.log("#barra4");
+    }
+    if (event.which == "88") {
+      $('#open1').trigger('click');
+      console.log("#barra5");
+    }
+
+    /* Scales */
+
+    if (event.which == "192") {
+      $('#scalesButton1').trigger('click');
+    }
+    if (event.which == "49") {
+      $('#penta1').trigger('click');
+    }
+    if (event.which == "50") {
+      $('#penta2').trigger('click');
+    }
+    if (event.which == "51") {
+      $('#major1').trigger('click');
+    }
+    if (event.which == "52") {
+      $('#major2').trigger('click');
+    }
+    if (event.which == "53") {
+      $('#harmonic').trigger('click');
+    }
+    if (event.which == "54") {
+      $('#melodic').trigger('click');
+    }
+    if (event.which == "55") {
+      $('#ionian').trigger('click');
+    }
+    if (event.which == "56") {
+      $('#locrian').trigger('click');
+    }
+    if (event.which == "57") {
+      $('#adonai').trigger('click');
+    }
+    if (event.which == "48") {
+      $('#hirajoshi').trigger('click');
+    }
+    if (event.which == "222") {
+      $('#hungarian').trigger('click');
+    }
+
+    if (event.which == "189") {
+      $('#about1').trigger('click');
+    }
+
+
+
   });
 
 
@@ -670,11 +757,14 @@ function init() {
 
 }
 
+setInterval( function () {
+  if ( ! document.webkitHidden ) requestAnimationFrame(animate);
+}, 1000 / 60 );
+
 function onWindowResize() {
   windowHalfX = window.innerWidth / 2;
   windowHalfY = window.innerHeight / 2;
   camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -683,7 +773,36 @@ function animate() {
   parentTransformDois.rotation.x += 0.005;
   parentTransformDois.rotation.z += 0.005;
 
-  requestAnimationFrame(animate);
+  if (isSceneOne === true){
+    var intersects = raycaster.intersectObjects(parentTransform.children);
+    if (intersects.length > 0) {
+      if (INTERSECTED != intersects[0].object) {
+        if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+        INTERSECTED = intersects[0].object;
+        INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+        INTERSECTED.material.emissive.setHex(0xffffff);
+      }
+    } else {
+      if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+      INTERSECTED = null;
+    }
+  }
+
+  if (isSceneFour === true){
+    var intersects1 = raycaster.intersectObjects(parentTransformQuatro.children);
+    if (intersects1.length > 0) {
+      if (INTERSECTED != intersects1[0].object) {
+        if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+        INTERSECTED = intersects1[0].object;
+        INTERSECTED.material.wireframe = false;
+      }
+    } else {
+      if (INTERSECTED) INTERSECTED.material.wireframe = true;
+      INTERSECTED = null;
+    }
+  }
+
+  //requestAnimationFrame(animate);
   render();
 }
 
@@ -898,38 +1017,9 @@ function render() {
     camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
   }
   camera.lookAt(scene.position);
-  camera.updateMatrixWorld();
 
   raycaster.setFromCamera(mouse, camera);
 
-  if (isSceneOne === true){
-    var intersects = raycaster.intersectObjects(parentTransform.children);
-    if (intersects.length > 0) {
-      if (INTERSECTED != intersects[0].object) {
-        if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-        INTERSECTED = intersects[0].object;
-        INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-        INTERSECTED.material.emissive.setHex(0xffffff);
-      }
-    } else {
-      if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-      INTERSECTED = null;
-    }
-  }
-
-  if (isSceneFour === true){
-    var intersects1 = raycaster.intersectObjects(parentTransformQuatro.children);
-    if (intersects1.length > 0) {
-      if (INTERSECTED != intersects1[0].object) {
-        if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-        INTERSECTED = intersects1[0].object;
-        INTERSECTED.material.wireframe = false;
-      }
-    } else {
-      if (INTERSECTED) INTERSECTED.material.wireframe = true;
-      INTERSECTED = null;
-    }
-  }
   renderer.clear();
   renderer.render(scene, camera);
   renderer.clearDepth();
@@ -981,8 +1071,6 @@ function render() {
   } else if (parentTransformDois.rotation.x < -1) {
     parentTransformDois.rotation.x = -1
   }
-
-  capturer.capture(renderer.domElement);
 }
 
 var customScale;

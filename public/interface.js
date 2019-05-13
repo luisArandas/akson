@@ -36,7 +36,7 @@ WUI_Dialog.create("master_dialog", {
 WUI_Dialog.create("savesettings_dialog", {
   title: "Save Settings",
   width: "300px",
-  height: "310px",
+  height: "230px",
   halign: "center",
   valign: "center",
   open: false,

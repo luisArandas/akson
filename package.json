@@ -17,18 +17,7 @@
   },
   "homepage": "https://github.com/luisArandas/akson#readme",
   "dependencies": {
-    "bootstrap-select": "^1.13.5",
-    "browserify": "^16.2.3",
     "express": "^4.16.4",
-    "intro.js": "^2.9.3",
-    "izitoast": "^1.4.0",
-    "node-osc": "^3.0.0",
-    "osc": "^2.2.4",
-    "osc-js": "^2.0.2",
-    "portfinder": "^1.0.20",
-    "resonance-audio": "^1.0.0",
-    "simple-midi-input": "^1.2.0",
-    "socket.io": "^2.1.1",
-    "startaudiocontext": "^1.2.1"
+    "socket.io": "^2.1.1"
   }
 }

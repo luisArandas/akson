@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const server = app.listen(process.env.PORT || 5000);
-const portfinder = require('portfinder');
+//const portfinder = require('portfinder');
 
 app.use(express.static('public'));
 
@@ -566,9 +566,9 @@ function newConnection(socket) {
 
 }
 
-portfinder.getPort(function(err, port) {
+/*portfinder.getPort(function(err, port) {
   console.log("Using port: " + port + " for OSC;");
-});
+});*/
 
 // Configures each link to a different page.
 // e.g. localhost:3000/   will load index.html

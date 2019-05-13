@@ -1,7 +1,4 @@
 html * {
-   /*color: #ffffff !important;*/
-   /*font-family: Arial !important;*/
-   /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
    font-weight: 10;
    font-size: 8px;
    cursor: cell !important;
@@ -20,18 +17,7 @@ html, body {
   padding: 0;
   margin: 0;
 }
-/*
-body.fadeOut {
-    -webkit-transition: 3s;
-    -moz-transition: 3s;
-    -ms-transition: 3s;
-    -o-transition: 3s;
-    transition: 3s;
-    opacity: 0;
-}
-body.fadeIn {
-    opacity: 1;
-}*/
+
 
 [nexus-ui] {
   border-radius: 4px;
@@ -53,105 +39,12 @@ body.fadeIn {
   box-shadow: 0px 0px 0px 1px rgba(100,100,100,1)
 }
 
-/*
-.oscillatorHarmonicity {
-  position: absolute;
-  left: 125px;
-  top: 10px;
-}
-
-.modulationEnvelopeAttack {
-  position: absolute;
-  left: 125px;
-  top: 30px;
-}
-
-.modulationEnvelopeDecay {
-  position: absolute;
-  left: 125px;
-  top: 50px;
-}
-
-.modulationEnvelopeSustain {
-  position: absolute;
-  left: 125px;
-  top: 70px;
-}
-
-.modulationEnvelopeRelease {
-  position: absolute;
-  left: 125px;
-  top: 90px;
-}
-
-.reverbRoomSize {
-  position: absolute;
-  left: 125px;
-  top: 110px;
-}
-
-.reverbWetValue {
-  position: absolute;
-  left: 125px;
-  top: 130px;
-}
-
-.reverbDampValue {
-  position: absolute;
-  left: 125px;
-  top: 155px;
-}
-*/
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-@media (max-width: 992px) {
-    .navbar{
-      display:none;
-    }
-}
-
 /* HIDE THINGS ON MOBILE */
 
 @media screen and (max-width: 600px) {
-  .topRightPage {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
-  .topLeftPage {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
-  .botRightPage {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
-  .botLeftPage {
-    visibility: hidden;
-    clear: both;
-    float: left;
-    margin: 10px auto 5px 20px;
-    width: 28%;
-    display: none;
-  }
 }
 
 
-/*------------------- NAVBAR ------------------------*/
 
 .topBar {
   position: absolute;
@@ -175,20 +68,6 @@ body.fadeIn {
 .btnCima:hover {
   background-image: none !important;
   background-color: #ffffff !important;
-}
-
-/*.navbar {
-  background-color: t;
-}*/
-
-.muteButton {
-  position: absolute;
-  right: 2%;
-}
-
-.connectButton {
-  position: absolute;
-  right: 8%;
 }
 
 .instrumentoUm {
@@ -1125,6 +1004,7 @@ h2 {
   position: absolute;
   left: 215px;
   top: 5px;
+  width: 120px;
 }
 
 #shader0 {
@@ -1194,63 +1074,6 @@ audio {
   height: 35px;
   margin-top: 5px;
   border-radius: 3px;
-}
-audio::-webkit-media-controls-panel{
-}
-
-audio::-webkit-media-controls-mute-button{
-}
-
-audio::-webkit-media-controls-play-button{
-
-}
-
-audio::-webkit-media-controls-timeline-container{
-
-}
-
-audio::-webkit-media-controls-current-time-display{
-
-}
-
-audio::-webkit-media-controls-time-remaining-display{
-
-}
-
-audio::-webkit-media-controls-timeline{
-
-}
-
-audio::-webkit-media-controls-volume-slider-container{
-
-}
-
-audio::-webkit-media-controls-volume-slider{
-
-}
-
-audio::-webkit-media-controls-seek-back-button{
-
-}
-
-audio::-webkit-media-controls-seek-forward-button{
-
-}
-
-audio::-webkit-media-controls-fullscreen-button{
-
-}
-
-audio::-webkit-media-controls-rewind-button{
-
-}
-
-audio::-webkit-media-controls-return-to-realtime-button{
-
-}
-
-audio::-webkit-media-controls-toggle-closed-captions-button{
-
 }
 
 .presetsDiv {
