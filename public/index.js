@@ -363,6 +363,8 @@ function init() {
 
   document.addEventListener("keydown", function(event) {
     if (event.which == "32") {
+      var toast = document.querySelector('.iziToast');
+      iziToast.hide({}, toast);
       if (sideBar == false) {
         document.getElementById("topBar").style.display = "inline";
         WUI_Dialog.open("master_dialog");
