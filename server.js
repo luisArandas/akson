@@ -15,6 +15,8 @@ io.sockets.on('connection', newConnection);
 var connections = 0;
 
 function newConnection(socket) {
+  console.log("luis " + io.sockets.clients());
+
   connections++;
   console.log("new connection: " + socket.id);
   console.log("There are currently " + connections + " connections");
@@ -563,6 +565,13 @@ function newConnection(socket) {
   function noisePartialCount(data) {
     socket.broadcast.emit('noisePartialCount', data);
   }
+
+  socket.on('someoneChangedState', someoneChangedState);
+
+  function someoneChangedState(data){
+    socket.broadcast.emit('someoneChangedState', data);
+  }
+
 
 }
 

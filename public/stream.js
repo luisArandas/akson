@@ -30,10 +30,20 @@ for (var i = 0; i < values.length; ++i) {
 socket.on('changeStream', streamCortex);
 var modalAlocate = document.getElementById('modalAlocate');
 
+function printStreamingLogsDialog(a, v) {
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = a + v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
+}
 
 socket.on('uiSocketSynthVolume', function(data) {
   if (isStreaming == true) {
     if (data.y == "synthVolume") {
+      var e = values[0];
+      _e = parseFloat(Math.round(e * 100) / 100).toFixed(1);
+      printStreamingLogsDialog("Other User is Changing your Synth Volume: ", _e);
       //polySynth.volume.value = data.x;
       values[0] = data.x;
       UI.synthvolume._value.update(values[0]);
@@ -944,6 +954,7 @@ socket.on('uiSocketScene12', function(data) {
 
 
 function changeState(v) {
+  socket.emit('someoneChangedState', v);
   modalMode.style.display = "none";
   if (v == "descenter") {
     socket.connected = true;
@@ -968,7 +979,6 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "2px solid rgba(150,150,150,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
-    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
   }
   if (v == "alocate") {
     socket.connected = true;
@@ -982,7 +992,6 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "2px solid rgba(150,150,150,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
-    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById('inst1').style.pointerEvents = "none";
     document.getElementById('inst2').style.pointerEvents = "none";
     document.getElementById('inst3').style.pointerEvents = "none";
@@ -996,7 +1005,6 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
-    document.getElementById("stateButtonFive").style.border = "2px solid rgba(150,150,150,1)";
   }
   if (v == "alone") {
     socket.connected = false;
@@ -1008,7 +1016,6 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonFour").style.border = "2px solid rgba(150,150,150,1)";
-    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
   }
   if (v) {
     modalAbout.style.display = "none";
@@ -1121,13 +1128,16 @@ socket.on('socketnumber', function(connections) {
   }
 });
 
-/*Check stream Cortex
-Add alocation + Play alone*/
-
-function printMonitorDialog(a, v) {
+/*function printMonitorDialog(a, v) {
   var logs = document.getElementById('logs'),
     output_node = document.createElement("div");
   output_node.innerHTML = a + v;
   logs.appendChild(output_node);
   logs.scrollTop = logs.scrollHeight;
+}*/
+
+socket.on("someoneChangedState", someoneChangedState);
+
+function someoneChangedState(data){
+  printLogsDialog("Someone Changed State to : <i>", data);
 }

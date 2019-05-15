@@ -197,7 +197,7 @@ and the command line interfaces everyone can clone, fork and work with the Akson
 <li>To be able to fully experience and later edit the Akson code, the user must have some libraries the engine relies on. Node.js is one of them. One easy way to install node is using the package manager Homebrew and for that the user needs the XCode installed. To install Homebrew the user can type the following.</li>
 </ul>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-$ sudo brew install node
+$ brew install node
   » user password
 // Ver isto!!!
 </pre></div>
@@ -249,7 +249,7 @@ $ cd C:\Users\username\Desktop
 $ git clone https://github.com/luisArandas/akson
 $ cd akson
 $ npm install
-$node server.js
+$ node server.js
 </pre></div>
 </div>
 </div>
@@ -263,32 +263,19 @@ $node server.js
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install git-all
 </pre></div>
 </div>
-<p>On Linux there are multiple package managers to get node instead of downloading binaries.</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>_Android
-$ pkg install nodejs
-_Arch linux
-$ pacman -S nodejs npm
-_FreeBSD (Install via binary or compile using ports)
-$ pkg install node
-$ cd /usr/ports/www/node &amp;&amp; make install
-_Gentoo
-$ emerge nodejs
-_NetBSD (pkgsrc tree or binary)
-$ cd /usr/pkgsrc/lang/nodejs &amp;&amp; make install
-$ pkgin -y install nodejs
-_nvm
-$ env VERSION=`python tools/getnodeversion.py` make install DESTDIR=`nvm_version_path v$VERSION` PREFIX=&quot;&quot;
-$ nvm use 8
-_OpenBSD
-$ /usr/ports/lang/node
-$ pkg_add node
+<p>On Linux there are multiple package managers to get node instead of downloading binaries. It is also targeted Ubuntu</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt update
+$ sudo apt install nodejs npm
+$ sudo apt install npm
+$ node server.js
 </pre></div>
 </div>
 </div>
 <div class="section" id="file-architecture">
 <h3>File Architecture<a class="headerlink" href="#file-architecture" title="Permalink to this headline">¶</a></h3>
-<p>kokok
-File trees</p>
+<p>Regarding the structure of Akson being made in Node, the correct way to run the system through the source code is through the file <code class="docutils literal notranslate"><span class="pre">server.js</span></code>.
+Este ficheiro vai executar o código principal de Akson (o que é executado num servidor Unix). When the server is up, with all dependencies respected (to update it is enough to use `` npm install``) such as `` express`` and `` socket.io``, the <code class="docutils literal notranslate"><span class="pre">public</span></code>
+folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have their own instance.</p>
 <p>The documentation is continually being improved. The release of version 1</p>
 </div>
 </div>
@@ -437,7 +424,7 @@ File trees</p>
   }
   img {
     border-radius: 7px;
-  }
+}
 
 </style>
 

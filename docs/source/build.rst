@@ -20,7 +20,7 @@ MacOS
 .. code::
 
       $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      $ sudo brew install node
+      $ brew install node
         » user password
       // Ver isto!!!
 
@@ -83,7 +83,7 @@ In windows to install Node and Git the user can download the installer directly 
     $ git clone https://github.com/luisArandas/akson
     $ cd akson
     $ npm install
-    $node server.js
+    $ node server.js
 
 
 Linux
@@ -101,35 +101,20 @@ If you’re on a Debian-based distribution, such as Ubuntu, try apt:
 
     $ sudo apt install git-all
 
-On Linux there are multiple package managers to get node instead of downloading binaries.
+On Linux there are multiple package managers to get node instead of downloading binaries. It is also targeted Ubuntu
 
 .. code::
 
-    _Android
-    $ pkg install nodejs
-    _Arch linux
-    $ pacman -S nodejs npm
-    _FreeBSD (Install via binary or compile using ports)
-    $ pkg install node
-    $ cd /usr/ports/www/node && make install
-    _Gentoo
-    $ emerge nodejs
-    _NetBSD (pkgsrc tree or binary)
-    $ cd /usr/pkgsrc/lang/nodejs && make install
-    $ pkgin -y install nodejs
-    _nvm
-    $ env VERSION=`python tools/getnodeversion.py` make install DESTDIR=`nvm_version_path v$VERSION` PREFIX=""
-    $ nvm use 8
-    _OpenBSD
-    $ /usr/ports/lang/node
-    $ pkg_add node
-
-
+    $ sudo apt update
+    $ sudo apt install nodejs npm
+    $ sudo apt install npm
+    $ node server.js
 
 File Architecture
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-kokok
-File trees
+Regarding the structure of Akson being made in Node, the correct way to run the system through the source code is through the file ``server.js``.
+Este ficheiro vai executar o código principal de Akson (o que é executado num servidor Unix). When the server is up, with all dependencies respected (to update it is enough to use `` npm install``) such as `` express`` and `` socket.io``, the ``public``
+folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have their own instance.
 
 The documentation is continually being improved. The release of version 1

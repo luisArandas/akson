@@ -4,41 +4,31 @@ WUI_Dialog.create("master_dialog", {
   title: "Master Controls",
   width: "264px",
   height: "350px",
-  halign: "left",
-  valign: "center",
   open: true,
   minimized: false,
   on_open: null,
-  on_close: function() {
-    //WUI_Dialog.open("cockpit_dialog");
-    //WUI_Dialog.open("master_dialog");
-  },
+  on_close: function() {},
   on_pre_detach: function() {},
-  on_detach: function(new_window) {
-    new_window.document.title = "Master";
-    bind_contextmenu();
-  },
+  on_detach: function(new_window) {},
   on_resize: function(new_width, new_height) {},
   on_minimize: function() {
-    console.log("teste");
+    console.log("");
   },
   modal: false,
   closable: true,
   draggable: true,
   minimizable: true,
   resizable: false,
-  //detachable: false,
-  keep_align_when_resized: false,
-  top: -1650,
-  left: 20
+  detachable: false,
+  keep_align_when_resized: true,
+  top: 5,
+  left: 10
 });
 
 WUI_Dialog.create("savesettings_dialog", {
   title: "Save Settings",
   width: "300px",
   height: "230px",
-  halign: "center",
-  valign: "center",
   open: false,
   minimized: false,
   modal: false,
@@ -48,26 +38,36 @@ WUI_Dialog.create("savesettings_dialog", {
   resizable: false,
   //detachable: false,
   keep_align_when_resized: false,
-  top: -1550,
-  left: 0
+  top: 5,
+  left: 10
 });
 
 
 
 WUI_Dialog.create("cockpit_dialog", {
-  title: "Instruments", //'<div style="font-family: Monospace; font-size: 10px; color: lightgrey; position: absolute; margin-left: 8px;">---</div><span style="font-family: Monospace; font-size: 10px; color: lightgrey;">Instruments</span>',
+  title: "Instruments",
   width: "853px",
   height: "330px",
   open: true,
+  minimized: true,
   minimized: false,
   on_open: null,
-  on_close: null,
+  on_close: function() {},
+  on_pre_detach: function() {},
+  on_detach: function(new_window) {},
+  on_resize: function(new_width, new_height) {},
+  on_minimize: function() {
+    console.log("");
+  },
+  modal: false,
   closable: true,
   draggable: true,
   minimizable: true,
-  halign: "center",
-  valign: "bottom",
-  top: -2300
+  resizable: false,
+  detachable: false,
+  keep_align_when_resized: true,
+  top: 75,
+  left: 10
 });
 
 WUI_Tabs.create("tabs_instrumentos", {
@@ -83,57 +83,36 @@ WUI_Tabs.create("tabs_about", {
 });
 
 
-
 WUI_Dialog.create("logs_dialog", {
   title: "Logs",
   width: "275px",
   height: "400px",
-  halign: "right",
-  valign: "center",
-  closable: true,
-  draggable: true,
-  minimizable: true,
-  resizable: false,
-  status_bar: true,
-  top: -700
-});
-
-WUI_Dialog.create("monitor_dialog", {
-  title: "Monitor",
-  width: "600px",
-  height: "600px",
-  halign: "center",
-  valign: "center",
-  open: false,
+  open: true,
+  minimized: true,
   minimized: false,
-  on_open: function() {},
+  on_open: null,
   on_close: function() {},
   on_pre_detach: function() {},
-  on_detach: function(new_window) {
-    new_window.document.title = "Monitor";
-    bind_contextmenu();
-  },
+  on_detach: function(new_window) {},
   on_resize: function(new_width, new_height) {},
   on_minimize: function() {
-    console.log("teste");
+    console.log("");
   },
   modal: false,
   closable: true,
   draggable: true,
   minimizable: true,
   resizable: false,
-  //detachable: true,
-  keep_align_when_resized: false,
-  top: -350,
-  left: 0
+  detachable: false,
+  keep_align_when_resized: true,
+  top: 40,
+  left: 10
 });
 
 WUI_Dialog.create("alocate_dialog", {
   title: "Allocate System",
   width: "380px",
   height: "176px",
-  halign: "center",
-  valign: "center",
   open: false,
   minimized: false,
   on_open: function() {},
@@ -159,8 +138,8 @@ WUI_Dialog.create("alocate_dialog", {
   resizable: false,
   //detachable: true,
   keep_align_when_resized: false,
-  top: 0,
-  left: 0
+  top: 5,
+  left: 10
 });
 
 WUI_Dialog.create("about_this_dialog", {

@@ -527,6 +527,7 @@ polySynth.connect(vibrato);
 
 /* ---------------------------- NEXUS ---------------------------- */
 
+
 UI.oscilloscope.connect(Tone.Master);
 
 UI.synthvolume.on('change', function(v) {
@@ -1154,7 +1155,6 @@ function topBar(data) {
   }
   if (data == "recordAudio") {
     WUI_Dialog.open("savesettings_dialog");
-    console.log("check record");
   }
   if (data == "aboutMe") {
     modalAbout.style.display = "block";

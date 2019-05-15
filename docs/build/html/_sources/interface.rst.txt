@@ -1,6 +1,13 @@
 Interface
 =====================
 
+To experience Akson, the user does not need to deal with code or understand how the technologies described above work in the first place.
+One can access the current host by typing in a browser ``www.akson.xyz``. This project mainly targets Chromium-based browsers. Chromium is an open-source web
+browser project in which Google Chrome bases its source code. Akson is an audio-visual instrument that allows interaction on the browser screen directly with the
+graphics generated, but also has a more conventional graphical user interface (GUI) composed of dials, sliders and buttons.
+When the main website loads (and/or the local code build), the scene starts with all it's attributes but with no GUI. Only a custom pop-up box appears on the
+bottom of the screen so the user knows that he can trigger it by pressing the space key.
+
 To have complete control of the instrument, there is the possibility to open a graphical interface that has a series of controls.
 These enable an advanced level of usage on Akson.
 
@@ -9,6 +16,9 @@ These enable an advanced level of usage on Akson.
 There are three dialogs that appear when the user opens the interface for the first time. The master controller. The main instrument controller,
 and a panel that prints all the names of the methods modified by the graphical interface. In conjunction with the dialogs there is also a bar at the top
 of the window with buttons.
+
+.. image:: images/dialogs.png
+
 
 
 Master Controller
@@ -43,7 +53,7 @@ Shaders, 3 panels for WebGL performance view and the main interface to change no
 Logs Dialog
 -------------------------------
 
-The Logs dialog shows when something in the interface has been changed
+The Logs dialog shows when something in the graphical user interface has been changed. It also works on streaming mode so the users can see which one is doing what.
 
 .. image:: images/interface4.gif
 
@@ -54,8 +64,15 @@ The Top Button Bar has this that and that
 
 .. image:: images/interface5.png
 
+The button bar has 5 fundamental buttons. From left to right we have first the *About* button. Triggers a modal window with a text about Akson. On second place
+we have the download button, to record audio with the Media capture API and photos of the WebGL camera. In the middle we a button that continuously changes scene.
+On the 4 place we have the refresh button, if one is running Akson on app and/or can't acess the browsing bar. And at last we have the Interaction model interface.
+Triggering this will call another modal window that let's the user choose what type of interaction he is in.
 
 Keyboard
 -------------------------------
 
-Meter aqui as shortcuts
+Some of the most important functions of Akson can also be acessed by keyboard key codes. A map has been done so the user can see which one does what and a table with
+the codes if the keyboard is not QWERTY.
+
+TABELA

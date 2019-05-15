@@ -49,7 +49,6 @@
 </head>
 
 <body>
-  <!-- acabar so os logs do stream e midi AND ITS DONE - triggar cockpit insts com teclado -->
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -57,9 +56,8 @@
       </div>
     </div>
   </div>
-  <div id="remove" class="remove">
-    <div id="savesettings_dialog">
-      <div style="text-align: center; font-size: 5pt;">
+  <div id="savesettings_dialog">
+    <div style="text-align: center; font-size: 5pt;">
 
         <div class="saveDivs">
           <div class="aboutText">Save Frame</div>
@@ -156,21 +154,7 @@
         <div class="btn-group mr-2" role="group" aria-label="Fifth group">
           <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')" id="top5" title="Interaction Mode"><i class="fas fa-arrows-alt-h"></i></button>
         </div>
-        <!--<div class="btn-group mr-2" role="group" aria-label="Sixth group">
-          <button class="btn btn-sm btnCima learnMidi" id="learnMidi" type="button" onClick="startLearning()" title="MIDI"><i class="fas fa-chalkboard"></i></button>
-        </div>
-        <div class="btn-group mr-2" role="group" aria-label="Seventh group">
-          <button class="btn btn-sm btnCima" id="muteButton" type="button" onClick="topBar('coherent')" title="Correlate AV Controls"><i class="fas fa-random"></i></button>
-        </div>-->
     </div>
-
-    <div id="monitor_dialog">
-      <div style="text-align: center; font-size: 5pt;">
-        <div id="monitordiv" class="monitordiv">See this
-        </div>
-      </div>
-    </div>
-
 
     <div id="modalAbout" class="modalAbout">
       <!-- Modal content -->
@@ -901,23 +885,12 @@
 
               </div>
             </div>
-<!--
-            <div class="btn-group-horizontal btn-group-sm buttonsfour" role="group" aria-label="ok">
-              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set1')">offset1</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set2')">offset2</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set3')">offset3</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set4')">offset4</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set5')">offset5</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('set6')">offset6</button>
-              <button type="button" class="btn btn-secondary buttonColor" onClick="camOffsetDefault('clear')">default</button>
-            </div>
-          -->
+
           </div>
           </div>
 
         </div>
       </div>
-    </div>
 
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>

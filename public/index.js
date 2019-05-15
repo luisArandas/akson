@@ -3,8 +3,10 @@
  */
 
 $(document).ready(function() {
+  placeGraphicalInterface();
   fadeIn();
-  move();
+  Move();
+
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
@@ -47,6 +49,11 @@ $(document).ready(function() {
   elem.style.position = 'absolute';
   elem.style.bottom = '0px';*/
 });
+
+function placeGraphicalInterface(){
+  $('.wui-dialog-btn').trigger('click');
+  $('.wui-dialog-minimize').trigger('click');
+}
 
 var lightOne;
 var lightTwo;
@@ -150,19 +157,21 @@ function init() {
   socket.on('scene', changeScene);
 
   socket.on('socketid', function(socketid) {
-    var logs = document.getElementById('monitor_dialog'),
+    var logs = document.getElementById('logs'),
       output_node = document.createElement("div");
-    output_node.innerHTML = 'Key - ' + socketid + '<br>' + '//////////////////////////' + '<br>';
+    output_node.innerHTML = 'A new user connected to Akson' + '<br>';
     logs.appendChild(output_node);
     logs.scrollTop = logs.scrollHeight;
   });
+
+  /* To print Connections counter
   socket.on('socketnumber', function(connections) {
-    var logs = document.getElementById('monitor_dialog'),
+    var logs = document.getElementById('logs'),
       output_node = document.createElement("div");
-    output_node.innerHTML = "There are currently " + connections + " connections" + '<br>' + '//////////////////////////' + '<br>';
+    output_node.innerHTML = "There are currently " + connections + " connections" + '<br>';
     logs.appendChild(output_node);
     logs.scrollTop = logs.scrollHeight;
-  });
+  }); */
 
   container = document.createElement('div');
   document.body.appendChild(container);
@@ -365,6 +374,9 @@ function init() {
         WUI_Dialog.close("master_dialog");
         WUI_Dialog.close("cockpit_dialog");
         WUI_Dialog.close("logs_dialog");
+        WUI_Dialog.close("savesettings_dialog");
+        WUI_Dialog.close("alocate_dialog");
+        WUI_Dialog.close("about_this_dialog");
       }
       if (sideBar == true) {
         sideBar = false;
@@ -1122,7 +1134,7 @@ function doStuff() {
 setInterval(doStuff, 600000);
 //50000 is 50 seconds, not 5 minutes. 5 minutes would be 5 * 60 * 1000 = 300000
 
-function move() {
+function Move() {
 
   var elem = document.getElementById("myBar");
   var width = 1;
