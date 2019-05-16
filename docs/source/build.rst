@@ -1,6 +1,6 @@
 Build
 ============
-
+METER GIF DO SERVER SIDE
 The Akson underlying code is currently hosted on GitHub on a public repository that allows many types of action. With the potentialities of the open-source world
 and the command line interfaces everyone can clone, fork and work with the Akson code. Here are some instructions on how to be able to do that.
 
