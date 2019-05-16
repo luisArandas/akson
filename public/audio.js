@@ -1136,20 +1136,7 @@ UI.jcreverbWet.on('change', function(v) {
 /*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
 
 function topBar(data) {
-  if (data == "muteAudio") {
-    if (document.getElementById("muteButton").style.background != "white") {
-      document.getElementById("muteButton").style.background = "white";
-      document.getElementById("muteButton").style.border = "1px solid #ffffff";
-    } else if (document.getElementById("muteButton").style.background == "white") {
-      document.getElementById("muteButton").style.background = "black";
-      document.getElementById("muteButton").style.border = "1px solid rgba(50, 50, 50, 1)";
-    }
-    if (Tone.Master.mute == false) {
-      Tone.Master.mute = true;
-    } else {
-      Tone.Master.mute = false;
-    }
-  }
+
   if (data == "refresh") {
     location.reload();
   }
@@ -1211,9 +1198,9 @@ function closeGui() {
   WUI_Dialog.close("master_dialog");
   WUI_Dialog.close("cockpit_dialog");
   WUI_Dialog.close("logs_dialog");
-  WUI_Dialog.close("monitor_dialog");
-  WUI_Dialog.close("about_this_dialog");
+  WUI_Dialog.close("savesettings_dialog");
   WUI_Dialog.close("alocate_dialog");
+  WUI_Dialog.close("about_this_dialog");
   document.getElementById("topBar").style.visibility = "hidden";
 }
 
@@ -1292,83 +1279,7 @@ function scaleButtons(data) {
   }
 }
 
-function showToast(v) {
-  if (v === 'record') {
-    //http://izitoast.marcelodolza.com
-    iziToast.warning({
-      title: 'Recording -',
-      backgroundColor: 'rgba(10,10,10,1)',
-      messageColor: 'white',
-      progressBarColor: 'white',
-      titleColor: 'white',
-      class: 'izi',
-      position: 'topLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-      close: true,
-      zindex: 99999,
-      message: 'Click again to stop',
-      onClosing: function(instance, toast, closedBy) {
-        console.info('Closing | closedBy: ' + closedBy);
-      },
-      onClosed: function(instance, toast, closedBy) {
-        console.info('Closed | closedBy: ' + closedBy);
-      }
-      /*
-      id: null,
-      class: '',
-      title: '',
-      titleColor: '',
-      titleSize: '',
-      titleLineHeight: '',
-      message: '',
-      messageColor: '',
-      messageSize: '',
-      messageLineHeight: '',
-      backgroundColor: '',
-      theme: 'light', // dark
-      color: '', // blue, red, green, yellow
-      icon: '',
-      iconText: '',
-      iconColor: '',
-      iconUrl: null,
-      image: '',
-      imageWidth: 50,
-      maxWidth: null,
-      zindex: null,
-      layout: 1,
-      balloon: false,
-      close: true,
-      closeOnEscape: false,
-      closeOnClick: false,
-      displayMode: 0, // once, replace
-      position: 'bottomRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-      target: '',
-      targetFirst: true,
-      timeout: 5000,
-      rtl: false,
-      animateInside: true,
-      drag: true,
-      pauseOnHover: true,
-      resetOnHover: false,
-      progressBar: true,
-      progressBarColor: '',
-      progressBarEasing: 'linear',
-      overlay: false,
-      overlayClose: false,
-      overlayColor: 'rgba(0, 0, 0, 0.6)',
-      transitionIn: 'fadeInUp',
-      transitionOut: 'fadeOut',
-      transitionInMobile: 'fadeInUp',
-      transitionOutMobile: 'fadeOutDown',
-      buttons: {},
-      inputs: {},
-      onOpening: function () {},
-      onOpened: function () {},
-      onClosing: function () {},
-      onClosed: function () {}
-      */
-    });
-  }
-}
+function showToast(v) {}
 
 function changeVoices() {
   console.log(currentSynthesizer);

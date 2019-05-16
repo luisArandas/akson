@@ -146,13 +146,12 @@ WUI_Dialog.create("about_this_dialog", {
   title: "System",
   width: "420px",
   height: "530px",
-  halign: "center",
-  valign: "center",
   open: false,
   closable: true,
   draggable: true,
   minimizable: true,
   resizable: false,
   status_bar: true,
-  top: 350
+  top: 5,
+  left: 10
 });
