@@ -69,6 +69,8 @@ we have the download button, to record audio with the Media capture API and phot
 On the 4 place we have the refresh button, if one is running Akson on app and/or can't acess the browsing bar. And at last we have the Interaction model interface.
 Triggering this will call another modal window that let's the user choose what type of interaction he is in.
 
+FOTOS DOS MENUS AQUI
+
 Keyboard
 -------------------------------
 

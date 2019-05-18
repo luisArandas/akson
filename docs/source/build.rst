@@ -114,7 +114,8 @@ File Architecture
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Regarding the structure of Akson being made in Node, the correct way to run the system through the source code is through the file ``server.js``.
-Este ficheiro vai executar o código principal de Akson (o que é executado num servidor Unix). When the server is up, with all dependencies respected (to update it is enough to use `` npm install``) such as `` express`` and `` socket.io``, the ``public``
+Este ficheiro vai executar o código principal de Akson (o que é executado num servidor Unix). When the server is up, with all dependencies respected
+(to update it is enough to use ``npm install``) such as ``express`` and ``socket.io``, the ``public``
 folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have their own instance.
 
 The documentation is continually being improved. The release of version 1

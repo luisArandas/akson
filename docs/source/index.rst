@@ -1,7 +1,7 @@
 [Akson] Software Documentation
 ====================================
 
-This is the official documentation of Akson, a networked audiovisual environment that allows multi-user collaboration.
+This is the official website for the documentation of Akson, a networked audiovisual environment that allows multi-user collaboration.
 Here you will find a detailed explanation of the software, the way it is done and how its features work. With examples documented from images and code, an
 extensive documentation is structured.
 
@@ -15,8 +15,6 @@ extensive documentation is structured.
    audio.rst
    graphics.rst
    networks.rst
-
-
 
 Useful Links
 ------------
