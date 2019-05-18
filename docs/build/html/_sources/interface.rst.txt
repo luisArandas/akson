@@ -77,4 +77,7 @@ Keyboard
 Some of the most important functions of Akson can also be acessed by keyboard key codes. A map has been done so the user can see which one does what and a table with
 the codes if the keyboard is not QWERTY.
 
+.. image:: images/keyboard.png
+
+
 TABELA

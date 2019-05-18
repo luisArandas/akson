@@ -107,10 +107,10 @@
 <li class="toctree-l2"><a class="reference internal" href="audio.html#id4">4</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="graphics.html">3. Graphics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="graphics.html#id1">3.1. #1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphics.html#id2">3.2. #2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphics.html#id3">3.3. #3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphics.html">Graphics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#id1">#1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#id2">#2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#id3">#3</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networks.html">Interaction</a><ul>
@@ -185,12 +185,14 @@
             
   <div class="section" id="build">
 <h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
-<p>METER GIF DO SERVER SIDE
-The Akson underlying code is currently hosted on GitHub on a public repository that allows many types of action. With the potentialities of the open-source world
-and the command line interfaces everyone can clone, fork and work with the Akson code. Here are some instructions on how to be able to do that.</p>
+<p>The Akson underlying code is currently hosted on GitHub on a public repository. This way everyone can clone, fork and work with the Akson code.
+Here are some instructions on how to be able to do that.</p>
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
-<p>The next commands and information will allow any user in any machine to get working with Akson in a clean and simple way. All the dependencies and libraries that are needed to get the system on the user computer running will be detailed on the major platforms.</p>
+<p>The next instructions will allow any user to get working with Akson in a clean and simple way. All the dependencies and libraries
+that are needed to get the system on the user computer running will be detailed on the major platforms. When the server is running, the user has some
+command line display of what is going on.</p>
+<img alt="_images/backend.gif" src="_images/backend.gif" />
 <div class="section" id="macos">
 <h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -199,52 +201,23 @@ and the command line interfaces everyone can clone, fork and work with the Akson
 </ul>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 $ brew install node
-  » user password
-// Ver isto!!!
-</pre></div>
-</div>
-<ul class="simple">
-<li>The current package installer of Node adds NPM which is needed for the libraries node relies on. Check both versions typing the following.</li>
-</ul>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ node -v
-$ npm -v
-</pre></div>
-</div>
-<ul class="simple">
-<li>Change the current working directory to the location where you want the cloned directory to be made. In MacOS the commands will be ls to see what there is in your directory and cd new_directory to change folder. Most probably the terminal will open the user in :~ username$.</li>
-<li>You will also need to have git installed. If you type the following commands, a window will prompt automatically if it is not in your system. When the terminal is opened type:</li>
-</ul>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ git --version
+$ git --version
 $ cd Desktop
 $ git clone https://github.com/luisArandas/akson
-</pre></div>
-</div>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ Cloning into &#39;akson&#39;...
-remote: Enumerating objects: 110, done.
-remote: Counting objects: 100% (110/110), done.
-remote: Compressing objects: 100% (69/69), done.
-remote: Total 6001 (delta 65), reused 81 (delta 41), pack-reused 5891
-Receiving objects: 100% (6001/6001), 21.03 MiB | 5.71 MiB/s, done.
-Resolving deltas: 100% (1583/1583), done.
-</pre></div>
-</div>
-<ul class="simple">
-<li>By default, npm install will fully get all modules listed as dependencies in package.json. This file is part of the main Akson code.</li>
-</ul>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd akson
+$ cd akson
 $ npm install
 $ node server.js
 </pre></div>
 </div>
 <ul class="simple">
-<li>The last code will run a local server on port 5000, the user can type in any browser localhost:&lt;port&gt;</li>
+<li>Akson targets Chromium based devices and it is possible to access by typing in the browser: localhost:5000</li>
 </ul>
-<p>Fork and contribute
-<a class="reference external" href="https://help.github.com/en/articles/fork-a-repo">https://help.github.com/en/articles/fork-a-repo</a></p>
 </div>
 <div class="section" id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
-<p>In windows to install Node and Git the user can download the installer directly from the website. <a class="reference external" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> and <a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> After that the user can open command-prompt selecting the Start button and typing the following.</p>
+<p>Akson was developed on MacOS machines originally but thanks to the cross-platform technologies it is possible to use in the most used operating systems.
+On windows to install Node and Git the user can download the installer directly from the website. <a class="reference external" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> and <a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>
+After that the user can open command-prompt selecting the Start button and typing the following.</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ cmd
 $ cd C:\Users\username\Desktop
 $ git clone https://github.com/luisArandas/akson
@@ -256,16 +229,12 @@ $ node server.js
 </div>
 <div class="section" id="linux">
 <h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
-<p>On linux the terminal work is quite similar to MacOS and as a UNIX system there are multiple similarities on the way the system behaves. If you’re on Fedora (or any closely-related RPM-based distribution, such as RHEL or CentOS), you can use dnf</p>
+<p>On linux the terminal work is quite similar to MacOS and as a UNIX system there are multiple similarities on the way the system behaves.
+If you’re on Fedora (or any closely-related RPM-based distribution, such as RHEL or CentOS), you can use dnf. If you’re on a Debian-based distribution,
+such as Ubuntu, try apt:</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo dnf install git-all
-</pre></div>
-</div>
-<p>If you’re on a Debian-based distribution, such as Ubuntu, try apt:</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install git-all
-</pre></div>
-</div>
-<p>On Linux there are multiple package managers to get node instead of downloading binaries. It is also targeted Ubuntu</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt update
+$ sudo apt install git-all
+$ sudo apt update
 $ sudo apt install nodejs npm
 $ sudo apt install npm
 $ node server.js
@@ -274,11 +243,12 @@ $ node server.js
 </div>
 <div class="section" id="file-architecture">
 <h3>File Architecture<a class="headerlink" href="#file-architecture" title="Permalink to this headline">¶</a></h3>
-<p>Regarding the structure of Akson being made in Node, the correct way to run the system through the source code is through the file <code class="docutils literal notranslate"><span class="pre">server.js</span></code>.
-Este ficheiro vai executar o código principal de Akson (o que é executado num servidor Unix). When the server is up, with all dependencies respected
-(to update it is enough to use <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>) such as <code class="docutils literal notranslate"><span class="pre">express</span></code> and <code class="docutils literal notranslate"><span class="pre">socket.io</span></code>, the <code class="docutils literal notranslate"><span class="pre">public</span></code>
-folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have their own instance.</p>
-<p>The documentation is continually being improved. The release of version 1</p>
+<img alt="_images/files.png" src="_images/files.png" />
+<p>The correct way to run the system through the source code is through the file <code class="docutils literal notranslate"><span class="pre">server.js</span></code>.
+The repository has a <code class="docutils literal notranslate"><span class="pre">procfile</span></code> to tell the Unix server (currently Heroku) to run it. This file is the starting point of Akson, and when the server is up,
+with all dependencies respected (to update it is enough to use <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>) such as <code class="docutils literal notranslate"><span class="pre">express</span></code> and <code class="docutils literal notranslate"><span class="pre">socket.io</span></code>, the <code class="docutils literal notranslate"><span class="pre">public</span></code>
+folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have
+their own instance.</p>
 </div>
 </div>
 </div>

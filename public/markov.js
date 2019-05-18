@@ -273,13 +273,12 @@ function scaleModal(v) {
     modalScale.style.display = "block";
     closeGui();
   }
-  if (v == "clean") {
-    scale = [];
-    cleanScaleColor();
-    console.log(scale);
-  }
 }
 
+function removeScale(){
+  scale = [];
+  cleanScaleColor();
+}
 
 function consoleLog(v) {
   var logs = document.getElementById('logs'),

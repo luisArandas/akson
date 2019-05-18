@@ -351,7 +351,7 @@ var a25 = "Platform ProductSub: " + navigator.productSub + "<br>";
 var a26 = "Platform: " + navigator.platform + "<br>";
 var a27 = "Navigator Languages: " + navigator.languages + "<br>";
 
-function camNear(a) {
+function onoffScene(a) {
   if (a === 'kill') {
     camera.near = 0;
     camera.updateProjectionMatrix();
@@ -367,16 +367,20 @@ function camNear(a) {
     socket.emit('uiSocketBornScene', e);
   }
   if (a === 'about') {
-    var netinfo = "Network Info <br>";
-    var _netinfo = netinfo.fontsize(15);
-    var audioinfo = "<br> <br>Audio Info <br>";
-    var _audioinfo = audioinfo.fontsize(15);
-    var graphicsinfo = "<br> Graphics Info <br>";
-    var _graphicsinfo = graphicsinfo.fontsize(15);
 
-    document.getElementById('machineInfo').innerHTML += _netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
-    WUI_Dialog.open("about_this_dialog");
   }
+}
+
+function aboutDevice(){
+  var netinfo = "Network Info <br>";
+  var _netinfo = netinfo.fontsize(15);
+  var audioinfo = "<br> <br>Audio Info <br>";
+  var _audioinfo = audioinfo.fontsize(15);
+  var graphicsinfo = "<br> Graphics Info <br>";
+  var _graphicsinfo = graphicsinfo.fontsize(15);
+
+  document.getElementById('machineInfo').innerHTML += _netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
+  WUI_Dialog.open("about_this_dialog");
 }
 
 /* PostPro */

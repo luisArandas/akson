@@ -360,7 +360,6 @@ function init() {
   effectHBlur.renderToScreen = false;
   afterimagePass.renderToScreen = false;
 
-
   document.addEventListener("keydown", function(event) {
 
     var toast = document.querySelector('.iziToast');
@@ -369,26 +368,7 @@ function init() {
     }
 
     if (event.which == "32") {
-      if (sideBar == false) {
-        document.getElementById("topBar").style.display = "inline";
-        WUI_Dialog.open("master_dialog");
-        WUI_Dialog.open("cockpit_dialog");
-        WUI_Dialog.open("logs_dialog");
-      }
-      if (sideBar == true) {
-        document.getElementById("topBar").style.display = "none";
-        WUI_Dialog.close("master_dialog");
-        WUI_Dialog.close("cockpit_dialog");
-        WUI_Dialog.close("logs_dialog");
-        WUI_Dialog.close("savesettings_dialog");
-        WUI_Dialog.close("alocate_dialog");
-        WUI_Dialog.close("about_this_dialog");
-      }
-      if (sideBar == true) {
-        sideBar = false;
-      } else {
-        sideBar = true;
-      }
+      triggerGUI();
     }
     if (event.which == "81") {
       //console.log("Q");
@@ -551,7 +531,6 @@ function init() {
           "rolloff": -24
         }
       });*/
-
 
       isSceneOne = false;
       isSceneTwo = false;
@@ -778,6 +757,29 @@ function init() {
 setInterval( function () {
   if ( ! document.webkitHidden ) requestAnimationFrame(animate);
 }, 1000 / 60 );
+
+function triggerGUI(){
+  if (sideBar == false) {
+    document.getElementById("topBar").style.display = "inline";
+    WUI_Dialog.open("master_dialog");
+    WUI_Dialog.open("cockpit_dialog");
+    WUI_Dialog.open("logs_dialog");
+  }
+  if (sideBar == true) {
+    document.getElementById("topBar").style.display = "none";
+    WUI_Dialog.close("master_dialog");
+    WUI_Dialog.close("cockpit_dialog");
+    WUI_Dialog.close("logs_dialog");
+    WUI_Dialog.close("savesettings_dialog");
+    WUI_Dialog.close("alocate_dialog");
+    WUI_Dialog.close("about_this_dialog");
+  }
+  if (sideBar == true) {
+    sideBar = false;
+  } else {
+    sideBar = true;
+  }
+}
 
 function onWindowResize() {
   windowHalfX = window.innerWidth / 2;

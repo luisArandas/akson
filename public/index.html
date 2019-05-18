@@ -81,9 +81,9 @@
       <div style="text-align: center; font-size: 5pt;">
 
         <div class="btn-group-horizontal btn-group-sm buttonsmaster" role="group" aria-label="ok">
-          <button type="button" class="buttonsAbout" onClick="camNear('kill')" id="close1" title="Close Scene">close</button>
-          <button type="button" class="buttonsAbout" onClick="camNear('born')" id="open1" title="Open Scene">open</button>
-          <button type="button" class="buttonsAbout" onClick="camNear('about')" id="about1" title="About the Device">about</button>
+          <button type="button" class="buttonsAbout" onClick="onoffScene('kill')" id="close1" title="Close Scene">close</button>
+          <button type="button" class="buttonsAbout" onClick="onoffScene('born')" id="open1" title="Open Scene">open</button>
+          <button type="button" class="buttonsAbout" onClick="aboutDevice()" id="about1" title="About the Device">about</button>
         </div>
 
         <div id="dialBox2" style="color:rgba(255,255,255,1)">
@@ -799,7 +799,7 @@
                 <button type="button" class="btn btn-secondary buttonColor p" id="b5" onclick="scaleButtons('b5')">B5</button>
               </div>
               <div class="btn-group-horizontal btn-group-sm grupocleanscale" role="group" aria-label="">
-                <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton1" onclick="scaleModal('clean')">Clean</button>
+                <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton1" onclick="removeScale()">Clean</button>
               </div>
               <div class="btn-group-horizontal btn-group-sm grupomaior" role="group" aria-label="">
                 <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal('scale')">Scale</button>
