@@ -1,11 +1,6 @@
 Build
 ============
 The Akson underlying code is currently hosted on GitHub on a public repository. This way everyone can clone, fork and work with the Akson code.
-Here are some instructions on how to be able to do that.
-
-Instructions
--------------------------------
-
 The next instructions will allow any user to get working with Akson in a clean and simple way. All the dependencies and libraries
 that are needed to get the system on the user computer running will be detailed on the major platforms. When the server is running, the user has some
 command line display of what is going on.
@@ -15,7 +10,7 @@ command line display of what is going on.
 
 
 MacOS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 * Open the terminal
 
@@ -36,7 +31,7 @@ MacOS
 
 
 Windows
-~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 Akson was developed on MacOS machines originally but thanks to the cross-platform technologies it is possible to use in the most used operating systems.
 On windows to install Node and Git the user can download the installer directly from the website. https://nodejs.org/en/download/ and https://git-scm.com/download/win
@@ -53,7 +48,7 @@ After that the user can open command-prompt selecting the Start button and typin
 
 
 Linux
-~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 On linux the terminal work is quite similar to MacOS and as a UNIX system there are multiple similarities on the way the system behaves.
 If you’re on Fedora (or any closely-related RPM-based distribution, such as RHEL or CentOS), you can use dnf. If you’re on a Debian-based distribution,
@@ -70,7 +65,7 @@ such as Ubuntu, try apt:
     $ node server.js
 
 File Architecture
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 .. image:: images/files.png
 

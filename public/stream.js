@@ -966,8 +966,6 @@ function changeState(v) {
     document.getElementById("stateButtonTwo").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonThree").style.border = "1px solid rgba(50,50,50,1)";
     document.getElementById("stateButtonFour").style.border = "1px solid rgba(50,50,50,1)";
-    document.getElementById("stateButtonFive").style.border = "1px solid rgba(50,50,50,1)";
-
   }
   if (v == "streamed") {
     socket.connected = true;

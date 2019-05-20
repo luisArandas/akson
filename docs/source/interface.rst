@@ -74,8 +74,8 @@ FOTOS DOS MENUS AQUI
 Keyboard
 -------------------------------
 
-Some of the most important functions of Akson can also be acessed by keyboard key codes. A map has been done so the user can see which one does what and a table with
-the codes if the keyboard is not QWERTY.
+Some of the most important functions of Akson can also be acessed by keyboard. A map has been done so that the user can consult the keycodes, functions and methods
+of action.
 
 .. image:: images/keyboard.png
 

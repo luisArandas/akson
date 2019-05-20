@@ -83,13 +83,10 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Build</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#instructions">Instructions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#macos">MacOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#file-architecture">File Architecture</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#macos">MacOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-architecture">File Architecture</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="interface.html">Interface</a><ul>
@@ -186,15 +183,12 @@
   <div class="section" id="build">
 <h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
 <p>The Akson underlying code is currently hosted on GitHub on a public repository. This way everyone can clone, fork and work with the Akson code.
-Here are some instructions on how to be able to do that.</p>
-<div class="section" id="instructions">
-<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
-<p>The next instructions will allow any user to get working with Akson in a clean and simple way. All the dependencies and libraries
+The next instructions will allow any user to get working with Akson in a clean and simple way. All the dependencies and libraries
 that are needed to get the system on the user computer running will be detailed on the major platforms. When the server is running, the user has some
 command line display of what is going on.</p>
 <img alt="_images/backend.gif" src="_images/backend.gif" />
 <div class="section" id="macos">
-<h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
+<h2>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Open the terminal</li>
 <li>To be able to fully experience and later edit the Akson code, the user must have some libraries the engine relies on. Node.js is one of them. One easy way to install node is using the package manager Homebrew and for that the user needs the XCode installed. To install Homebrew the user can type the following.</li>
@@ -214,7 +208,7 @@ $ node server.js
 </ul>
 </div>
 <div class="section" id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
 <p>Akson was developed on MacOS machines originally but thanks to the cross-platform technologies it is possible to use in the most used operating systems.
 On windows to install Node and Git the user can download the installer directly from the website. <a class="reference external" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a> and <a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>
 After that the user can open command-prompt selecting the Start button and typing the following.</p>
@@ -228,7 +222,7 @@ $ node server.js
 </div>
 </div>
 <div class="section" id="linux">
-<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
 <p>On linux the terminal work is quite similar to MacOS and as a UNIX system there are multiple similarities on the way the system behaves.
 If you’re on Fedora (or any closely-related RPM-based distribution, such as RHEL or CentOS), you can use dnf. If you’re on a Debian-based distribution,
 such as Ubuntu, try apt:</p>
@@ -242,14 +236,13 @@ $ node server.js
 </div>
 </div>
 <div class="section" id="file-architecture">
-<h3>File Architecture<a class="headerlink" href="#file-architecture" title="Permalink to this headline">¶</a></h3>
+<h2>File Architecture<a class="headerlink" href="#file-architecture" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/files.png" src="_images/files.png" />
 <p>The correct way to run the system through the source code is through the file <code class="docutils literal notranslate"><span class="pre">server.js</span></code>.
 The repository has a <code class="docutils literal notranslate"><span class="pre">procfile</span></code> to tell the Unix server (currently Heroku) to run it. This file is the starting point of Akson, and when the server is up,
 with all dependencies respected (to update it is enough to use <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>) such as <code class="docutils literal notranslate"><span class="pre">express</span></code> and <code class="docutils literal notranslate"><span class="pre">socket.io</span></code>, the <code class="docutils literal notranslate"><span class="pre">public</span></code>
 folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have
 their own instance.</p>
-</div>
 </div>
 </div>
 
