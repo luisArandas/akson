@@ -15,7 +15,7 @@ io.sockets.on('connection', newConnection);
 var connections = 0;
 
 function newConnection(socket) {
-  console.log("luis " + io.sockets.clients());
+  console.log("New " + io.sockets.clients());
 
   connections++;
   console.log("new connection: " + socket.id);
