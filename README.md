@@ -4,7 +4,7 @@
 
 ![Akson](https://raw.githubusercontent.com/luisArandas/akson/master/docs/source/images/main.png)
 
-![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)
+![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 This is the official repository of Akson, a networked audiovisual environment that allows multi-user collaboration. A more detailed explanation of the software can be found on the official [readthedocs](https://akson.readthedocs.io/en/latest/) website, the way it is done and how its features work. The examples are also documented with images and code.
 
@@ -29,7 +29,7 @@ This is the official repository of Akson, a networked audiovisual environment th
 
 ## License
 
-![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 Copyright 2019 © Luis Arandas
 
