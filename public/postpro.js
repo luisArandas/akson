@@ -22,6 +22,7 @@ light1.on('change', function(e) {
   socket.emit('uiSocketLightOne', data);
   var _v = e.toFixed(2);
   document.getElementById('n40').innerHTML = _v;
+  printLogsDialog("Light Scene One : ", _v);
 });
 
 var light2 = new Nexus.Slider('#light2', {
@@ -41,6 +42,7 @@ light2.on('change', function(e) {
   socket.emit('uiSocketLightTwo', data);
   var _v = e.toFixed(2);
   document.getElementById('n41').innerHTML = _v;
+  printLogsDialog("Light Scene Two : ", _v);
 });
 
 var light3 = new Nexus.Slider('#light3', {
