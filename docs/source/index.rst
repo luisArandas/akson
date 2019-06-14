@@ -12,9 +12,8 @@ extensive documentation is structured.
 
    build.rst
    interface.rst
-   audio.rst
-   graphics.rst
-   networks.rst
+   interaction.rst
+   engine.rst
 
 Useful Links
 ------------

@@ -695,7 +695,7 @@ afterimagePass.renderToScreen = false;
 */
 
 
-function shaderButtons(data) {
+function shaderCortex(data) {
   if (data === "shader0") {
     renderPostOne = false;
     renderPostTwo = false;

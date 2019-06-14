@@ -1,7 +1,7 @@
 {
   "name": "akson",
   "version": "1.0.0",
-  "description": "Composition Environment",
+  "description": "AV Environment",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/luisArandas/akson.git"
   },
   "author": "Luis Arandas",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/luisArandas/akson/issues"
   },

@@ -395,7 +395,7 @@ var UI = {
     size: [191, 20],
     min: 0,
     max: 1000,
-    step: 0.001,
+    step: 1,
     mode: 'absolute',
     value: 350
   }),

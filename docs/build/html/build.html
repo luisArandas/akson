@@ -86,7 +86,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#macos">MacOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#file-architecture">File Architecture</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="interface.html">Interface</a><ul>
@@ -97,23 +96,16 @@
 <li class="toctree-l2"><a class="reference internal" href="interface.html#keyboard">Keyboard</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="audio.html">Audio</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="audio.html#id1">1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="audio.html#id2">2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="audio.html#id3">3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="audio.html#id4">4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Interaction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id1">#1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id2">#2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id3">#3</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="graphics.html">Graphics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="graphics.html#id1">#1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphics.html#id2">#2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphics.html#id3">#3</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="networks.html">Interaction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="networks.html#id1">#1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="networks.html#id2">#2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="networks.html#id3">#3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engine.html">Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="engine.html#file-architecture">File Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html#id1">3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html#id2">4</a></li>
 </ul>
 </li>
 </ul>
@@ -234,15 +226,6 @@ $ sudo apt install npm
 $ node server.js
 </pre></div>
 </div>
-</div>
-<div class="section" id="file-architecture">
-<h2>File Architecture<a class="headerlink" href="#file-architecture" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/files.png" src="_images/files.png" />
-<p>The correct way to run the system through the source code is through the file <code class="docutils literal notranslate"><span class="pre">server.js</span></code>.
-The repository has a <code class="docutils literal notranslate"><span class="pre">procfile</span></code> to tell the Unix server (currently Heroku) to run it. This file is the starting point of Akson, and when the server is up,
-with all dependencies respected (to update it is enough to use <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>) such as <code class="docutils literal notranslate"><span class="pre">express</span></code> and <code class="docutils literal notranslate"><span class="pre">socket.io</span></code>, the <code class="docutils literal notranslate"><span class="pre">public</span></code>
-folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have
-their own instance.</p>
 </div>
 </div>
 

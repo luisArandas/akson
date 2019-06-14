@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Akson  documentation</title>
+  <title>Engine &mdash; Akson  documentation</title>
   
 
   
@@ -27,8 +26,10 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Interface" href="interface.html" />
+    <link rel="prev" title="Build" href="build.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,11 +81,15 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="build.html">Build</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="build.html#macos">MacOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build.html#windows">Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build.html#linux">Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#file-architecture">File Architecture</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="interface.html">Interface</a><ul>
@@ -96,11 +101,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="interaction.html">Interaction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="interaction.html#models">Models</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="engine.html">Engine</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="engine.html#file-architecture">File Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id1">#1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id2">#2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id3">#3</a></li>
 </ul>
 </li>
 </ul>
@@ -148,12 +151,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Engine</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/engine.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -165,11 +170,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="engine">
+<h1>Engine<a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="file-architecture">
+<h2>File Architecture<a class="headerlink" href="#file-architecture" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/filestruct.png" src="_images/filestruct.png" />
+<p>The correct way to run the system through the source code is through the file <code class="docutils literal notranslate"><span class="pre">server.js</span></code>.
+The repository has a <code class="docutils literal notranslate"><span class="pre">procfile</span></code> to tell the Unix server (currently Heroku) to run it. This file is the starting point of Akson, and when the server is up,
+with all dependencies respected (to update it is enough to use <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>) such as <code class="docutils literal notranslate"><span class="pre">express</span></code> and <code class="docutils literal notranslate"><span class="pre">socket.io</span></code>, the <code class="docutils literal notranslate"><span class="pre">public</span></code>
+folder can then start to run. In this folder is where the front-end is structures (both the graphics and audio) so every connected device can have
+their own instance.</p>
+</div>
 </div>
 
 
@@ -177,6 +188,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="interface.html" class="btn btn-neutral float-right" title="Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build.html" class="btn btn-neutral" title="Build" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
