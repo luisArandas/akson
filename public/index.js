@@ -602,7 +602,7 @@ function init() {
     }
     if (event.which == "75") {
       changeState("alocate");
-      console.log("allocate Method");
+      console.log("alocate Method");
     }
     if (event.which == "76") {
       changeState("alone");
