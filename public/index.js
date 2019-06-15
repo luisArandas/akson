@@ -593,19 +593,19 @@ function init() {
 
     if (event.which == "72") {
       //stateButtonThree
-      $('#stateButtonOne').trigger('click');
+      changeState("descenter");
       console.log("descenter Method");
     }
     if (event.which == "74") {
-      $('#stateButtonTwo').trigger('click');
+      changeState("streamed");
       console.log("streamed Method");
     }
     if (event.which == "75") {
-      $('#stateButtonThree').trigger('click');
+      changeState("alocate");
       console.log("allocate Method");
     }
     if (event.which == "76") {
-      $('#stateButtonFour').trigger('click');
+      changeState("alone");
       console.log("alone Method");
     }
 
@@ -727,13 +727,9 @@ function init() {
     if (event.which == "222") {
       $('#hungarian').trigger('click');
     }
-
     if (event.which == "189") {
       $('#about1').trigger('click');
     }
-
-
-
   });
 
 
@@ -742,13 +738,11 @@ function init() {
     color: 0x000000,
   });
   planek = new THREE.Mesh(geometryk, materialk);
-
   var geometry2k = new THREE.PlaneGeometry((windowHeight * 10), 450, 3);
   var material2k = new THREE.MeshBasicMaterial({
     color: 0x000000,
   });
   plane2k = new THREE.Mesh(geometry2k, material2k);
-
   planek.position.set(0, -670, 0);
   plane2k.position.set(0, 670, 0);
 
@@ -756,7 +750,7 @@ function init() {
 
 setInterval( function () {
   if ( ! document.webkitHidden ) requestAnimationFrame(animate);
-}, 1000 / 60 );
+}, 1000 / 55 );
 
 function triggerGUI(){
   if (sideBar == false) {
@@ -821,7 +815,6 @@ function animate() {
       INTERSECTED = null;
     }
   }
-
   //requestAnimationFrame(animate);
   render();
 }
@@ -892,6 +885,7 @@ function onMouseDown(event) {
 
       StartAudioContext(Tone.context).then(function() {
         currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+        printPhraseDialog(scale[note]);
       })
 
       //Tone.context.resume().then(() => {
@@ -922,15 +916,10 @@ function onMouseDown(event) {
       } else {
         isBlackSceneFour = true;
       }
-
       Tone.context.resume().then(() => {
         currentSynthesizer.triggerAttackRelease(scale[note], "4n");
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
-        var logs = document.getElementById('monitor_dialog'),
-          output_node = document.createElement("div");
-        output_node.innerHTML = scale[note];
-        logs.appendChild(output_node);
-        logs.scrollTop = logs.scrollHeight;
+        printPhraseDialog(scale[note]);
       });
     }
   }
@@ -1171,7 +1160,6 @@ function fadeIn() {
   document.getElementById("myProgress1").style.display = "block";
   document.getElementById("myProgress").style.display = "block";
   document.getElementById("myBar").style.display = "block";
-
 }
 
 function loadWarning(v) {
@@ -1200,6 +1188,7 @@ function takeScreenshot() {
   renderer.render(scene, camera);
   img.src = renderer.domElement.toDataURL();
   w.document.body.appendChild(img);
+  printPhraseDialog("Opened a tab with a Screenshot of the Camera");
 }
 
 function saveScreenshot() {
@@ -1216,6 +1205,7 @@ function saveAsImage() {
     console.log(e);
     return;
   }
+  printPhraseDialog("Saved to disk a Screenshot of the Camera");
 }
 
 var saveFile = function(strData, filename) {
@@ -1234,7 +1224,7 @@ var saveFile = function(strData, filename) {
 function save3d() {
   var equiManaged = new CubemapToEquirectangular(renderer, true);
   equiManaged.update(camera, scene);
-
+  printPhraseDialog("Saved to disk a 360 field of the Camera");
 }
 function saveVideo(v) {
   if (v === '1') {

@@ -15,13 +15,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="libraries/NexusUI.js"></script>
   <script src="libraries/webcomponents.min.js"></script>
-  <script src="libraries/osc.js"></script>
-
   <link rel="stylesheet" href="css/iziToast.css">
   <script src="libraries/iziToast.js" type="text/javascript"></script>
-
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
-
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC
   sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous">
 
@@ -42,14 +38,12 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-
   <link rel="stylesheet" type="text/css" href="css/wui.css">
   <link rel="stylesheet" href="css/style.css">
   <title>Akson Environment</title>
 </head>
 
 <body>
-  FIX THE KEYBOARD STATE E METER AS NOTAS NA TERMINAL \\ UMA ARRAY DE FUNÇOES DO SERVER \\ PRINTS DAS CENAS
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -59,82 +53,67 @@
   </div>
   <div id="savesettings_dialog">
     <div style="text-align: center; font-size: 5pt;">
-
         <div class="saveDivs">
           <div class="aboutText">Save Frame</div>
           <button id="shot" class="buttonsAbout">New Page</button>
           <button id="save" class="buttonsAbout">Save to Disk</button>
           <button id="save3d" class="buttonsAbout">Save 360</button>
         </div>
-
         <div class="saveDiv3">
           <div class="aboutText">Save Audio</div>
           <button id="startaudio1" class="buttonsAbout" onclick="saveAudio('start')"> Start Audio</button>
           <button id="stopaudio1" class="buttonsAbout" onclick="saveAudio('stop')">Stop Audio</button>
           <audio class="audio" controls loop download></audio>
         </div>
-
       </div>
     </div>
-
-
     <div id="master_dialog">
       <div style="text-align: center; font-size: 5pt;">
-
         <div class="btn-group-horizontal btn-group-sm buttonsmaster" role="group" aria-label="ok">
           <button type="button" class="buttonsAbout" onClick="onoffScene('kill')" id="close1" title="Close Scene">close</button>
           <button type="button" class="buttonsAbout" onClick="onoffScene('born')" id="open1" title="Open Scene">open</button>
           <button type="button" class="buttonsAbout" onClick="aboutDevice()" id="about1" title="About the Device">about</button>
         </div>
-
         <div id="dialBox2" style="color:rgba(255,255,255,1)">
           Master
           <div id="mainvolume" class="mainvolume"></div>
           <div id="number2" class="number2"></div>
         </div>
-
         <div id="dialBox" style="color:rgba(255,255,255,1)">
           Synth
           <div id="synthvolume" class="synthvolume"></div>
           <div id="number" class="number"></div>
         </div>
-
         <div id="dialBox1" style="color:rgba(255,255,255,1)">
           Back
           <div id="backgroundvolume" class="backgroundvolume"></div>
           <div id="number1" class="number1"></div>
         </div>
-
         <div id="dialBox3" style="color:rgba(255,255,255,1)">
           Low Cross
           <div id="lowfreq" class="lowfreq"></div>
           <div id="number6" class="number6"></div>
         </div>
-
         <div id="dialBox4" style="color:rgba(255,255,255,1)">
           EQ High
           <div id="eqhigh" class="eqhigh"></div>
           <div id="number5" class="number5"></div>
         </div>
-
         <div id="dialBox5" style="color:rgba(255,255,255,1)">
           EQ Mid
           <div id="eqmid" class="eqmid"></div>
           <div id="number4" class="number4"></div>
         </div>
-
         <div id="dialBox6" style="color:rgba(255,255,255,1)">
           EQ Bass
           <div id="eqbass" class="eqbass"></div>
           <div id="number3" class="number3"></div>
         </div>
-
         <div id="dialBox7" style="color:rgba(255,255,255,1)">
           High Cross
           <div id="highfreq" class="highfreq"></div>
           <div id="number7" class="number7"></div>
         </div>
-
         <div id="oscilloscope" class="oscilloscope"></div>
       </div>
     </div>
@@ -156,7 +135,6 @@
           <button class="btn btn-sm btnCima" type="button" onClick="topBar('changeMode')" id="top5" title="Interaction Mode"><i class="fas fa-arrows-alt-h"></i></button>
         </div>
     </div>
-
     <div id="modalAbout" class="modalAbout">
       <!-- Modal content -->
       <div class="modal-content">
@@ -176,7 +154,6 @@
         </div>
       </div>
     </div>
-
     <div id="modalMode" class="modalMode">
       <div class="modal-content">
         <span class="closeMode">&times;</span>
@@ -185,19 +162,15 @@
             <button type="button" class="stateButton" id="stateButtonOne" onClick="changeState('descenter')">
               descenter
             </button>
-
             <button type="button" class="stateButton" id="stateButtonTwo" onClick="changeState('streamed')">
               streamed
             </button>
-
             <button type="button" class="stateButton" id="stateButtonThree" onClick="changeState('alocate')">
               allocate
             </button>
-
             <button type="button" class="stateButton" id="stateButtonFour" onClick="changeState('alone')">
               alone
             </button>
-
             <!--<button type="button" class="stateButton" id="stateButtonFive" onClick="changeState('monitor')">
               <div id="stateButtonFourDiv">
                 monitor
@@ -206,7 +179,6 @@
         </div>
       </div>
     </div>
-
     <div id="modalScale" class="modalScale">
       <!-- Modal content -->
       <div class="modal-content">
@@ -237,12 +209,10 @@
         </div>
       </div>
     </div>
-
     <div id="logs_dialog">
       <div id="logs" style="text-align: center; font-size: 10pt; color:white ; padding-top: 8px; padding-bottom: 8px; line-height: 22px;">
       </div>
     </div>
-
     <div id="about_this_dialog">
       <div id="tabs_about">
         <div>
@@ -283,7 +253,6 @@
         </div>
       </div>
     </div>
-
     <div id="alocate_dialog">
       <div class="alocateDiv" id="alocateDiv">
         <div class="btn-group alocateGroup alocateLeft" role="group" aria-label="Basic example">
@@ -308,7 +277,6 @@
         </div>
       </div>
     </div>
-
     <div id="cockpit_dialog">
       <div id="tabs_instrumentos">
         <div>
@@ -319,9 +287,7 @@
         </div>
         <div>
           <div>
-            <!-- First one -->
             <div id="backgroundCockpit">
-
             <div id="ui1">
               <div id="sliderBox1">
                 <div id="ok1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Synth Attack:</div>
@@ -464,14 +430,8 @@
               <button type="button" class="btn btn-secondary buttonColor i" onClick="flipPhase('360')">360</button>
             </div>
           </div>
-
-
-
-
               </div>
           </div>
-
-          <!-- Segundo -->
         <div id="backgroundCockpit2">
           <div id="ui9">
             <div id="sliderBox22" class="sliderBox22">
@@ -612,11 +572,9 @@
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('32t')">32t</button>
           </div>
           </div>
-
         </div>
           <div>
             <div id="backgroundCockpit3">
-
             <div id="ui17">
             <div id="sliderBox39" class="sliderBox39">
               <div id="ok40">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene One:</div>
@@ -639,9 +597,7 @@
               <div id="light4" class="light4"></div>
             </div>
           </div>
-
           <div id="ui18">
-
             <div id="sliderBox43" class="sliderBox43">
               <div id="ok44">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera Aspect:</div>
               <div id="n44">22</div>
@@ -729,15 +685,10 @@
               <div id="camera4_3" class="camera4_3"></div>
             </div>
           </div>
-
           </div>
         </div>
-
-
-          <!-- PostPro -->
           <div>
             <div id="backgroundCockpit4">
-
             <div class="divNotas">
               <div class="btn-group-horizontal btn-group-sm gruponotas2" role="group" aria-label="ok">
                 <div class="scaleInfo" id="scaleInfo">C Major Pentatonic</div>
@@ -754,7 +705,6 @@
                 <button type="button" class="btn btn-secondary buttonColor p" id="as2" onclick="scaleButtons('as2')">A#2</button>
                 <button type="button" class="btn btn-secondary buttonColor p" id="b2" onclick="scaleButtons('b2')">B2</button>
               </div>
-
               <div class="btn-group-horizontal btn-group-sm gruponotas3" role="group" aria-label="ok">
                 <button type="button" class="btn btn-secondary buttonColor p" id="c3" onclick="scaleButtons('c3')">C3</button>
                 <button type="button" class="btn btn-secondary buttonColor p" id="cs3" onclick="scaleButtons('cs3')">C#3</button>
@@ -769,7 +719,6 @@
                 <button type="button" class="btn btn-secondary buttonColor p" id="as3" onclick="scaleButtons('as3')">A#3</button>
                 <button type="button" class="btn btn-secondary buttonColor p" id="b3" onclick="scaleButtons('b3')">B3</button>
               </div>
-
               <div class="btn-group-horizontal btn-group-sm gruponotas4" role="group" aria-label="ok">
                 <button type="button" class="btn btn-secondary buttonColor p" id="c4" onclick="scaleButtons('c4')">C4</button>
                 <button type="button" class="btn btn-secondary buttonColor p" id="cs4" onclick="scaleButtons('cs4')">C#4</button>
@@ -784,7 +733,6 @@
                 <button type="button" class="btn btn-secondary buttonColor p" id="as4" onclick="scaleButtons('as4')">A#4</button>
                 <button type="button" class="btn btn-secondary buttonColor p" id="b4" onclick="scaleButtons('b4')">B4</button>
               </div>
-
               <div class="btn-group-horizontal btn-group-sm gruponotas5" role="group" aria-label="ok">
                 <button type="button" class="btn btn-secondary buttonColor p" id="c5" onclick="scaleButtons('c5')">C5</button>
                 <button type="button" class="btn btn-secondary buttonColor p" id="cs5" onclick="scaleButtons('cs5')">C#5</button>
@@ -806,7 +754,6 @@
                 <button type="button" class="btn btn-secondary buttonColor scalesButton" id="scalesButton" onclick="scaleModal('scale')">Scale</button>
               </div>
             </div>
-
             <div>
               <div class="stats" id="stats">
                 <script src="libraries/stats.js"></script>
@@ -830,10 +777,8 @@
                   v.appendChild(stats3.domElement);
                </script>
               </div>
-
             </div>
          <div id="ui21">
-
             <div id="sliderBox59" class="sliderBox59">
               <div id="ok60">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set View OffSet X1:</div>
               <div id="n60">1</div>
@@ -865,7 +810,6 @@
               <div id="cameraM10" class="cameraM10"></div>
             </div>
           </div>
-
             <div class="shadersDiv" id="shadersdiv">
               Shaders <br>
               <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader0" onclick="shaderCortex('shader0')">Default</button>
@@ -874,7 +818,6 @@
               <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader3" onclick="shaderCortex('shader3')">Reverb</button>
               <button type="button" class="btn btn-secondary buttonColor buttonShader" id="shader4" onclick="shaderCortex('shader4')">Vignette</button>
             </div>
-
             <div class="presetsDiv" id="presetsDiv">
               Instrument Presets
               <br>
@@ -883,16 +826,12 @@
               <button type="button" class="btn btn-secondary buttonColor" id="preset3" onclick="postPresets('3')">3</button>
               <button type="button" class="btn btn-secondary buttonColor" id="preset4" onclick="postPresets('4')">4</button>
               <button type="button" class="btn btn-secondary buttonColor" id="preset5" onclick="postPresets('5')">5</button>
-
               </div>
             </div>
-
           </div>
           </div>
-
         </div>
       </div>
-
     <div>
       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>
@@ -952,7 +891,6 @@
       <script src="postpro.js" type="text/javascript"></script>
       <script src="index.js" type="text/javascript"></script>
     </div>
-
 </body>
 
 </html>

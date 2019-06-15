@@ -22,7 +22,7 @@ light1.on('change', function(e) {
   socket.emit('uiSocketLightOne', data);
   var _v = e.toFixed(2);
   document.getElementById('n40').innerHTML = _v;
-  printLogsDialog("Light Scene One : ", _v);
+  printLogsDialog("Light Scene One: ", _v);
 });
 
 var light2 = new Nexus.Slider('#light2', {
@@ -42,7 +42,7 @@ light2.on('change', function(e) {
   socket.emit('uiSocketLightTwo', data);
   var _v = e.toFixed(2);
   document.getElementById('n41').innerHTML = _v;
-  printLogsDialog("Light Scene Two : ", _v);
+  printLogsDialog("Light Scene Two: ", _v);
 });
 
 var light3 = new Nexus.Slider('#light3', {
@@ -62,6 +62,7 @@ light3.on('change', function(e) {
   socket.emit('uiSocketLightThree', data);
   var _v = e.toFixed(2);
   document.getElementById('n42').innerHTML = _v;
+  printLogsDialog("Light Scene Three: ", _v);
 });
 
 var light4 = new Nexus.Slider('#light4', {
@@ -81,6 +82,7 @@ light4.on('change', function(e) {
   socket.emit('uiSocketLightFour', data);
   var _v = e.toFixed(2);
   document.getElementById('n43').innerHTML = _v;
+  printLogsDialog("Light Scene Four: ", _v);
 });
 
 var cameraM1 = new Nexus.Slider('#cameraM1', {
@@ -102,6 +104,7 @@ cameraM1.on('change', function(e) {
   socket.emit('uiSocketCameraM1', data);
   var _v = e.toFixed(2);
   document.getElementById('n46').innerHTML = _v;
+  printLogsDialog("Camera FOV: ", _v);
 });
 
 var cameraM2 = new Nexus.Slider('#cameraM2', {
@@ -123,6 +126,7 @@ cameraM2.on('change', function(e) {
   socket.emit('uiSocketCameraM2', data);
   var _v = e.toFixed(2);
   document.getElementById('n45').innerHTML = _v;
+  printLogsDialog("Camera Zoom: ", _v);
 });
 
 var cameraM3 = new Nexus.Slider('#cameraM3', {
@@ -134,7 +138,6 @@ var cameraM3 = new Nexus.Slider('#cameraM3', {
   'value': 1
 });
 cameraM3.on('change', function(e) {
-  /* See this!!! */
   camera.aspect = e;
   camera.updateProjectionMatrix();
   var data = {
@@ -144,6 +147,7 @@ cameraM3.on('change', function(e) {
   socket.emit('uiSocketCameraM3', data);
   var _v = e.toFixed(2);
   document.getElementById('n44').innerHTML = _v;
+  printLogsDialog("Camera Aspect: ", _v);
 });
 
 var cameraM4 = new Nexus.Slider('#cameraM4', {
@@ -164,6 +168,7 @@ cameraM4.on('change', function(e) {
   socket.emit('uiSocketCameraM4', data);
   var _v = e.toFixed(2);
   document.getElementById('n47').innerHTML = _v;
+  printLogsDialog("Camera Near: ", _v);
 });
 
 var cameraM5 = new Nexus.Slider('#cameraM5', {
@@ -184,6 +189,7 @@ cameraM5.on('change', function(e) {
   socket.emit('uiSocketCameraM5', data);
   var _v = e.toFixed(0);
   document.getElementById('n60').innerHTML = _v;
+  printLogsDialog("Camera Custom View Offset One: ", _v);
 });
 
 var cameraM6 = new Nexus.Slider('#cameraM6', {
@@ -204,6 +210,8 @@ cameraM6.on('change', function(e) {
   socket.emit('uiSocketCameraM6', data);
   var _v = e.toFixed(0);
   document.getElementById('n61').innerHTML = _v;
+  printLogsDialog("Camera Custom View Offset Two: ", _v);
+
 });
 
 var cameraM7 = new Nexus.Slider('#cameraM7', {
@@ -224,6 +232,7 @@ cameraM7.on('change', function(e) {
   socket.emit('uiSocketCameraM7', data);
   var _v = e.toFixed(2);
   document.getElementById('n62').innerHTML = _v;
+  printLogsDialog("Camera Custom View Offset Three: ", _v);
 });
 
 var cameraM8 = new Nexus.Slider('#cameraM8', {
@@ -244,6 +253,7 @@ cameraM8.on('change', function(e) {
   socket.emit('uiSocketCameraM8', data);
   var _v = e.toFixed(2);
   document.getElementById('n63').innerHTML = _v;
+  printLogsDialog("Camera Custom View Offset Four: ", _v);
 });
 
 var cameraM9 = new Nexus.Slider('#cameraM9', {
@@ -264,6 +274,7 @@ cameraM9.on('change', function(e) {
   socket.emit('uiSocketCameraM9', data);
   var _v = e.toFixed(2);
   document.getElementById('n64').innerHTML = _v;
+  printLogsDialog("Camera Custom View Offset Five: ", _v);
 });
 
 var cameraM10 = new Nexus.Slider('#cameraM10', {
@@ -282,6 +293,9 @@ cameraM10.on('change', function(e) {
     y: "cameraM10"
   };
   socket.emit('uiSocketCameraM10', data);
+  var _v = e.toFixed(2);
+  document.getElementById('n65').innerHTML = _v;
+  printLogsDialog("Camera Custom View Offset Six: ", _v);
 });
 
 
@@ -295,28 +309,33 @@ function camOffsetDefault(a) {
 
   if (a === 'set1') {
     camera.setViewOffset(fullWidth, fullHeight, w * 1, h * 0, w, h);
+    printPhaseDialog("Triggered Custom View Offset One");
   }
   if (a === 'set2') {
     camera.setViewOffset(fullWidth, fullHeight, w * 0, h * 0, w, h);
+    printPhaseDialog("Triggered Custom View Offset Two");
   }
   if (a === 'set3') {
     camera.setViewOffset(fullWidth, fullHeight, w * 2, h * 0, w, h);
+    printPhaseDialog("Triggered Custom View Offset Three");
   }
   if (a === 'set4') {
     camera.setViewOffset(fullWidth, fullHeight, w * 0, h * 1, w, h);
+    printPhaseDialog("Triggered Custom View Offset Four");
   }
   if (a === 'set5') {
     camera.setViewOffset(fullWidth, fullHeight, w * 1, h * 1, w, h);
+    printPhaseDialog("Triggered Custom View Offset Five");
   }
   if (a === 'set6') {
     camera.setViewOffset(fullWidth, fullHeight, w * 2, h * 1, w, h);
+    printPhaseDialog("Triggered Custom View Offset Six");
   }
   if (a === 'clear') {
     camera.clearViewOffset();
+    printPhaseDialog("Custom View Offset Cleared");
   }
 }
-
-/* Net Info */
 
 var a1 = "Effective Bandwidth Estimate: " + navigator.connection.downlink + " MB/s" + '<br>';
 var a2 = "Max Download Speed: " + navigator.connection.downlinkMax + " MB/s" + '<br>';
@@ -360,6 +379,7 @@ function onoffScene(a) {
     Tone.Master.mute = true;
     var e = a;
     socket.emit('uiSocketKillScene', e);
+    printPhraseDialog("Akson is Off");
   }
   if (a === 'born') {
     camera.near = 1;
@@ -367,9 +387,9 @@ function onoffScene(a) {
     Tone.Master.mute = false;
     var e = a;
     socket.emit('uiSocketBornScene', e);
+    printPhraseDialog("Akson is On");
   }
   if (a === 'about') {
-
   }
 }
 
@@ -383,6 +403,7 @@ function aboutDevice(){
 
   document.getElementById('machineInfo').innerHTML += _netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
   WUI_Dialog.open("about_this_dialog");
+  printPhraseDialog("<i>System</i> dialog is Open");
 }
 
 /* PostPro */
@@ -404,6 +425,7 @@ camera1_1.on('change', function(e) {
   socket.emit('uiSocketScene1', data);
   var _v = e.toFixed(2);
   document.getElementById('n48').innerHTML = _v;
+  printLogsDialog("Scene One X Scale: ", _v);
 });
 
 var camera1_2 = new Nexus.Slider('#camera1_2', {
@@ -423,6 +445,7 @@ camera1_2.on('change', function(e) {
   socket.emit('uiSocketScene2', data);
   var _v = e.toFixed(2);
   document.getElementById('n49').innerHTML = _v;
+  printLogsDialog("Scene One Y Scale: ", _v);
 });
 
 var camera1_3 = new Nexus.Slider('#camera1_3', {
@@ -442,6 +465,7 @@ camera1_3.on('change', function(e) {
   socket.emit('uiSocketScene3', data);
   var _v = e.toFixed(2);
   document.getElementById('n50').innerHTML = _v;
+  printLogsDialog("Scene One Z Scale: ", _v);
 });
 
 document.getElementById("cockpit_dialog").addEventListener("mouseenter", function() {
@@ -469,6 +493,7 @@ camera2_1.on('change', function(e) {
   socket.emit('uiSocketScene4', data);
   var _v = e.toFixed(2);
   document.getElementById('n51').innerHTML = _v;
+  printLogsDialog("Scene Two X Scale: ", _v);
 });
 
 var camera2_2 = new Nexus.Slider('#camera2_2', {
@@ -489,6 +514,7 @@ camera2_2.on('change', function(e) {
   socket.emit('uiSocketScene5', data);
   var _v = e.toFixed(2);
   document.getElementById('n52').innerHTML = _v;
+  printLogsDialog("Scene Two Y Scale: ", _v);
 });
 
 var camera2_3 = new Nexus.Slider('#camera2_3', {
@@ -509,6 +535,7 @@ camera2_3.on('change', function(e) {
   socket.emit('uiSocketScene6', data);
   var _v = e.toFixed(2);
   document.getElementById('n53').innerHTML = _v;
+  printLogsDialog("Scene Two Z Scale: ", _v);
 });
 
 var camera3_1 = new Nexus.Slider('#camera3_1', {
@@ -529,6 +556,7 @@ camera3_1.on('change', function(e) {
   socket.emit('uiSocketScene7', data);
   var _v = e.toFixed(2);
   document.getElementById('n54').innerHTML = _v;
+  printLogsDialog("Scene Three X Scale: ", _v);
 });
 
 var camera3_2 = new Nexus.Slider('#camera3_2', {
@@ -549,6 +577,7 @@ camera3_2.on('change', function(e) {
   socket.emit('uiSocketScene8', data);
   var _v = e.toFixed(2);
   document.getElementById('n55').innerHTML = _v;
+  printLogsDialog("Scene Three Y Scale: ", _v);
 });
 
 var camera3_3 = new Nexus.Slider('#camera3_3', {
@@ -569,6 +598,7 @@ camera3_3.on('change', function(e) {
   socket.emit('uiSocketScene9', data);
   var _v = e.toFixed(2);
   document.getElementById('n56').innerHTML = _v;
+  printLogsDialog("Scene Three Z Scale: ", _v);
 });
 
 var camera4_1 = new Nexus.Slider('#camera4_1', {
@@ -589,6 +619,7 @@ camera4_1.on('change', function(e) {
   socket.emit('uiSocketScene10', data);
   var _v = e.toFixed(2);
   document.getElementById('n57').innerHTML = _v;
+  printLogsDialog("Scene Four X Scale: ", _v);
 });
 
 var camera4_2 = new Nexus.Slider('#camera4_2', {
@@ -609,6 +640,7 @@ camera4_2.on('change', function(e) {
   socket.emit('uiSocketScene11', data);
   var _v = e.toFixed(2);
   document.getElementById('n58').innerHTML = _v;
+  printLogsDialog("Scene Four Y Scale: ", _v);
 });
 
 var camera4_3 = new Nexus.Slider('#camera4_3', {
@@ -629,6 +661,7 @@ camera4_3.on('change', function(e) {
   socket.emit('uiSocketScene12', data);
   var _v = e.toFixed(2);
   document.getElementById('n59').innerHTML = _v;
+  printLogsDialog("Scene Four Z Scale: ", _v);
 });
 
 /* Fazer 4 luzes diferentes */
@@ -679,13 +712,6 @@ camera4.on('change', function(e) {
   parentTransformQuatro.scale.y = e;
   parentTransformQuatro.scale.z = e;
 });
-
-*/
-
-
-/* Shaders */
-
-/*
 afterimagePass.renderToScreen = false;
      effectSobel.renderToScreen = false;
      pixelPass.renderToScreen = false;
@@ -720,7 +746,7 @@ function shaderCortex(data) {
     document.getElementById("shader3").style.color = "white";
     document.getElementById("shader4").style.background = "black";
     document.getElementById("shader4").style.color = "white";
-
+    printPhraseDialog("No shader is currently being used as Post-Processing");
   }
 
   if (data === "shader1") {
@@ -748,7 +774,7 @@ function shaderCortex(data) {
     document.getElementById("shader3").style.color = "white";
     document.getElementById("shader4").style.background = "black";
     document.getElementById("shader4").style.color = "white";
-
+    printPhraseDialog("Currently using <i>Glitch</i> shader");
   }
 
   if (data === "shader2") {
@@ -774,7 +800,7 @@ function shaderCortex(data) {
     document.getElementById("shader3").style.color = "white";
     document.getElementById("shader4").style.background = "black";
     document.getElementById("shader4").style.color = "white";
-
+    printPhraseDialog("Currently using <i>Noise</i> shader");
   }
 
   if (data === "shader3") {
@@ -800,6 +826,7 @@ function shaderCortex(data) {
     document.getElementById("shader3").style.color = "black";
     document.getElementById("shader4").style.background = "black";
     document.getElementById("shader4").style.color = "white";
+    printPhraseDialog("Currently using <i>Reverb</i> shader");
 
   }
   if (data === "shader4") {
@@ -826,6 +853,7 @@ function shaderCortex(data) {
 
     scene2.add(planek);
     scene2.add(plane2k);
+    printPhraseDialog("Currently using <i>Vignette</i> shader");
   }
 }
 

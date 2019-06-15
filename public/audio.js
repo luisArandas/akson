@@ -538,8 +538,7 @@ UI.synthvolume.on('change', function(v) {
   };
   socket.emit('uiSocketSynthVolume', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  printLogsDialog("Synthesizer Volume : ", _v);
-
+  printLogsDialog("Synthesizer Volume: ", _v);
 });
 UI.backgroundvolume.on('change', function(v) {
   noiseOne.volume.value = v;
@@ -549,8 +548,7 @@ UI.backgroundvolume.on('change', function(v) {
   };
   socket.emit('uiSocketBackgroundVolume', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  printLogsDialog("Background Volume : ", _v);
-
+  printLogsDialog("Background Volume: ", _v);
 });
 UI.mainvolume.on('change', function(v) {
   Tone.Master.volume.value = v;
@@ -561,7 +559,6 @@ UI.mainvolume.on('change', function(v) {
   socket.emit('uiSocketMainVolume', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
   printLogsDialog("Master Volume : ", _v);
-
   /*__v = v.map(-50, 0, 0, 5);
   lightOne.intensity = __v;
   lightTwo.intensity = __v;
@@ -581,10 +578,9 @@ UI.synthAttack.on('change', function(v) {
       "attack": v
     }
   });
-  printLogsDialog("Synthesizer Attack : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n1').innerHTML = _v;
-
+  printLogsDialog("Synthesizer Attack: ", _v);
 });
 UI.synthDecay.on('change', function(v) {
   var data = {
@@ -597,10 +593,9 @@ UI.synthDecay.on('change', function(v) {
       "decay": v
     }
   });
-  printLogsDialog("Synthesizer Decay : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n2').innerHTML = _v;
-
+  printLogsDialog("Synthesizer Decay: ", _v);
 });
 UI.synthSustain.on('change', function(v) {
   var data = {
@@ -613,9 +608,9 @@ UI.synthSustain.on('change', function(v) {
       "sustain": v
     }
   });
-  printLogsDialog("Synthesizer Sustain : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n3').innerHTML = _v;
+  printLogsDialog("Synthesizer Sustain: ", _v);
 });
 UI.synthRelease.on('change', function(v) {
   var data = {
@@ -628,9 +623,9 @@ UI.synthRelease.on('change', function(v) {
       "release": v
     }
   });
-  printLogsDialog("Synthesizer Release : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n4').innerHTML = _v;
+  printLogsDialog("Synthesizer Release: ", _v);
 });
 
 UI.harmonicity.on('change', function(v) {
@@ -642,9 +637,9 @@ UI.harmonicity.on('change', function(v) {
   polySynth.set({
     "harmonicity": v
   });
-  printLogsDialog("Synthesizer Harmonicity : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n7').innerHTML = _v;
+  printLogsDialog("Synthesizer Harmonicity: ", _v);
 });
 UI.modulationindex.on('change', function(v) {
   var data = {
@@ -655,9 +650,9 @@ UI.modulationindex.on('change', function(v) {
   polySynth.set({
     "modulationIndex": v
   });
-  printLogsDialog("Synthesizer Modulation Index : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n9').innerHTML = _v;
+  printLogsDialog("Synthesizer Modulation Index: ", _v);
 });
 UI.detune.on('change', function(v) {
   var data = {
@@ -668,9 +663,9 @@ UI.detune.on('change', function(v) {
   polySynth.set({
     "detune": v
   });
-  printLogsDialog("Synthesizer Detune : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n8').innerHTML = _v;
+  printLogsDialog("Synthesizer Detune: ", _v);
 });
 UI.oscillatorModulationIndex.on('change', function(v) {
   var data = {
@@ -683,9 +678,9 @@ UI.oscillatorModulationIndex.on('change', function(v) {
       "modulationIndex": v
     }
   });
-  printLogsDialog("Synthesizer Osc Modulation Index : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n10').innerHTML = _v;
+  printLogsDialog("Synthesizer Osc Modulation Index: ", _v);
 });
 UI.oscillatorHarmonicity.on('change', function(v) {
   var data = {
@@ -698,9 +693,9 @@ UI.oscillatorHarmonicity.on('change', function(v) {
       "harmonicity": v
     }
   });
-  printLogsDialog("Synthesizer Osc Harmonicity : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n11').innerHTML = _v;
+  printLogsDialog("Synthesizer Osc Harmonicity: ", _v);
 });
 
 UI.modulationEnvelopeAttack.on('change', function(v) {
@@ -714,9 +709,9 @@ UI.modulationEnvelopeAttack.on('change', function(v) {
       "attack": v
     }
   });
-  printLogsDialog("Synthesizer Modulation Envelope Attack : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n12').innerHTML = _v;
+  printLogsDialog("Synthesizer Modulation Envelope Attack: ", _v);
 });
 UI.modulationEnvelopeDecay.on('change', function(v) {
   var data = {
@@ -729,9 +724,9 @@ UI.modulationEnvelopeDecay.on('change', function(v) {
       "decay": v
     }
   });
-  printLogsDialog("Synthesizer Modulation Envelope Decay : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n13').innerHTML = _v;
+  printLogsDialog("Synthesizer Modulation Envelope Decay: ", _v);
 });
 UI.modulationEnvelopeSustain.on('change', function(v) {
   var data = {
@@ -744,9 +739,9 @@ UI.modulationEnvelopeSustain.on('change', function(v) {
       "sustain": v
     }
   });
-  printLogsDialog("Synthesizer Modulation Envelope Sustain : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n14').innerHTML = _v;
+  printLogsDialog("Synthesizer Modulation Envelope Sustain: ", _v);
 });
 UI.modulationEnvelopeRelease.on('change', function(v) {
   var data = {
@@ -759,9 +754,9 @@ UI.modulationEnvelopeRelease.on('change', function(v) {
       "release": v
     }
   });
-  printLogsDialog("Synthesizer Modulation Envelope Release : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n15').innerHTML = _v;
+  printLogsDialog("Synthesizer Modulation Envelope Release: ", _v);
 });
 
 UI.reverbRoomSize.on('change', function(v) {
@@ -771,9 +766,9 @@ UI.reverbRoomSize.on('change', function(v) {
     y: "reverbRoomSize"
   };
   socket.emit('uiSocketReverbRoomSize', data);
-  printLogsDialog("Reverb Roomsize : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n16').innerHTML = _v;
+  printLogsDialog("Reverb Roomsize: ", _v);
 });
 UI.reverbWetValue.on('change', function(v) {
   reverb.wet.value = v;
@@ -782,9 +777,9 @@ UI.reverbWetValue.on('change', function(v) {
     y: "reverbWetValue"
   };
   socket.emit('uiSocketReverbWetValue', data);
-  printLogsDialog("Reverb Wet Value : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n17').innerHTML = _v;
+  printLogsDialog("Reverb Wet Value: ", _v);
 });
 UI.reverbDampValue.on('change', function(v) {
   reverb.dampening.value = v;
@@ -793,9 +788,9 @@ UI.reverbDampValue.on('change', function(v) {
     y: "reverbDampValue"
   };
   socket.emit('uiSocketReverbDampValue', data);
-  printLogsDialog("Reverb Damp Value : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n18').innerHTML = _v;
+  printLogsDialog("Reverb Damp Value: ", _v);
 });
 
 UI.noiseOnePlaybackRate.on('change', function(v) {
@@ -805,9 +800,9 @@ UI.noiseOnePlaybackRate.on('change', function(v) {
     y: "noiseOnePlaybackRate"
   };
   socket.emit('uiSocketNoiseOnePlaybackRate', data);
-  printLogsDialog("Background Playback Rate : ", v);
   var _v = v.toFixed(2);
   document.getElementById('n29').innerHTML = _v;
+  printLogsDialog("Background Playback Rate: ", _v);
 });
 UI.autoFilterFrequency.on('change', function(v) {
   var data = {
@@ -818,9 +813,9 @@ UI.autoFilterFrequency.on('change', function(v) {
   autoFilterOne.set({
     "frequency": v
   });
-  printLogsDialog("Auto Filter Frequency : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n23').innerHTML = _v;
+  printLogsDialog("Auto Filter Frequency: ", _v);
 });
 UI.noiseMin.on('change', function(v) {
   noiseOne.min = v;
@@ -829,9 +824,9 @@ UI.noiseMin.on('change', function(v) {
     y: "noiseOneMin"
   };
   socket.emit('uiSocketNoiseOneMin', data);
-  printLogsDialog("Background Min Value : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n30').innerHTML = _v;
+  printLogsDialog("Background Min Value: ", _v);
 });
 UI.noiseMax.on('change', function(v) {
   noiseOne.max = v;
@@ -840,9 +835,9 @@ UI.noiseMax.on('change', function(v) {
     y: "noiseOneMax"
   };
   socket.emit('uiSocketNoiseOneMax', data);
-  printLogsDialog("Background Max Value : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n31').innerHTML = _v;
+  printLogsDialog("Background Max Value: ", _v);
 });
 UI.autoFilterWet.on('change', function(v) {
   noiseOne.wet = v;
@@ -851,9 +846,9 @@ UI.autoFilterWet.on('change', function(v) {
     y: "noiseOneWet"
   };
   socket.emit('uiSocketNoiseOneWet', data);
-  printLogsDialog("Background Wet Value : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n27').innerHTML = _v;
+  printLogsDialog("Background Wet Value: ", _v);
 });
 UI.autoFilterDepth.on('change', function(v) {
   noiseOne.depth = v;
@@ -862,9 +857,9 @@ UI.autoFilterDepth.on('change', function(v) {
     y: "noiseOneDepth"
   };
   socket.emit('uiSocketNoiseOneDepth', data);
-  printLogsDialog("Background Depth Value : ", v);
   var _v = v.toFixed(2);
   document.getElementById('n28').innerHTML = _v;
+  printLogsDialog("Background Depth Value: ", _v);
 });
 
 UI.noiseq.on('change', function(v) {
@@ -878,9 +873,9 @@ UI.noiseq.on('change', function(v) {
     y: "noiseq"
   };
   socket.emit('uiSocketNoiseQ', data);
-  printLogsDialog("Background Filter Q : ", v);
   var _v = v.toFixed(2);
   document.getElementById('n26').innerHTML = _v;
+  printLogsDialog("Background Filter Q: ", _v);
 });
 
 UI.noiseoctaves.on('change', function(v) {
@@ -892,9 +887,9 @@ UI.noiseoctaves.on('change', function(v) {
     y: "noiseOctaves"
   };
   socket.emit('uiSocketNoiseOctaves', data);
-  printLogsDialog("Background Octave Range : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n25').innerHTML = _v;
+  printLogsDialog("Background Octave Range: ", _v);
 });
 
 UI.afbasefrequency.on('change', function(v) {
@@ -906,9 +901,9 @@ UI.afbasefrequency.on('change', function(v) {
     y: "afBaseFrequency"
   };
   socket.emit('uiSocketAfBaseFrequency', data);
-  printLogsDialog("Auto Filter Base Frequency : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n24').innerHTML = _v;
+  printLogsDialog("Auto Filter Base Frequency: ", _v);
 });
 
 UI.eqbass.on('change', function(v) {
@@ -920,7 +915,6 @@ UI.eqbass.on('change', function(v) {
   socket.emit('uiSocketEqBass', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
   printLogsDialog("Equalizer Low Value : ", _v);
-
 });
 
 UI.eqmid.on('change', function(v) {
@@ -954,7 +948,7 @@ UI.lowfreq.on('change', function(v) {
   };
   socket.emit('uiSocketEqLowFreq', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  printLogsDialog("Equalizer Low Freq Crossover Value : ", _v);
+  printLogsDialog("Equalizer Low Freq Crossover Value: ", _v);
 });
 
 UI.highfreq.on('change', function(v) {
@@ -965,7 +959,7 @@ UI.highfreq.on('change', function(v) {
   };
   socket.emit('uiSocketEqHighFreq', data);
   _v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  printLogsDialog("Equalizer High Freq Crossover Value : ", _v);
+  printLogsDialog("Equalizer High Freq Crossover Value: ", _v);
 });
 
 UI.synthPhase.on('change', function(v) {
@@ -975,10 +969,9 @@ UI.synthPhase.on('change', function(v) {
     y: "synthPhase"
   };
   socket.emit('uiSocketSynthPhase', data);
-  //_v = parseFloat(Math.round(v * 100) / 100).toFixed(1);
-  //printLogsDialog("Equalizer High Freq Crossover Value : ", _v);
   var _v = v.toFixed(3);
   document.getElementById('n5').innerHTML = v;
+  printLogsDialog("Synthesizer PhaseFlip in Degrees: ", v);
 });
 
 UI.synthPartials.on('change', function(v) {
@@ -993,6 +986,7 @@ UI.synthPartials.on('change', function(v) {
   };
   socket.emit('uiSocketSynthPartials', data);
   document.getElementById('n6').innerHTML = v;
+  printLogsDialog("Synthesizer Partials: ", v);
 });
 
 UI.noisefiltergain.on('change', function(v) {
@@ -1008,6 +1002,7 @@ UI.noisefiltergain.on('change', function(v) {
   socket.emit('uiSocketNoiseFilterGain', data);
   var _v = v.toFixed(2);
   document.getElementById('n32').innerHTML = _v;
+  printLogsDialog("AF Filter Gain: ", _v);
 });
 
 UI.vibratoFrequency.on('change', function(v) {
@@ -1017,9 +1012,9 @@ UI.vibratoFrequency.on('change', function(v) {
     y: "vibratoFreq"
   };
   socket.emit('uiSocketSynthVibratoFreq', data);
-  printLogsDialog("Vibrato Frequency : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n20').innerHTML = _v;
+  printLogsDialog("Vibrato Frequency: ", _v);
 });
 
 UI.vibratoDepth.on('change', function(v) {
@@ -1029,9 +1024,9 @@ UI.vibratoDepth.on('change', function(v) {
     y: "vibratoDepth"
   };
   socket.emit('uiSocketSynthVibratoDep', data);
-  printLogsDialog("Vibrato Depth : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n21').innerHTML = _v;
+  printLogsDialog("Vibrato Depth: ", _v);
 });
 
 UI.vibratoWet.on('change', function(v) {
@@ -1041,9 +1036,9 @@ UI.vibratoWet.on('change', function(v) {
     y: "vibratoWet"
   };
   socket.emit('uiSocketSynthVibratoWet', data);
-  printLogsDialog("Vibrato Wet : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n22').innerHTML = _v;
+  printLogsDialog("Vibrato Wet : ", _v);
 });
 
 UI.phaserFreq.on('change', function(v) {
@@ -1053,9 +1048,9 @@ UI.phaserFreq.on('change', function(v) {
     y: "phaserFreq"
   };
   socket.emit('uiSocketNoisePhaserFreq', data);
-  printLogsDialog("Phaser Frequency : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n35').innerHTML = _v;
+  printLogsDialog("Phaser Frequency : ", _v);
 });
 
 UI.phaserOct.on('change', function(v) {
@@ -1065,9 +1060,9 @@ UI.phaserOct.on('change', function(v) {
     y: "phaserOct"
   };
   socket.emit('uiSocketNoisePhaserOct', data);
-  printLogsDialog("Phaser Octaves : ", v);
   var _v = v.toFixed(2);
   document.getElementById('n38').innerHTML = _v;
+  printLogsDialog("Phaser Octaves : ", _v);
 });
 
 UI.phaserWet.on('change', function(v) {
@@ -1077,9 +1072,9 @@ UI.phaserWet.on('change', function(v) {
     y: "phaserWet"
   };
   socket.emit('uiSocketNoisePhaserWet', data);
-  printLogsDialog("Phaser Wet : ", v);
   var _v = v.toFixed(3);
   document.getElementById('n36').innerHTML = _v;
+  printLogsDialog("Phaser Wet : ", _v);
 });
 
 UI.phaserQ.on('change', function(v) {
@@ -1089,9 +1084,9 @@ UI.phaserQ.on('change', function(v) {
     y: "phaserQ"
   };
   socket.emit('uiSocketNoisePhaserQ', data);
-  printLogsDialog("Phaser Q : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n37').innerHTML = _v;
+  printLogsDialog("Phaser Q : ", _v);
 });
 
 UI.phaserBaseFreq.on('change', function(v) {
@@ -1101,9 +1096,9 @@ UI.phaserBaseFreq.on('change', function(v) {
     y: "phaserBaseFreq"
   };
   socket.emit('uiSocketNoisePhaserBaseFreq', data);
-  printLogsDialog("Phaser BaseFreq : ", v);
   var _v = v.toFixed(0);
   document.getElementById('n39').innerHTML = _v;
+  printLogsDialog("Phaser BaseFreq : ", _v);
 });
 
 UI.jcreverbRoomsize.on('change', function(v) {
@@ -1113,9 +1108,9 @@ UI.jcreverbRoomsize.on('change', function(v) {
     y: "jcverbRoomSiz"
   };
   socket.emit('uiSocketNoiseJcverbRoom', data);
-  printLogsDialog("JC_Reverb RoomSize : ", v);
   var _v = v.toFixed(2);
   document.getElementById('n34').innerHTML = _v;
+  printLogsDialog("JC_Reverb RoomSize : ", _v);
 });
 
 UI.jcreverbWet.on('change', function(v) {
@@ -1125,9 +1120,9 @@ UI.jcreverbWet.on('change', function(v) {
     y: "jcverbWet"
   };
   socket.emit('uiSocketNoiseJcverbWet', data);
-  printLogsDialog("JC_Reverb Wet : ", v);
   var _v = v.toFixed(2);
   document.getElementById('n33').innerHTML = _v;
+  printLogsDialog("JC_Reverb Wet : ", _v);
 });
 
 //console.log(autoFilterOne);
@@ -1142,10 +1137,12 @@ function topBar(data) {
   }
   if (data == "recordAudio") {
     WUI_Dialog.open("savesettings_dialog");
+    printPhraseDialog("<i>Save Settings</i> dialog is Open");
   }
   if (data == "aboutMe") {
     modalAbout.style.display = "block";
     closeGui();
+    printPhraseDialog("A text about Akson");
   }
   if (data == "changeMode") {
     modalMode.style.display = "block";
@@ -1212,6 +1209,18 @@ function synthWave(data) {
   });
   typeofOsc = data;
   socket.emit('synthWaveType', data);
+  if (data === "sine"){
+    printPhraseDialog("Changed Oscillator Wave to Sine");
+  }
+  if (data === "sawtooth"){
+    printPhraseDialog("Changed Oscillator Wave to Saw");
+  }
+  if (data === "square"){
+    printPhraseDialog("Changed Oscillator Wave to Square");
+  }
+  if (data === "triangle"){
+    printPhraseDialog("Changed Oscillator Wave to Triangle");
+  }
 }
 
 function noiseType(data) {
@@ -1220,6 +1229,15 @@ function noiseType(data) {
     noiseOne.volume.value = -10;
   }
   socket.emit('noiseWaveType', data);
+  if (data === "white"){
+    printPhraseDialog("Changed Noise Generator Wave to White");
+  }
+  if (data === "brown"){
+    printPhraseDialog("Changed Noise Generator Brown to White");
+  }
+  if (data === "pink"){
+    printPhraseDialog("Changed Noise Generator Pink to White");
+  }
 }
 
 function noiseOneFrequencyTime(data) {
@@ -1227,6 +1245,7 @@ function noiseOneFrequencyTime(data) {
     "frequency": data
   });
   socket.emit('noiseOneFrequencyTimeNumber', data);
+  printPhraseDialog("Changed AutoFilter Frequency to: " + data);
 }
 
 function partialCount(data) {
@@ -1236,6 +1255,7 @@ function partialCount(data) {
     }
   });
   socket.emit('noisePartialCount', data);
+  printPhraseDialog("Changed Oscillator Partials to: " + data);
 }
 
 function noiseRoloff(data) {
@@ -1245,6 +1265,7 @@ function noiseRoloff(data) {
     }
   });
   socket.emit('noiseRoloffType', data);
+  printPhraseDialog("Changed Filter Rolloff to: " + data);
 }
 
 function autofilterWave(data) {
@@ -1252,6 +1273,18 @@ function autofilterWave(data) {
     "type": data
   });
   socket.emit('autoFilterWaveType', data);
+  if (data === "sine"){
+    printPhraseDialog("Changed AutoFilter Wave to Sine");
+  }
+  if (data === "sawtooth"){
+    printPhraseDialog("Changed AutoFilter Wave to Saw");
+  }
+  if (data === "square"){
+    printPhraseDialog("Changed AutoFilter Wave to Square");
+  }
+  if (data === "triangle"){
+    printPhraseDialog("Changed AutoFilter Wave to Triangle");
+  }
 }
 
 //--------------------------------------------------------------------- Print Logs
@@ -1260,6 +1293,14 @@ function printLogsDialog(a, v) {
   var logs = document.getElementById('logs'),
     output_node = document.createElement("div");
   output_node.innerHTML = a + v;
+  logs.appendChild(output_node);
+  logs.scrollTop = logs.scrollHeight;
+}
+
+function printPhraseDialog(a) {
+  var logs = document.getElementById('logs'),
+    output_node = document.createElement("div");
+  output_node.innerHTML = a;
   logs.appendChild(output_node);
   logs.scrollTop = logs.scrollHeight;
 }
@@ -1316,6 +1357,7 @@ function flipPhase(a) {
   }
   var data = a;
   socket.emit('uiSocketFlipPhaseButton', data);
+  printPhraseDialog("Changed Synthesizer Phase to: " + data + "º");
 }
 
 
@@ -1332,9 +1374,11 @@ console.log(actx);
 function saveAudio(v) {
   if (v === 'start') {
     recorder.start();
+    printPhraseDialog("Started Audio Recording");
   }
   if (v === 'stop') {
     recorder.stop();
+    printPhraseDialog("Stoped Audio Recording");
   }
 }
 
@@ -1360,6 +1404,7 @@ function postPresets(v){
       }
     });
     $("#harmonic").click();
+    printPhraseDialog("Currently Using Preset One");
   }
   if (v === "2"){
     vibrato.frequency.value = 3.4;
@@ -1369,6 +1414,7 @@ function postPresets(v){
       "frequency": 4700
     });
     $("#melodic").click();
+    printPhraseDialog("Currently Using Preset Two");
   }
   if (v === "3"){
     lightOne.intensity = 5;
@@ -1376,23 +1422,24 @@ function postPresets(v){
     lightThree.intensity = 5;
     lightFour.intensity = 5;
     $("#hungarian").click();
+    printPhraseDialog("Currently Using Preset Three");
   }
   if (v === "4"){
     camera.fov = 152;
     $("#melodic").click();
+    printPhraseDialog("Currently Using Preset Four");
   }
   if (v === "5"){
     $("#shader4").click();
     $("#hirajoshi").click();
+    printPhraseDialog("Currently Using Preset Five");
   }
 }
 
 var sceneValue = 0;
 
 function incrementValue() {
-
   sceneValue++;
-
   if (sceneValue === 0){
     var evt = new KeyboardEvent('keydown', {
       'keyCode': 81,
@@ -1422,4 +1469,5 @@ function incrementValue() {
     document.dispatchEvent(evt);
     sceneValue = -1;
   }
+  printPhraseDialog("Changed Visual Scene");
 }
