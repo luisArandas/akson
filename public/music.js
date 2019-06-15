@@ -269,6 +269,7 @@ function changeScale(data) {
 }
 
 function scaleModal(v) {
+  printPhraseDialog("Various Scale presets from the World");
   if (v == "scale") {
     modalScale.style.display = "block";
     closeGui();
@@ -278,6 +279,7 @@ function scaleModal(v) {
 function removeScale(){
   scale = [];
   cleanScaleColor();
+  printPhraseDialog("Cleaned all the notes from the Scale");
 }
 
 function consoleLog(v) {

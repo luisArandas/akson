@@ -44,7 +44,8 @@
 </head>
 
 <body>
-  <div id="arr" class="arr"></div>
+  <!--<div id="arr" class="arr"></div>-->
+  <!-- Check entrances in the system -->
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -281,10 +282,10 @@
     <div id="cockpit_dialog">
       <div id="tabs_instrumentos">
         <div>
-          <div class="inst1" id="inst1">Synthesizer</div>
-          <div class="inst2" id="inst2">Background</div>
-          <div class="inst3" id="inst3">Graphics</div>
-          <div class="inst4" id="inst4">Post-Prod</div>
+          <div class="inst1" id="inst1" onclick='printPhraseDialog("The <i>Synthesizer (Lead)</i> Panel")'>Synthesizer</div>
+          <div class="inst2" id="inst2" onclick='printPhraseDialog("The <i>Filtered Noise (Background)</i> Panel")'>Background</div>
+          <div class="inst3" id="inst3" onclick='printPhraseDialog("The <i>Graphics (GL)</i> Panel")'>Graphics</div>
+          <div class="inst4" id="inst4" onclick='printPhraseDialog("The <i>Post-Prod (AV)</i> Panel")'>Post-Prod</div>
         </div>
         <div>
           <div>

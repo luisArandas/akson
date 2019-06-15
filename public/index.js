@@ -6,12 +6,17 @@ $(document).ready(function() {
   placeGraphicalInterface();
   fadeIn();
   Move();
-
+  console.clear();
+  console.log("%cWelcome to Akson", "background:black ; color: white ; font-size:25px");
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-  console.log(isChrome);
+  if (isChrome === true){
+    console.log("%c" + "Running Chromium", 'background: #000; color: #fff')
+  } else {
+    console.log("%c" + "Not running Chromium", 'background: #000; color: #fff')
+  }
   doStuff();
   document.getElementById("topBar").style.display = "none";
   WUI_Dialog.close("master_dialog");
@@ -147,8 +152,6 @@ var strDownloadMime = "image/octet-stream";
 init();
 animate();
 
-
-
 function init() {
   socket = io.connect(window.location.origin);
   socket.on('mouse', clickStream);
@@ -164,11 +167,7 @@ function init() {
 
   /* To print Connections counter
   socket.on('socketnumber', function(connections) {
-    var logs = document.getElementById('logs'),
-      output_node = document.createElement("div");
-    output_node.innerHTML = "There are currently " + connections + " connections" + '<br>';
-    logs.appendChild(output_node);
-    logs.scrollTop = logs.scrollHeight;
+    console.log("#");
   }); */
 
   container = document.createElement('div');
@@ -176,17 +175,14 @@ function init() {
 
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
   camera.position.z = 1000;
-
   camera2 = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
   camera2.position.z = 1000;
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
   scene.add(camera);
-
   scene2 = new THREE.Scene();
   scene2.add(camera2);
-
 
   raycaster = new THREE.Raycaster();
   raycaster.linePrecision = 3;
@@ -194,11 +190,8 @@ function init() {
   renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: false,
   });
-  console.log(renderer.info);
-
   //renderer.depth = false;
   renderer.logarithmicDepthBuffer = true;
-
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
@@ -212,7 +205,6 @@ function init() {
   });
   document.getElementById("shot").addEventListener('click', takeScreenshot);
   document.getElementById("save").addEventListener('click', saveAsImage);
-
 
   function orbitControls(x) {
     //console.log(x);
@@ -233,14 +225,11 @@ function init() {
     var object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
       color: 0x5f5f5f,
     }));
-
     object.position.x = Math.random() * 800 - 400;
     object.position.y = Math.random() * 800 - 400;
     object.position.z = Math.random() * 800 - 400;
     object.rotation.x = Math.random() * 2 * Math.PI;
-
     parentTransform.add(object);
-
   }
 
   lightOne = new THREE.DirectionalLight(0xd3d3d3, 1.1);
@@ -279,7 +268,6 @@ function init() {
   mesh.material.side = THREE.FrontSide;
   mesh.renderOrder = 1;
   parentTransformDois.add(mesh);
-
   lightTwo = new THREE.DirectionalLight(0xd3d3d3, 1);
   lightTwo.position.set(1, 1, 1).normalize();
   parentTransformDois.add(lightTwo);
@@ -317,10 +305,8 @@ function init() {
     object.position.y = Math.random() * 800 - 400;
     object.position.z = Math.random() * 800 - 400;
     object.rotation.x = Math.random() * 2 * Math.PI;
-
     parentTransformQuatro.add(object);
   }
-
 
   lightFour = new THREE.DirectionalLight(0xd3d3d3, 2);
   lightFour.position.set(1, 1, 1).normalize();
@@ -534,12 +520,9 @@ function init() {
       isSceneTwo = false;
       isSceneThree = true;
       isSceneFour = false;
-
       controls.enabled = false;
-
       var whichScene = 69;
       socket.emit('scene', whichScene);
-
       scene.add(parentTransformTres);
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
@@ -548,47 +531,37 @@ function init() {
 
     if (event.which == "82") {
       console.log("R")
-
       currentSynthesizer.volume.value = 0;
       UI.synthvolume._value.update(0);
       UI.synthvolume.render();
       noiseOne.volume.value = -10;
       UI.backgroundvolume._value.update(-10);
       UI.backgroundvolume.render();
-
       UI.noiseOnePlaybackRate._value.update(15);
       UI.noiseOnePlaybackRate.render();
       noiseOne.playbackRate = 15;
-
       UI.vibratoFrequency._value.update(2.5);
       UI.vibratoFrequency.render();
       vibrato.frequency.value = 2.5;
-
       UI.vibratoDepth._value.update(0.2);
       UI.vibratoDepth.render();
       vibrato.depth.value = 0.2;
-
       autoFilterOne.set({
         "octaves": 2.6
       });
-
       noiseOne.playbackRate = 1;
-
       isSceneOne = false;
       isSceneTwo = false;
       isSceneThree = false;
       isSceneFour = true;
-
       var whichScene = 82;
       socket.emit('scene', whichScene);
       controls.enabled = false;
-
       scene.add(parentTransformQuatro);
       scene.remove(parentTransform);
       scene.remove(parentTransformDois);
       scene.remove(parentTransformTres);
     }
-
     if (event.which == "72") {
       //stateButtonThree
       changeState("descenter");
@@ -606,9 +579,7 @@ function init() {
       changeState("alone");
       console.log("alone Method");
     }
-
     /* Shaders */
-
     if (event.which == "67") {
       $('#shader0').trigger('click');
       console.log("shader_none");
@@ -629,9 +600,7 @@ function init() {
       $('#shader4').trigger('click');
       console.log("shader_4");
     }
-
     /* Presets */
-
     if (event.which == "65") {
       $('#preset1').trigger('click');
       console.log("#preset1");
@@ -652,9 +621,7 @@ function init() {
       $('#preset5').trigger('click');
       console.log("#preset5");
     }
-
     /* TopBar */
-
     if (event.which == "89") {
       $('#top1').trigger('click');
       console.log("#barra1");
@@ -675,9 +642,7 @@ function init() {
       $('#top5').trigger('click');
       console.log("#barra5");
     }
-
     /* OpenClose */
-
     if (event.which == "90") {
       $('#close1').trigger('click');
       console.log("#barra4");
@@ -686,9 +651,7 @@ function init() {
       $('#open1').trigger('click');
       console.log("#barra5");
     }
-
     /* Scales */
-
     if (event.which == "192") {
       $('#scalesButton1').trigger('click');
     }
@@ -729,8 +692,6 @@ function init() {
       $('#about1').trigger('click');
     }
   });
-
-
   var geometryk = new THREE.PlaneGeometry((windowWidth * 10), 450, 3);
   var materialk = new THREE.MeshBasicMaterial({
     color: 0x000000,
@@ -743,7 +704,6 @@ function init() {
   plane2k = new THREE.Mesh(geometry2k, material2k);
   planek.position.set(0, -670, 0);
   plane2k.position.set(0, 670, 0);
-
 }
 
 setInterval( function () {
@@ -850,12 +810,10 @@ function onDocumentMouseMove(event) {
 function onMouseDown(event) {
 
   document.addEventListener('mousemove', onDocumentMouseMove, false);
-
   mouseXOnMouseDown = event.clientX - windowHalfX;
   targetRotationOnMouseDownX = targetRotationX;
   mouseYOnMouseDown = event.clientY - windowHalfY;
   targetRotationOnMouseDownY = targetRotationY;
-
   //markovNote(); // console logs next chain note
   event.preventDefault();
   var data = {
@@ -880,12 +838,10 @@ function onMouseDown(event) {
       } else {
         isBlackSceneOne = true;
       }
-
       StartAudioContext(Tone.context).then(function() {
         currentSynthesizer.triggerAttackRelease(scale[note], "4n");
         printPhraseDialog(scale[note]);
       })
-
       //Tone.context.resume().then(() => {
       //playNote("4n", scalePlaying[randomSequenceOfNotes]);
       /*var logs = document.getElementById('monitor_dialog'),
@@ -896,7 +852,6 @@ function onMouseDown(event) {
       //});
     } else {}
   }
-
   if (isSceneFour == true) {
     var intersectsClick = raycaster.intersectObjects(parentTransformQuatro.children);
     if (intersectsClick.length > 0) {
@@ -929,7 +884,6 @@ function onMouseUp(event) {
     var yes = Math.floor(Math.random() * 1) + 1;
     parentTransformDois.rotation.y += (yes - parentTransformDois.rotation.y) * 0.001;
     yes = (yes - parentTransformDois.rotation.x);
-
     var i = [
     '4m',
     '8m',
@@ -953,9 +907,6 @@ function onMouseUp(event) {
 }
 
 function onWindowResize() {}
-
-
-
 
 function clickStream(data) {
 
@@ -1009,31 +960,23 @@ function detectmob() {
   }
 }
 
-
 function render() {
-
   stats1.update();
   stats2.update();
   stats3.update();
-
   theta += 0.2;
-
   if (isSceneOne == true || isSceneFour == true) {
     camera.position.x = radius * Math.sin(THREE.Math.degToRad(theta));
     camera.position.y = radius * Math.sin(THREE.Math.degToRad(theta));
     camera.position.z = radius * Math.cos(THREE.Math.degToRad(theta));
   }
   camera.lookAt(scene.position);
-
   raycaster.setFromCamera(mouse, camera);
-
   renderer.clear();
   renderer.render(scene, camera);
   renderer.clearDepth();
   renderer.render(scene2, camera2);
-
   renderer.autoClear = false;
-
   document.getElementById('save3d').addEventListener('click', save3d);
 
   if (renderPostOne == true) {
@@ -1048,7 +991,6 @@ function render() {
   if (renderPostFour == true) {
     composerFour.render();
   }
-
   if (isSceneThree === true) {
     var time = Date.now() * 0.001;
     var rx = Math.sin(time * 0.7) * 0.5,
@@ -1056,11 +998,9 @@ function render() {
       rz = Math.sin(time * 0.2) * 0.5;
     camera.position.x += (mouseX - camera.position.x) * 0.05;
     camera.position.y += (-mouseY - camera.position.y) * 0.05;
-
     autoFilterOne.set({
       "octaves": rx + 1
     });
-
     camera.lookAt(scene.position);
     parentTransformTres.rotation.x = rx;
     parentTransformTres.rotation.y = ry;
@@ -1086,11 +1026,9 @@ var _customScale;
 var __customScale;
 
 function customScaleCortex(data) {
-
   if (data) {
     var e = data.toUpperCase();
     var a = e.replace('S', '#');
-
     if (scale.includes(a) === true) {
       for (var i = scale.length - 1; i >= 0; i--) {
         if (scale[i] === a) {
@@ -1099,8 +1037,9 @@ function customScaleCortex(data) {
       }
     } else {
       scale.push(a);
+      printPhraseDialog("Added " + a + " to the scale Vector" );
     }
-    console.log(scale);
+    //console.log(scale);
   }
 }
 
@@ -1122,19 +1061,18 @@ $(document).mouseleave(function() {
 
 function doStuff() {
   nrSeconds++;
-  console.log(nrSeconds);
-  if (nrSeconds === 10)
-  topBar('refresh');
+  console.log("%c" + "Second [" + nrSeconds + "]", 'background: #000; color: #fff');
+  //if (nrSeconds === 10)
+  // topBar('refresh');
+  // Here to refresh automatically.
 }
-setInterval(doStuff, 600000);
+setInterval(doStuff, 10000);
 //50000 is 50 seconds, not 5 minutes. 5 minutes would be 5 * 60 * 1000 = 300000
 
 function Move() {
-
   var elem = document.getElementById("myBar");
   var width = 1;
   var id = setInterval(frame, 10);
-
   function frame() {
     if (width >= 100) {
       clearInterval(id);

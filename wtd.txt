@@ -1,3 +1,0 @@
-https://github.com/jiahaog/nativefier -> Export as app // nativefier http://google.com --inject site.css --title-bar-style 'hiddenInset'
-Check license check (Free, cross-platform, open-source software (Simplified BSD License))
-https://github.com/nexe/nexe

@@ -30,7 +30,8 @@ function onMIDISuccess(midiAccess) {
   for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
     input.value.onmidimessage = onMIDIMessage;
   }
-  console.log('MIDI Access Object', midiAccess);
+  //console.log('MIDI Access Object', midiAccess);
+  //To print the object
 }
 
 function onMIDIMessage(event) {

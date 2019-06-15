@@ -1366,10 +1366,8 @@ const actx = Tone.context;
 const dest = actx.createMediaStreamDestination();
 const recorder = new MediaRecorder(dest.stream);
 Tone.Master.connect(dest);
-
 const chunks = [];
-
-console.log(actx);
+//console.log(actx);
 
 function saveAudio(v) {
   if (v === 'start') {
