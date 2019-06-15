@@ -10,8 +10,6 @@ $(document).ready(function() {
   if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
   };
-  console.log("windowResize");
-  console.log("i get white strips and check render, index.js 7no25, let the mouse stay on gui");
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
   console.log(isChrome);
   doStuff();
