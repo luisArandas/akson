@@ -249,10 +249,10 @@ var UI = {
   noiseq: new Nexus.Slider("#noiseq", {
     size: [191, 20],
     min: 0,
-    max: 10,
+    max: 1,
     step: 0.01,
     mode: 'absolute',
-    value: 1
+    value: 0
   }),
   noiseoctaves: new Nexus.Slider("#noiseoctaves", {
     size: [191, 20],
@@ -271,7 +271,7 @@ var UI = {
     mode: 'absolute',
     value: 500
   }),
-  noiseMin: new Nexus.Slider('#noiseMin', {
+  /*noiseMin: new Nexus.Slider('#noiseMin', {
     size: [191, 20],
     min: 100,
     max: 1000,
@@ -291,7 +291,7 @@ var UI = {
     size: [191, 20],
     min: 0,
     max: 1,
-    step: 0.01,
+    step: 0.001,
     mode: 'absolute',
     value: 0.5
   }),
@@ -302,7 +302,7 @@ var UI = {
     step: 0.01,
     mode: 'absolute',
     value: 1
-  }),
+  }),*/
   afbasefrequency: new Nexus.Slider('#afbasefrequency', {
     size: [191, 20],
     min: 100,
@@ -327,14 +327,14 @@ var UI = {
     mode: 'absolute',
     value: 2
   }),
-  noisefiltergain: new Nexus.Slider('#noisefiltergain', {
+  /*noisefiltergain: new Nexus.Slider('#noisefiltergain', {
     size: [191, 20],
     min: -99,
     max: 5,
     step: 0.01,
     mode: 'absolute',
     value: 1
-  }),
+  }),*/
   vibratoFrequency: new Nexus.Slider('#vibratoFrequency', {
     size: [191, 20],
     min: 0,
@@ -402,7 +402,7 @@ var UI = {
   jcreverbWet: new Nexus.Slider('#jcreverbWet', {
     size: [191, 20],
     min: 0,
-    max: 1,
+    max: 0.5,
     step: 0.001,
     mode: 'absolute',
     value: 0
@@ -410,7 +410,7 @@ var UI = {
   jcreverbRoomsize: new Nexus.Slider('#jcreverbRoomsize', {
     size: [191, 20],
     min: 0,
-    max: 1,
+    max: 0.5,
     step: 0.001,
     mode: 'absolute',
     value: 0
@@ -815,10 +815,10 @@ UI.autoFilterFrequency.on('change', function(v) {
   });
   var _v = v.toFixed(0);
   document.getElementById('n23').innerHTML = _v;
-  printLogsDialog("Auto Filter Frequency: ", _v);
+  printLogsDialog("How fast the filter modulates between Min and Max: ", _v);
 });
-UI.noiseMin.on('change', function(v) {
-  noiseOne.min = v;
+/*UI.noiseMin.on('change', function(v) {
+  autoFilterOne.min = v;
   var data = {
     x: v,
     y: "noiseOneMin"
@@ -829,7 +829,7 @@ UI.noiseMin.on('change', function(v) {
   printLogsDialog("Background Min Value: ", _v);
 });
 UI.noiseMax.on('change', function(v) {
-  noiseOne.max = v;
+  autoFilterOne.max = v;
   var data = {
     x: v,
     y: "noiseOneMax"
@@ -838,9 +838,9 @@ UI.noiseMax.on('change', function(v) {
   var _v = v.toFixed(0);
   document.getElementById('n31').innerHTML = _v;
   printLogsDialog("Background Max Value: ", _v);
-});
-UI.autoFilterWet.on('change', function(v) {
-  noiseOne.wet = v;
+});*/
+/*UI.autoFilterWet.on('change', function(v) {
+  autoFilterOne.wet = v;
   var data = {
     x: v,
     y: "noiseOneWet"
@@ -848,10 +848,10 @@ UI.autoFilterWet.on('change', function(v) {
   socket.emit('uiSocketNoiseOneWet', data);
   var _v = v.toFixed(3);
   document.getElementById('n27').innerHTML = _v;
-  printLogsDialog("Background Wet Value: ", _v);
-});
-UI.autoFilterDepth.on('change', function(v) {
-  noiseOne.depth = v;
+  printLogsDialog("How much of Affected Signal on Background: ", _v);
+});*/
+/*UI.autoFilterDepth.on('change', function(v) {
+  jcreverb.wet.value = v;
   var data = {
     x: v,
     y: "noiseOneDepth"
@@ -860,13 +860,11 @@ UI.autoFilterDepth.on('change', function(v) {
   var _v = v.toFixed(2);
   document.getElementById('n28').innerHTML = _v;
   printLogsDialog("Background Depth Value: ", _v);
-});
+});*/
 
 UI.noiseq.on('change', function(v) {
   autoFilterOne.set({
-    "filter": {
-      "q": v
-    }
+    "depth": v
   });
   var data = {
     x: v,
@@ -889,7 +887,7 @@ UI.noiseoctaves.on('change', function(v) {
   socket.emit('uiSocketNoiseOctaves', data);
   var _v = v.toFixed(0);
   document.getElementById('n25').innerHTML = _v;
-  printLogsDialog("Background Octave Range: ", _v);
+  printLogsDialog("The Max value of the Filter’s Cutoff: ", _v);
 });
 
 UI.afbasefrequency.on('change', function(v) {
@@ -903,7 +901,7 @@ UI.afbasefrequency.on('change', function(v) {
   socket.emit('uiSocketAfBaseFrequency', data);
   var _v = v.toFixed(0);
   document.getElementById('n24').innerHTML = _v;
-  printLogsDialog("Auto Filter Base Frequency: ", _v);
+  printLogsDialog("Lower Value of the LFO's oscillation: ", _v);
 });
 
 UI.eqbass.on('change', function(v) {
@@ -989,10 +987,10 @@ UI.synthPartials.on('change', function(v) {
   printLogsDialog("Synthesizer Partials: ", v);
 });
 
-UI.noisefiltergain.on('change', function(v) {
+/*UI.noisefiltergain.on('change', function(v) {
   autoFilterOne.set({
     "filter": {
-      "gain": v
+      "rolloff": data
     }
   });
   var data = {
@@ -1003,7 +1001,7 @@ UI.noisefiltergain.on('change', function(v) {
   var _v = v.toFixed(2);
   document.getElementById('n32').innerHTML = _v;
   printLogsDialog("AF Filter Gain: ", _v);
-});
+});*/
 
 UI.vibratoFrequency.on('change', function(v) {
   vibrato.frequency.value = v;
@@ -1469,3 +1467,20 @@ function incrementValue() {
   }
   printPhraseDialog("Changed Visual Scene");
 }
+
+
+var position1 = new Nexus.Position('#position1',{
+  'size': [192,159],
+  'mode': 'absolute',  // "absolute" or "relative"
+  'x': 0.5,  // initial x value
+  'minX': 0,
+  'maxX': 1,
+  'stepX': 0,
+  'y': 0.5,  // initial y value
+  'minY': 0,
+  'maxY': 1,
+  'stepY': 0
+});
+position1.on('change', function(v) {
+  console.log(v);
+});

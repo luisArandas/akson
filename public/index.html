@@ -45,7 +45,7 @@
 
 <body>
   <!--<div id="arr" class="arr"></div>-->
-  <!-- Check entrances in the system -->
+  <!-- Check entrances in the system \\ Check also the -->
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -447,31 +447,51 @@
               <div id="afbasefrequency" class="afbasefrequency"></div>
             </div>
             <div id="sliderBox24" class="sliderBox24">
-              <div id="ok25">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Octaves:</div>
+              <div id="ok25">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Cutoff:</div>
               <div id="n25">2.6</div>
               <div id="noiseoctaves" class="noiseoctaves"></div>
             </div>
             <div id="sliderBox25" class="sliderBox25">
-              <div id="ok26">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Q:</div>
+              <div id="ok26">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Depth:</div>
               <div id="n26">1.00</div>
               <div id="noiseq" class="noiseq"></div>
             </div>
             <div id="sliderBox26" class="sliderBox26">
-              <div id="ok27">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Wet:</div>
+              <div id="ok27">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Playback Rate:</div>
               <div id="n27">0.500</div>
-              <div id="autoFilterWet" class="autoFilterWet"></div>
-            </div>
-            <div id="sliderBox27" class="sliderBox27">
-              <div id="ok28">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AutoFilter Depth:</div>
-              <div id="n28">1.00</div>
-              <div id="autoFilterDepth" class="autoFilterDepth"></div>
+              <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
             </div>
           </div>
-          <div id="ui10">
+          <div id="ui13">
+            Noise Wave Type
+            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+            <button type="button" class="btn btn-secondary buttonColor btny" onClick="noiseType('white')">White</button>
+            <button type="button" class="btn btn-secondary buttonColor btny" onClick="noiseType('brown')">Brown</button>
+            <button type="button" class="btn btn-secondary buttonColor btny" onClick="noiseType('pink')">Pink</button>
+          </div>
+          </div>
+          <div id="positiondiv" class="positiondiv">
+            <div id="position1" class="position1">
+            </div>
+          </div>
+          
+          <div id="ui11">
+            <div id="sliderBox32" class="sliderBox32">
+              <div id="ok33">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb Wet:</div>
+              <div id="n33">0</div>
+              <div id="jcreverbWet" class="jcreverbWet"></div>
+            </div>
+            <div id="sliderBox33" class="sliderBox33">
+              <div id="ok34">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb RoomSize:</div>
+              <div id="n34">0</div>
+              <div id="jcreverbRoomsize" class="jcreverbRoomsize"></div>
+            </div>
+          </div>
+          <!--<div id="ui10">
             <div id="sliderBox28" class="sliderBox28">
               <div id="ok29">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Playback Rate:</div>
               <div id="n29">1.00</div>
-              <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
+              <div id="autoFilterWet" class="autoFilterWet"></div>
             </div>
             <div id="sliderBox29" class="sliderBox29">
               <div id="ok30">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Min:</div>
@@ -488,19 +508,9 @@
               <div id="n32">1.00</div>
               <div id="noisefiltergain" class="noisefiltergain"></div>
             </div>
-          </div>
-          <div id="ui11">
-            <div id="sliderBox32" class="sliderBox32">
-              <div id="ok33">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb Wet:</div>
-              <div id="n33">0</div>
-              <div id="jcreverbWet" class="jcreverbWet"></div>
-            </div>
-            <div id="sliderBox33" class="sliderBox33">
-              <div id="ok34">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb RoomSize:</div>
-              <div id="n34">0</div>
-              <div id="jcreverbRoomsize" class="jcreverbRoomsize"></div>
-            </div>
-          </div>
+          </div>-->
+
+
           <div id="ui12">
             <div id="sliderBox34" class="sliderBox34">
               <div id="ok35">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Frequency:</div>
@@ -528,14 +538,8 @@
               <div id="phaserBaseFreq" class="phaserBaseFreq"></div>
             </div>
           </div>
-          <div id="ui13">
-            Noise Wave Type
-            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('white')">White</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('brown')">Brown</button>
-            <button type="button" class="btn btn-secondary buttonColor" onClick="noiseType('pink')">Pink</button>
-          </div>
-          </div>
+
+
           <div id="ui14">
             AutoFilter Rolloff
             <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">

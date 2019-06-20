@@ -522,7 +522,7 @@ h2 {
   top: 10px;
 }
 
-#sliderBox1, #sliderBox2, #sliderBox3, #sliderBox4, #sliderBox5, #sliderBox6, #sliderBox7, #sliderBox8, #sliderBox9, #sliderBox10, #sliderBox11, #sliderBox12, #sliderBox13, #sliderBox14, #sliderBox15, #sliderBox16, #sliderBox17, #sliderBox18, #sliderBox19, #sliderBox20, #sliderBox21, #sliderBox22, #sliderBox23, #sliderBox24, #sliderBox25, #sliderBox26, #sliderBox27, #sliderBox28, #sliderBox29, #sliderBox30, #sliderBox31, #sliderBox32, #sliderBox33, #sliderBox34, #sliderBox35, #sliderBox36, #sliderBox37, #sliderBox38, #sliderBox39, #sliderBox40, #sliderBox41, #sliderBox42, #sliderBox43, #sliderBox44, #sliderBox45, #sliderBox46, #sliderBox47, #sliderBox48, #sliderBox49, #sliderBox50, #sliderBox51, #sliderBox52, #sliderBox53, #sliderBox54, #sliderBox55, #sliderBox56, #sliderBox57, #sliderBox58, #sliderBox59, #sliderBox60, #sliderBox61, #sliderBox62, #sliderBox63, #sliderBox64 {
+#sliderBox1, #sliderBox2, #sliderBox3, #sliderBox4, #sliderBox5, #sliderBox6, #sliderBox7, #sliderBox8, #sliderBox9, #sliderBox10, #sliderBox11, #sliderBox12, #sliderBox13, #sliderBox14, #sliderBox15, #sliderBox16, #sliderBox17, #sliderBox18, #sliderBox19, #sliderBox20, #sliderBox21, #sliderBox22, #sliderBox23, #sliderBox24, #sliderBox25, #sliderBox26, #sliderBox28, #sliderBox29, #sliderBox30, #sliderBox31, #sliderBox32, #sliderBox33, #sliderBox34, #sliderBox35, #sliderBox36, #sliderBox37, #sliderBox38, #sliderBox39, #sliderBox40, #sliderBox41, #sliderBox42, #sliderBox43, #sliderBox44, #sliderBox45, #sliderBox46, #sliderBox47, #sliderBox48, #sliderBox49, #sliderBox50, #sliderBox51, #sliderBox52, #sliderBox53, #sliderBox54, #sliderBox55, #sliderBox56, #sliderBox57, #sliderBox58, #sliderBox59, #sliderBox60, #sliderBox61, #sliderBox62, #sliderBox63, #sliderBox64 {
   width: 192px;
   height: 35px;
   margin: 3px;
@@ -636,7 +636,7 @@ h2 {
   border-radius: 3px;
   border: 1px solid rgba(50, 50, 50, 1);
   width: 200px;
-  height: 254px;
+  height: 214px;
   left: 8px;
   top: 4px;
 }
@@ -656,7 +656,7 @@ h2 {
   border: 1px solid rgba(50, 50, 50, 1);
   width: 200px;
   left: 218px;
-  top: -246px;
+  top: -245px;
 }
 #ui12 {
   position: relative;
@@ -673,9 +673,9 @@ h2 {
   border-radius: 3px;
   border: 1px solid rgba(50, 50, 50, 1);
   width: 200px;
-  height: 41px;
-  left: 428px;
-  top: -495px;
+  height: 39px;
+  left: 8px;
+  top: 6px;
   text-align: center;
 
 }
@@ -687,7 +687,7 @@ h2 {
   width: 205px;
   height: 40px;
   left: 635px;
-  top: -747px;
+  top: -247px;
   text-align: center;
 
 }
@@ -699,7 +699,7 @@ h2 {
   width: 205px;
   height: 40px;
   left: 635px;
-  top: -740px;
+  top: -240px;
   text-align: center;
 
 }
@@ -1310,7 +1310,7 @@ audio {
   position: absolute;
   color: white !important;
   top: 168px;
-  right: 50px;
+  right: 40px;
   width: 28px;
   text-align: left;
 }
@@ -1635,4 +1635,22 @@ audio {
   height: 20px;
   -webkit-app-region: drag;
   z-index: 99999;
+}
+
+.btny {
+  height: 22px;
+}
+
+#positiondiv {
+  position: relative;
+  border-radius: 3px;
+  width: 200px;
+  height: 167px;
+  left: 218px;
+  top: -249px;
+  border: 1px solid rgba(50, 50, 50, 1);
+}
+
+#position1 {
+  margin: 3px;
 }
