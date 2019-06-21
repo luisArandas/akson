@@ -45,7 +45,7 @@
 
 <body>
   <!--<div id="arr" class="arr"></div>-->
-  <!-- Check entrances in the system \\ Check also the -->
+  <!-- Check entrances in the system \\ Check also the \\ https://tonejs.github.io/docs/r13/AutoWah-->
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -457,7 +457,7 @@
               <div id="noiseq" class="noiseq"></div>
             </div>
             <div id="sliderBox26" class="sliderBox26">
-              <div id="ok27">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Playback Rate:</div>
+              <div id="ok27">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Noise Playback Rate:</div>
               <div id="n27">0.500</div>
               <div id="noiseOnePlaybackRate" class="noiseOnePlaybackRate"></div>
             </div>
@@ -469,12 +469,13 @@
             <button type="button" class="btn btn-secondary buttonColor btny" onClick="noiseType('brown')">Brown</button>
             <button type="button" class="btn btn-secondary buttonColor btny" onClick="noiseType('pink')">Pink</button>
           </div>
+
           </div>
           <div id="positiondiv" class="positiondiv">
             <div id="position1" class="position1">
             </div>
           </div>
-          
+
           <div id="ui11">
             <div id="sliderBox32" class="sliderBox32">
               <div id="ok33">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Reverb Wet:</div>
@@ -522,7 +523,7 @@
               <div id="n36">0.500</div>
               <div id="phaserWet" class="phaserWet"></div>
             </div>
-            <div id="sliderBox36" class="sliderBox36">
+            <!--<div id="sliderBox36" class="sliderBox36">
               <div id="ok37">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Q:</div>
               <div id="n37">10</div>
               <div id="phaserQ" class="phaserQ"></div>
@@ -536,9 +537,8 @@
               <div id="ok39">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Phaser Base Frequency:</div>
               <div id="n39">350</div>
               <div id="phaserBaseFreq" class="phaserBaseFreq"></div>
-            </div>
+            </div>-->
           </div>
-
 
           <div id="ui14">
             AutoFilter Rolloff
@@ -560,22 +560,52 @@
           </div>
           <div id="ui16">
             Noise Frequency Time
-            <div class="btn-group-horizontal btn-group-sm buttonstwo" role="group" aria-label="ok">
+            <div class="btn-group-horizontal btn-group-sm buttonstwo buttonbig" role="group" aria-label="ok">
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2m')">2m</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4m')">4m</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('8m')">8m</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('16m')">16m</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('32m')">32m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('64m')">64m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('128m')">128m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('256m')">256m</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('512m')">512m</button>
+            <br>
+            <br>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2n')">2n</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4n')">4n</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('8n')">8n</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('16n')">16n</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('32n')">32n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('64n')">64n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('128n')">128n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('256n')">256n</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('512n')">512n</button>
+            <br>
+            <br>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2t')">2t</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4t')">4t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('6t')">6t</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('8t')">8t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('10t')">10t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('12t')">12t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('14t')">14t</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('16t')">16t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('18t')">18t</button>
+            <br>
+            <br>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('20t')">20t</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('32t')">32t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('64t')">64t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('128t')">128t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('256t')">256t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('512t')">512t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('1024t')">1024t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2048t')">2048t</button>
+            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4096t')">4096t</button>
+
+
+
           </div>
           </div>
         </div>

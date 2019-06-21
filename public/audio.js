@@ -265,11 +265,11 @@ var UI = {
 
   autoFilterFrequency: new Nexus.Slider('#autoFilterFrequency', {
     size: [191, 20],
-    min: 500,
-    max: 5000,
+    min: 0,
+    max: 100,
     step: 0.1,
     mode: 'absolute',
-    value: 500
+    value: 50
   }),
   /*noiseMin: new Nexus.Slider('#noiseMin', {
     size: [191, 20],
@@ -362,19 +362,19 @@ var UI = {
   phaserFreq: new Nexus.Slider('#phaserFreq', {
     size: [191, 20],
     min: 0,
-    max: 1,
+    max: 5000,
     step: 0.001,
     mode: 'absolute',
-    value: 0.5
+    value: 15
   }),
-  phaserOct: new Nexus.Slider('#phaserOct', {
+  /*phaserOct: new Nexus.Slider('#phaserOct', {
     size: [191, 20],
     min: 0,
     max: 10,
     step: 0.001,
     mode: 'absolute',
     value: 3
-  }),
+  }),*/
   phaserWet: new Nexus.Slider('#phaserWet', {
     size: [191, 20],
     min: 0,
@@ -383,7 +383,7 @@ var UI = {
     mode: 'absolute',
     value: 0.5
   }),
-  phaserQ: new Nexus.Slider('#phaserQ', {
+  /*phaserQ: new Nexus.Slider('#phaserQ', {
     size: [191, 20],
     min: 0,
     max: 50,
@@ -398,7 +398,7 @@ var UI = {
     step: 1,
     mode: 'absolute',
     value: 350
-  }),
+  }),*/
   jcreverbWet: new Nexus.Slider('#jcreverbWet', {
     size: [191, 20],
     min: 0,
@@ -801,7 +801,7 @@ UI.noiseOnePlaybackRate.on('change', function(v) {
   };
   socket.emit('uiSocketNoiseOnePlaybackRate', data);
   var _v = v.toFixed(2);
-  document.getElementById('n29').innerHTML = _v;
+  document.getElementById('n27').innerHTML = _v;
   printLogsDialog("Background Playback Rate: ", _v);
 });
 UI.autoFilterFrequency.on('change', function(v) {
@@ -1041,6 +1041,7 @@ UI.vibratoWet.on('change', function(v) {
 
 UI.phaserFreq.on('change', function(v) {
   phaser.frequency.value = v;
+  console.log(phaser);
   var data = {
     x: v,
     y: "phaserFreq"
@@ -1051,7 +1052,7 @@ UI.phaserFreq.on('change', function(v) {
   printLogsDialog("Phaser Frequency : ", _v);
 });
 
-UI.phaserOct.on('change', function(v) {
+/*UI.phaserOct.on('change', function(v) {
   phaser.octaves.value = v;
   var data = {
     x: v,
@@ -1061,7 +1062,7 @@ UI.phaserOct.on('change', function(v) {
   var _v = v.toFixed(2);
   document.getElementById('n38').innerHTML = _v;
   printLogsDialog("Phaser Octaves : ", _v);
-});
+});*/
 
 UI.phaserWet.on('change', function(v) {
   phaser.wet.value = v;
@@ -1075,7 +1076,7 @@ UI.phaserWet.on('change', function(v) {
   printLogsDialog("Phaser Wet : ", _v);
 });
 
-UI.phaserQ.on('change', function(v) {
+/*UI.phaserQ.on('change', function(v) {
   phaser.Q.value = v;
   var data = {
     x: v,
@@ -1097,7 +1098,7 @@ UI.phaserBaseFreq.on('change', function(v) {
   var _v = v.toFixed(0);
   document.getElementById('n39').innerHTML = _v;
   printLogsDialog("Phaser BaseFreq : ", _v);
-});
+});*/
 
 UI.jcreverbRoomsize.on('change', function(v) {
   jcreverb.roomSize.value = v;

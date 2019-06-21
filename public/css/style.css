@@ -687,7 +687,7 @@ h2 {
   width: 205px;
   height: 40px;
   left: 635px;
-  top: -247px;
+  top: -584px;
   text-align: center;
 
 }
@@ -699,7 +699,7 @@ h2 {
   width: 205px;
   height: 40px;
   left: 635px;
-  top: -240px;
+  top: -580px;
   text-align: center;
 
 }
@@ -708,15 +708,15 @@ h2 {
   background-color: rgba(10,10,10,1);
   border-radius: 3px;
   border: 1px solid rgba(50, 50, 50, 1);
-  width: 200px;
-  height: 100px;
-  left: 635px;
-  top: -735px;
+  width: 413px;
+  height: 163px;
+  left: 428px;
+  top: -575px;
   text-align: center;
 
 }
 .n {
-  width: 35px;
+  width: 42px;
   padding-top: 5px;
 }
 #ui17 {
@@ -1653,4 +1653,8 @@ audio {
 
 #position1 {
   margin: 3px;
+}
+
+.buttonbig {
+  margin: 5px;
 }
