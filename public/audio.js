@@ -42,7 +42,7 @@ var UI = {
     'size': [46, 45],
     'interaction': 'vertical',
     'mode': 'absolute', // "absolute" or "relative"
-    'min': -150,
+    'min': -30,
     'max': 0,
     'step': 0.1,
     'value': 0
@@ -51,7 +51,7 @@ var UI = {
     'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
-    'min': -150,
+    'min': -40,
     'max': 4,
     'step': 0.1,
     'value': -15
@@ -60,7 +60,7 @@ var UI = {
     'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
-    'min': -150,
+    'min': -50,
     'max': 0,
     'step': 0.1,
     'value': -12
@@ -1478,7 +1478,7 @@ var position1 = new Nexus.Position('#position1',{
   'mode': 'absolute',
   'x': 0,
   'minX': -5,
-  'maxX': 5,  1
+  'maxX': 5,
   'stepX': 0,
   'y': 0,
   'minY': -5,
