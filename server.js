@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
 const server = app.listen(process.env.PORT || 5000);
-//const portfinder = require('portfinder');
-
 app.use(express.static('public'));
 
-console.log("It's running Akson Environment on port 5000.");
+//const portfinder = require('portfinder');
+console.log("It's running Akson Environment on port 5000");
 
 var socket = require('socket.io');
 var io = socket(server);
@@ -15,10 +14,10 @@ io.sockets.on('connection', newConnection);
 var connections = 0;
 
 function newConnection(socket) {
-  console.log("New " + io.sockets.clients());
 
+  console.log("New " + io.sockets.clients());
   connections++;
-  console.log("new connection: " + socket.id);
+  console.log("New Connection: " + socket.id);
   console.log("There are currently " + connections + " connections");
   var socketid = socket.id;
   socket.broadcast.emit('socketid', socket.id);

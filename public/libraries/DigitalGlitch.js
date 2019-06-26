@@ -38,10 +38,10 @@ THREE.DigitalGlitch = {
 
 	fragmentShader: [
 		"uniform int byp;",//should we apply the glitch ?
-		
+
 		"uniform sampler2D tDiffuse;",
 		"uniform sampler2D tDisp;",
-		
+
 		"uniform float amount;",
 		"uniform float angle;",
 		"uniform float seed;",
@@ -50,14 +50,14 @@ THREE.DigitalGlitch = {
 		"uniform float distortion_x;",
 		"uniform float distortion_y;",
 		"uniform float col_s;",
-			
+
 		"varying vec2 vUv;",
-		
-		
+
+
 		"float rand(vec2 co){",
 			"return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);",
 		"}",
-				
+
 		"void main() {",
 			"if(byp<1) {",
 				"vec2 p = vUv;",

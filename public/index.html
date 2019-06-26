@@ -15,9 +15,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="libraries/NexusUI.js"></script>
   <script src="libraries/webcomponents.min.js"></script>
-  <link rel="stylesheet" href="css/iziToast.css">
   <script src="libraries/iziToast.js" type="text/javascript"></script>
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+  <link rel="stylesheet" href="css/iziToast.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC
   sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous">
 
@@ -45,7 +45,7 @@
 
 <body>
   <!--<div id="arr" class="arr"></div>-->
-  <!-- Check entrances in the system \\ Check also the \\ https://tonejs.github.io/docs/r13/AutoWah-->
+  <!-- Check entrances in the system \\ Check also the \\ METER OSC -->
   <div id="start">
     <div id="myProgress1">
       <div id="myProgress">
@@ -600,11 +600,9 @@
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('128t')">128t</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('256t')">256t</button>
             <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('512t')">512t</button>
-            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('1024t')">1024t</button>
-            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('2048t')">2048t</button>
-            <button type="button" class="btn btn-secondary buttonColor n" onClick="noiseOneFrequencyTime('4096t')">4096t</button>
-
-
+            <button type="button" class="btn btn-secondary buttonColor n p" onClick="noiseOneFrequencyTime('1024t')">1024t</button>
+            <button type="button" class="btn btn-secondary buttonColor n p" onClick="noiseOneFrequencyTime('2048t')">2048t</button>
+            <button type="button" class="btn btn-secondary buttonColor n p" onClick="noiseOneFrequencyTime('4096t')">4096t</button>
 
           </div>
           </div>
@@ -619,105 +617,105 @@
             </div>
             <div id="sliderBox40" class="sliderBox40">
               <div id="ok41">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene Two:</div>
-              <div id="n41">19</div>
+              <div id="n41">1.4</div>
               <div id="light2" class="light2"></div>
             </div>
             <div id="sliderBox41" class="sliderBox41">
               <div id="ok42">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene Three:</div>
-              <div id="n42">20</div>
+              <div id="n42">1.0</div>
               <div id="light3" class="light3"></div>
             </div>
             <div id="sliderBox42" class="sliderBox42">
               <div id="ok43">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Light Scene Four:</div>
-              <div id="n43">21</div>
+              <div id="n43">1.0</div>
               <div id="light4" class="light4"></div>
             </div>
           </div>
           <div id="ui18">
             <div id="sliderBox43" class="sliderBox43">
               <div id="ok44">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera Aspect:</div>
-              <div id="n44">22</div>
+              <div id="n44">1.0</div>
               <div id="cameraM3" class="cameraM3"></div>
             </div>
             <div id="sliderBox44" class="sliderBox44">
               <div id="ok45">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera Zoom:</div>
-              <div id="n45">23</div>
+              <div id="n45">0.8</div>
               <div id="cameraM2" class="cameraM2"></div>
             </div>
             <div id="sliderBox45" class="sliderBox45">
               <div id="ok46">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera FOV:</div>
-              <div id="n46">23</div>
+              <div id="n46">75</div>
               <div id="cameraM1" class="cameraM1"></div>
             </div>
             <div id="sliderBox46" class="sliderBox46">
               <div id="ok47">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Camera Near:</div>
-              <div id="n47">23</div>
+              <div id="n47">1.0</div>
               <div id="cameraM4" class="cameraM4"></div>
             </div>
           </div>
           <div id="ui19">
             <div id="sliderBox47" class="sliderBox47">
               <div id="ok48">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene One X:</div>
-              <div id="n48">22</div>
+              <div id="n48">1.00</div>
               <div id="camera1_1" class="camera1_1"></div>
             </div>
             <div id="sliderBox48" class="sliderBox48">
               <div id="ok49">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene One Y:</div>
-              <div id="n49">23</div>
+              <div id="n49">1.00</div>
               <div id="camera1_2" class="camera1_2"></div>
             </div>
             <div id="sliderBox49" class="sliderBox49">
               <div id="ok50">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene One Z:</div>
-              <div id="n50">23</div>
+              <div id="n50">1.00</div>
               <div id="camera1_3" class="camera1_3"></div>
             </div>
 
             <div id="sliderBox50" class="sliderBox50">
               <div id="ok51">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Two X:</div>
-              <div id="n51">22</div>
+              <div id="n51">1.00</div>
               <div id="camera2_1" class="camera2_1"></div>
             </div>
             <div id="sliderBox51" class="sliderBox51">
               <div id="ok52">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Two Y:</div>
-              <div id="n52">23</div>
+              <div id="n52">1.00</div>
               <div id="camera2_2" class="camera2_2"></div>
             </div>
             <div id="sliderBox52" class="sliderBox52">
               <div id="ok53">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Two Z:</div>
-              <div id="n53">23</div>
+              <div id="n53">1.00</div>
               <div id="camera2_3" class="camera2_3"></div>
             </div>
           </div>
           <div id="ui20">
             <div id="sliderBox53" class="sliderBox53">
               <div id="ok54">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Three X:</div>
-              <div id="n54">22</div>
+              <div id="n54">1.00</div>
               <div id="camera3_1" class="camera3_1"></div>
             </div>
             <div id="sliderBox54" class="sliderBox54">
               <div id="ok55">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Three Y:</div>
-              <div id="n55">23</div>
+              <div id="n55">1.00</div>
               <div id="camera3_2" class="camera3_2"></div>
             </div>
             <div id="sliderBox55" class="sliderBox55">
               <div id="ok56">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Three Z:</div>
-              <div id="n56">23</div>
+              <div id="n56">1.00</div>
               <div id="camera3_3" class="camera3_3"></div>
             </div>
 
             <div id="sliderBox56" class="sliderBox56">
               <div id="ok57">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Four X:</div>
-              <div id="n57">22</div>
+              <div id="n57">1.00</div>
               <div id="camera4_1" class="camera4_1"></div>
             </div>
             <div id="sliderBox57" class="sliderBox57">
               <div id="ok58">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Four Y:</div>
-              <div id="n58">23</div>
+              <div id="n58">1.00</div>
               <div id="camera4_2" class="camera4_2"></div>
             </div>
             <div id="sliderBox58" class="sliderBox58">
               <div id="ok59">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Scene Four Z:</div>
-              <div id="n59">23</div>
+              <div id="n59">1.00</div>
               <div id="camera4_3" class="camera4_3"></div>
             </div>
           </div>

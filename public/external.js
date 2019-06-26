@@ -43,52 +43,43 @@ function onMIDIMessage(event) {
   // Attack
   if (data[0] == 176 && data[1] == 8) {
     a = data[2];
-    _a = a.map(0,127,0,0.8);
-    UI.synthAttack._value.update(_a);
-    UI.synthAttack.render();
-    polySynth.set({
-      "envelope": {
-        "attack": _a
-      }
-    });
-    printLogsDialog("Synthesizer Attack : ", _a);
+    _a = a.map(0,127,0,6);
+    console.log(_a);
+    lightOne.intensity = _a;
+    lightTwo.intensity = _a;
+    lightThree.intensity = _a;
+    lightFour.intensity = _a;
+    //printLogsDialog("Synthesizer Attack : ", _a);
   }
-  // Decay
   if (data[0] == 176 && data[1] == 9) {
     a = data[2];
-    _a = a.map(0,127,0,1);
-    UI.synthDecay._value.update(_a);
+    _a = a.map(0,127,0.1,5);
+    console.log(_a);
+    camera.aspect = _a;
+    camera.updateProjectionMatrix();
+
+    /*UI.synthDecay._value.update(_a);
     UI.synthDecay.render();
     polySynth.set({
       "envelope": {
         "decay": _a
       }
     });
-    printLogsDialog("Synthesizer Decay : ", _a);
+    printLogsDialog("Synthesizer Decay : ", _a);*/
   }
   if (data[0] == 176 && data[1] == 10) {
     a = data[2];
-    _a = a.map(0,127,0,1);
-    UI.synthSustain._value.update(_a);
-    UI.synthSustain.render();
-    polySynth.set({
-      "envelope": {
-        "sustain": _a
-      }
-    });
-    printLogsDialog("Synthesizer Sustain : ", _a);
+    _a = a.map(0,127,0,2);
+    camera.zoom = _a;
+    camera.updateProjectionMatrix();
+    //printLogsDialog("Synthesizer Sustain : ", _a);
   }
   if (data[0] == 176 && data[1] == 12) {
     a = data[2];
-    _a = a.map(0,127,0,10);
-    UI.synthRelease._value.update(_a);
-    UI.synthRelease.render();
-    polySynth.set({
-      "envelope": {
-        "release": _a
-      }
-    });
-    printLogsDialog("Synthesizer Release : ", _a);
+    _a = a.map(0,127,1,1400);
+    camera.near = _a;
+    camera.updateProjectionMatrix();
+    //printLogsDialog("Synthesizer Release : ", _a);
   }
   if (data[0] == 176 && data[1] == 13) {
     a = data[2];
@@ -96,20 +87,10 @@ function onMIDIMessage(event) {
     UI.vibratoFrequency._value.update(_a);
     UI.vibratoFrequency.render();
     vibrato.frequency.value = _a;
-    printLogsDialog("Vibrato Frequenct : ", _a);
+    //printLogsDialog("Vibrato Frequency : ", _a);
   }
 
-  // Vibrato Freq
-  // Vibrato Depth
-  // Vibrato Wet
-  // Detune
-  // AF Freq
-  // AF BaseFreq
-  // AF Octaves
-  // AF Q
-  // Noise PBR
-  // Camera FOV
-  // Luzes
+
 }
 
 /*
@@ -227,8 +208,6 @@ function changeStateMidiUI(v) {
   }
 }
 
-//https://github.com/kchapelier/SimpleMidiInput.js/blob/master/README-MIDILEARN.md
-
 var onMIDIStarted = function(midi) {
   console.log('onMIDIStarted', midi);
   //smi.attach(midi);
@@ -264,14 +243,12 @@ var change = function(value) {
       change(value);
     }
   }
-});*/
-
-
+});
 
 synthAttack.addEventListener('change', function() {
   change(synthAttack.value);
 });
-
+*/
 
 
 

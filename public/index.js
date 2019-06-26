@@ -358,7 +358,7 @@ function init() {
       //console.log("Q");
 
       /* Audio Scene */
-
+      /*
       currentSynthesizer.volume.value = 0;
       UI.synthvolume._value.update(0);
       UI.synthvolume.render();
@@ -391,7 +391,7 @@ function init() {
       UI.vibratoDepth._value.update(0);
       UI.vibratoDepth.render();
       vibrato.depth.value = 0;
-
+      */
       isSceneOne = true;
       isSceneTwo = false;
       isSceneThree = false;
@@ -411,7 +411,7 @@ function init() {
       //console.log("W");
 
       /* Audio Scene */
-
+      /*
       currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
@@ -444,7 +444,7 @@ function init() {
       UI.vibratoDepth._value.update(0);
       UI.vibratoDepth.render();
       vibrato.depth.value = 0;
-
+      */
       /* ------------ */
 
       camera.position.x = 54;
@@ -470,7 +470,7 @@ function init() {
 
     if (event.which == "69") {
       console.log("E");
-
+      /*
       currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
@@ -501,7 +501,7 @@ function init() {
       vibrato.depth.value = 0;
 
 
-      /*currentSynthesizer.volume.value = -22.5;
+      //currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
       noiseOne.volume.value = 0;
@@ -530,8 +530,9 @@ function init() {
     }
 
     if (event.which == "82") {
+
       console.log("R")
-      currentSynthesizer.volume.value = 0;
+      /*currentSynthesizer.volume.value = 0;
       UI.synthvolume._value.update(0);
       UI.synthvolume.render();
       noiseOne.volume.value = -10;
@@ -550,6 +551,7 @@ function init() {
         "octaves": 2.6
       });
       noiseOne.playbackRate = 1;
+      */
       isSceneOne = false;
       isSceneTwo = false;
       isSceneThree = false;
@@ -691,6 +693,11 @@ function init() {
     if (event.which == "189") {
       $('#about1').trigger('click');
     }
+
+    if (event.which == "93") {
+      //document.getElementById('hide_id').style.cursor = 'none';
+      document.getElementsByTagName("html")[0].style.cursor = 'none !important';
+    }
   });
   var geometryk = new THREE.PlaneGeometry((windowWidth * 10), 450, 3);
   var materialk = new THREE.MeshBasicMaterial({
@@ -803,7 +810,7 @@ function onDocumentMouseMove(event) {
   if (isSceneThree === true){
     _mouseX = mouseX.map(0, window.innerWidth, 5, 15);
     _mouseY = mouseY.map(0, window.innerHeight, 5, 35);
-    noiseOne.playbackRate = _mouseX + 10;
+    //noiseOne.playbackRate = _mouseX + 10;
   }
 }
 
@@ -881,9 +888,9 @@ function onMouseDown(event) {
 function onMouseUp(event) {
   event.preventDefault();
   if (isSceneTwo === true){
-    var yes = Math.floor(Math.random() * 1) + 1;
-    parentTransformDois.rotation.y += (yes - parentTransformDois.rotation.y) * 0.001;
-    yes = (yes - parentTransformDois.rotation.x);
+    var e = Math.floor(Math.random() * 1) + 1;
+    parentTransformDois.rotation.y += (e - parentTransformDois.rotation.y) * 0.001;
+    e = (e - parentTransformDois.rotation.x);
     var i = [
     '4m',
     '8m',
@@ -998,9 +1005,9 @@ function render() {
       rz = Math.sin(time * 0.2) * 0.5;
     camera.position.x += (mouseX - camera.position.x) * 0.05;
     camera.position.y += (-mouseY - camera.position.y) * 0.05;
-    autoFilterOne.set({
+    /*autoFilterOne.set({
       "octaves": rx + 1
-    });
+    });*/
     camera.lookAt(scene.position);
     parentTransformTres.rotation.x = rx;
     parentTransformTres.rotation.y = ry;

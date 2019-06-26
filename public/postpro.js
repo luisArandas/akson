@@ -117,7 +117,6 @@ var cameraM2 = new Nexus.Slider('#cameraM2', {
 });
 cameraM2.on('change', function(e) {
   camera.zoom = e;
-  console.log(camera.zoom);
   camera.updateProjectionMatrix();
   var data = {
     x: e,
@@ -154,7 +153,7 @@ var cameraM4 = new Nexus.Slider('#cameraM4', {
   'size': [191, 20],
   'mode': 'absolute',
   'min': 1,
-  'max': 2000,
+  'max': 1400,
   'step': 0.001,
   'value': 1
 });

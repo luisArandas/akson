@@ -456,11 +456,14 @@ for (var key in UI) {
   });
 }
 
+
+var panner = new Tone.Panner3D().toMaster();
+
 var autoFilterOne = new Tone.AutoFilter({
   "frequency": "8m",
   "min": 800,
   "max": 15000
-}).connect(Tone.Master);
+}).connect(panner);//connect(Tone.Master);
 
 var jcreverb = new Tone.JCReverb(0.0).connect(autoFilterOne);
 jcreverb.wet.value = 0;
@@ -1472,16 +1475,24 @@ function incrementValue() {
 
 var position1 = new Nexus.Position('#position1',{
   'size': [192,159],
-  'mode': 'absolute',  // "absolute" or "relative"
-  'x': 0.5,  // initial x value
-  'minX': 0,
-  'maxX': 1,
+  'mode': 'absolute',
+  'x': 0,
+  'minX': -5,
+  'maxX': 5,
   'stepX': 0,
-  'y': 0.5,  // initial y value
-  'minY': 0,
-  'maxY': 1,
+  'y': 0,
+  'minY': -5,
+  'maxY': 5,
   'stepY': 0
 });
 position1.on('change', function(v) {
-  console.log(v);
+  panner.positionX = v.x;
+  console.log(panner.positionY);
+  //_vy = v.y + 5;
+  //console.log("x " + _vx);
+  //console.log("y " + _vy);
+  //panner.positionX = v.x;
+  //panner.positionY = v.y;
+  //console.log("posx " + panner.positionX);
+  //console.log("posy " + panner.positionY);
 });
