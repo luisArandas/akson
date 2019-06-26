@@ -42,7 +42,7 @@ var UI = {
     'size': [46, 45],
     'interaction': 'vertical',
     'mode': 'absolute', // "absolute" or "relative"
-    'min': -30,
+    'min': -300,
     'max': 0,
     'step': 0.1,
     'value': 0
@@ -51,7 +51,7 @@ var UI = {
     'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
-    'min': -40,
+    'min': -300,
     'max': 4,
     'step': 0.1,
     'value': -15
@@ -60,7 +60,7 @@ var UI = {
     'size': [46, 45],
     'interaction': 'vertical', // "radial", "vertical", or "horizontal"
     'mode': 'absolute', // "absolute" or "relative"
-    'min': -50,
+    'min': -300,
     'max': 0,
     'step': 0.1,
     'value': -12
