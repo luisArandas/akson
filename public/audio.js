@@ -456,7 +456,6 @@ for (var key in UI) {
   });
 }
 
-
 var panner = new Tone.Panner3D().toMaster();
 
 var autoFilterOne = new Tone.AutoFilter({

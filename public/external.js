@@ -84,10 +84,28 @@ function onMIDIMessage(event) {
   if (data[0] == 176 && data[1] == 13) {
     a = data[2];
     _a = a.map(0,127,0,15);
-    UI.vibratoFrequency._value.update(_a);
-    UI.vibratoFrequency.render();
-    vibrato.frequency.value = _a;
     //printLogsDialog("Vibrato Frequency : ", _a);
+  }
+  if (data[0] == 176 && data[1] == 53) {
+    a = data[2];
+    _a = a.map(0,127,0,100);
+    autoFilterOne.set({
+      "frequency": _a
+    });
+  }
+  if (data[0] == 176 && data[1] == 54) {
+    a = data[2];
+    _a = a.map(0,127,100,1000);
+    autoFilterOne.set({
+      "baseFrequency": _a
+    });
+  }
+  if (data[0] == 176 && data[1] == 55) {
+    a = data[2];
+    _a = a.map(0,127,-2.5,8);
+    autoFilterOne.set({
+      "octaves": _a
+    });
   }
 
 

@@ -1,7 +1,7 @@
 html * {
    font-weight: 10;
    font-size: 8px;
-   cursor: cell !important;
+   /*cursor: cell !important;*/
    transition: background-color .5s;
    overflow-x: hidden !important;
    overflow-y: hidden !important;

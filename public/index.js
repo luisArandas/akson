@@ -354,6 +354,14 @@ function init() {
     if (event.which == "32") {
       triggerGUI();
     }
+    if (event.which == "221") {
+      document.body.requestPointerLock();
+      console.log(document.body.requestPointerLock());
+    }
+    if (event.which == "220") {
+      document.exitPointerLock();
+      console.log(document.exitPointerLock());
+    }
     if (event.which == "81") {
       //console.log("Q");
 
