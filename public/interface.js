@@ -7,6 +7,7 @@
  *  between Braga Media Arts and the University of Porto © 2019
  */
 
+/* Instancing the Dialogs */
 
 window.WUI_Reporting = true;
 

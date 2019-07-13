@@ -7,6 +7,8 @@
  *  between Braga Media Arts and the University of Porto © 2019
  */
 
+/* Startup Functions */
+
 $(document).ready(function() {
   placeGraphicalInterface();
   fadeIn();
@@ -57,6 +59,8 @@ $(document).ready(function() {
   elem.style.position = 'absolute';
   elem.style.bottom = '0px';*/
 });
+
+/* Place the GUI */
 
 function placeGraphicalInterface(){
   $('.wui-dialog-btn').trigger('click');
@@ -157,6 +161,8 @@ var strDownloadMime = "image/octet-stream";
 init();
 animate();
 
+
+
 function init() {
   socket = io.connect(window.location.origin);
   socket.on('mouse', clickStream);
@@ -222,7 +228,7 @@ function init() {
   controls.maxPolarAngle = Math.PI / 2;
   controls.enabled = false;
 
-  /* ----------------------------------------------------------------------------------------- */
+  /* First Scene Setup */
 
   parentTransform = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
@@ -242,9 +248,7 @@ function init() {
   parentTransform.add(lightOne);
   scene.add(parentTransform);
 
-
-  /* ----------------------------------------------------------------------------------------- */
-
+  /* Second Scene Setup */
 
   parentTransformDois = new THREE.Object3D();
   for (var i = 0; i < vertices.length; i++) {
@@ -277,8 +281,7 @@ function init() {
   lightTwo.position.set(1, 1, 1).normalize();
   parentTransformDois.add(lightTwo);
 
-
-  /* ----------------------------------------------------------------------------------------- */
+  /* Third Scene Setup */
 
   parentTransformTres = new THREE.Object3D();
   for (var i = 0; i < 50; i++) {
@@ -297,7 +300,7 @@ function init() {
   lightThree.position.set(1, 1, 1).normalize();
   parentTransformTres.add(lightThree);
 
-  /* ----------------------------------------------------------------------------------------- */
+  /* Fourth Scene Setup */
 
   parentTransformQuatro = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
@@ -332,6 +335,8 @@ function init() {
   }, false);
 
   document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+  /* Shader Composer Setup */
 
   composerOne = new THREE.EffectComposer(renderer);
   composerOne.addPass(new THREE.RenderPass(scene, camera));
@@ -368,10 +373,10 @@ function init() {
       console.log(document.exitPointerLock());
     }
     if (event.which == "81") {
-      //console.log("Q");
 
-      /* Audio Scene */
-      /*
+      /* Audio First Scene Feedback
+
+      console.log("Q");
       currentSynthesizer.volume.value = 0;
       UI.synthvolume._value.update(0);
       UI.synthvolume.render();
@@ -405,6 +410,7 @@ function init() {
       UI.vibratoDepth.render();
       vibrato.depth.value = 0;
       */
+
       isSceneOne = true;
       isSceneTwo = false;
       isSceneThree = false;
@@ -421,10 +427,10 @@ function init() {
       scene.remove(parentTransformQuatro);
     }
     if (event.which == "87") {
-      //console.log("W");
 
-      /* Audio Scene */
-      /*
+      /* Audio Second Scene Feedback
+
+      console.log("W");
       currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
@@ -449,16 +455,13 @@ function init() {
       UI.noiseOnePlaybackRate._value.update(1);
       UI.noiseOnePlaybackRate.render();
       noiseOne.playbackRate = 1;
-
       UI.vibratoFrequency._value.update(0);
       UI.vibratoFrequency.render();
       vibrato.frequency.value = 0;
-
       UI.vibratoDepth._value.update(0);
       UI.vibratoDepth.render();
       vibrato.depth.value = 0;
       */
-      /* ------------ */
 
       camera.position.x = 54;
       camera.position.y = 54;
@@ -482,8 +485,10 @@ function init() {
     }
 
     if (event.which == "69") {
+
+      /* Audio Third Scene Feedback
+
       console.log("E");
-      /*
       currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
@@ -504,17 +509,13 @@ function init() {
       UI.noiseOnePlaybackRate._value.update(1);
       UI.noiseOnePlaybackRate.render();
       noiseOne.playbackRate = 1;
-
       UI.vibratoFrequency._value.update(0);
       UI.vibratoFrequency.render();
       vibrato.frequency.value = 0;
-
       UI.vibratoDepth._value.update(0);
       UI.vibratoDepth.render();
       vibrato.depth.value = 0;
-
-
-      //currentSynthesizer.volume.value = -22.5;
+      currentSynthesizer.volume.value = -22.5;
       UI.synthvolume._value.update(-22.5);
       UI.synthvolume.render();
       noiseOne.volume.value = 0;
@@ -527,8 +528,8 @@ function init() {
         "filter": {
           "rolloff": -24
         }
-      });*/
-
+      });
+      */
       isSceneOne = false;
       isSceneTwo = false;
       isSceneThree = true;
@@ -544,8 +545,10 @@ function init() {
 
     if (event.which == "82") {
 
-      console.log("R")
-      /*currentSynthesizer.volume.value = 0;
+      /* Audio Second Scene Feedback
+
+      console.log("R");
+      currentSynthesizer.volume.value = 0;
       UI.synthvolume._value.update(0);
       UI.synthvolume.render();
       noiseOne.volume.value = -10;
@@ -565,6 +568,7 @@ function init() {
       });
       noiseOne.playbackRate = 1;
       */
+
       isSceneOne = false;
       isSceneTwo = false;
       isSceneThree = false;
@@ -577,140 +581,162 @@ function init() {
       scene.remove(parentTransformDois);
       scene.remove(parentTransformTres);
     }
+
+    /* Interaction Model Keyboard Trigger */
+
     if (event.which == "72") {
-      //stateButtonThree
       changeState("descenter");
-      console.log("descenter Method");
+      printPhraseDialog("Changed to <i>descenter</i> mode");
     }
     if (event.which == "74") {
       changeState("streamed");
-      console.log("streamed Method");
+      printPhraseDialog("Changed to <i>streamed</i> mode");
     }
     if (event.which == "75") {
       changeState("alocate");
-      console.log("alocate Method");
+      printPhraseDialog("Changed to <i>allocate</i> mode");
     }
     if (event.which == "76") {
       changeState("alone");
-      console.log("alone Method");
+      printPhraseDialog("Changed to <i>alone</i> mode");
     }
-    /* Shaders */
+
+    /* Shader Keyboard Trigger */
+
     if (event.which == "67") {
       $('#shader0').trigger('click');
-      console.log("shader_none");
+      printPhraseDialog("No shader is currently being used as Post-Processing");
     }
     if (event.which == "86") {
       $('#shader1').trigger('click');
-      console.log("shader_1");
+      printPhraseDialog("Currently using <i>Glitch</i> shader");
     }
     if (event.which == "66") {
       $('#shader2').trigger('click');
-      console.log("shader_2");
+      printPhraseDialog("Currently using <i>Noise</i> shader");
     }
     if (event.which == "78") {
       $('#shader3').trigger('click');
-      console.log("shader_3");
+      printPhraseDialog("Currently using <i>Reverb</i> shader");
     }
     if (event.which == "77") {
       $('#shader4').trigger('click');
-      console.log("shader_4");
+    printPhraseDialog("Currently using <i>Vignette</i> shader");
     }
-    /* Presets */
+
+    /* Preset Keyboard Trigger */
+
     if (event.which == "65") {
       $('#preset1').trigger('click');
-      console.log("#preset1");
+      printPhraseDialog("Using the first instrument preset");
     }
     if (event.which == "83") {
       $('#preset2').trigger('click');
-      console.log("#preset2");
+      printPhraseDialog("Using the second instrument preset");
     }
     if (event.which == "68") {
       $('#preset3').trigger('click');
-      console.log("#preset3");
+      printPhraseDialog("Using the third instrument preset");
     }
     if (event.which == "70") {
       $('#preset4').trigger('click');
-      console.log("#preset4");
+      printPhraseDialog("Using the fourth instrument preset");
     }
     if (event.which == "71") {
       $('#preset5').trigger('click');
-      console.log("#preset5");
+      printPhraseDialog("Using the fifth instrument preset");
     }
-    /* TopBar */
+
+    /* Preset Keyboard Trigger */
+
     if (event.which == "89") {
       $('#top1').trigger('click');
-      console.log("#barra1");
+      printPhraseDialog("Triggered the top bar first button");
     }
     if (event.which == "85") {
       $('#top2').trigger('click');
-      console.log("#barra2");
+      printPhraseDialog("Triggered the top bar second button");
     }
     if (event.which == "73") {
       $('#top3').trigger('click');
-      console.log("#barra3");
+      printPhraseDialog("Triggered the top bar third button");
     }
     if (event.which == "79") {
       $('#top4').trigger('click');
-      console.log("#barra4");
+      printPhraseDialog("Triggered the top bar fourth button");
     }
     if (event.which == "80") {
       $('#top5').trigger('click');
-      console.log("#barra5");
+      printPhraseDialog("Triggered the top bar fifth button");
     }
-    /* OpenClose */
+
+    /* On/Off Keyboard Trigger */
+
     if (event.which == "90") {
       $('#close1').trigger('click');
-      console.log("#barra4");
+      printPhraseDialog("Closed the Scene by the Keyboard.");
     }
     if (event.which == "88") {
       $('#open1').trigger('click');
-      console.log("#barra5");
+      printPhraseDialog("Opened the Scene by the Keyboard");
     }
-    /* Scales */
+
+    /* Scales Keyboard Trigger  */
+
     if (event.which == "192") {
       $('#scalesButton1').trigger('click');
+      printPhraseDialog("Triggered the top bar fifth button");
     }
     if (event.which == "49") {
       $('#penta1').trigger('click');
+      printPhraseDialog("Using C Major Pentatonic");
     }
     if (event.which == "50") {
       $('#penta2').trigger('click');
+      printPhraseDialog("Using C Minor Pentatonic");
     }
     if (event.which == "51") {
       $('#major1').trigger('click');
+      printPhraseDialog("Using C Major");
     }
     if (event.which == "52") {
       $('#major2').trigger('click');
+      printPhraseDialog("Using C Minor");
     }
     if (event.which == "53") {
       $('#harmonic').trigger('click');
+      printPhraseDialog("Using C Harmonic Minor");
     }
     if (event.which == "54") {
       $('#melodic').trigger('click');
+      printPhraseDialog("Using C Melodic Minor");
     }
     if (event.which == "55") {
       $('#ionian').trigger('click');
+      printPhraseDialog("Using C Ionian");
     }
     if (event.which == "56") {
       $('#locrian').trigger('click');
+      printPhraseDialog("Using C Locrian");
     }
     if (event.which == "57") {
       $('#adonai').trigger('click');
+      printPhraseDialog("Using C Adonai");
     }
     if (event.which == "48") {
       $('#hirajoshi').trigger('click');
+      printPhraseDialog("Using C Hirajoshi");
     }
     if (event.which == "222") {
       $('#hungarian').trigger('click');
+      printPhraseDialog("Using C Hungarian");
     }
     if (event.which == "189") {
       $('#about1').trigger('click');
     }
 
-    if (event.which == "93") {
-      //document.getElementById('hide_id').style.cursor = 'none';
-      document.getElementsByTagName("html")[0].style.cursor = 'none !important';
-    }
+  /* Testing Planes on fourth Shader */
+
   });
   var geometryk = new THREE.PlaneGeometry((windowWidth * 10), 450, 3);
   var materialk = new THREE.MeshBasicMaterial({
@@ -726,9 +752,13 @@ function init() {
   plane2k.position.set(0, 670, 0);
 }
 
+/* Scheduling the Rendering */
+
 setInterval( function () {
   if ( ! document.webkitHidden ) requestAnimationFrame(animate);
 }, 1000 / 55 );
+
+/* Enable/Disable GUI */
 
 function triggerGUI(){
   if (sideBar == false) {
@@ -759,6 +789,8 @@ function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
+
+/* Animation Function */
 
 function animate() {
   parentTransformDois.rotation.y += 0.005;
@@ -797,7 +829,7 @@ function animate() {
   render();
 }
 
-// ------------------------- Sockets & Mouse -------------------------------
+/* Sockets and Musical Interaction */
 
 var data;
 var newScale = new ScalePlaying();
@@ -968,6 +1000,8 @@ function changeScene(data) {
   }
 }
 
+/* Device Type Check */
+
 function detectmob() {
   if (navigator.userAgent.match(/Android/i) ||
     navigator.userAgent.match(/webOS/i) ||
@@ -982,6 +1016,8 @@ function detectmob() {
     return false;
   }
 }
+
+/* Main Render Function */
 
 function render() {
   stats1.update();
@@ -1043,6 +1079,8 @@ function render() {
   }
 }
 
+/* Dynamic Scale Control */
+
 var customScale;
 customScale = scale;
 var _customScale;
@@ -1082,15 +1120,19 @@ $(document).mouseleave(function() {
   mouseDown = 0;
 });
 
+/* Scheduling Printing */
+
 function doStuff() {
   nrSeconds++;
   console.log("%c" + "Second [" + nrSeconds + "]", 'background: #000; color: #fff');
-  //if (nrSeconds === 10)
-  // topBar('refresh');
-  // Here to refresh automatically.
+  /*if (nrSeconds === 10)
+   topBar('refresh');
+   50000 is 50 seconds, not 5 minutes. 5 minutes would be 5 * 60 * 1000 = 300000
+   Here to refresh automatically.*/
 }
 setInterval(doStuff, 10000);
-//50000 is 50 seconds, not 5 minutes. 5 minutes would be 5 * 60 * 1000 = 300000
+
+/* Startup Animation */
 
 function Move() {
   var elem = document.getElementById("myBar");
@@ -1138,6 +1180,8 @@ function loadWarning(v) {
   }
 }
 
+/* Download Engine */
+
 function takeScreenshot() {
   var w = window.open('', '');
   w.document.title = "Screenshot";
@@ -1184,18 +1228,4 @@ function save3d() {
   var equiManaged = new CubemapToEquirectangular(renderer, true);
   equiManaged.update(camera, scene);
   printPhraseDialog("Saved to disk a 360 field of the Camera");
-}
-function saveVideo(v) {
-  if (v === '1') {
-    console.log("ok1");
-    capturer.start();
-  }
-  if (v === '2') {
-    console.log("ok2");
-    capturer.stop();
-    capturer.save();
-  }
-  if (v === '3') {
-    console.log("ok3");
-  }
 }

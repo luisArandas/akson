@@ -7,7 +7,7 @@
  *  between Braga Media Arts and the University of Porto © 2019
  */
 
-/* Graphics Post Production */
+/* Graphics GUI Connection */
 
 var w = window.innerWidth;
 var h = window.innerHeight;
@@ -345,6 +345,8 @@ function camOffsetDefault(a) {
   }
 }
 
+/* About Dialog Device Info */
+
 var a1 = "Effective Bandwidth Estimate: " + navigator.connection.downlink + " MB/s" + '<br>';
 var a2 = "Max Download Speed: " + navigator.connection.downlinkMax + " MB/s" + '<br>';
 var a3 = "Effective Connection Type: " + navigator.connection.effectiveType + " MB/s" + '<br>';
@@ -380,6 +382,21 @@ var a25 = "Platform ProductSub: " + navigator.productSub + "<br>";
 var a26 = "Platform: " + navigator.platform + "<br>";
 var a27 = "Navigator Languages: " + navigator.languages + "<br>";
 
+function aboutDevice(){
+  var netinfo = "Network Info <br>";
+  var _netinfo = netinfo.fontsize(15);
+  var audioinfo = "<br> <br>Audio Info <br>";
+  var _audioinfo = audioinfo.fontsize(15);
+  var graphicsinfo = "<br> Graphics Info <br>";
+  var _graphicsinfo = graphicsinfo.fontsize(15);
+
+  document.getElementById('machineInfo').innerHTML += _netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
+  WUI_Dialog.open("about_this_dialog");
+  printPhraseDialog("<i>System</i> dialog is Open");
+}
+
+/* Scene On/Off Cortex */
+
 function onoffScene(a) {
   if (a === 'kill') {
     camera.near = 0;
@@ -401,20 +418,7 @@ function onoffScene(a) {
   }
 }
 
-function aboutDevice(){
-  var netinfo = "Network Info <br>";
-  var _netinfo = netinfo.fontsize(15);
-  var audioinfo = "<br> <br>Audio Info <br>";
-  var _audioinfo = audioinfo.fontsize(15);
-  var graphicsinfo = "<br> Graphics Info <br>";
-  var _graphicsinfo = graphicsinfo.fontsize(15);
-
-  document.getElementById('machineInfo').innerHTML += _netinfo + a1 + a2 + a3 + a4 + a5 + a6 + audioinfo + a7 + a9 + a10 + a11 + a12 + a13 + a14 + graphicsinfo + a15 + a16 + a17 + a18 + a19 + a20 + a21 + a22 + a23 + a24 + a25 + a26 + a27;
-  WUI_Dialog.open("about_this_dialog");
-  printPhraseDialog("<i>System</i> dialog is Open");
-}
-
-/* PostPro */
+/* PostPro Tab GUI Setup */
 
 var camera1_1 = new Nexus.Slider('#camera1_1', {
   'size': [191, 20],
@@ -672,64 +676,7 @@ camera4_3.on('change', function(e) {
   printLogsDialog("Scene Four Z Scale: ", _v);
 });
 
-/* Fazer 4 luzes diferentes */
-
-// If needed
-/*
-var camera2 = new Nexus.Dial('#camera2', {
-  'size': [40, 40],
-  'interaction': 'vertical',
-  'mode': 'absolute', // "absolute" or "relative"
-  'min': 0.8,
-  'max': 1.2,
-  'step': 0.0001,
-  'value': 0
-});
-camera2.on('change', function(e) {
-  parentTransformDois.scale.x = e;
-  parentTransformDois.scale.y = e;
-  parentTransformDois.scale.z = e;
-});
-
-var camera3 = new Nexus.Dial('#camera3', {
-  'size': [40, 40],
-  'interaction': 'vertical',
-  'mode': 'absolute', // "absolute" or "relative"
-  'min': 0.8,
-  'max': 3,
-  'step': 0.0001,
-  'value': 0
-});
-camera3.on('change', function(e) {
-  parentTransformTres.scale.x = e;
-  parentTransformTres.scale.y = e;
-  parentTransformTres.scale.z = e;
-});
-
-var camera4 = new Nexus.Dial('#camera4', {
-  'size': [40, 40],
-  'interaction': 'vertical',
-  'mode': 'absolute', // "absolute" or "relative"
-  'min': 0.8,
-  'max': 3,
-  'step': 0.0001,
-  'value': 0
-});
-camera4.on('change', function(e) {
-  parentTransformQuatro.scale.x = e;
-  parentTransformQuatro.scale.y = e;
-  parentTransformQuatro.scale.z = e;
-});
-afterimagePass.renderToScreen = false;
-     effectSobel.renderToScreen = false;
-     pixelPass.renderToScreen = false;
-     glitchPass.goWild = false;
-     if (glitchPass.renderToScreen == false) {
-       renderPostOne = true;
-       glitchPass.renderToScreen = true;
-     }
-*/
-
+/* Shader Control Function */
 
 function shaderCortex(data) {
   if (data === "shader0") {
@@ -737,13 +684,11 @@ function shaderCortex(data) {
     renderPostTwo = false;
     renderPostThree = false;
     renderPostFour = false;
-
     scene2.remove(planek);
     scene2.remove(plane2k);
-
     glitchPass.goWild = false;
     glitchPass.renderToScreen = false;
-
+    
     document.getElementById("shader0").style.background = "white";
     document.getElementById("shader0").style.color = "black";
     document.getElementById("shader1").style.background = "black";
@@ -756,10 +701,7 @@ function shaderCortex(data) {
     document.getElementById("shader4").style.color = "white";
     printPhraseDialog("No shader is currently being used as Post-Processing");
   }
-
   if (data === "shader1") {
-    console.log("ok");
-
     renderPostOne = true;
     renderPostTwo = false;
     renderPostThree = false;
@@ -767,7 +709,6 @@ function shaderCortex(data) {
     console.log(renderPostOne);
     scene2.remove(planek);
     scene2.remove(plane2k);
-
     glitchPass.goWild = false;
     glitchPass.renderToScreen = true;
     afterimagePass.renderToScreen = false;
@@ -784,16 +725,13 @@ function shaderCortex(data) {
     document.getElementById("shader4").style.color = "white";
     printPhraseDialog("Currently using <i>Glitch</i> shader");
   }
-
   if (data === "shader2") {
     renderPostOne = true;
     renderPostTwo = false;
     renderPostThree = false;
     renderPostFour = false;
-
     scene2.remove(planek);
     scene2.remove(plane2k);
-
     glitchPass.goWild = true;
     glitchPass.renderToScreen = true;
     afterimagePass.renderToScreen = false;
@@ -816,10 +754,8 @@ function shaderCortex(data) {
     renderPostTwo = true;
     renderPostThree = false;
     renderPostFour = false;
-
     scene2.remove(planek);
     scene2.remove(plane2k);
-
     glitchPass.goWild = false;
     glitchPass.renderToScreen = false;
     afterimagePass.renderToScreen = true;
@@ -835,15 +771,12 @@ function shaderCortex(data) {
     document.getElementById("shader4").style.background = "black";
     document.getElementById("shader4").style.color = "white";
     printPhraseDialog("Currently using <i>Reverb</i> shader");
-
   }
   if (data === "shader4") {
-
     renderPostOne = false;
     renderPostTwo = false;
     renderPostThree = false;
     renderPostFour = false;
-
     glitchPass.goWild = false;
     glitchPass.renderToScreen = false;
     afterimagePass.renderToScreen = true;
@@ -865,9 +798,9 @@ function shaderCortex(data) {
   }
 }
 
-/* This might be important anytime soon
-First scene with line buffer geometry. xCoAx maybe will need this
+/* Unused Graphical Scene */
 
+/*
   var lineGeometry = new THREE.BufferGeometry();
   var points = [];
   var point = new THREE.Vector3();
@@ -893,4 +826,5 @@ First scene with line buffer geometry. xCoAx maybe will need this
     object.rotation.y = Math.random() * 2 * Math.PI;
     object.rotation.z = Math.random() * 2 * Math.PI;
     parentTransformSete.add(object);
-  }*/
+  }
+  */

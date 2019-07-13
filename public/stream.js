@@ -24,9 +24,6 @@ var h = window.innerHeight;
 var fullWidth = w * 3;
 var fullHeight = h * 2;
 
-
-/* Make this */
-
 var isAlocatingSynth = false;
 var isAlocatingBack = false;
 var isAlocatingGraphs = false;
@@ -39,6 +36,8 @@ for (var i = 0; i < values.length; ++i) {
 socket.on('changeStream', streamCortex);
 var modalAlocate = document.getElementById('modalAlocate');
 
+/* Print Streaming Dialogs on Console */
+
 function printStreamingLogsDialog(a, v) {
   var logs = document.getElementById('logs'),
     output_node = document.createElement("div");
@@ -46,6 +45,8 @@ function printStreamingLogsDialog(a, v) {
   logs.appendChild(output_node);
   logs.scrollTop = logs.scrollHeight;
 }
+
+/* Socket Setup Recv */
 
 socket.on('uiSocketSynthVolume', function(data) {
   if (isStreaming == true) {
@@ -961,6 +962,7 @@ socket.on('uiSocketScene12', function(data) {
   }
 });
 
+/* State Changes */
 
 function changeState(v) {
   socket.emit('someoneChangedState', v);
@@ -1032,6 +1034,8 @@ function changeState(v) {
 }
 
 function streamCortex() {}
+
+/* Flow of the Allocate Method */
 
 function alocateCortex(v) {
   if (isAlocating === true) {
@@ -1123,25 +1127,18 @@ function alocateCortex(v) {
   }
 }
 
+/* Remote Feedback from User Actions */
 
 socket.on('socketid', function(socketid) {
   if (isAlocating == true) {
-    console.log("SocketID " + socketid);
+    printPhraseDialog("The following id is in this method: " + socketid);
   }
 });
 socket.on('socketnumber', function(connections) {
   if (isAlocating == true) {
-    console.log("Connections " + connections);
+    printPhraseDialog("There are " + socketid + " connections");
   }
 });
-
-/*function printMonitorDialog(a, v) {
-  var logs = document.getElementById('logs'),
-    output_node = document.createElement("div");
-  output_node.innerHTML = a + v;
-  logs.appendChild(output_node);
-  logs.scrollTop = logs.scrollHeight;
-}*/
 
 socket.on("someoneChangedState", someoneChangedState);
 

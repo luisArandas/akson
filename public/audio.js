@@ -7,6 +7,8 @@
  *  between Braga Media Arts and the University of Porto © 2019
  */
 
+/* Context Setup */
+
 var spanAbout = document.getElementsByClassName("closeAbout")[0];
 var spanMode = document.getElementsByClassName("closeMode")[0];
 var spanScale = document.getElementsByClassName("closeScale")[0];
@@ -38,6 +40,8 @@ Tone.Transport.start();
 Number.prototype.map = function(in_min, in_max, out_min, out_max) {
   return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
+
+/* GUI Setup */
 
 var UI = {
   oscilloscope: new Nexus.Oscilloscope('#oscilloscope', {
@@ -461,6 +465,8 @@ for (var key in UI) {
   });
 }
 
+/* Generators and Filters Setup */
+
 var panner = new Tone.Panner3D().toMaster();
 
 var autoFilterOne = new Tone.AutoFilter({
@@ -508,9 +514,8 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     modulationIndex: 3,
     harmonicity: 3.4
     /*
-    THIS
-    phase  : 0 ,
-    osc.phase = 180; //flips the phase of the oscillator
+    phase: 0 ,
+    osc.phase: 180; //flips the phase of the oscillator
     */
   },
   envelope: {
@@ -531,9 +536,7 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
 });
 polySynth.connect(vibrato);
 
-
-/* ---------------------------- NEXUS ---------------------------- */
-
+/* Nexus Setup */
 
 UI.oscilloscope.connect(Tone.Master);
 
@@ -1131,10 +1134,9 @@ UI.jcreverbWet.on('change', function(v) {
   printLogsDialog("JC_Reverb Wet : ", _v);
 });
 
-//console.log(autoFilterOne);
-//autofilter filter type  The type of the filter. Types: “lowpass”, “highpass”, “bandpass”, “lowshelf”, “highshelf”, “notch”, “allpass”, or “peaking”.
+/* AF The type of the filter. Types: “lowpass”, “highpass”, “bandpass”, “lowshelf”, “highshelf”, “notch”, “allpass”, or “peaking” */
 
-/*------------------------------------------------- BUTTON FUNCTIONS -----------------------------------------------------------*/
+/* Top Bar Function Flow */
 
 function topBar(data) {
 
@@ -1190,6 +1192,8 @@ window.onclick = function(event) {
   }
 }
 
+/* GUI Visibility */
+
 function openGui() {
   WUI_Dialog.open("master_dialog");
   WUI_Dialog.open("cockpit_dialog");
@@ -1206,6 +1210,8 @@ function closeGui() {
   WUI_Dialog.close("about_this_dialog");
   document.getElementById("topBar").style.visibility = "hidden";
 }
+
+/* Sonic Properties Variables */
 
 function synthWave(data) {
   polySynth.set({
@@ -1293,7 +1299,7 @@ function autofilterWave(data) {
   }
 }
 
-//--------------------------------------------------------------------- Print Logs
+/* Logs Function for Dynamic Print */
 
 function printLogsDialog(a, v) {
   var logs = document.getElementById('logs'),
@@ -1311,7 +1317,7 @@ function printPhraseDialog(a) {
   logs.scrollTop = logs.scrollHeight;
 }
 
-//--------------------------------------------------------------------- Scales
+/* Scale Buttons Setup */
 
 function scaleButtons(data) {
   if (document.getElementById(data).style.background != "white") {
@@ -1366,6 +1372,7 @@ function flipPhase(a) {
   printPhraseDialog("Changed Synthesizer Phase to: " + data + "º");
 }
 
+/* MediaRecorder API Setup */
 
 const audio = document.querySelector('audio');
 const actx = Tone.context;
@@ -1393,6 +1400,8 @@ recorder.onstop = evt => {
   });
   audio.src = URL.createObjectURL(blob);
 }
+
+/* Preset Sonic Qualities */
 
 function postPresets(v){
   if (v === "1"){
@@ -1439,6 +1448,8 @@ function postPresets(v){
     printPhraseDialog("Currently Using Preset Five");
   }
 }
+
+/* Scene Change Variable */
 
 var sceneValue = 0;
 

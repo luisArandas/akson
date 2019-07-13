@@ -7,6 +7,9 @@
  *  between Braga Media Arts and the University of Porto © 2019
  */
 
+
+/* Tone Markov Exploration */
+
 var cadeiaUm = new Tone.CtrlMarkov({
   "C3": [{
       "value": "C3",
@@ -48,7 +51,6 @@ var cadeiaUm = new Tone.CtrlMarkov({
 */
 
 cadeiaUm.value = "C3";
-
 function markovNote() {
   console.log(cadeiaUm.next());
   cadeiaUm.value = "C3";
@@ -68,8 +70,9 @@ var chain = new Tone.CtrlMarkov({
   "middle": "end"
 });
 chain.value = "beginning";
-//chain.next(); //returns "end" with 80% probability or "middle" with 20%.
-*/
+chain.next(); //returns "end" with 80% probability or "middle" with 20%. */
+
+/* Akson Scales Setup */
 
 var colorMajorPentatonic = ["#c2, #d2, #e2, #g2, #a2, #c3, #d3, #e3, #g3, #a3, #c4, #d4, #e4, #g4, #a4, #c5, #d5, #e5, #g5, #a5"];
 var colorMinorPentatonic = ["#c2, #ds2, #f2, #g2, #as2, #c3, #ds3, #f3, #g3, #as3, #c4, #ds4, #f4, #g4, #as4, #c5, #ds5, #f5, #g5, #as5"];
@@ -349,72 +352,3 @@ class ScalePlaying {
     return ['C2', 'C#2', 'D#2', 'F2', 'F#2', 'G#2', 'A#2', 'C3', 'C#3', 'D#3', 'F3', 'F#3', 'G#3', 'A#3', 'C4', 'C#4', 'D#4', 'F4', 'F#4', 'G#4', 'A#4', 'C5', 'C#5', 'D#5', 'F5', 'F#5', 'G#5', 'A#5'];
   }
 }
-
-
-/* Also check chords */
-//https://feelyoursound.com/scale-chords/f-major-pentatonic/
-
-/*
-var list = ["bar", "baz", "foo", "qux"];
-var note = 'foo';
-list.splice(list.indexOf(note), 1);
-console.log(list);*/
-
-/*
-May be interesting
-  dMajorPentatonic() {
-    //D, E, F#, A, B;
-    return ['D2', 'E2', 'F#2', 'A2', 'B2', 'D3', 'E3', 'F#3', 'A3', 'B3', 'D4', 'E4', 'F#4', 'A4', 'B4', 'D5', 'E5', 'F#5', 'A5', 'B5', 'D6'];
-  }
-  dMinorPentatonic() {
-    //D, F, G, A, C;
-    return ['D2', 'F2', 'G2', 'A2', 'C3', 'D3', 'F3', 'G3', 'A3', 'C4', 'D4', 'F4', 'G4', 'A4', 'C5', 'D5', 'F5', 'G5', 'A5', 'C6', 'D6'];
-  }
-  eMajorPentatonic() {
-    //E, F#, G#, B, C#;
-    return ['E2', 'F#2', 'G#2', 'B2', 'C#3', 'E3', 'F#3', 'G#3', 'B3', 'C#4', 'E4', 'F#4', 'G#4', 'B4', 'C#5', 'E5', 'F#5', 'G#5', 'B5', 'C#6', 'E6'];
-  }
-  eMinorPentatonic() {
-    //E, G, A, B, D;
-    return ['E2', 'G2', 'A2', 'B2', 'D3', 'E3', 'G3', 'A3', 'B3', 'D4', 'E4', 'G4', 'A4', 'B4', 'D4', 'E5', 'G5', 'A5', 'B5', 'D5', 'E6'];
-  }
-  fMajorPentatonic() {
-    //F, G, A, C, D;
-    return ['F2', 'G2', 'A2', 'C3', 'D3', 'F3', 'G3', 'A3', 'C4', 'D4', 'F4', 'G4', 'A4', 'C5', 'D5', 'F5', 'G5', 'A5', 'C6', 'D6', 'F6'];
-  }
-  fMinorPentatonic() {
-    //F, G#, A#, C, D#;
-    return ['F2', 'G#2', 'A#2', 'C3', 'D#3', 'F3', 'G#3', 'A#3', 'C4', 'D#4', 'F4', 'G#4', 'A#4', 'C5', 'D#5', 'F5', 'G#5', 'A#5', 'C6', 'D#6', 'F6'];
-  }
-  gMajorPentatonic() {
-    //G, A, B, D, E;
-    return ['G2', 'A2', 'B2', 'D2', 'E2', 'G3', 'A3', 'B3', 'D3', 'E3', 'G4', 'A4', 'B4', 'D4', 'E4', 'G5', 'A5', 'B5', 'D5', 'E5', 'G6'];
-  }
-  gMinorPentatonic() {
-    //G, A#, C, D, F;
-    return ['G2', 'A#2', 'C2', 'D2', 'F2', 'G3', 'A#3', 'C3', 'D3', 'F3', 'G4', 'A#4', 'C4', 'D4', 'F4', 'G5', 'A#5', 'C5', 'D5', 'F5', 'G6'];
-  }
-  aMajorPentatonic() {
-    //A, B, C#, E, F#;
-    return ['A2', 'B2', 'C#2', 'E2', 'F#2', 'A3', 'B3', 'C#3', 'E3', 'F#3', 'A4', 'B4', 'C#4', 'E4', 'F#4', 'A5', 'B5', 'C#5', 'E5', 'F#5', 'A6'];
-  }
-  aMinorPentatonic() {
-    //A, C, D, E, G
-    return ['A2', 'C2', 'D2', 'E2', 'G2', 'A3', 'C3', 'D3', 'E3', 'G3', 'A4', 'C4', 'D4', 'E4', 'G4', 'A5', 'C5', 'D5', 'E5', 'G5', 'A6'];
-  }
-  bMajorPentatonic() {
-    //B, C#, D#, F#, G#
-    return ['B2', 'C#2', 'D#2', 'F#2', 'G#2', 'B3', 'C#3', 'D#3', 'F#3', 'G#3', 'B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
-  }
-  bMinorPentatonic() {
-    //B, D, E, F#, A
-    return ['B2', 'D2', 'E2', 'F#2', 'A2', 'B3', 'D3', 'E3', 'F#3', 'A3', 'B4', 'D4', 'E4', 'F#4', 'A4', 'B5', 'D5', 'E5', 'F#5', 'A5', 'B6'];
-  }
-  var sequenceOfNotesC = ['C2', 'D2', 'E2', 'G2', 'A2', 'C3', 'D3', 'E3', 'G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5', 'C6'];
-  var sequenceOfNotesD = ['D2', 'E2', 'F#2', 'A2', 'B2', 'D3', 'E3', 'F#3', 'A3', 'B3', 'D4', 'E4', 'F#4', 'A4', 'B4', 'D5', 'E5', 'F#5', 'A5', 'B5', 'D6'];
-  var sequenceOfNotesE = ['E2', 'F#2', 'G#2', 'B2', 'C#2', 'E3', 'F#3', 'G#3', 'B3', 'C#3', 'E4', 'F#4', 'G#4', 'B4', 'C#4', 'E5', 'F#5', 'G#5', 'B5', 'C#5', 'E6'];
-  var sequenceOfNotesF = ['F2', 'G2', 'A2', 'C2', 'D2', 'F3', 'G3', 'A3', 'C3', 'D3', 'F4', 'G4', 'A4', 'C4', 'D4', 'F5', 'G5', 'A5', 'C5', 'D5', 'F6'];
-  var sequenceOfNotesG = ['G2', 'A2', 'B2', 'D2', 'E2', 'G3', 'A3', 'B3', 'D3', 'E3', 'G4', 'A4', 'B4', 'D4', 'E4', 'G5', 'A5', 'B5', 'D5', 'E5', 'G6'];
-  var sequenceOfNotesA = ['A2', 'B2', 'C#2', 'E2', 'F#2', 'A3', 'B3', 'C#3', 'E3', 'F#3', 'A4', 'B4', 'C#4', 'E4', 'F#4', 'A5', 'B5', 'C#5', 'E5', 'F#5', 'A6'];
-  var sequenceOfNotesB = ['B2', 'C#2', 'D#2', 'F#2', 'G#2', 'B3', 'C#3', 'D#3', 'F#3', 'G#3', 'B4', 'C#4', 'D#4', 'F#4', 'G#4', 'B5', 'C#5', 'D#5', 'F#5', 'G#5', 'B6'];
-}*/

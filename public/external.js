@@ -206,8 +206,6 @@ function startLearning() {
     });
   }
 }
-
-// DISABLE NEXUS UIS
 var green = "1px solid #00ff00";
 var violet = "1px solid #ff66ff";
 
@@ -277,16 +275,7 @@ synthAttack.addEventListener('change', function() {
 });
 */
 
-
-
-
-
-
-
-// ---------------------- LAPTOP KEYBOARD -------------------------
-
-//(Z o-) (X o+) linha do meio CDEFGABCDEF
-//link here https://github.com/kylestetz/AudioKeys
+/* AudioKeys Project */
 
 var keyboard = new AudioKeys();
 
@@ -298,17 +287,6 @@ keyboard.down(function(note) {
 keyboard.up(function(note) {
   //piano.toggleKey(note.note, false);
 });
-// ----------------------------------------------------------------
-
-// --------------------------- Record --------------------------------
-// check https://doc.esdoc.org/github.com/adzialocha/osc-js/
-
-/*const mediaSource = new MediaSource();
-console.log(mediaSource);
-https://github.com/webrtc/samples/tree/gh-pages/src/content/capture/canvas-record
-https://github.com/imgntn/j360
-Media Source Recorder */
-
 
 /* For post Process
 function shaderButtons(v) {
@@ -317,4 +295,4 @@ function shaderButtons(v) {
   output_node.innerHTML = "This doesn't work right now, sorry.<br> Post processing shaders can be acessed through the keyboard keys A, S and D. <br> This is not fully implemented so use at your own risk.";
   logs.appendChild(output_node);
   logs.scrollTop = logs.scrollHeight;
-}*/ // ----------------------------------------------------------------
+}*/
