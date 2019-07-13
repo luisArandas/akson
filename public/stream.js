@@ -1,3 +1,7 @@
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ */
+
 /* Change the Network State */
 
 socket = io.connect(window.location.origin);

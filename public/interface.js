@@ -1,3 +1,8 @@
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ */
+
+
 window.WUI_Reporting = true;
 
 WUI_Dialog.create("master_dialog", {

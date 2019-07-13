@@ -855,6 +855,7 @@ function onMouseDown(event) {
       }
       StartAudioContext(Tone.context).then(function() {
         currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+        console.log(note);
         printPhraseDialog(scale[note]);
       })
       //Tone.context.resume().then(() => {
@@ -886,6 +887,7 @@ function onMouseDown(event) {
       }
       Tone.context.resume().then(() => {
         currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+        console.log(note);
         //playNote("4n", scalePlaying[randomSequenceOfNotes]);
         printPhraseDialog(scale[note]);
       });
@@ -931,6 +933,7 @@ function clickStream(data) {
   if (isAlocatingSynth != true){
     var note = Math.floor(Math.random() * scale.length);
     currentSynthesizer.triggerAttackRelease(scale[note], "4n");
+    console.log(note);
   }
 
   var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];

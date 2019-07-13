@@ -1,3 +1,7 @@
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ */
+
 /* Graphics Post Production */
 
 var w = window.innerWidth;

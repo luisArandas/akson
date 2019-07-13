@@ -1,3 +1,7 @@
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ */
+
 var cadeiaUm = new Tone.CtrlMarkov({
   "C3": [{
       "value": "C3",
