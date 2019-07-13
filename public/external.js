@@ -1,4 +1,13 @@
-/* Midi Learn Architecture */
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ * @author José Alberto Gomes  http://jasg.net/Home.html
+ * @author Rui Penha  http://ruipenha.pt/
+ *
+ *  All this code was done under the context of a research
+ *  between Braga Media Arts and the University of Porto © 2019
+ */
+
+ /* Midi Learn Architecture */
 
 var isMidiLearn = false;
 var nexusIds = ["synthvolume", "backgroundvolume", "mainvolume", "eqbass", "eqmid", "eqhigh", "lowfreq", "highfreq", "synthAttack", "synthDecay", "synthSustain", "synthRelease", "harmonicity", "modulationindex", "detune", "oscillatorModulationIndex", "oscillatorHarmonicity", "modulationEnvelopeAttack", "modulationEnvelopeDecay", "modulationEnvelopeRelease", "modulationEnvelopeSustain", "reverbRoomSize", "reverbWetValue", "reverbDampValue", "noiseOnePlaybackRate", "noiseq", "noiseoctaves", "autoFilterFrequency", "noiseMin", "noiseMax", "autoFilterWet", "autoFilterDepth", "afbasefrequency"];
