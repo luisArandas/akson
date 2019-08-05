@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Interface &mdash; Akson  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Interaction" href="interaction.html" />
+    <link rel="prev" title="Build" href="build.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/512px.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="build.html">Build</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build.html#macos">MacOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html#linux">Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#master-controller">Master Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instrument-controller">Instrument Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logs-dialog">Logs Dialog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#top-button-bar">Top Button Bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keyboard">Keyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Interaction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id1">#1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id2">#2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interaction.html#id3">#3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="engine.html">Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="engine.html#file-architecture">File Architecture</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Akson</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/interface.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interface">
+<h1>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h1>
+<p>To experience Akson, the user does not need to deal with code or understand how the technologies described above work in the first place.
+One can access the current host by typing in a browser <code class="docutils literal notranslate"><span class="pre">www.akson.xyz</span></code>. This project mainly targets Chromium-based browsers. Chromium is an open-source web
+browser project in which Google Chrome bases its source code. Akson is an audio-visual instrument that allows interaction on the browser screen directly with the
+graphics generated, but also has a more conventional graphical user interface (GUI) composed of dials, sliders and buttons.
+When the main website loads (and/or the local code build), the scene starts with all it’s attributes but with no GUI. Only a custom pop-up box appears on the
+bottom of the screen so the user knows that he can trigger it by pressing the space key.</p>
+<p>To have complete control of the instrument, there is the possibility to open a graphical interface that has a series of controls.
+These enable an advanced level of usage on Akson.</p>
+<img alt="_images/interface1.gif" class="align-center" src="_images/interface1.gif" />
+<p>There are three dialogs that appear when the user opens the interface for the first time. The master controller. The main instrument controller,
+and a panel that prints all the names of the methods modified by the graphical interface. In conjunction with the dialogs there is also a bar at the top
+of the window with buttons.</p>
+<img alt="_images/dialogs.png" class="align-center" src="_images/dialogs.png" />
+<div class="section" id="master-controller">
+<h2>Master Controller<a class="headerlink" href="#master-controller" title="Permalink to this headline">¶</a></h2>
+<p>The master controller has effect on the main out of the browser sound system. Connected to the AudioDestinationNode, it provides useful conveniences
+such as the ability to set the volume and mute the entire application. There is also the possibility to click on the ‘about’ button. This brings up
+a window with information about the system where Akson is running, and explains the various models of interaction in the network.</p>
+<img alt="_images/gui1_1.png" class="align-center" src="_images/gui1_1.png" />
+<p>The master dialog consists of 8 dials, 3 buttons and an oscilloscope. The dials have linked to each other number boxes and also print in the logs panel.
+The dial with the Master name controls the volume of the complete instrument, the Synth controls the volume of the lead Synthesizer and the Back controls the
+noise background. The remaining 5 dials are equalizers in the master, one for High, Low, Mid and two crossovers a High and a Low.</p>
+</div>
+<div class="section" id="instrument-controller">
+<h2>Instrument Controller<a class="headerlink" href="#instrument-controller" title="Permalink to this headline">¶</a></h2>
+<p>The instrument controller is the most extensive panel in the graphical interface and it has many of the methods and attributes that the user can change
+in the instrument. it is divided into four parts, one for each bit of Akson. Synthesizer, Background, Graphics and Post-Prod. These allow different
+interactions in the system.</p>
+<img alt="_images/gui3_1.png" class="align-center" src="_images/gui3_1.png" />
+<img alt="_images/gui3_2.png" class="align-center" src="_images/gui3_2.png" />
+<img alt="_images/gui3_3.png" class="align-center" src="_images/gui3_3.png" />
+<img alt="_images/gui3_4.png" class="align-center" src="_images/gui3_4.png" />
+<p>The Synthesizer interface has 21 independent sliders and 12 buttons that control both the Synth and the built-in processing effects such as Reverb and Vibrato.
+The Background interface has 17 independent sliders and 26 buttons to control both the Noise generator and an AutoFilter. The Graphics interface has 20 sliders
+that control both the Camera, Lights and some Geometry properties. The Post-Prod interface has 6 sliders to change camera Offset, 5 Preset buttons, 5 buttons of
+Shaders, 3 panels for WebGL performance view and the main interface to change notes to the Synthesizer to play.</p>
+</div>
+<div class="section" id="logs-dialog">
+<h2>Logs Dialog<a class="headerlink" href="#logs-dialog" title="Permalink to this headline">¶</a></h2>
+<p>The Logs dialog shows when something in the graphical user interface has been changed. It also works on streaming mode so the users can see which one is doing what.</p>
+<img alt="_images/interface4.gif" class="align-center" src="_images/interface4.gif" />
+</div>
+<div class="section" id="top-button-bar">
+<h2>Top Button Bar<a class="headerlink" href="#top-button-bar" title="Permalink to this headline">¶</a></h2>
+<p>The Top Button Bar has this that and that</p>
+<img alt="_images/topbar.png" class="align-center" src="_images/topbar.png" />
+<p>The button bar has 5 fundamental buttons. From left to right we have first the <em>About</em> button. Triggers a modal window with a text about Akson. On second place
+we have the download button, to record audio with the Media capture API and photos of the WebGL camera. In the middle we a button that continuously changes scene.
+On the 4 place we have the refresh button, if one is running Akson on app and/or can’t acess the browsing bar. And at last we have the Interaction model interface.
+Triggering this will call another modal window that let’s the user choose what type of interaction he is in.</p>
+<img alt="_images/topbar1.png" class="align-center" src="_images/topbar1.png" />
+<img alt="_images/topbar3.png" class="align-center" src="_images/topbar3.png" />
+<a class="reference internal image-reference" href="_images/topbar2.png"><img alt="_images/topbar2.png" class="align-center" src="_images/topbar2.png" style="width: 308.5px; height: 237.0px;" /></a>
+</div>
+<div class="section" id="keyboard">
+<h2>Keyboard<a class="headerlink" href="#keyboard" title="Permalink to this headline">¶</a></h2>
+<p>Some of the most important functions of Akson can also be acessed by keyboard. A map has been done so that the user can consult the keycodes, functions and methods
+of action.</p>
+<img alt="_images/keyboard.png" src="_images/keyboard.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="interaction.html" class="btn btn-neutral float-right" title="Interaction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build.html" class="btn btn-neutral" title="Build" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Luis Arandas.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+<style>
+  /* Sidebar header (and topbar for mobile) */
+  .wy-side-nav-search,
+  .wy-nav-top {
+    background: rgba(50, 50, 50, 1);
+  }
+
+  /* Sidebar */
+  .wy-nav-side {
+    background: #7a7a7a;
+  }
+
+  .wy-nav-content {
+    background: #ebebeb;
+  }
+
+  .wy-breadcrumbs {
+    background-color: #000000;
+    color: #000000;
+    border-radius: 5px;
+  }
+
+  a {
+    color: #000000 !important;
+  }
+
+  a:hover,
+  a:visited {
+    color: #000000;
+  }
+
+  footer {
+    background-color: #000000;
+    color: #000000;
+    border-radius: 5px;
+    height: 100px;
+  }
+
+  h1 {
+    top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  * {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .rst-footer-buttons {
+    background-color: rgba(0, 0, 0, 0);
+    bottom: 50px;
+  }
+
+  .btn {
+    display: none;
+
+  }
+
+  hr {
+    display: none;
+  }
+
+  .wy-nav-content-wrap {
+    border-right: 33px solid black;
+  }
+
+  .highlight {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 6px;
+  }
+
+  .code,
+  .highlight-default,
+  .pre,
+  .notranslate {
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+  img {
+    border-radius: 7px;
+}
+
+</style>
+
+
+</body>
+</html>
