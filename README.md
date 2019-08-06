@@ -12,7 +12,7 @@ This is the official repository of Akson, a networked audiovisual environment th
 ## Installation
 ### MacOS
 
-- For Windows or Linux visit the official website for documentation. To install dependencies and run this repository on MacOS, open the terminal and type the following:
+- This installation works only on the \akson folder. For Windows or Linux visit the official website for documentation. To install dependencies and run this repository on MacOS, open the terminal and type the following:
 - `$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 - `$ brew install node`
 - `$ git --version`

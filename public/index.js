@@ -36,8 +36,32 @@ $(document).ready(function() {
   if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
     //Try alert.
   }
-
+  getLocation();
 });
+
+function getLocation() {
+  // Check whether browser supports Geolocation API or not
+  if (navigator.geolocation) { // Supported
+    console.log("ola");
+    // To add PositionOptions
+
+	navigator.geolocation.getCurrentPosition(getPosition);
+  } else {
+	alert("Oops! This browser does not support HTML Geolocation.");
+  }
+}
+
+function getPosition(position) {
+  console.log("Latitude: " + position.coords.latitude);
+  console.log("Longitude: " + position.coords.longitude);
+  console.log("Altitude: " + position.coords.altitude);
+  console.log("Accuracy: " + position.coords.accuracy);
+  console.log("AltitudeAccuracy: " + position.coords.altitudeAccuracy);
+  console.log("Heading: " + position.coords.heading);
+  console.log("Timestamp: " + position.timestamp);
+}
+
+
 
 var light;
 var nrSeconds = 0;
@@ -215,7 +239,7 @@ function onMouseDown(event) {
 
     var intersectsClick = raycaster.intersectObjects(parentTransform.children);
     if (intersectsClick.length > 0) {
-      console.log(intersectsClick[0].object.material.color);
+
       intersectsClick[0].object.wireframe = false;
 
       if (isBlackSceneFour == false) {
