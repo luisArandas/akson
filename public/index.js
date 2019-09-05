@@ -40,28 +40,57 @@ $(document).ready(function() {
 });
 
 function getLocation() {
-  // Check whether browser supports Geolocation API or not
-  if (navigator.geolocation) { // Supported
-    console.log("ola");
-    // To add PositionOptions
 
-	navigator.geolocation.getCurrentPosition(getPosition);
+  if (navigator.geolocation) {
+
+    var positionOptions = {
+    	  timeout : Infinity,
+    	  maximumAge : 0,
+    	  enableHighAccuracy : true
+    	}
+
+	   navigator.geolocation.getCurrentPosition(getPosition, catchError, positionOptions);
+     // Max Longitude 180 -> Direita do Japão
+     // Min Longitude -180 -> Esquerda da California
+     // Max Latitude : 85 - acima do artic ocean
+     // Min latitude : -85 - antartida
+
   } else {
-	alert("Oops! This browser does not support HTML Geolocation.");
+	   alert("Oops! This browser does not support HTML Geolocation.");
   }
 }
+
+function convertRange( value, r1, r2 ) {
+    return (value - r1[0]) * (r2[1] - r2[0]) / (r1[1] - r1[0]) + r2[0];
+}
+
+//setup presets que estruturam novos sons
 
 function getPosition(position) {
   console.log("Latitude: " + position.coords.latitude);
   console.log("Longitude: " + position.coords.longitude);
-  console.log("Altitude: " + position.coords.altitude);
-  console.log("Accuracy: " + position.coords.accuracy);
-  console.log("AltitudeAccuracy: " + position.coords.altitudeAccuracy);
-  console.log("Heading: " + position.coords.heading);
-  console.log("Timestamp: " + position.timestamp);
+  var e = convertRange(position.coords.latitude, [0,80], [0, 1]);
+  console.log(e);
+  // position.coords.altitude ; position.coords.accuracy ; position.coords.altitudeAccuracy
+  // position.coords.heading ; position.timestamp);
 }
 
+function catchError(positionError) {
 
+  switch(positionError.code) {
+	case positionError.TIMEOUT:
+	  alert("The request to get user location has aborted as it has taken too long.");
+	  break;
+	case positionError.POSITION_UNAVAILABLE:
+	  alert("Location information is not available.");
+	  break;
+	case positionError.PERMISSION_DENIED:
+	  alert("Permission to share location information has been denied!");
+	  break;
+	default:
+	  alert("An unknown error occurred.");
+  }
+}
 
 var light;
 var nrSeconds = 0;
