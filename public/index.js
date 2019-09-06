@@ -48,13 +48,11 @@ function getLocation() {
     	  maximumAge : 0,
     	  enableHighAccuracy : true
     	}
-
 	   navigator.geolocation.getCurrentPosition(getPosition, catchError, positionOptions);
      // Max Longitude 180 -> Direita do Japão
      // Min Longitude -180 -> Esquerda da California
      // Max Latitude : 85 - acima do artic ocean
      // Min latitude : -85 - antartida
-
   } else {
 	   alert("Oops! This browser does not support HTML Geolocation.");
   }
@@ -64,32 +62,74 @@ function convertRange( value, r1, r2 ) {
     return (value - r1[0]) * (r2[1] - r2[0]) / (r1[1] - r1[0]) + r2[0];
 }
 
-//setup presets que estruturam novos sons
 
 function getPosition(position) {
-  console.log("Latitude: " + position.coords.latitude);
-  console.log("Longitude: " + position.coords.longitude);
-  var e = convertRange(position.coords.latitude, [0,80], [0, 1]);
-  console.log(e);
-  // position.coords.altitude ; position.coords.accuracy ; position.coords.altitudeAccuracy
-  // position.coords.heading ; position.timestamp);
+
+  var latConvert = convertRange(position.coords.latitude, [-85, 85], [0, 1]);
+  var longConvert = convertRange(position.coords.longitude, [-180, 180], [0, 1]);
+
+  switch (true) {
+    //4/4 of the Planet starting Left from California
+
+    case latConvert <= 0.25:
+      console.log("1/4 Left to Right");
+      noiseOne.playbackRate = 10; // 0.5-35
+      autoFilterOne.set({
+        "frequency": 30
+      });
+    break;
+    case latConvert >= 0.25 && latConvert <= 0.5:
+      console.log("2/4 Left to Right");
+    break;
+    case latConvert >= 0.5 && latConvert <= 0.75:
+      console.log("3/4 Left to Right");
+    break;
+
+    case latConvert >= 0.75 && latConvert <= 1:
+      console.log("4/4 Left to Right");
+      noiseOne.playbackRate = 35;
+    break;
+  }
+
+  switch (true) {
+    //4/4 of the Planet starting Antartida South
+
+    case longConvert <= 0.25:
+      console.log("1/4 Bottom to Top");
+      autoFilterOne.set({
+        "octaves": 4
+      });
+    break;
+    case longConvert >= 0.25 && longConvert <= 0.5:
+      console.log("2/4 Bottom to Top");
+    break;
+    case longConvert >= 0.5 && longConvert <= 0.75:
+      console.log("3/4 Bottom to Top");
+    break;
+
+    case longConvert >= 0.75 && longConvert <= 1:
+      console.log("4/4 Bottom to Top");
+    break;
+    }
 }
+// position.coords.altitude ; position.coords.accuracy ; position.coords.altitudeAccuracy
+// position.coords.heading ; position.timestamp);
 
 function catchError(positionError) {
 
   switch(positionError.code) {
-	case positionError.TIMEOUT:
-	  alert("The request to get user location has aborted as it has taken too long.");
-	  break;
-	case positionError.POSITION_UNAVAILABLE:
-	  alert("Location information is not available.");
-	  break;
-	case positionError.PERMISSION_DENIED:
-	  alert("Permission to share location information has been denied!");
-	  break;
-	default:
-	  alert("An unknown error occurred.");
-  }
+	   case positionError.TIMEOUT:
+	    alert("The request took too long");
+	     break;
+	   case positionError.POSITION_UNAVAILABLE:
+	    alert("Location is not available.");
+	    break;
+	   case positionError.PERMISSION_DENIED:
+	    alert("Permission has been denied!");
+	    break;
+	  default:
+	    alert("An unknown error occurred.");
+   }
 }
 
 var light;
