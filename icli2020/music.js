@@ -1,19 +1,3 @@
-/**
- * @author Luis Arandas  http://luisarandas.org
- * @author José Alberto Gomes  http://jasg.net/Home.html
- * @author Rui Penha  http://ruipenha.pt/
- *
- *  All this code was done under the context of a research
- *  between Braga Media Arts and the University of Porto © 2019
- */
-
-class VariableScale {
-  constructor(name, type, numNotes)
-  //https://developer.mozilla.org/pt-PT/docs/Web/JavaScript/Reference/Classes
-}
-
-/* Tone Markov Exploration */
-
 var cadeiaUm = new Tone.CtrlMarkov({
   "C3": [{
       "value": "C3",

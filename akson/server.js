@@ -7,6 +7,10 @@
  *  between Braga Media Arts and the University of Porto © 2019
  */
 
+ //OSC - simpleMIDI e webMIDI
+ //classes para os modos, para as notas
+ //escalar com classes <-- management
+
 const express = require('express');
 const app = express();
 const server = app.listen(process.env.PORT || 5000);

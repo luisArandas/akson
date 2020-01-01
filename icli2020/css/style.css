@@ -1,0 +1,35 @@
+/**
+ * @author Luis Arandas  http://luisarandas.org
+ * @author José Alberto Gomes  http://jasg.net/Home.html
+ * @author Rui Penha  http://ruipenha.pt/
+ *
+ *  All this code was done under the context of a research
+ *  between Braga Media Arts and the University of Porto © 2019
+ */
+
+html * {
+   font-weight: 10;
+   font-size: 8px;
+   /*cursor: cell !important;*/
+   transition: background-color .5s;
+   overflow-x: hidden !important;
+   overflow-y: hidden !important;
+}
+
+canvas {
+  width: 100%;
+  height: 100%
+}
+
+html, body {
+  background: #000000;
+  padding: 0;
+  margin: 0;
+}
+
+#parte1_1 {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
