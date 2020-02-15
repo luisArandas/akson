@@ -1,28 +1,12 @@
-var spanAbout = document.getElementsByClassName("closeAbout")[0];
-var spanMode = document.getElementsByClassName("closeMode")[0];
-var spanScale = document.getElementsByClassName("closeScale")[0];
-var modalAbout = document.getElementById('modalAbout');
-var modalMode = document.getElementById('modalMode');
-var modalScale = document.getElementById('modalScale');
-
-var instrumentOne = false;
-var instrumentTwo = false;
-var instrumentThree = false;
-var instrumentFour = false;
-var typeofOsc = "sine";
-
-Tone.context.resume();
-Tone.Transport.bpm.value = 20;
-Tone.Transport.start();
-
 Number.prototype.map = function(in_min, in_max, out_min, out_max) {
   return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+var kickSyn = new Tone.MembraneSynth().toMaster();
 
 
 var autoFilterOne = new Tone.AutoFilter({
-  "frequency": "8m",
+  "frequency": "16m",
   "min": 800,
   "max": 15000
 }).connect(Tone.Master);
