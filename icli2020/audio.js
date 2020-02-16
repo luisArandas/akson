@@ -35,8 +35,8 @@ eq.connect(Tone.Master);
 vol = new Tone.Volume(-5).connect(eq);
 compressor = new Tone.Compressor(-25, 10).connect(vol);
 
-reverb = new Tone.Freeverb(0.8).connect(compressor);
-reverb.wet.value = 0.1;
+reverb = new Tone.Freeverb(1.5).connect(compressor);
+reverb.wet.value = 0.9;
 
 vibrato = new Tone.Vibrato(0, 0).connect(reverb);
 
@@ -58,7 +58,7 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
     attack: 0.4,
     decay: 0.4,
     sustain: 0.4,
-    release: 4,
+    release: 100,
   },
   modulation: {
     type: "sine"
