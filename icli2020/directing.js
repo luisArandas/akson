@@ -1,10 +1,13 @@
 var time = 0;
 var ctxDown = false;
 var whiteUp = false;
+var blackUp = false;
 var firstMv;
 var secondMv;
 var thirdMv;
 var fourthMv;
+var fifthMv;
+var flickrBlack = false;
 
 var startPiece = false;
 
@@ -14,7 +17,7 @@ var startPiece = false;
 const context = new AudioContext();
 let newaudio;
 
-window.fetch("beep.wav")
+window.fetch("beep2.wav")
     .then(response => response.arrayBuffer())
     .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
     .then(audioBuffer => {
@@ -26,6 +29,27 @@ document.body.onkeyup = function(e){
         startPiece = true;
         console.log(startPiece);
     }
+    if(e.keyCode == 81){
+        time = 25;
+    }
+    if(e.keyCode == 87){}
+    if(e.keyCode == 69){}
+    if(e.keyCode == 80){
+      if (!glitchPass.renderToScreen == true) {
+        glitchPass.renderToScreen = true;
+      }
+      glitchPass.goWild = true;
+    }
+    if(e.keyCode == 79){
+      if (!glitchPass.renderToScreen == true) {
+        glitchPass.renderToScreen = true;
+      }
+      glitchPass.goWild = false;
+    }
+    if(e.keyCode == 73){
+      glitchPass.renderToScreen = false;
+    }
+
 }
 
 //if (startPiece == true) {
@@ -70,6 +94,14 @@ document.body.onkeyup = function(e){
 
     play(newaudio);
 
+
+    function fifthMov() {
+      fifthMv = setInterval(function() {
+        blackBack();
+      }, 30);
+    }
+
+
       fourthMv = setInterval(function() {
 
         //play(newaudio);
@@ -88,7 +120,7 @@ document.body.onkeyup = function(e){
             document.getElementById('parte1_2').style.display = "none";
             document.getElementById('parte1_3').style.display = "none";
             document.getElementById('parte1_4').style.display = "none";
-            var e = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            var e = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             document.getElementById('parte1_5').style.display = "block";
             document.getElementById('parte1_5').innerHTML += "<br>" + e;
           }
@@ -125,34 +157,38 @@ document.body.onkeyup = function(e){
     }
     if (time == 28) {
       clearInterval(fourthMv);
-      //kickSyn.triggerAttackRelease("C1", "8n");
+
       shading = true;
       contextStop();
-
-
       autoFilterOne.set({
-        "frequency": 6500,
-        "baseFrequency": 1000
+        "frequency": 500,
+        "baseFrequency": 750
       });
       glitchPass.goWild = true;
       glitchPass.renderToScreen = true;
     }
     if (time == 43) {
-      shading = false;
+      //
       contextStop();
-      scene.add( cube );
-
+      cube.scale.x = 0.2;
+      cube.scale.y = 0.2;
+      cube.scale.z = 0.2;
+      //scene.add(cube);
       glitchPass.goWild = false;
-      glitchPass.renderToScreen = false;
     }
-    if (time == 48) {
-      rotation = 0.01;
-      glitchPass.renderToScreen = true;
-      cube.scale.x = 0.2; // SCALE
-      cube.scale.y = 0.2; // SCALE
-      cube.scale.z = 0.2; // SCALE
+    if (time == 50) {
       //blackBack();
-      console.log("put black flicker"),
+      console.log("put black flicker");
+    }
+    if (time == 53) {
+      //shading = false;
+      flickrBlack = true;
+      fifthMov();
+      document.getElementById("parte1_2").style.width = "100%";
+      document.getElementById("parte1_2").style.height = "100%";
+      document.getElementById("parte1_2").style.display = "block";
+
+
     }
 
   }, 1000);
@@ -180,8 +216,18 @@ document.body.onkeyup = function(e){
     }
   }
 
+  console.log("3d files load mb");
+
+function blackBack() {
+  if (blackUp == false) {
+    document.getElementById("parte1_2").style.display = "block";
+    blackUp = true;
+  } else if (blackUp == true) {
+    document.getElementById("parte1_2").style.display = "none";
+    blackUp = false;
+  }
+}
+
   function fourthCustom() {
     document.getElementById("parte1_1").style.display = "none";
   }
-
-//}

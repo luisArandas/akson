@@ -8,9 +8,9 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-var geometry = new THREE.BoxGeometry(15, 15, 15);
-var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
-var cube = new THREE.Mesh( geometry, material );
+//var geometry = new THREE.BoxGeometry(15, 15, 15);
+//var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
+//var cube = new THREE.Mesh( geometry, material );
 
 camera.position.z = 5;
 
@@ -25,17 +25,25 @@ composer.addPass(glitchPass);
 glitchPass.renderToScreen = false;
 
 camera.position.z = 5;
+/*
+controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
+    controls.target.z = 20;
+*/
 
 function animate() {
 	requestAnimationFrame( animate );
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  //cube.rotation.x += 0.05;
+  //cube.rotation.y += 0.05;
 	renderer.render(scene, camera);
 	if (shading == true) {
 		composer.render();
 	}
 }
 animate();
+
 /*var camera, scene, renderer, composer;
 			var object, light;
 
