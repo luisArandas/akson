@@ -33,6 +33,8 @@ function onMIDISuccess(midiAccess) {
 }
 
 function onMIDIMessage(event) {
+  console.log(event);
+  
   data = event.data;
   midiValOne = data[0];
   midiValTwo = data[1];

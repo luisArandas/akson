@@ -24,9 +24,7 @@ var phaser = new Tone.Phaser({
 var noiseOne = new Tone.Noise("pink");
 noiseOne.connect(phaser);
 
-autoFilterOne.start();
 noiseOne.volume.value = -99;
-noiseOne.start();
 noiseOne.volume.rampTo(-10, 10);
 
 var eq = new Tone.EQ3(0, 0, 0);
