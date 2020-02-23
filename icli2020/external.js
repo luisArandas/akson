@@ -34,7 +34,7 @@ function onMIDISuccess(midiAccess) {
 
 function onMIDIMessage(event) {
   console.log(event);
-  
+
   data = event.data;
   midiValOne = data[0];
   midiValTwo = data[1];
@@ -200,29 +200,6 @@ function startLearning() {
 var green = "1px solid #00ff00";
 var violet = "1px solid #ff66ff";
 
-
-$('div').click(function() {
-  if (isMidiLearn == true) {
-    mlSynthAttack.startListening();
-    if ($.inArray(this.id, nexusIds) != -1) {
-      changeStateMidiUI(this.id);
-    }
-  }
-});
-
-function changeStateMidiUI(v) {
-  if (v != learnStartDiv) {
-    nexusIds.forEach(function(id) {
-      document.getElementById(id).style.border = "1px solid #ff66ff";
-    });
-    document.getElementById(v).style.border = green;
-    idsToLearn = v;
-
-    if (idsToLearn == "synthAttack") {
-      mlSynthAttack.bind();
-    }
-  }
-}
 
 var onMIDIStarted = function(midi) {
   console.log('onMIDIStarted', midi);

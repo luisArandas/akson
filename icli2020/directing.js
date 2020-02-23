@@ -27,12 +27,10 @@ document.body.onkeyup = function(e){
         timer.start({precision: 'seconds', target: {seconds: 600}});
         autoFilterOne.start();
         noiseOne.start();
-        //Tone.Transport.start();
 
     }
     if (e.keyCode == 81) {
-
-
+      kick1.triggerAttackRelease('C2', '8n');
     }
 }
 
@@ -81,7 +79,17 @@ var kick1 = new Tone.MembraneSynth({
     }
 }).toMaster();
 
-
+var _synth2 = new Tone.NoiseSynth({
+  noise: {
+    type: 'pink'
+  },
+  envelope: {
+    attack: 0.001,
+    decay: 0.01,
+    sustain: 0.01
+  }
+}).toMaster();
+_synth2.volume.value = -10;
 
 
 
@@ -97,33 +105,46 @@ function triggerSynth(time){
 
 }
 function triggerSynth2(time){
-	_synth.triggerAttackRelease('8n', time);
+	_synth2.triggerAttackRelease('16n', time);
 }
 function triggerSynth3(time){
-  __synth.triggerAttackRelease('C2', '8n', time);
+  __synth.triggerAttackRelease('C1', '8n', time);
 }
 function triggerSynth4(time){
   kick1.triggerAttackRelease('C2', '8n', time);
 }
+function triggerSynth5(time){
+  _synth2.triggerAttackRelease('8n', time);
+}
 
-Tone.Transport.schedule(triggerSynth4, 0)
-Tone.Transport.schedule(triggerSynth4, '0:1')
+Tone.Transport.schedule(triggerSynth5, 0)
+Tone.Transport.schedule(triggerSynth2, '0:0.2')
+Tone.Transport.schedule(triggerSynth5, '0:0.5')
+Tone.Transport.schedule(triggerSynth2, '0:1')
+Tone.Transport.schedule(triggerSynth5, '0:1.5')
+Tone.Transport.schedule(triggerSynth2, '0:2')
+Tone.Transport.schedule(triggerSynth5, '0:2.2')
+//Tone.Transport.schedule(triggerSynth5, '0:2.5')
+
+
 //Tone.Transport.schedule(triggerSynth2, '0:1.5')
 //Tone.Transport.schedule(triggerSynth, '0:1.8')
 //Tone.Transport.schedule(triggerSynth, '0:2.5')
 //Tone.Transport.schedule(triggerSynth, '0:1:3')
 
-Tone.Transport.bpm.value = 150;
+Tone.Transport.bpm.value = 450;
+Tone.Transport.swing = 2;
+Tone.Transport.swingSubdividion = '16n';
+Tone.Transport.timeSignature = 1;
 
-Tone.Transport.loopEnd = '1m';
+Tone.Transport.loopEnd = '1n';
 Tone.Transport.loop = true;
-
-
 
 
 var player;
 var player2;
 var player3;
+var player4;
 
 timer.addEventListener('secondsUpdated', function (e) {
     var _e = timer.getTimeValues().seconds;
@@ -181,7 +202,18 @@ timer.addEventListener('secondsUpdated', function (e) {
       player3.autostart = true;
     }
     if (__e == '00:01:03') {
-      console.log("so metade do kick e começa");
+      player3.mute = true;
+      player3 = null;
+      player4 = new Tone.Player("seq2.wav").toMaster();
+      player4.autostart = true;
+      console.log("dois minutos e tal meter o akson");
+    }
+    if (__e == '00:01:30') {
+      //Tone.Transport.stop();
+      //Tone.Transport.start();
+
+      //polySynth.triggerAttackRelease('C2', '8n');
+
     }
 });
 
