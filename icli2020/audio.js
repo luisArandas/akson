@@ -69,6 +69,7 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
   },
 });
 polySynth.connect(vibrato);
+polySynth.volume.value = -35;
 
 
 /* Sonic Properties Variables */

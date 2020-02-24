@@ -20,20 +20,32 @@ var sixMv = null;
 var square = null;
 var foure = 0;
 
+var seqdiv = null;
+var timelinetxt = null;
+
 var ctxDown = false;
 var whiteUp = false;
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
-        timer.start({precision: 'seconds', target: {seconds: 600}});
+        timer.start({precision: 'secondTenths', target: {seconds: 600}});
         autoFilterOne.start();
         noiseOne.start();
-
     }
     if (e.keyCode == 81) {
-      kick1.triggerAttackRelease('C2', '8n');
+      console.log(timer);
     }
 }
 
+function myFunction() {
+  document.getElementById("vid").src = "icl.mov";
+  document.getElementById("myVideo").load();
+  document.getElementById("myVideo").playbackRate = 5;
+  document.getElementById("myVideo").loop = true;
+
+  document.getElementById("myVideo").play();
+}
+
+console.log(timer);
 
 var synth = new Tone.MembraneSynth({
   pitchDecay: 0.05,
@@ -145,30 +157,37 @@ var player;
 var player2;
 var player3;
 var player4;
+var player5;
+var stringtext;
+console.log("start with flickr maxstyle write in a div from bottom to up");
 
-timer.addEventListener('secondsUpdated', function (e) {
+timer.addEventListener('secondTenthsUpdated', function (e) {
     var _e = timer.getTimeValues().seconds;
-    var __e = timer.getTimeValues().toString();
+    var __e = timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']);
+    stringtext = _e + '<br>' + __e;
+
     console.log(_e);
     console.log(__e);
 
-    if (__e == '00:00:14') {
+    if (__e == '00:00:14:0') {
       firstMov();
+      console.log("ola");
     }
-    if (__e == '00:00:16') {
+
+    if (__e == '00:00:16:0') {
       clearInterval(firstMv);
       secondMov();
     }
-    if (__e == '00:00:18') {
+    if (__e == '00:00:18:0') {
       clearInterval(secondMv);
 
     }
-    if (__e == '00:00:19') {
+    if (__e == '00:00:19:0') {
       clearInterval(thirdMv);
       document.getElementById("parte1_1").style.display = "none";
       fourthMov();
     }
-    if (__e == '00:00:25') {
+    if (__e == '00:00:25:0') {
       clearInterval(fourthMv);
       clearInterval(sixMv);
       fourthMv = null;
@@ -178,21 +197,89 @@ timer.addEventListener('secondsUpdated', function (e) {
       document.getElementById("parte1_3").remove();
       document.getElementById("parte1_4").remove();
       document.getElementById("parte1_5").remove();
+      sequencingDiv();
 
       document.getElementById("ikeda").style.display = "block";
       ikedasquare();
+      addTimeLineToDiv();
 
-      player = new Tone.Player("seq.wav").toMaster();
+      noiseOne.mute = true;
+
+      player = new Tone.Player("_seq.wav").toMaster();
       player.autostart = true;
       player.loop = true;
-
     }
-    if (__e == '00:00:59') {
+
+    if (__e == '00:00:25:5') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:00:29:0') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:29:5') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:00:33:0') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:33:5') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:00:37:0') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:37:5') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:00:41:0') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:41:5') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:00:45:0') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:45:5') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:00:49:0') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:49:5') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:00:53:0') {
+      sequencingDiv();
       player2 = new Tone.Player("beep.wav").toMaster();
       player2.autostart = true;
       player2.loop = false;
     }
-    if (__e == '00:01:01') {
+    if (__e == '00:00:53:5') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:54:0') {
+      player2 = new Tone.Player("beep3.wav").toMaster();
+      player2.autostart = true;
+      player2.loop = false;
+    }
+
+    if (__e == '00:00:57:0') {
+      sequencingDiv();
+    }
+    if (__e == '00:00:57:5') {
+      sequencingDiv();
+      console.log("now!")
+    }
+
+    if (__e == '00:01:01:0') {
 
       player.mute = true;
       player2.mute = true;
@@ -200,22 +287,602 @@ timer.addEventListener('secondsUpdated', function (e) {
       player2 = null;
       player3 = new Tone.Player("kick2.wav").toMaster();
       player3.autostart = true;
+      sequencingDiv();
+
     }
-    if (__e == '00:01:03') {
+    if (__e == '00:01:03:0') {
       player3.mute = true;
       player3 = null;
       player4 = new Tone.Player("seq2.wav").toMaster();
       player4.autostart = true;
-      console.log("dois minutos e tal meter o akson");
     }
-    if (__e == '00:01:30') {
-      //Tone.Transport.stop();
-      //Tone.Transport.start();
-
-      //polySynth.triggerAttackRelease('C2', '8n');
-
+    if (__e == '00:01:03:1') {
+      sequencingDiv();
     }
+
+    if (__e == '00:01:05:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:07:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:09:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:11:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:13:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:15:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:17:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:19:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:21:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:23:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:25:1') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:27:1') {
+      sequencingDiv();
+      addTimeLineToDiv(stringtext);
+    }
+
+    if (__e == '00:01:27:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:27:3') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:27:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:28:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:28:7') {
+      sequencingDiv();
+    }
+    //segunda bar x+1/x+6/x+4/x+4/x+5
+    if (__e == '00:01:29:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:29:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:29:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:30:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:30:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:31:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:31:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:31:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:32:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:32:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:33:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:33:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:33:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:34:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:34:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:35:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:35:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:35:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:36:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:36:7') {
+      sequencingDiv();
+      clearInterval(timelinetxt);
+      clearInterval(square);
+    }
+
+    if (__e == '00:01:37:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:37:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:37:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:38:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:38:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:39:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:39:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:39:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:40:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:40:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:41:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:41:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:41:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:42:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:42:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:43:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:43:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:43:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:44:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:44:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:45:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:45:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:45:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:46:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:46:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:47:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:47:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:47:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:48:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:48:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:49:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:49:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:49:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:50:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:50:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:51:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:51:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:51:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:52:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:52:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:53:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:53:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:53:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:54:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:54:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:55:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:55:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:55:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:56:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:56:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:57:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:57:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:57:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:58:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:58:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:01:59:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:59:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:01:59:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:00:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:00:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:02:01:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:01:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:01:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:02:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:02:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:02:03:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:03:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:03:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:04:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:04:7') {
+      sequencingDiv();
+    }
+
+    if (__e == '00:02:05:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:05:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:05:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:06:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:06:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:07:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:07:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:07:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:08:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:08:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:09:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:09:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:09:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:10:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:10:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:11:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:11:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:11:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:12:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:12:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:13:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:13:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:13:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:14:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:14:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:15:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:15:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:15:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:16:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:16:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:17:2') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:17:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:17:9') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:18:3') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:18:7') {
+      sequencingDiv();
+    }
+    if (__e == '00:02:19:2') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:19:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:19:9') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:20:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:20:7') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:21:2') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:21:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:21:9') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:22:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:22:7') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:23:2') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:23:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:23:9') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:24:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:24:7') {
+          sequencingDiv();
+        }
+
+        if (__e == '00:02:25:2') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:25:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:25:9') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:26:3') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:26:7') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:27:2') {
+          sequencingDiv();
+        }
+        if (__e == '00:02:27:3') {
+          sequencingDiv();
+          console.log("sub no ultimo kick BASE FREQUENCY CHANGE SEQUENCING")
+          player5 = new Tone.Player("burp.wav").toMaster();
+          player5.autostart = true;
+        }
+
+        if (__e == '00:02:36:0') {
+          var element = document.getElementById("ikeda");
+          element.parentNode.removeChild(element);
+
+        }
+        if (__e == '00:02:39:0') {
+          player5.mute = true;
+          player5 = null;
+          var _element = document.getElementById("timeline");
+          _element.parentNode.removeChild(_element);
+          autoFilterOne.set({
+            "filter": {
+              "frequency": 500,
+              "baseFrequency": 100,
+              "octaves": 0,
+              "rolloff": -24
+            }
+          });
+          noiseOne.mute = false;
+          document.getElementById("myVideo").style.display = "block";
+          myFunction();
+        }
+
+        if (__e == '00:02:41:0') {
+          //clearInterval(timelinetxt); and others
+          console.log("init synthesier");
+        }
+
+
+
 });
+
+var counter = 0;
+function addTimeLineToDiv(v) {
+  timelinetxt = setInterval(function() {
+    counter++;
+    console.log(counter)
+    if (counter <= 35) {
+      document.getElementById('timeline').style.cssText = 'position:absolute;width:15%;height:100%;left:5%;top:20%;display:block;background:#000';
+
+      document.getElementById('timeline').innerHTML += v + '<br>';//stringtext;
+    }
+    if (counter > 35) {
+      document.getElementById('timeline').innerHTML = "";
+      counter = 0;
+    }
+
+  }, 100);
+}
+
+function sequencingDiv() {
+  var elem = document.createElement('ele');
+  elem.style.cssText = 'position:absolute;width:100%;height:100%;opacity:0.3;z-index:100;background:#fff';
+  document.body.appendChild(elem);
+  $(elem).fadeOut( "fast", function() {
+    console.log("this");
+  });
+}
+
+/*function removeseqDiv() {
+  var child = $('ele');
+  child.remove();
+}*/
 
 function firstMov() {
     firstMv = setInterval(function() {
@@ -231,13 +898,14 @@ function secondMov() {
 }
 
 function ikedasquare() {
-  square = setInterval(function() {
+  /*square = setInterval(function() {
+    var _a = Math.round(Math.random() * 1);
     var z = Math.floor(Math.random() * 256);
     var bgColor = "rgb(" + z + "," + z + "," + z + ")";
 
     document.getElementById("ikeda").style.backgroundColor = bgColor;
     //document.getElementById("ikeda").style.opacity = _z;
-  }, 100);
+  }, 100);*/
 }
 
 function contextStop() {
