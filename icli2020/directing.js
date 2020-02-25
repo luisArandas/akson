@@ -10,10 +10,11 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 }
 
 console.log("tirar rato");
-
+var a = window.performance;
 var timer = new easytimer.Timer();
 var firstMv = null;
 var secondMv = null;
+var _secondMv = null;
 var thirdMv = null;
 var fourthMv = null;
 var sixMv = null;
@@ -22,18 +23,53 @@ var foure = 0;
 
 var seqdiv = null;
 var timelinetxt = null;
+var _timelinetxt = null;
 
 var ctxDown = false;
 var whiteUp = false;
+
+var startnoise = null;
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
         timer.start({precision: 'secondTenths', target: {seconds: 600}});
         autoFilterOne.start();
         noiseOne.start();
+
     }
-    if (e.keyCode == 81) {
-      console.log(timer);
+    if (e.keyCode == 81) { // Q
+      secondMov();
     }
+    if (e.keyCode == 87) { // W
+      clearInterval(secondMv);
+    }
+    if (e.keyCode == 69) { // E
+      Tone.Master.mute = true;
+    }
+    if (e.keyCode == 65) { // A
+      _secondMov();
+    }
+    if (e.keyCode == 83) { // A
+      clearInterval(_secondMv);
+    }
+    if (e.keyCode == 80) { // p
+      document.getElementById("noise").style.display = "block";
+      perlinoise();
+    }
+}
+
+function perlinoise() {
+    startnoise = setInterval(function() {
+      var e = getRandomInt(0, 256);
+      var e_ =  "rgba(" + e + "," + e + "," + e + ",);"
+      console.log(e_);
+      document.getElementById("noise").style.backgroundColor = e_;
+    }, 30);
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function myFunction() {
@@ -152,7 +188,7 @@ Tone.Transport.timeSignature = 1;
 Tone.Transport.loopEnd = '1n';
 Tone.Transport.loop = true;
 
-
+console.log("two timelines?");
 var player;
 var player2;
 var player3;
@@ -200,7 +236,15 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
       sequencingDiv();
 
       document.getElementById("ikeda").style.display = "block";
-      ikedasquare();
+      document.getElementById("ikeda2").style.display = "block";
+      document.getElementById("ikeda3").style.display = "block";
+      document.getElementById("ikeda4").style.display = "block";
+      document.getElementById("ikeda5").style.display = "block";
+      document.getElementById("ikeda6").style.display = "block";
+
+      document.getElementById("maintext").style.display = "block";
+      writeMemory();
+
       addTimeLineToDiv();
 
       noiseOne.mute = true;
@@ -223,7 +267,13 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
 
     if (__e == '00:00:33:0') {
       sequencingDiv();
+      document.getElementById("ikeda3").style.backgroundColor = "rgba(0,0,0,1)";
     }
+    if (__e == '00:00:33:1') {
+      document.getElementById("ikeda3").style.backgroundColor = "white";
+    }
+
+
     if (__e == '00:00:33:5') {
       sequencingDiv();
     }
@@ -233,10 +283,15 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
     }
     if (__e == '00:00:37:5') {
       sequencingDiv();
+
     }
 
     if (__e == '00:00:41:0') {
       sequencingDiv();
+      document.getElementById("ikeda2").style.backgroundColor = "rgba(5,5,5,1)";
+    }
+    if (__e == '00:00:41:1') {
+      document.getElementById("ikeda2").style.backgroundColor = "white";
     }
     if (__e == '00:00:41:5') {
       sequencingDiv();
@@ -244,6 +299,7 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
 
     if (__e == '00:00:45:0') {
       sequencingDiv();
+
     }
     if (__e == '00:00:45:5') {
       sequencingDiv();
@@ -295,6 +351,8 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
       player3 = null;
       player4 = new Tone.Player("seq2.wav").toMaster();
       player4.autostart = true;
+
+      a = window.performance.timing;
     }
     if (__e == '00:01:03:1') {
       sequencingDiv();
@@ -417,7 +475,6 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
     }
     if (__e == '00:01:36:7') {
       sequencingDiv();
-      clearInterval(timelinetxt);
       clearInterval(square);
     }
 
@@ -830,6 +887,7 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
           player5 = null;
           var _element = document.getElementById("timeline");
           _element.parentNode.removeChild(_element);
+
           autoFilterOne.set({
             "filter": {
               "frequency": 500,
@@ -841,6 +899,24 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
           noiseOne.mute = false;
           document.getElementById("myVideo").style.display = "block";
           myFunction();
+
+          document.getElementById("ikeda2").style.backgroundColor = "black";
+          document.getElementById("ikeda2").style.border = '1px solid white';
+          document.getElementById("ikeda3").style.display = "block";
+          document.getElementById("ikeda3").style.border = '1px solid white';
+
+          document.getElementById("ikeda4").style.display = "block";
+          document.getElementById("ikeda4").style.border = '1px solid white';
+
+          document.getElementById("ikeda5").style.display = "block";
+          document.getElementById("ikeda5").style.border = '1px solid white';
+
+          document.getElementById("ikeda6").style.display = "block";
+          document.getElementById("ikeda6").style.border = '1px solid white';
+
+          document.getElementById("consolediv").style.display = "block";
+
+
         }
 
         if (__e == '00:02:41:0') {
@@ -852,6 +928,10 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
 
 });
 
+
+
+
+
 var counter = 0;
 function addTimeLineToDiv(v) {
   timelinetxt = setInterval(function() {
@@ -859,16 +939,70 @@ function addTimeLineToDiv(v) {
     console.log(counter)
     if (counter <= 35) {
       document.getElementById('timeline').style.cssText = 'position:absolute;width:15%;height:100%;left:5%;top:20%;display:block;background:#000';
+      document.getElementById('timeline2').style.cssText = 'position:absolute;width:15%;height:100%;right:5%;top:20%;display:block;background:#000';
 
       document.getElementById('timeline').innerHTML += v + '<br>';//stringtext;
+      document.getElementById('timeline2').innerHTML += v + '<br>';//stringtext;
+
+
+      var ___e = Math.random().toString(36).substring(2, 15);
+
+      document.getElementById('ikeda5').innerHTML += ___e + '<br>';
+      document.getElementById('ikeda6').innerHTML += ___e + '<br>';
+
+
     }
     if (counter > 35) {
       document.getElementById('timeline').innerHTML = "";
+      document.getElementById('timeline2').innerHTML = "";
+      document.getElementById('ikeda5').innerHTML = "";
+      document.getElementById('ikeda6').innerHTML = "";
+
+
       counter = 0;
     }
 
   }, 100);
 }
+
+var _counter = 0;
+function writeMemory() {
+  _timelinetxt = setInterval(function() {
+    _counter++;
+    console.log(_counter)
+    if (_counter <= 10) {
+
+      var _a = JSON.stringify(a);
+      console.log(_a);
+      document.getElementById('maintext').innerHTML += _a + '<br>';//stringtext;
+    }
+    if (_counter > 10) {
+      document.getElementById('maintext').innerHTML = "";
+      _counter = 0;
+    }
+  }, 150);
+}
+
+/*
+var __counter = 0;
+function _writeMemory() {
+  timelinetxt = setInterval(function() {
+    __counter++;
+    console.log(__counter)
+    if (__counter <= 30) {
+      var l = Math.floor(Math.random() * 1000);
+      var a = 'Uncaught TypeError: Cannot set property innerHTML of null at directing.js:910 (anonymous) @ directing.js:910';
+      var _a = l + a;
+      document.getElementById('consolediv').innerHTML += _a + '<br>';//stringtext;
+    }
+    if (__counter > 30) {
+      document.getElementById('consolediv').innerHTML = "";
+      __counter = 0;
+    }
+  }, 90);
+}*/
+
+
 
 function sequencingDiv() {
   var elem = document.createElement('ele');
@@ -896,16 +1030,10 @@ function secondMov() {
       whiteBack();
     }, 30);
 }
-
-function ikedasquare() {
-  /*square = setInterval(function() {
-    var _a = Math.round(Math.random() * 1);
-    var z = Math.floor(Math.random() * 256);
-    var bgColor = "rgb(" + z + "," + z + "," + z + ")";
-
-    document.getElementById("ikeda").style.backgroundColor = bgColor;
-    //document.getElementById("ikeda").style.opacity = _z;
-  }, 100);*/
+function _secondMov() {
+    _secondMv = setInterval(function() {
+      whiteBack();
+    }, 30);
 }
 
 function contextStop() {

@@ -73,12 +73,103 @@ html, body {
   margin: 0;
 }
 
+#maintext {
+  background-color: black;
+  color: white;
+  position: absolute;
+  width: 45%;
+  height: 45%;
+  top: 27%;
+  right: 27%;
+  display: none;
+}
+
+#consolediv {
+  background-color: black;
+  color: white;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 15%;
+  height: 100%;
+  display: none;
+  z-index: 9000;
+}
+
+#noise {
+  position: absolute;
+  background-color: rgba(10,10,10,1);
+  width: 50%;
+  height: 50%;
+  left: 0px;
+  top: 0px;
+  display: none;
+  z-index: 9999;
+}
+
+
 #ikeda {
   background-color: white;
   position: absolute;
   width: 15%;
   height: 15%;
   left: 5%;
+  top: 5%;
+  display: none;
+  z-index: 9000;
+}
+#ikeda2 {
+  background-color: white;
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  right: 5%;
+  top: 5%;
+  display: none;
+  z-index: 9000;
+}
+
+#ikeda3 {
+  background-color: white;
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  left: 5%;
+  bottom: 5%;
+  display: none;
+  z-index: 9000;
+}
+
+#ikeda4 {
+  background-color: white;
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  right: 5%;
+  bottom: 5%;
+  display: none;
+  z-index: 9000;
+}
+
+#ikeda5 {
+  background-color: rgba(0,0,0,0);
+  color: white;
+  position: absolute;
+  width: 60%;
+  height: 15%;
+  right: 20%;
+  bottom: 5%;
+  display: none;
+  z-index: 9000;
+}
+
+#ikeda6 {
+  background-color: rgba(0,0,0,0);
+  color: white;
+  position: absolute;
+  width: 60%;
+  height: 15%;
+  right: 20%;
   top: 5%;
   display: none;
   z-index: 9000;
@@ -91,6 +182,19 @@ html, body {
   width: 15%;
   height: 15%;
   left: 5%;
+  top: 20%;
+  display: none;
+}
+
+#timeline2 {
+  background-color: black;
+  color: white;
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  float: right;
+  text-align: right;
+  right: 5%;
   top: 20%;
   display: none;
 }
