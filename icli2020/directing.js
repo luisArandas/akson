@@ -59,12 +59,15 @@ document.body.onkeyup = function(e){
       clearInterval(startnoise);
     }
     if (e.keyCode == 75) { // k
+      document.getElementById("linedraw").style.display = "block";
+
     }
     if (e.keyCode == 74) { // j
 
     }
 
 }
+console.log("corruption on images");
 
 async function drawLines(a,s,d,f,x) {
   document.getElementById("linedraw").style.display = "block";
@@ -961,8 +964,7 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
 
           player5.mute = true;
           player5 = null;
-          var _element = document.getElementById("timeline");
-          _element.parentNode.removeChild(_element);
+          document.getElementById("timeline").style.display = "none";
 
           autoFilterOne.set({
             "filter": {
@@ -1008,9 +1010,10 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
         }
 
         if (__e == '00:04:20:0') {
-          document.getElementById('maintext').style.cssText = 'position:absolute;width:15%;height:100%;left:0%;top:0%;display:block;background:#000;color:white';
-          a = window.clientInformation;
-
+          counternr = 50;
+          document.getElementById('maintext').style.cssText = 'position:absolute;width:15%;height:100%;left:0%;top:0%;display:block;background:#000;color:white;z-index:9999';
+          a = window.clientInformation.productSub + window.clientInformation.appVersion + window.clientInformation.userAgent + window.clientInformation.languages + window.clientInformation.connection;
+          
           document.getElementById("ikeda3").style.backgroundColor = "black";
           document.getElementById("ikeda4").style.backgroundColor = "black";
           //clearInterval(_timelinetxt);
@@ -1056,19 +1059,19 @@ function addTimeLineToDiv(v) {
 
   }, 100);
 }
-
+var counternr = 10;
 var _counter = 0;
 function writeMemory() {
   _timelinetxt = setInterval(function() {
     _counter++;
     console.log(_counter)
-    if (_counter <= 10) {
+    if (_counter <= counternr) {
 
       var _a = JSON.stringify(a);
       console.log(_a);
       document.getElementById('maintext').innerHTML += _a + '<br>';//stringtext;
     }
-    if (_counter > 10) {
+    if (_counter > counternr) {
       document.getElementById('maintext').innerHTML = "";
       _counter = 0;
     }

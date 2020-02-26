@@ -277,3 +277,16 @@ html, body {
   left: 0%;
   display: none;
 }
+
+/* NOISE */
+
+.bgimg {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-image: url('../akson/_akson4.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    z-index: 9999;
+    display: block;
+}
