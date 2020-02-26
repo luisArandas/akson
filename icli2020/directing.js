@@ -34,7 +34,6 @@ document.body.onkeyup = function(e){
         timer.start({precision: 'secondTenths', target: {seconds: 600}});
         autoFilterOne.start();
         noiseOne.start();
-
     }
     if (e.keyCode == 81) { // Q
       secondMov();
@@ -55,15 +54,55 @@ document.body.onkeyup = function(e){
       document.getElementById("noise").style.display = "block";
       perlinoise();
     }
+    if (e.keyCode == 79) { // p
+      document.getElementById("noise").style.display = "none";
+      clearInterval(startnoise);
+    }
+    if (e.keyCode == 75) { // k
+    }
+    if (e.keyCode == 74) { // j
+
+    }
+
 }
 
-function perlinoise() {
+async function drawLines(a,s,d,f,x) {
+  document.getElementById("linedraw").style.display = "block";
+  var c = document.getElementById("linedraw");
+  var ctx = c.getContext("2d");
+
+  ctx.beginPath();
+  ctx.moveTo(a, s);
+  ctx.lineTo(d, f);
+  ctx.strokeStyle = x;
+  ctx.stroke();
+}
+
+
+var colorchange = false;
+async function perlinoise() {
     startnoise = setInterval(function() {
+
       var e = getRandomInt(0, 256);
-      var e_ =  "rgba(" + e + "," + e + "," + e + ",);"
-      console.log(e_);
-      document.getElementById("noise").style.backgroundColor = e_;
-    }, 30);
+      /*var a = getRandomInt(100,256);
+      var finalcolor;
+      if (colorchange == false) {
+        finalcolor = e;
+        document.getElementById("noise").style.backgroundColor = rgb(finalcolor, finalcolor, finalcolor);
+        colorchange = true;
+      } else if (colorchange == true){
+        finalcolor = a;
+        document.getElementById("noise").style.backgroundColor = rgb(finalcolor, finalcolor, finalcolor);
+        colorchange = false;
+      }*/
+      document.getElementById("noise").style.backgroundColor = rgb(e, e, e);
+      //var e_ =  "rgba(" + e + "," + e + "," + e + ");"
+      //console.log(rgb(e,e,e));
+    }, 120);
+}
+
+function rgb(r, g, b){
+  return ["rgb(",r,",",g,",",b,")"].join("");
 }
 
 function getRandomInt(min, max) {
@@ -73,7 +112,7 @@ function getRandomInt(min, max) {
 }
 
 function myFunction() {
-  document.getElementById("vid").src = "icl.mov";
+  document.getElementById("vid").src = "icl2.mp4";
   document.getElementById("myVideo").load();
   document.getElementById("myVideo").playbackRate = 5;
   document.getElementById("myVideo").loop = true;
@@ -242,6 +281,10 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
       document.getElementById("ikeda5").style.display = "block";
       document.getElementById("ikeda6").style.display = "block";
 
+      document.getElementById("ikeda7").style.display = "block";
+      document.getElementById("ikeda7").innerHTML = "[[0]]";
+
+
       document.getElementById("maintext").style.display = "block";
       writeMemory();
 
@@ -252,25 +295,43 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
       player = new Tone.Player("_seq.wav").toMaster();
       player.autostart = true;
       player.loop = true;
+
+    }
+    if (__e == '00:00:27:4') {
+      drawLines(150,0,3,150,"#FFFFFF");
     }
 
     if (__e == '00:00:25:5') {
       sequencingDiv();
     }
+    if (__e == '00:00:26:5') {
+    }
 
     if (__e == '00:00:29:0') {
       sequencingDiv();
+      drawLines(3,0,3,150,"#FFFFFF");
+
+
     }
     if (__e == '00:00:29:5') {
       sequencingDiv();
     }
 
+    if (__e == '00:00:31:5') {
+      sequencingDiv();
+      drawLines(300,0,0,150,"#FFFFFF");
+
+    }
+
     if (__e == '00:00:33:0') {
       sequencingDiv();
       document.getElementById("ikeda3").style.backgroundColor = "rgba(0,0,0,1)";
+      document.getElementById("linedraw").style.display = "none";
+
     }
     if (__e == '00:00:33:1') {
       document.getElementById("ikeda3").style.backgroundColor = "white";
+      document.getElementById("linedraw").style.display = "block";
     }
 
 
@@ -311,9 +372,18 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
     if (__e == '00:00:49:5') {
       sequencingDiv();
     }
+    if (__e == '00:00:52:5') {
+      drawLines(0,0,300,150,"#FFFFFF");
+    }
+    if (__e == '00:00:52:9') {
+      drawLines(0,0,300,150,"#000000");
+    }
 
     if (__e == '00:00:53:0') {
       sequencingDiv();
+      document.getElementById("linedraw").style.display = "none";
+      document.getElementById("ikeda7").innerHTML = "[[1]]";
+
       player2 = new Tone.Player("beep.wav").toMaster();
       player2.autostart = true;
       player2.loop = false;
@@ -336,6 +406,7 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
     }
 
     if (__e == '00:01:01:0') {
+      document.getElementById("ikeda7").innerHTML = "[[2]]";
 
       player.mute = true;
       player2.mute = true;
@@ -347,6 +418,8 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
 
     }
     if (__e == '00:01:03:0') {
+      document.getElementById("ikeda7").innerHTML = "[[3]]";
+
       player3.mute = true;
       player3 = null;
       player4 = new Tone.Player("seq2.wav").toMaster();
@@ -872,6 +945,7 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
         }
         if (__e == '00:02:27:3') {
           sequencingDiv();
+          document.getElementById("ikeda7").innerHTML = "[[4]]";
           console.log("sub no ultimo kick BASE FREQUENCY CHANGE SEQUENCING")
           player5 = new Tone.Player("burp.wav").toMaster();
           player5.autostart = true;
@@ -883,6 +957,8 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
 
         }
         if (__e == '00:02:39:0') {
+          document.getElementById("ikeda7").innerHTML = "[[5]]";
+
           player5.mute = true;
           player5 = null;
           var _element = document.getElementById("timeline");
@@ -922,6 +998,22 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
         if (__e == '00:02:41:0') {
           //clearInterval(timelinetxt); and others
           console.log("init synthesier");
+        }
+        if (__e == '00:03:53:0') {
+          document.getElementById("myVideo").style.display = "none";
+          document.getElementById("myVideo").pause();
+          document.getElementById("myVideo").currentTime = 0;
+          document.getElementById("myVideo").playbackRate = 0;
+          document.getElementById("myVideo").loop = false;
+        }
+
+        if (__e == '00:04:20:0') {
+          document.getElementById('maintext').style.cssText = 'position:absolute;width:15%;height:100%;left:0%;top:0%;display:block;background:#000;color:white';
+          a = window.clientInformation;
+
+          document.getElementById("ikeda3").style.backgroundColor = "black";
+          document.getElementById("ikeda4").style.backgroundColor = "black";
+          //clearInterval(_timelinetxt);
         }
 
 
