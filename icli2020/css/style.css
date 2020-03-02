@@ -47,6 +47,15 @@ html > div[style] {
   display: none !important;
 }
 
+#tresd {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 20%;
+  height: 20%;
+  z-index: 999999;
+}
+
 #myVideo {
   position: absolute;
   width: 50%;
@@ -74,7 +83,7 @@ html, body {
 }
 
 #maintext {
-  background-color: black;
+  background-color: rgba(0,0,0,0);
   color: white;
   position: absolute;
   width: 45%;
@@ -85,6 +94,17 @@ html, body {
 }
 
 #linedraw {
+  background-color: rgba(0,0,0,0);
+  position: absolute;
+  width: 45%;
+  height: 45%;
+  top: 27%;
+  right: 27%;
+  display: none;
+  z-index: 99999;
+}
+
+#fotodiv {
   background-color: rgba(0,0,0,0);
   position: absolute;
   width: 45%;
@@ -241,6 +261,58 @@ html, body {
   display: none;
 }
 
+#parte1_1_1 {
+  position: absolute;
+  background-color: white;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  z-index: 999999;
+  display: none;
+}
+
+#last1 {
+  position: absolute;
+  background-color: black;
+  width: 20%;
+  height: 20%;
+  top: 20%;
+  left: 20%;
+  z-index: 9999999;
+  display: none;
+}
+#last2 {
+  position: absolute;
+  background-color: black;
+  width: 20%;
+  height: 60%;
+  top: 20%;
+  left: 40%;
+  z-index: 9999999;
+  display: none;
+}
+#last3 {
+  position: absolute;
+  background-color: white;
+  width: 60%;
+  height: 15%;
+  top: 5%;
+  left: 20%;
+  z-index: 9999999;
+  display: none;
+}
+#last4 {
+  position: absolute;
+  background-color: white;
+  width: 60%;
+  height: 15%;
+  bottom: 5%;
+  left: 20%;
+  z-index: 9999999;
+  display: none;
+}
+
 #parte1_2 {
   position:absolute;
   background-color: rgba(0,0,0,1);
@@ -279,14 +351,3 @@ html, body {
 }
 
 /* NOISE */
-
-.bgimg {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background-image: url('../akson/_akson4.png');
-    background-repeat: no-repeat;
-    background-size: auto;
-    z-index: 9999;
-    display: block;
-}

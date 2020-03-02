@@ -27,49 +27,7 @@ noiseOne.connect(phaser);
 noiseOne.volume.value = -99;
 noiseOne.volume.rampTo(-10, 10);
 
-var eq = new Tone.EQ3(0, 0, 0);
-eq.connect(Tone.Master);
 
-vol = new Tone.Volume(-5).connect(eq);
-compressor = new Tone.Compressor(-25, 10).connect(vol);
-
-reverb = new Tone.Freeverb(1.5).connect(compressor);
-reverb.wet.value = 0.9;
-
-vibrato = new Tone.Vibrato(0, 0).connect(reverb);
-
-polySynth = new Tone.PolySynth(6, Tone.Synth, {
-  harmonicity: 10,
-  modulationIndex: 10,
-  detune: 0,
-  oscillator: {
-    type: "sine",
-    modulationType: 'sawtooth',
-    modulationIndex: 3,
-    harmonicity: 3.4
-    /*
-    phase: 0 ,
-    osc.phase: 180; //flips the phase of the oscillator
-    */
-  },
-  envelope: {
-    attack: 0.4,
-    decay: 0.4,
-    sustain: 0.4,
-    release: 100,
-  },
-  modulation: {
-    type: "sine"
-  },
-  modulationEnvelope: {
-    attack: 0.5,
-    decay: 0,
-    sustain: 1,
-    release: 0.5
-  },
-});
-polySynth.connect(vibrato);
-polySynth.volume.value = -35;
 
 
 /* Sonic Properties Variables */

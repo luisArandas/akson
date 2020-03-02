@@ -9,7 +9,6 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
     }
 }
 
-console.log("tirar rato");
 var a = window.performance;
 var timer = new easytimer.Timer();
 var firstMv = null;
@@ -27,6 +26,7 @@ var _timelinetxt = null;
 
 var ctxDown = false;
 var whiteUp = false;
+
 
 var startnoise = null;
 document.body.onkeyup = function(e){
@@ -59,15 +59,153 @@ document.body.onkeyup = function(e){
       clearInterval(startnoise);
     }
     if (e.keyCode == 75) { // k
-      document.getElementById("linedraw").style.display = "block";
-
     }
     if (e.keyCode == 74) { // j
-
+      function hide() {
+        $('html').css({
+          cursor: 'none'
+        });
+      }
+      hide();
     }
 
+    // MOVIMENTOS
+    if (e.keyCode == 90) { //Z
+      //noiseOne.volume.value = -99;
+      console.log("here and think final");
+      polySynth.triggerAttackRelease("C4", "4n");
+    }
+    if (e.keyCode == 88) { //X
+      last1();
+
+    }
+    if (e.keyCode == 67) { //C
+      last2();
+      console.log("ticks");
+    }
+    if (e.keyCode == 86) { //V
+      Tone.Master.mute = true;
+      $('div').remove();
+    }
+    if (e.keyCode == 66) { //B
+
+    }
+    if (e.keyCode == 85) { //U
+      last3();
+    }
 }
-console.log("corruption on images");
+var x1 = false;
+function last1() {
+  if (x1 == false) {
+    var ax = Math.floor(Math.random() * 600);
+    $('#last1').width(ax+'px');
+    document.getElementById("last1").style.display = "block";
+    var textArray = [
+    'C6',
+    'B8',
+    'A9',
+    'C9',
+    ];
+    var randomNumber = Math.floor(Math.random()*textArray.length);
+
+    polySynth2.triggerAttackRelease(textArray[randomNumber], "16n");
+    x1 = true;
+  } else if (x1 == true){
+    document.getElementById("last1").style.display = "none";
+    x1 = false;
+  }
+}
+var x2 = false;
+function last2() {
+  if (x2 == false) {
+    document.getElementById("last2").style.display = "block";
+    x2 = true;
+  } else if (x2 == true){
+    document.getElementById("last2").style.display = "none";
+    x2 = false;
+  }
+}
+var x3 = false;
+function last3() {
+  if (x3 == false) {
+    document.getElementById("last3").style.display = "block";
+    document.getElementById("last4").style.display = "block";
+    x3 = true;
+  } else if (x3 == true){
+    document.getElementById("last3").style.display = "none";
+    document.getElementById("last4").style.display = "none";
+    x3 = false;
+  }
+}
+
+
+vol = new Tone.Volume(-5).connect(Tone.Master);
+compressor = new Tone.Compressor(-25, 10).connect(vol);
+
+reverb = new Tone.Freeverb(0.8).connect(compressor);
+reverb.wet.value = 0.1;
+
+vibrato = new Tone.Vibrato(0,0).connect(reverb);
+
+polySynth = new Tone.PolySynth(6, Tone.Synth, {
+  harmonicity: 10,
+  modulationIndex: 10,
+  detune: 0,
+  oscillator: {
+    type: "sine",
+    modulationType: 'sawtooth',
+    modulationIndex: 3,
+    harmonicity: 3.4
+  },
+  envelope: {
+    attack: 0.4,
+    decay: 0.4,
+    sustain: 0.4,
+    release: 4,
+  },
+  modulation: {
+    type: "sine"
+  },
+  modulationEnvelope: {
+    attack: 0.5,
+    decay: 0,
+    sustain: 1,
+    release: 4
+  },
+});
+polySynth.connect(vibrato);
+
+
+polySynth2 = new Tone.PolySynth(6, Tone.Synth, {
+  harmonicity: 0,
+  modulationIndex: 0,
+  detune: 0,
+  oscillator: {
+    type: "sine",
+    modulationType: 'sawtooth',
+    modulationIndex: 0,
+    harmonicity: 0
+  },
+  envelope: {
+    attack: 0.1,
+    decay: 0.1,
+    sustain: 0.1,
+    release: 0.1,
+  },
+  modulation: {
+    type: "sine"
+  },
+  modulationEnvelope: {
+    attack: 0.1,
+    decay: 0,
+    sustain: 0.1,
+    release: 0.1
+  },
+});
+polySynth2.connect(Tone.Master);
+
+
+
 
 async function drawLines(a,s,d,f,x) {
   document.getElementById("linedraw").style.display = "block";
@@ -101,7 +239,7 @@ async function perlinoise() {
       document.getElementById("noise").style.backgroundColor = rgb(e, e, e);
       //var e_ =  "rgba(" + e + "," + e + "," + e + ");"
       //console.log(rgb(e,e,e));
-    }, 120);
+    }, 200);
 }
 
 function rgb(r, g, b){
@@ -230,16 +368,15 @@ Tone.Transport.timeSignature = 1;
 Tone.Transport.loopEnd = '1n';
 Tone.Transport.loop = true;
 
-console.log("two timelines?");
 var player;
 var player2;
 var player3;
 var player4;
 var player5;
 var stringtext;
-console.log("start with flickr maxstyle write in a div from bottom to up");
 
 timer.addEventListener('secondTenthsUpdated', function (e) {
+
     var _e = timer.getTimeValues().seconds;
     var __e = timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']);
     stringtext = _e + '<br>' + __e;
@@ -1010,20 +1147,38 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
         }
 
         if (__e == '00:04:20:0') {
-          counternr = 50;
+          counternr = 20;
           document.getElementById('maintext').style.cssText = 'position:absolute;width:15%;height:100%;left:0%;top:0%;display:block;background:#000;color:white;z-index:9999';
           a = window.clientInformation.productSub + window.clientInformation.appVersion + window.clientInformation.userAgent + window.clientInformation.languages + window.clientInformation.connection;
-          
+
           document.getElementById("ikeda3").style.backgroundColor = "black";
           document.getElementById("ikeda4").style.backgroundColor = "black";
           //clearInterval(_timelinetxt);
+          document.getElementById("fotodiv").style.display = "block";
+
         }
-
-
+        if (__e == '00:04:35:0') {
+          endSequencing();
+        }
 
 });
 
-
+function endSequencing() {
+  document.getElementById('ikeda2').style.display = "none";
+  document.getElementById('ikeda3').style.display = "none";
+  document.getElementById('ikeda4').style.display = "none";
+  document.getElementById('ikeda5').style.display = "none";
+  document.getElementById('ikeda6').style.display = "none";
+  document.getElementById('ikeda7').style.display = "none";
+  document.getElementById('maintext').style.display = "none";
+  document.getElementById('timeline2').style.display = "none";
+  document.getElementById('timeline').style.display = "none";
+  clearInterval(_timelinetxt);
+  clearInterval(timelinetxt);
+  timer.stop();
+  document.getElementById('parte1_1_1').style.display = "block";
+  lastMov();
+}
 
 
 
@@ -1039,7 +1194,6 @@ function addTimeLineToDiv(v) {
       document.getElementById('timeline').innerHTML += v + '<br>';//stringtext;
       document.getElementById('timeline2').innerHTML += v + '<br>';//stringtext;
 
-
       var ___e = Math.random().toString(36).substring(2, 15);
 
       document.getElementById('ikeda5').innerHTML += ___e + '<br>';
@@ -1052,7 +1206,6 @@ function addTimeLineToDiv(v) {
       document.getElementById('timeline2').innerHTML = "";
       document.getElementById('ikeda5').innerHTML = "";
       document.getElementById('ikeda6').innerHTML = "";
-
 
       counter = 0;
     }
@@ -1130,6 +1283,13 @@ function _secondMov() {
       whiteBack();
     }, 30);
 }
+var lastMv = null;
+function lastMov() {
+    lastMv = setInterval(function() {
+      _whiteBack();
+      _synth2.triggerAttackRelease('16n');
+    }, 140);
+}
 
 function contextStop() {
   if (ctxDown == false) {
@@ -1151,6 +1311,15 @@ function whiteBack() {
   }
 }
 
+function _whiteBack() {
+  if (whiteUp == false) {
+    document.getElementById("parte1_1_1").style.display = "block";
+    whiteUp = true;
+  } else if (whiteUp == true) {
+    document.getElementById("parte1_1_1").style.display = "none";
+    whiteUp = false;
+  }
+}
 
 function fourthMov() {
 

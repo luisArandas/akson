@@ -6,11 +6,13 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHe
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
-/*
+tresd
+document.getElementById("tresd").appendChild(renderer.domElement);
+//document.body.appendChild( renderer.domElement );
+
 var geometry = new THREE.BoxGeometry(15, 15, 15);
 var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
-var cube = new THREE.Mesh( geometry, material );*/
+var cube = new THREE.Mesh( geometry, material );
 
 camera.position.z = 5;
 
