@@ -27,9 +27,6 @@ noiseOne.connect(phaser);
 noiseOne.volume.value = -99;
 noiseOne.volume.rampTo(-10, 10);
 
-
-
-
 /* Sonic Properties Variables */
 
 function synthWave(data) {

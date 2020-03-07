@@ -88,7 +88,9 @@ document.body.onkeyup = function(e){
       $('div').remove();
     }
     if (e.keyCode == 66) { //B
-
+      document.getElementById("timeline").style.display = "none";
+      document.getElementById("timeline2").style.display = "none";
+      Tone.Master.mute = true;
     }
     if (e.keyCode == 85) { //U
       last3();
@@ -142,7 +144,7 @@ function last3() {
 vol = new Tone.Volume(-5).connect(Tone.Master);
 compressor = new Tone.Compressor(-25, 10).connect(vol);
 
-reverb = new Tone.Freeverb(0.8).connect(compressor);
+reverb = new Tone.Freeverb(1.5).connect(compressor);
 reverb.wet.value = 0.1;
 
 vibrato = new Tone.Vibrato(0,0).connect(reverb);
@@ -160,8 +162,8 @@ polySynth = new Tone.PolySynth(6, Tone.Synth, {
   envelope: {
     attack: 0.4,
     decay: 0.4,
-    sustain: 0.4,
-    release: 4,
+    sustain: 0.9,
+    release: 10,
   },
   modulation: {
     type: "sine"
@@ -253,7 +255,7 @@ function getRandomInt(min, max) {
 }
 
 function myFunction() {
-  document.getElementById("vid").src = "icl2.mp4";
+  document.getElementById("vid").src = "icl2.mov";
   document.getElementById("myVideo").load();
   document.getElementById("myVideo").playbackRate = 5;
   document.getElementById("myVideo").loop = true;
@@ -1134,19 +1136,16 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
 
         }
 
-        if (__e == '00:02:41:0') {
+        if (__e == '00:03:20:0') {
           //clearInterval(timelinetxt); and others
-          console.log("init synthesier");
-        }
-        if (__e == '00:03:53:0') {
           document.getElementById("myVideo").style.display = "none";
           document.getElementById("myVideo").pause();
           document.getElementById("myVideo").currentTime = 0;
           document.getElementById("myVideo").playbackRate = 0;
           document.getElementById("myVideo").loop = false;
         }
-
-        if (__e == '00:04:20:0') {
+        if (__e == '00:03:35:0') {
+          //clearInterval(timelinetxt); and others
           counternr = 20;
           document.getElementById('maintext').style.cssText = 'position:absolute;width:15%;height:100%;left:0%;top:0%;display:block;background:#000;color:white;z-index:9999';
           a = window.clientInformation.productSub + window.clientInformation.appVersion + window.clientInformation.userAgent + window.clientInformation.languages + window.clientInformation.connection;
@@ -1155,12 +1154,10 @@ timer.addEventListener('secondTenthsUpdated', function (e) {
           document.getElementById("ikeda4").style.backgroundColor = "black";
           //clearInterval(_timelinetxt);
           document.getElementById("fotodiv").style.display = "block";
-
         }
-        if (__e == '00:04:35:0') {
+        if (__e == '00:03:52:0') {
           endSequencing();
         }
-
 });
 
 function endSequencing() {
@@ -1178,6 +1175,7 @@ function endSequencing() {
   timer.stop();
   document.getElementById('parte1_1_1').style.display = "block";
   lastMov();
+  _lastMov();
 }
 
 
@@ -1284,9 +1282,14 @@ function _secondMov() {
     }, 30);
 }
 var lastMv = null;
+var _lastMv = null;
 function lastMov() {
     lastMv = setInterval(function() {
       _whiteBack();
+    }, 140);
+}
+function _lastMov() {
+    _lastMv = setInterval(function() {
       _synth2.triggerAttackRelease('16n');
     }, 140);
 }

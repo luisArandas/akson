@@ -3,6 +3,8 @@ var nexusIds = ["synthvolume", "backgroundvolume", "mainvolume", "eqbass", "eqmi
 
 var learnStartDiv = "";
 
+console.log("arranjar o codigo meter octaves e no fim acabar clearintervals e deixar som outra nota")
+
 var midiEvent = new Array(34);
 for (var i = 0; i < midiEvent.length; ++i) {
   midiEvent[i] = 0;
@@ -34,52 +36,63 @@ function onMIDISuccess(midiAccess) {
 
 function onMIDIMessage(event) {
   console.log(event);
-
   data = event.data;
   midiValOne = data[0];
   midiValTwo = data[1];
   midiValThree = data[2];
   console.log(data);
-  // Attack
-  if (data[0] == 176 && data[1] == 8) {
-    a = data[2];
-    _a = a.map(0,127,0,6);
-    console.log(_a);
-    lightOne.intensity = _a;
-    lightTwo.intensity = _a;
-    lightThree.intensity = _a;
-    lightFour.intensity = _a;
-    //printLogsDialog("Synthesizer Attack : ", _a);
-  }
-  if (data[0] == 176 && data[1] == 9) {
-    a = data[2];
-    _a = a.map(0,127,0.1,5);
-    console.log(_a);
-    camera.aspect = _a;
-    camera.updateProjectionMatrix();
 
-    /*UI.synthDecay._value.update(_a);
-    UI.synthDecay.render();
-    polySynth.set({
-      "envelope": {
-        "decay": _a
-      }
+  if (data[0] == 144 && data[1] == 3) {
+    document.getElementById("noise").style.display = "block";
+    perlinoise();
+  }
+  if (data[0] == 144 && data[1] == 6) {
+    document.getElementById("noise").style.display = "none";
+    clearInterval(startnoise);
+    timer.start({precision: 'secondTenths', target: {seconds: 600}});
+    autoFilterOne.start();
+    noiseOne.start();
+  }
+  if (data[0] == 144 && data[1] == 8) {
+    $('div').remove();
+  }
+  if (data[0] == 144 && data[1] == 10) {
+    //last3();
+    Tone.Master.mute = true;
+  }
+  if (data[0] == 144 && data[1] == 0) {
+    //_a = a.map(0,127,0,100);
+    autoFilterOne.set({
+      "baseFrequency": 500
     });
-    printLogsDialog("Synthesizer Decay : ", _a);*/
+  }
+  if (data[0] == 144 && data[1] == 5) {
+    //_a = a.map(0,127,0,100);
+    autoFilterOne.set({
+      "baseFrequency": 100
+    });
+  }
+
+  if (data[0] == 176 && data[1] == 8) {
+    last1();
+  }
+
+  if (data[0] == 176 && data[1] == 7) {
+    a = data[2];
+    _a = a.map(0,127,0,100);
+    autoFilterOne.set({
+      "baseFrequency": _a
+    });
+
   }
   if (data[0] == 176 && data[1] == 10) {
-    a = data[2];
     _a = a.map(0,127,0,2);
-    camera.zoom = _a;
-    camera.updateProjectionMatrix();
-    //printLogsDialog("Synthesizer Sustain : ", _a);
+
   }
   if (data[0] == 176 && data[1] == 12) {
     a = data[2];
     _a = a.map(0,127,1,1400);
-    camera.near = _a;
-    camera.updateProjectionMatrix();
-    //printLogsDialog("Synthesizer Release : ", _a);
+
   }
   if (data[0] == 176 && data[1] == 13) {
     a = data[2];
@@ -93,14 +106,14 @@ function onMIDIMessage(event) {
       "frequency": _a
     });
   }
-  if (data[0] == 176 && data[1] == 54) {
+  if (data[0] == 176 && data[1] == 12) {
     a = data[2];
     _a = a.map(0,127,100,1000);
     autoFilterOne.set({
       "baseFrequency": _a
     });
   }
-  if (data[0] == 176 && data[1] == 55) {
+  if (data[0] == 176 && data[1] == 16) {
     a = data[2];
     _a = a.map(0,127,-2.5,8);
     autoFilterOne.set({
