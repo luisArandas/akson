@@ -68,6 +68,12 @@ document.body.onkeyup = function(e){
       }
       hide();
     }
+    if (e.keyCode == 219) { // º
+      noiseOne.volume.rampTo(-999, 10);
+    }
+    if (e.keyCode == 221) { // ´
+      Tone.Master.mute = true;
+    }
 
     // MOVIMENTOS
     if (e.keyCode == 90) { //Z

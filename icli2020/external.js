@@ -58,7 +58,8 @@ function onMIDIMessage(event) {
   }
   if (data[0] == 144 && data[1] == 10) {
     //last3();
-    Tone.Master.mute = true;
+    clearInterval(_lastMv);
+    _synth2.volume.value = -200;
   }
   if (data[0] == 144 && data[1] == 0) {
     //_a = a.map(0,127,0,100);
