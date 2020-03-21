@@ -1,12 +1,3 @@
-/**
- * @author Luis Arandas  http://luisarandas.org
- * @author José Alberto Gomes  http://jasg.net/Home.html
- * @author Rui Penha  http://ruipenha.pt/
- *
- *  All this code was done under the context of a research
- *  between Braga Media Arts and the University of Porto © 2019
- */
-
 Tone.context.resume();
 Tone.Transport.bpm.value = 20;
 Tone.Transport.start();

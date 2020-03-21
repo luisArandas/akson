@@ -78,7 +78,6 @@ document.body.onkeyup = function(e){
     // MOVIMENTOS
     if (e.keyCode == 90) { //Z
       //noiseOne.volume.value = -99;
-      console.log("here and think final");
       polySynth.triggerAttackRelease("C4", "4n");
     }
     if (e.keyCode == 88) { //X

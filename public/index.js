@@ -1,136 +1,16 @@
-/**
- * @author Luis Arandas  http://luisarandas.org
- * @author José Alberto Gomes  http://jasg.net/Home.html
- * @author Rui Penha  http://ruipenha.pt/
- *
- *  All this code was done under the context of a research
- *  between Braga Media Arts and the University of Porto © 2019
- */
 
-/* Startup Functions */
 
 $(document).ready(function() {
-  console.clear();
-  console.log("%cWelcome to Akson", "background:black ; color: white ; font-size:25px");
-  if (WEBGL.isWebGLAvailable() === false) {
-    document.body.appendChild(WEBGL.getWebGLErrorMessage());
-  };
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-  if (isChrome === true){
-    console.log("%c" + "Running Chromium", 'background: #000; color: #fff')
-  } else {
-    console.log("%c" + "Not running Chromium", 'background: #000; color: #fff')
-  }
-  doStuff();
   if (detectmob() === true) {};
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (ios === true) {}
   if (window.AudioContext === null) {
     alert("AudioContext is Undefined");
   }
-  var v = document.querySelectorAll("#c2, #d2, #e2, #g2, #a2, #c3, #d3, #e3, #g3, #a3, #c4, #d4, #e4, #g4, #a4, #c5, #d5, #e5, #g5, #a5");
-  v.forEach(function(v) {
-    v.style.background = "white";
-    v.style.color = "black";
-  });
-  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
-    //Try alert.
-  }
-  getLocation();
+  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {}
 });
 
-function getLocation() {
-
-  if (navigator.geolocation) {
-
-    var positionOptions = {
-    	  timeout : Infinity,
-    	  maximumAge : 0,
-    	  enableHighAccuracy : true
-    	}
-	   navigator.geolocation.getCurrentPosition(getPosition, catchError, positionOptions);
-     // Max Longitude 180 -> Direita do Japão
-     // Min Longitude -180 -> Esquerda da California
-     // Max Latitude : 85 - acima do artic ocean
-     // Min latitude : -85 - antartida
-  } else {
-	   alert("Oops! This browser does not support HTML Geolocation.");
-  }
-}
-
-function convertRange( value, r1, r2 ) {
-    return (value - r1[0]) * (r2[1] - r2[0]) / (r1[1] - r1[0]) + r2[0];
-}
-
-
-function getPosition(position) {
-
-  var latConvert = convertRange(position.coords.latitude, [-85, 85], [0, 1]);
-  var longConvert = convertRange(position.coords.longitude, [-180, 180], [0, 1]);
-
-  switch (true) {
-    //4/4 of the Planet starting Left from California
-
-    case latConvert <= 0.25:
-      console.log("1/4 Left to Right");
-      noiseOne.playbackRate = 10; // 0.5-35
-      autoFilterOne.set({
-        "frequency": 30
-      });
-    break;
-    case latConvert >= 0.25 && latConvert <= 0.5:
-      console.log("2/4 Left to Right");
-    break;
-    case latConvert >= 0.5 && latConvert <= 0.75:
-      console.log("3/4 Left to Right");
-    break;
-
-    case latConvert >= 0.75 && latConvert <= 1:
-      console.log("4/4 Left to Right");
-      noiseOne.playbackRate = 35;
-    break;
-  }
-
-  switch (true) {
-    //4/4 of the Planet starting Antartida South
-
-    case longConvert <= 0.25:
-      console.log("1/4 Bottom to Top");
-      autoFilterOne.set({
-        "octaves": 4
-      });
-    break;
-    case longConvert >= 0.25 && longConvert <= 0.5:
-      console.log("2/4 Bottom to Top");
-    break;
-    case longConvert >= 0.5 && longConvert <= 0.75:
-      console.log("3/4 Bottom to Top");
-    break;
-
-    case longConvert >= 0.75 && longConvert <= 1:
-      console.log("4/4 Bottom to Top");
-    break;
-    }
-}
-// position.coords.altitude ; position.coords.accuracy ; position.coords.altitudeAccuracy
-// position.coords.heading ; position.timestamp);
-
-function catchError(positionError) {
-
-  switch(positionError.code) {
-	   case positionError.TIMEOUT:
-	    alert("The request took too long");
-	     break;
-	   case positionError.POSITION_UNAVAILABLE:
-	    alert("Location is not available.");
-	    break;
-	   case positionError.PERMISSION_DENIED:
-	    alert("Permission has been denied!");
-	    break;
-	  default:
-	    alert("An unknown error occurred.");
-   }
-}
 
 var light;
 var nrSeconds = 0;
@@ -146,10 +26,7 @@ var theta = 0;
 var mouse = new THREE.Vector2(),
   INTERSECTED;
 
-var afterimagePass = new THREE.AfterimagePass();
-var composer;
 
-var whichScene; // Stream to the mobile phone.
 
 var color = "#0000FF";
 
@@ -170,18 +47,14 @@ animate();
 function init() {
   socket = io.connect(window.location.origin);
   socket.on('mouse', clickStream);
-  socket.on('scene', changeScene);
 
-  socket.on('socketid', function(socketid) {
+  /*socket.on('socketid', function(socketid) {
     var logs = document.getElementById('logs'),
       output_node = document.createElement("div");
     output_node.innerHTML = 'A new user connected to Akson' + '<br>';
     logs.appendChild(output_node);
     logs.scrollTop = logs.scrollHeight;
-  });
-
-  container = document.createElement('div');
-  document.body.appendChild(container);
+  });*/
 
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
   camera.position.z = 1000;
@@ -194,13 +67,12 @@ function init() {
   raycaster.linePrecision = 1;
 
   renderer = new THREE.WebGLRenderer({
-    //preserveDrawingBuffer: false,
+    preserveDrawingBuffer: false,
   });
-  //renderer.depth = false;
+  renderer.depth = false;
   renderer.logarithmicDepthBuffer = true;
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  container.appendChild(renderer.domElement);
 
   document.body.appendChild(renderer.domElement);
 
@@ -225,31 +97,11 @@ function init() {
   parentTransform.add(light);
   scene.add(parentTransform);
 
-  parentTransform.frustumCulled = false;
 
   window.addEventListener('resize', onWindowResize, false);
   window.addEventListener('mousedown', onMouseDown, false);
 
   document.addEventListener('mousemove', onDocumentMouseMove, false);
-
-  composer = new THREE.EffectComposer(renderer);
-  composer.addPass(new THREE.RenderPass(scene, camera));
-  composer.addPass(afterimagePass);
-
-  afterimagePass.renderToScreen = true;
-
-  document.addEventListener("keydown", function(event) {
-
-    if (event.which == "221") {
-      document.body.requestPointerLock();
-      console.log(document.body.requestPointerLock());
-    }
-    if (event.which == "220") {
-      document.exitPointerLock();
-      console.log(document.exitPointerLock());
-    }
-  });
-
 }
 
 /* Scheduling the Rendering */
@@ -296,7 +148,6 @@ function onMouseDown(event) {
 
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 
-  //markovNote(); // console logs next chain note
   event.preventDefault();
   var data = {
     x: event.clientX,
@@ -334,9 +185,6 @@ function onWindowResize() {}
 
 function clickStream(data) {
 
-  console.log(data.x);
-  console.log(data.y);
-
   if (isAlocatingSynth != true){
     var note = Math.floor(Math.random() * scale.length);
     currentSynthesizer.triggerAttackRelease(scale[note], "4n");
@@ -350,25 +198,8 @@ function clickStream(data) {
   if (isBlackSceneOne_ == true) {
     randomItem.material.color.set(0xBEBEBE);
   }
-  if (isBlackSceneOne_ == true) {
-    isBlackSceneOne_ = false;
-  } else {
-    isBlackSceneOne_ = true;
-  }
 }
 
-function changeScene(data) {
-  /* Mobile scene changer stream */
-  if (detectmob() === true) {
-    Tone.context.resume().then(() => {
-      var evt = new KeyboardEvent('keydown', {
-        'keyCode': data,
-        'which': data
-      });
-      document.dispatchEvent(evt);
-    });
-  }
-}
 
 /* Device Type Check */
 
@@ -401,16 +232,15 @@ function render() {
   renderer.clear();
   renderer.render(scene, camera);
   renderer.autoClear = false;
-
-  composer.render();
-
 }
 
-function doStuff() {
-  nrSeconds++;
-  console.log("%c" + "Second [" + nrSeconds + "]", 'background: #000; color: #fff');
-  /*if (nrSeconds === 10)
-   topBar('refresh');
-   50000 is 50 seconds, not 5 minutes. 5 minutes would be 5 * 60 * 1000 = 300000
-   Here to refresh automatically.*/
-}
+setInterval(function(){
+  console.log("Hello");
+  var _e = Math.random().toString();
+  document.getElementById("topright").innerHTML =  _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e  + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e;//36
+}, 2500);
+
+//$(selector).delay(2000).fadeIn("slow");
+$(document).ready(function(){
+        $('#welcomediv').fadeIn(3000).fadeOut(3000, function() { $('#welcomescreen').remove(); });
+});
