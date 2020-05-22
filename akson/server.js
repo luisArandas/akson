@@ -66,6 +66,12 @@ function newConnection(socket) {
     socket.broadcast.emit('changeStream', data);
   }
 
+  var _e = ["uiSocketSynthVolume"];
+  for (i = 0; i < 76; i++) {
+    //var e = socket.on(_e[0], streamUi01);
+    //pls erase
+  }
+
   socket.on('uiSocketSynthVolume', streamUi01);
   socket.on('uiSocketBackgroundVolume', streamUi02);
   socket.on('uiSocketMainVolume', streamUi03);
