@@ -9,7 +9,27 @@ $(document).ready(function() {
     alert("AudioContext is Undefined");
   }
   if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {}
+
+  $('#welcomediv').fadeIn(3000).fadeOut(3000, function() {
+    $('#_welcomediv').fadeIn(3000, function() {
+      //$('#welcomescreen').remove();
+
+      //$('#_welcomediv').remove();
+
+    });
+
+  });
+
+
 });
+
+setInterval(function(){
+  console.log("Hello");
+  var _e = Math.random().toString();
+  var randoms = [...Array(40)].map(() => Math.floor(Math.random() * 9));
+
+  document.getElementById("topright").innerHTML = randoms//36
+}, 2500);
 
 
 var light;
@@ -185,11 +205,9 @@ function onWindowResize() {}
 
 function clickStream(data) {
 
-  if (isAlocatingSynth != true){
-    var note = Math.floor(Math.random() * scale.length);
-    currentSynthesizer.triggerAttackRelease(scale[note], "4n");
-    console.log(note);
-  }
+  var note = Math.floor(Math.random() * scale.length);
+  console.log(note);
+  currentSynthesizer.triggerAttackRelease(scale[note], "4n");
 
   var randomItem = parentTransform.children[Math.floor(Math.random() * parentTransform.children.length)];
   if (isBlackSceneOne_ == false) {
@@ -233,14 +251,3 @@ function render() {
   renderer.render(scene, camera);
   renderer.autoClear = false;
 }
-
-setInterval(function(){
-  console.log("Hello");
-  var _e = Math.random().toString();
-  document.getElementById("topright").innerHTML =  _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e  + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e + " " + _e;//36
-}, 2500);
-
-//$(selector).delay(2000).fadeIn("slow");
-$(document).ready(function(){
-        $('#welcomediv').fadeIn(3000).fadeOut(3000, function() { $('#welcomescreen').remove(); });
-});
