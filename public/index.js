@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-  if (detectmob() === true) {};
+  //if (detectmob() === true) {};
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (ios === true) {}
   if (window.AudioContext === null) {
@@ -11,26 +11,19 @@ $(document).ready(function() {
   if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {}
 
   $('#welcomediv').fadeIn(3000).fadeOut(3000, function() {
-    $('#_welcomediv').fadeIn(3000, function() {
-      //$('#welcomescreen').remove();
-
-      //$('#_welcomediv').remove();
-
-    });
-
+      $('#welcomescreen').remove();
   });
-
-
 });
 
 setInterval(function(){
   console.log("Hello");
   var _e = Math.random().toString();
-  var randoms = [...Array(40)].map(() => Math.floor(Math.random() * 9));
-
+  var randoms = [...Array(350)].map(() => Math.floor(Math.random() * 9));
   document.getElementById("topright").innerHTML = randoms//36
 }, 2500);
 
+
+/*
 
 var light;
 var nrSeconds = 0;
@@ -68,14 +61,6 @@ function init() {
   socket = io.connect(window.location.origin);
   socket.on('mouse', clickStream);
 
-  /*socket.on('socketid', function(socketid) {
-    var logs = document.getElementById('logs'),
-      output_node = document.createElement("div");
-    output_node.innerHTML = 'A new user connected to Akson' + '<br>';
-    logs.appendChild(output_node);
-    logs.scrollTop = logs.scrollHeight;
-  });*/
-
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 3000);
   camera.position.z = 1000;
 
@@ -95,8 +80,6 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   document.body.appendChild(renderer.domElement);
-
-  /* First Scene Setup */
 
   parentTransform = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
@@ -124,16 +107,6 @@ function init() {
   document.addEventListener('mousemove', onDocumentMouseMove, false);
 }
 
-/* Scheduling the Rendering */
-
-function onWindowResize() {
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-  camera.aspect = window.innerWidth / window.innerHeight;
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-/* Animation Function */
 
 function animate() {
 
@@ -219,7 +192,6 @@ function clickStream(data) {
 }
 
 
-/* Device Type Check */
 
 function detectmob() {
   if (navigator.userAgent.match(/Android/i) ||
@@ -236,7 +208,6 @@ function detectmob() {
   }
 }
 
-/* Main Render Function */
 
 function render() {
 
@@ -250,4 +221,4 @@ function render() {
   renderer.clear();
   renderer.render(scene, camera);
   renderer.autoClear = false;
-}
+}*/
