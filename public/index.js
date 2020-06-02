@@ -22,7 +22,10 @@ setInterval(function(){
   document.getElementById("topright").innerHTML = randoms//36
 }, 2500);
 
+/* squares */
 
+//var tileWidth  = Math.round(canvas.width / columns),
+//    tileHeight = Math.round(canvas.height / rows);
 /*
 
 var light;

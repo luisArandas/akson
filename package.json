@@ -18,6 +18,7 @@
   "homepage": "https://github.com/luisArandas/akson#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "glslCanvas": "^0.1.7",
     "socket.io": "^2.1.1"
   }
 }
