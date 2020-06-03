@@ -36,7 +36,7 @@
 <body style="background-color: black; overflow: hidden;">
   soon.<!--
 
-  <div id="maincanvas" style="position: absolute; left: 11%; top: 10%; width: 78%; height: 80%; background-color: red; box-shadow: 0 0 5px 10px red;"></div>
+  <div id="maincanvas" style="position: absolute; left: 11%; top: 10%; width: 78%; height: 80%; background-color: #272727; box-shadow: 0 0 5px 5px #272727; z-index: -2;"></div>
   <div id="topright" style="position: absolute; width: 8%; height: 25%; right: 1%; top: 6%; background-color: black; color: rgba(130,130,130,1); overflow: hidden; font-size: 7px; word-wrap: break-word;"></div>
   <div id="kompass" style="background-size: contain; background-repeat: no-repeat; background-color: black; background-image: url(img/ruler2.png); position: absolute; width: 40%; height: 8%; left: 30%; bottom: 0px;">
     <img src="img/ruler2.png" style="visibility: hidden;" />
@@ -57,8 +57,8 @@
     <div style="margin: 0; position: absolute; top: 50%; left: 50%; color: rgba(130,130,130,1); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); font-family: "Lucida Console", Courier, monospace !important;">[_akson///less_]<br>Criatech 2020</div>
   </div>
 
-  <canvas class="glslCanvas" data-fragment-url="shader2.frag" style="position: absolute; left: 1%; top: 50%; width: 8%; height: 40%; background-color: grey; z-index: -999;"></canvas>
-  <canvas class="glslCanvas" data-fragment-url="shader.frag" style="position: absolute; right: 1%; top: 35%; width: 8%; height: 10%; background-color: grey; z-index: -999;"></canvas>
+  <canvas id="scale" class="glslCanvas" data-fragment-url="shader2.frag" style="position: absolute; left: 1%; top: 50%; width: 8%; height: 40%; background-color: grey; z-index: -999;"></canvas>
+  <canvas id="remv" class="glslCanvas" data-fragment-url="shader.frag" style="position: absolute; right: 1%; top: 35%; width: 8%; height: 10%; background-color: grey; z-index: -999;"></canvas>
 -->
   <div>
     <script src="libraries/three.min.js"></script>

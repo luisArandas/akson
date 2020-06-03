@@ -1,8 +1,16 @@
 // Author @patriciogv - 2015
-// http://patriciogonzalezvivo.com
+// Title: Ikeda Numered Grid
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform float u_time;
 
 float random(in float x){ return fract(sin(x)*43758.5453); }
-float random(in vec2 st){ return fract(sin(dot(st.xy ,vec2(12.9898,78.233))) * 43758.5453); }
+// float random(in vec2 st){ return fract(sin(dot(st.xy ,vec2(12.9898,78.233))) * 43758.5453); }
+float random(vec2 p) { return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x)))); }
 
 float bin(vec2 ipos, float n){
     float remain = mod(n,33554432.);
@@ -38,16 +46,16 @@ float char(vec2 st, float n){
     else if (n < 10. ) { digit = 31717.0; }
     float pct = bin(ipos, digit);
 
-    vec2 borders = vec2(1.);
+    vec2 borders = vec2(3.);
     // borders *= step(0.01,fpos.x) * step(0.01,fpos.y);   // inner
-    borders *= step(0.0,st)*step(0.0,1.-st);            // outer
+    borders *= step(.0,st)*step(0.0,1.-st);            // outer
 
     return step(.5,1.0-pct) * borders.x * borders.y;
 }
 
 float grid(vec2 st, float res){
     vec2 grid = fract(st*res);
-    return 1.-(step(res,grid.x) * step(res,grid.y));
+    return 1.-(step(res,grid.x*2.) * step(res,grid.y));
 }
 
 float box(in vec2 st, in vec2 size){
@@ -62,21 +70,20 @@ float box(in vec2 st, in vec2 size){
 }
 
 float cross(in vec2 st, vec2 size){
-    return  clamp(box(st, vec2(size.x*0.5,size.y*0.125)) +
-            box(st, vec2(size.y*0.125,size.x*0.5)),0.,1.);
+    return  clamp(box(st, vec2(size.x+1.5,size.y*0.125)) +
+            box(st, vec2(size.y*.1,size.x*10.5)),0.,1.);
 }
 
 void main(){
-	vec2 st = fragCoord.xy / iResolution.xy;
-    st.x *= iResolution.x/iResolution.y;
-    st *= 0.7;
+    vec2 st = gl_FragCoord.st/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
 
     vec3 color = vec3(0.0);
 
     // Grid
-    vec2 grid_st = st*300.;
-    color += vec3(0.5,0.,0.)*grid(grid_st,0.01);
-    color += vec3(0.2,0.,0.)*grid(grid_st,0.02);
+    vec2 grid_st = st*700.;
+    color += vec3(0.035,0.032,0.035)*grid(grid_st,0.01);
+    color += vec3(0.118,0.116,0.120)*grid(grid_st,0.02);
     color += vec3(0.2)*grid(grid_st,0.1);
 
     // Crosses
@@ -92,21 +99,13 @@ void main(){
     if (digits_st_i.y == 1. &&
         digits_st_i.x > 0. && digits_st_i.x < 6. ) {
         vec2 digits_st_f = fract(digits_st);
-        float pct = random(digits_st_i+floor(crosses_st)+floor(iTime*20.));
+        float pct = random(digits_st_i+floor(crosses_st)+floor(u_time*20.));
         color += vec3(char(digits_st_f,100.*pct));
     } else if (digits_st_i.y == 2. &&
         digits_st_i.x > 0. && digits_st_i.x < 8. ) {
         vec2 digits_st_f = fract(digits_st);
-        float pct = random(digits_st_i+floor(crosses_st)+floor(iTime*20.));
+        float pct = random(digits_st_i+floor(crosses_st)+floor(u_time*20.));
         color += vec3(char(digits_st_f,100.*pct));
     }
-
-    // Digits
-    vec2 blocks_st = floor(st*3.);
-    float t = iTime*.8+random(blocks_st);
-    float time_i = floor(t);
-    float time_f = fract(t);
-    color.rgb += step(0.9,random(blocks_st+time_i))*(1.0-time_f);
-
-	fragColor = vec4(color,1.0);
+    gl_FragColor = vec4( color , 1.0);
 }

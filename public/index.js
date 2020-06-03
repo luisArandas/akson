@@ -1,10 +1,13 @@
 
-
+var iswt_ = false;
 $(document).ready(function() {
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-  //if (detectmob() === true) {};
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (ios === true) {}
+
+  if (ios === true || $(window).width() < 960 || detectmob() === true) {
+    $("div").remove();
+    $("canvas").remove();
+  }
   if (window.AudioContext === null) {
     alert("AudioContext is Undefined");
   }
@@ -20,13 +23,20 @@ setInterval(function(){
   var _e = Math.random().toString();
   var randoms = [...Array(350)].map(() => Math.floor(Math.random() * 9));
   document.getElementById("topright").innerHTML = randoms//36
-}, 2500);
+}, 1500);
 
-/* squares */
+setInterval(function(){
+  console.log("ww");
+  if (iswt_ == false) {
+    document.body.style["background-color"] = "white";
+    iswt_ = true;
+  } else if (iswt_ == true) {
+    document.body.style["background-color"] = "black";
+    iswt_ = false;
+  }
 
-//var tileWidth  = Math.round(canvas.width / columns),
-//    tileHeight = Math.round(canvas.height / rows);
-/*
+}, 1500);
+
 
 var light;
 var nrSeconds = 0;
@@ -68,7 +78,7 @@ function init() {
   camera.position.z = 1000;
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x000000);
+  scene.background = new THREE.Color(0x272727);
   scene.add(camera);
 
   raycaster = new THREE.Raycaster();
@@ -80,9 +90,12 @@ function init() {
   renderer.depth = false;
   renderer.logarithmicDepthBuffer = true;
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
 
-  document.body.appendChild(renderer.domElement);
+  container = document.getElementById( 'maincanvas' );
+  document.body.appendChild(container);
+  renderer.setSize( $('#maincanvas').width(), $('#maincanvas').height());
+
+  container.appendChild(renderer.domElement);
 
   parentTransform = new THREE.Object3D();
   for (var i = 0; i < 90; i++) {
@@ -224,4 +237,4 @@ function render() {
   renderer.clear();
   renderer.render(scene, camera);
   renderer.autoClear = false;
-}*/
+}
