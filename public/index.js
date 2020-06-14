@@ -1,5 +1,5 @@
 
-var iswt_ = false;
+var iswt_ = null;
 $(document).ready(function() {
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
   const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -7,6 +7,7 @@ $(document).ready(function() {
   if (ios === true || $(window).width() < 960 || detectmob() === true) {
     $("div").remove();
     $("canvas").remove();
+    iswt_ = false;
   }
   if (window.AudioContext === null) {
     alert("AudioContext is Undefined");
@@ -26,7 +27,7 @@ setInterval(function(){
 }, 1500);
 
 setInterval(function(){
-  console.log("ww");
+
   if (iswt_ == false) {
     document.body.style["background-color"] = "white";
     iswt_ = true;
