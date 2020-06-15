@@ -59,7 +59,7 @@
     <div style="margin: 0; position: absolute; top: 50%; left: 50%; color: rgba(130,130,130,1); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); font-family: "Lucida Console", Courier, monospace !important;">[_wire///loss_]<br>Criatech 2020</div>
   </div>
 
-  <canvas id="scale" class="glslCanvas" data-fragment-url="shader2.frag" style="position: absolute; left: 1%; top: 50%; width: 8%; height: 40%; background-color: grey; z-index: -999;"></canvas>
+  <canvas id="scale" class="glslCanvas" data-fragment-url="shader2.frag" style="position: absolute; left: 1%; top: 50%; width: 8%; height: 40%; background-color: grey; opacity: 0.4; z-index: -999;"></canvas>
   <canvas id="remv" class="glslCanvas" data-fragment-url="shader.frag" style="position: absolute; right: 1%; top: 35%; width: 8%; height: 10%; background-color: grey; z-index: -999;"></canvas>
 
   <div id="lefttext" style="position: absolute; right: 2%; bottom: 10%; height: 40%; width: 7%; background-color: rgba(0,0,0,1); font-size: 6px; color: rgba(80,80,80,1); z-index: -1;"></div>
@@ -67,6 +67,9 @@
   <div id="firstbar" style="position: absolute; top: 0px; left: 15%; width: 20%; height: 100%; font-size: 8px; color: rgba(80,80,80,1); pointer-events: none; z-index: -1;">okokok</div>
 
   <div id="fog" style="position: absolute; left: 0%; top: 0%; width: 50%; background-color: rgba(0,0,0,0); height: 50%;"></div>
+
+  <canvas id="line1" style="position: absolute; left: 0%; top: 0%; width: 100%; height: 100%; z-index: -999999; "></canvas>
+
 
   <div>
     <script src="libraries/three.min.js"></script>
