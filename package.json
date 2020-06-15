@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "glslCanvas": "^0.1.7",
+    "html-gl": "^0.3.2",
     "socket.io": "^2.1.1"
   }
 }

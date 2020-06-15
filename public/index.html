@@ -37,6 +37,8 @@
   <!--soon.-->
 
   <div id="maincanvas" style="position: absolute; left: 11%; top: 10%; width: 78%; height: 80%; background-color: #272727; box-shadow: 0 0 5px 5px #272727; z-index: -2;"></div>
+  <div id="secondmaincanvas" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; background-color: black; opacity: 0.3; pointer-events: none; z-index: 9999;"></div>
+
   <div id="topright" style="position: absolute; width: 8%; height: 25%; right: 1%; top: 6%; background-color: black; color: rgba(130,130,130,1); overflow: hidden; font-size: 7px; word-wrap: break-word;"></div>
   <div id="kompass" style="background-size: contain; background-repeat: no-repeat; background-color: black; background-image: url(img/ruler2.png); position: absolute; width: 40%; height: 8%; left: 30%; bottom: 0px;">
     <img src="img/ruler2.png" style="visibility: hidden;" />
@@ -60,13 +62,162 @@
   <canvas id="scale" class="glslCanvas" data-fragment-url="shader2.frag" style="position: absolute; left: 1%; top: 50%; width: 8%; height: 40%; background-color: grey; z-index: -999;"></canvas>
   <canvas id="remv" class="glslCanvas" data-fragment-url="shader.frag" style="position: absolute; right: 1%; top: 35%; width: 8%; height: 10%; background-color: grey; z-index: -999;"></canvas>
 
+  <div id="lefttext" style="position: absolute; right: 2%; bottom: 10%; height: 40%; width: 7%; background-color: rgba(0,0,0,1); font-size: 6px; color: rgba(80,80,80,1); z-index: -1;"></div>
+
+  <div id="firstbar" style="position: absolute; top: 0px; left: 15%; width: 20%; height: 100%; font-size: 8px; color: rgba(80,80,80,1); pointer-events: none; z-index: -1;">okokok</div>
+
+  <div id="fog" style="position: absolute; left: 0%; top: 0%; width: 50%; background-color: rgba(0,0,0,0); height: 50%;"></div>
+
   <div>
     <script src="libraries/three.min.js"></script>
     <script src="libraries/Tone.js"></script>
-    <script src="audio.js" type="text/javascript"></script>
-    <script src="music.js" type="text/javascript"></script>
-    <script src="index.js" type="text/javascript"></script>
+    <script src="EffectComposer.js"></script>
+    <script src="VignetteShader.js"></script>
+    <script src="curtains.min.js"></script>
+
+    <script src="RenderPass.js"></script>
+    <script src="ShaderPass.js"></script>
+
+    <script src="audio.js"></script>
+
+    <script src="music.js"></script>
+    <script src="index.js"></script>
+
+    <!--<script type="x-shader/x-vertex" id="vertex-shader">
+    void main(void)
+    {
+      gl_Position = ftransform();
+      gl_TexCoord[0] = gl_MultiTexCoord0;
+    }
+    </script>
+    <script type="x-shader/x-fragment" id="fragment-shader">
+    uniform sampler2D sceneTex; // 0
+
+    uniform float rt_w; // render target width
+    uniform float rt_h; // render target height
+    uniform float vx_offset;
+
+    float offset[3] = float[]( 0.0, 1.3846153846, 3.2307692308 );
+    float weight[3] = float[]( 0.2270270270, 0.3162162162, 0.0702702703 );
+
+    void main()
+    {
+      vec3 tc = vec3(1.0, 0.0, 0.0);
+      if (gl_TexCoord[0].x<(vx_offset-0.01))
+      {
+        vec2 uv = gl_TexCoord[0].xy;
+        tc = texture2D(sceneTex, uv).rgb * weight[0];
+        for (int i=1; i<3; i++)
+        {
+          tc += texture2D(sceneTex, uv + vec2(offset[i])/rt_w, 0.0).rgb \
+              * weight[i];
+              tc += texture2D(sceneTex, uv - vec2(offset[i])/rt_w, 0.0).rgb \
+              * weight[i];
+            }
+          }
+      else if (gl_TexCoord[0].x>=(vx_offset+0.01))
+      {
+        tc = texture2D(sceneTex, gl_TexCoord[0].xy).rgb;
+      }
+  gl_FragColor = vec4(tc, 1.0);
+}
+    </script>-->
   </div>
+
+
+	<!--	<script>
+    var afterimagePass = new THREE.AfterimagePass();
+
+    var camera, scene, renderer, composer;
+			var mesh;
+
+			var afterimagePass;
+
+			var params = {
+
+				enable: true
+
+			};
+
+			init();
+			createGUI();
+			animate();
+
+			function init() {
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera.position.z = 400;
+
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0x000000, 1, 1000 );
+
+				var geometry = new THREE.BoxBufferGeometry( 150, 150, 150, 2, 2, 2 );
+				var material = new THREE.MeshNormalMaterial();
+				mesh = new THREE.Mesh( geometry, material );
+				scene.add( mesh );
+
+				// postprocessing
+
+				composer = new EffectComposer( renderer );
+				composer.addPass( new RenderPass( scene, camera ) );
+
+				afterimagePass = new AfterimagePass();
+				composer.addPass( afterimagePass );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				if ( typeof TESTING !== 'undefined' ) { for ( var i = 0; i < 45; i ++ ) { render(); }; };
+
+			}
+
+			function createGUI() {
+
+				var gui = new GUI( { name: 'Damp setting' } );
+				gui.add( afterimagePass.uniforms[ "damp" ], 'value', 0, 1 ).step( 0.001 );
+				gui.add( params, 'enable' );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				composer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function render() {
+
+				mesh.rotation.x += 0.005;
+				mesh.rotation.y += 0.01;
+
+				if ( params.enable ) {
+
+					composer.render();
+
+				} else {
+
+					renderer.render( scene, camera );
+
+				}
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+
+			}
+
+		</script>-->
 
 
   <!--check trigger sniper-->
